@@ -1,0 +1,22 @@
+#cursor {
+    position: absolute;
+    animation: rotate 2s infinite linear;
+    transition: 200ms ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width:860px) {
+    #cursor {
+        display: none;
+    }
+}
