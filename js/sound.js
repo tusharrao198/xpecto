@@ -1,6 +1,6 @@
-window.onload = () => {
-    document.querySelector(".anthem").play()
-}
+// window.onload = () => {
+//     document.querySelector(".anthem").play()
+// }
 
 let sound = document.querySelector(".sound");
 let status = document.querySelector("#status");
