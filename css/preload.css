@@ -1,0 +1,91 @@
+.bg {
+    height: 100vh;
+    width: 100vw;
+    /* background: url("../images/Nature.jpg"); */
+    background-color: #171717;
+    position: fixed;
+    z-index: -200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5.5em;
+}
+
+.bg h1 {
+    color: #ce121225;
+}
+
+.preload p,
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #eeebdd;
+}
+
+.main {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.preloader {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    transition: ease-in 2s;
+}
+
+.enter a {
+    border: none;
+    background: none;
+    font-weight: 900;
+    margin: 10px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #eeebdd;
+}
+
+.enter:hover {
+    transform: translateX(10px);
+}
+
+.enter:hover img {
+    opacity: 1;
+    height: 40px;
+    width: 32px;
+    transform: rotate(0);
+}
+
+.enter img {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transform: rotate(-540deg);
+    transition: ease-in 0.75s;
+}
+
+.enter {
+    display: flex;
+    flex-direction: row;
+    transition: ease 1s;
+    justify-content: center;
+    align-items: center;
+}
+
+.home {
+    height: 100vh;
+    width: 100vw;
+    /* background-image: linear-gradient(to right, rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 1)); */
+    transform: translateY(100%);
+    opacity: 0;
+    transition: ease-in 2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 10;
+}

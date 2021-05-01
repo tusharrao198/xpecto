@@ -143,12 +143,11 @@ a {
     color: white !important;
 }
 
-
 #toggle {
     font-size: 5vw;
     border: none;
     background: none;
-    color:white;
+    color: white;
     font-family: 'Acme', sans-serif;
 }
 
@@ -168,9 +167,17 @@ a {
         transition: .5s;
         overflow-y: auto;
     }
-    .sound{
+    .main {
+        position: fixed;
+        top: 0px;
+    }
+    .bg {
+        position: fixed;
+        top: 0px;
+    }
+    .sound {
         right: 10px;
-    bottom: 10px;  
+        bottom: 10px;
     }
 }
 
@@ -278,9 +285,9 @@ a {
         margin: 0;
     }
     .head-text h1 {
-    font-size: 7vw;
+        font-size: 7vw;
     }
-    #toggle{
+    #toggle {
         font-size: 1.5vw;
     }
     .header {
@@ -348,9 +355,9 @@ a {
     .dropdown__item {
         margin: .5rem 0;
     }
-    .sound{
-      right:10px;
-      bottom:10px;
+    .sound {
+        right: 10px;
+        bottom: 10px;
     }
 }
 
