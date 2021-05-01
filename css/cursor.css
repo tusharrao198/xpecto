@@ -1,7 +1,7 @@
 #cursor {
     position: absolute;
     animation: rotate 2s infinite linear;
-    transition: 200ms ease;
+    transition: 100ms ease;
     pointer-events: none;
     z-index: 1000;
 }

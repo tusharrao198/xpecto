@@ -1,31 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/index.css" rel="stylesheet" type="text/css">
+    <link href="./css/cursor.css" rel="stylesheet" type="text/css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js" integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A==" crossorigin="anonymous"></script>
     <title>Pukaar - Technical Fest</title>
 </head>
 
 <body>
-    <div class="bg"></div>
-    <div class="main">
-        <div class="preloader">
-            <h1 style="color: red;">Pukaar </h1>
-            <h1 style="color: red;">The Technical Fest of IIT Mandi</h1>
-            <div class="enter">
-                <img src="./images/arrow-right.svg" alt="arrioe-right">
-                <a id="enter" href="#">Enter</a>
-            </div>
+    <div class="head">
+        <div class="head-text">
+            <h1>Pukaar<br>Techanical Fest</h1>
         </div>
-        <div class="home"></div>
+    </div>
+    <header class="header">
+        <a href="#" class="header__logo">PUKAAR</a>
+
+        <i class='bx bx-menu header__toggle' id="header-toggle"></i>
+
+        <nav class="nav" id="nav-menu">
+            <div class="nav__content bd-grid">
+                <a href="" class="nav__perfil">
+                    <div>
+                        <span class="nav__name">PUKAAR</span>
+
+                    </div>
+                </a>
+
+                <div class="nav__menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#" class="nav__link active">Home</a></li>
+
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link dropdown__link">About <i class='bx bx-chevron-down dropdown__icon'></i></a>
+
+
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item"><a href="#" class="nav__link">About me</a></li>
+                                <li class="dropdown__item"><a href="#" class="nav__link">Location</a></li>
+                                <li class="dropdown__item"><a href="#" class="nav__link">Studies</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav__item"><a href="#" class="nav__link">Skills</a></li>
+
+                        <li class="nav__item dropdown">
+                            <a href="#" class="nav__link dropdown__link">Works <i class='bx bx-chevron-down dropdown__icon'></i></a>
+
+
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item"><a href="#" class="nav__link">Recent jobs</a></li>
+                                <li class="dropdown__item"><a href="#" class="nav__link">Better jobs</a></li>
+                                <li class="dropdown__item"><a href="#" class="nav__link">Work Awards</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sound">
+        <button id="toggle">Sound: <span id="status">ON</span></button>
     </div>
 
+    <img id="cursor" src="./images/gear.png" alt="none" />
+    <audio id="click" class="click-sound" src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"></audio>
+    <audio class="anthem" src="./audio/anthem.mp3" loop="true" autoplay></audio>
 
-    <script src="./js/scroll.js"></script>
+    <script src="./js/script.js" type="text/javascript"></script>
+    <script src="./js/cursor.js"></script>
+    <script src="./js/sound.js"></script>
 </body>
 
 </html>
