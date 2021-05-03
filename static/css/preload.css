@@ -4,7 +4,7 @@
     /* background: url("../images/Nature.jpg"); */
     background-color: #171717;
     position: fixed;
-    z-index: -200;
+    z-index: -1000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,12 +23,6 @@ h1 {
     color: #eeebdd;
 }
 
-.main {
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-}
-
 .preloader {
     height: 100vh;
     width: 100vw;
@@ -36,8 +30,8 @@ h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
     transition: ease-in 2s;
+    z-index: 100;
 }
 
 .enter a {
@@ -77,15 +71,8 @@ h1 {
     align-items: center;
 }
 
-.home {
-    height: 100vh;
-    width: 100vw;
-    /* background-image: linear-gradient(to right, rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 1)); */
-    transform: translateY(100%);
-    opacity: 0;
-    transition: ease-in 2s;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    z-index: 10;
-}
+
+/* .logo {
+    height: auto;
+    width: auto;
+} */

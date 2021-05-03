@@ -15,7 +15,7 @@
     }
 }
 
-@media only screen and (max-width:860px) {
+@media only screen and (max-width:900px) {
     #cursor {
         display: none;
         opacity: 0;

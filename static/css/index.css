@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Lacquer&display=swap');
 * {
-    cursor: none;
-    position:relative;
+    position: relative;
 }
 
 body,
 html {
     height: 100%;
     margin: 0;
+    width: 100vw;
     /* font-family: Arial, Helvetica, sans-serif;*/
     font-family: 'Acme', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 
@@ -17,7 +22,7 @@ html {
 
 .head {
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-    background-image: url("../images/header.jfif");
+    background-image: url("../images/header.jpg");
     /* Set a specific height */
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
@@ -109,7 +114,14 @@ a {
 }
 
 
-/*===== HEADER =====*/
+/*===== Home =====*/
+
+.home {
+    transition: ease-in 2s;
+    z-index: 100;
+    height: 100vh;
+    opacity: 0;
+}
 
 .header {
     position: fixed;
@@ -133,6 +145,18 @@ a {
 .header__toggle {
     font-size: 1.7rem;
     cursor: pointer;
+}
+
+.about-section {
+    height: 100vh;
+    width: 100vw;
+    /* overflow-x: hidden */
+}
+
+.team-section {
+    height: 100vh;
+    width: 100vw;
+    /* overflow-x: hidden; */
 }
 
 .sound {
@@ -175,6 +199,7 @@ a {
     .bg {
         position: fixed;
         top: 0px;
+        z-index: 1000;
     }
     .sound {
         right: 10px;
@@ -369,48 +394,46 @@ a {
     }
 }
 
-
-
 .column {
     float: left;
     width: 33.3%;
     margin-bottom: 16px;
     padding: 0 8px;
 }
-  
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
-    height:100%;
+    height: 100%;
 }
-  
+
 .about-section {
     padding: 30px 250px;
-    
     text-align: center;
     background-color: white;
     color: black;
 }
 
-.about-section p{
-      margin:20px;
-      padding:0px 100px;
+.about-section p {
+    margin: 20px;
+    padding: 0px 100px;
 }
-  
+
 .container {
     padding: 0 16px;
 }
-  
-.container::after, .row::after {
+
+.container::after,
+.row::after {
     content: "";
     clear: both;
     display: table;
 }
-  
+
 .title {
     color: grey;
 }
-  
+
 .button {
     border: none;
     outline: 0;
@@ -423,17 +446,17 @@ a {
     width: 100%;
 }
 
-.row{
-      padding:0px 120px;
+.row {
+    padding: 0px 120px;
 }
-  
+
 .button:hover {
     background-color: #555;
 }
-  
+
 @media screen and (max-width: 650px) {
     .column {
-      width: 100%;
-      display: block;
+        width: 100%;
+        display: block;
     }
 }
