@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     font-size: 5.5em;
+    padding: 0;
 }
 
 .bg h1 {
@@ -32,6 +33,8 @@ h1 {
     align-items: center;
     transition: ease-in 2s;
     z-index: 100;
+    padding: 0;
+    margin: 0;
 }
 
 .enter a {
@@ -76,3 +79,17 @@ h1 {
     height: auto;
     width: auto;
 } */
+
+@media screen and (max-width:768px) {
+    h1 {
+        max-width: 100vw;
+    }
+    .bg h1 {
+        font-size: 11vh
+    }
+    body {
+        height: 100%;
+        overflow-x: hidden;
+        width: 100vw;
+    }
+}

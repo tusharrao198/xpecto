@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -58,11 +57,10 @@ header .logo {
     transition: 0.5s;
     z-index: 2;
     margin: auto;
-
 }
 
 .showcase.active {
-    right: 300px;
+    right: 250px;
 }
 
 .showcase video {
@@ -101,7 +99,6 @@ header .logo {
     border: 1px solid black;
     height: 183px;
     margin: 38px;
-
 }
 
 .text {
@@ -110,7 +107,6 @@ header .logo {
     margin: auto;
     border-right: 3px solid black;
     padding-right: 15px;
-
 }
 
 .text h2 {
@@ -119,7 +115,6 @@ header .logo {
     color: black;
     line-height: 1em;
     text-transform: uppercase;
-
 }
 
 .text h5 {
@@ -211,25 +206,24 @@ header .logo {
 }
 
 @media (max-width: 991px) {
-
     .showcase,
     .showcase header {
         padding: 40px;
     }
-
     .text h2 {
         font-size: 3em;
     }
-
     .text h3 {
         font-size: 2em;
     }
-
-
+    .wrapper {
+        transform: scale(0.75)
+    }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 580px) {
     .wrapper {
         flex-direction: column;
+        transform: scale(0.60)
     }
 }

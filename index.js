@@ -1,5 +1,5 @@
 const express = require("express")
-const port = 5000 || process.env
+const port = process.env.PORT || 5000
 
 let app = express()
 
