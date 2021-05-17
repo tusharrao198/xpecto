@@ -1,0 +1,201 @@
+body {
+  width: 100vw;
+  background-color: #171717;
+  background-image: url(image.jpg);
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  margin: 0;
+  font-family: helvetica;
+}
+
+
+#about .display-1{
+  text-align:center;
+  padding-top:1%;
+  font-weight:350;
+}
+
+
+#about .content {
+  max-width: 1024px;
+  width: 100%;
+  padding: 0 4%;
+  padding-top: 0px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding-top: 30px;
+    flex-direction: column;
+  }
+}
+#about .menu {
+  width: 100%;
+  max-width: 300px;
+  min-width: 200px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+  /* border: 2px solid rgba(7, 7, 7, 0.12); */
+  font-size: 16px; 
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#about .icon {
+  margin: 0 auto;
+  width: 100%;
+  height: 80px;
+  max-width: 80px;
+  /* background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%); */
+  /* background: linear-gradient(135deg, #394406 0%, #b4c889 100%); */
+  background:#000C66;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.8s ease;
+  background-position: 0px;
+  background-size: 200px;
+}
+
+
+
+#about .menu .title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+#about .menu .text {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+  font-weight: 200;
+  letter-spacing: 2px;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.3s ease;
+}
+
+#about .menu:hover {
+  height: 270px;
+  box-shadow: 0px 0px 0px;
+}
+
+#about .menu:hover .info {
+  height: 90%;
+}
+
+#about .menu:hover .text {
+  transition: all 0.3s ease;
+  opacity: 1;
+  max-height: 40px;
+}
+
+#about .menu:hover .icon {
+  background-position: -120px;
+  transition: all 0.3s ease;
+}
+
+#about .menu:hover .icon svg {
+  /* background: linear-gradient(90deg, #FF7E7E, #FF4848); */
+  background:#65FE82 ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+
+
+/* second effect */
+#about .menu__container {
+  width: 200px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20vh;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px 2px rgba(0,0,0,0.4);
+  background-image: linear-gradient(to right bottom, #000c66, #0052b1, #0090cb, #00cab2, #65fe82);
+  transform-origin: center center 0px;
+  transition: all 0.5s ease-out;
+  animation-name: animate;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  transform: perspective(1000px) rotateX(35deg) rotateY(4deg) rotateZ(-30deg);
+  z-index: 1;
+}
+#about .menu__container:hover {
+  animation: unset;
+  margin-top: 18vh;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+}
+
+@-moz-keyframes animate {
+  0% {
+    margin-top: 20vh;
+  }
+  50% {
+    margin-top: 18vh;
+  }
+  100% {
+    margin-top: 20vh;
+  }
+}
+@-webkit-keyframes animate {
+  0% {
+    margin-top: 20vh;
+  }
+  50% {
+    margin-top: 18vh;
+  }
+  100% {
+    margin-top: 20vh;
+  }
+}
+@-o-keyframes animate {
+  0% {
+    margin-top: 20vh;
+  }
+  50% {
+    margin-top: 18vh;
+  }
+  100% {
+    margin-top: 20vh;
+  }
+}
+@keyframes animate {
+  0% {
+    margin-top: 20vh;
+  }
+  50% {
+    margin-top: 18vh;
+  }
+  100% {
+    margin-top: 20vh;
+  }
+}
