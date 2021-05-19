@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(251, 255, 255);
+  }
+h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: system-ui;
+}
+
+.column1 {
+    float: right;
+    width: 50%;
+    padding: 10px;
+    background-color: rgb(41, 202, 95);
+}
+
+.column2 {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    background-color: rgb(41, 202, 95)
+}
+
+button {
+    background-color: yellow; /* Green */
+    border: 2px black;
+    color: black;
+    padding: 16px 32px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: system-ui;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+button:hover {
+    background-color: #d5e923e0;
+    color: black;
+    font-size: 20px;
+  }
+
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+button:hover span {
+    padding-right: 25px;
+  }
+  
+button:hover span:after {
+    opacity: 1;
+    right: 0;}

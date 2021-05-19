@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="style.css">
+    <style>* {box-sizing: border-box;}</style>
+</head>
+
+<body>
+<script>
+function toggleText1() {
+  var text = document.getElementById("demo1");
+  if (text.style.display === "block") {
+    text.style.display = "none";}
+  else {
+    text.style.display = "block";}
+    }
+
+function toggleText2() {
+  var text = document.getElementById("demo2");
+  if (text.style.display === "none") {
+    text.style.display = "block";}
+  else {
+    text.style.display = "none";}
+    }
+
+function toggleText3() {
+  var text = document.getElementById("demo3");
+  if (text.style.display === "none") {
+    text.style.display = "block";}
+  else {
+    text.style.display = "none";}
+    }
+
+function toggleText4() {
+  var text = document.getElementById("demo4");
+  if (text.style.display === "none") {
+    text.style.display = "block";}
+  else {
+    text.style.display = "none";}
+    }
+
+function toggleText5() {
+  var text = document.getElementById("demo5");
+  if (text.style.display === "none") {
+    text.style.display = "block";}
+  else {
+    text.style.display = "none";}
+    }
+
+function toggleText6() {
+  var text = document.getElementById("demo6");
+  if (text.style.display === "none") {
+    text.style.display = "block";}
+  else {
+    text.style.display = "none";}
+    }
+    </script>
+
+<h1>Frequently Asked Questions</h1>
+<div class="row">
+
+  <div class="column2">
+    <button onclick="toggleText1()"><span><b>Blah</b></span></button>
+    <p id="demo1" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+
+    <button onclick="toggleText2()"><span><b>Blah blah</b></span></button>
+    <p id="demo2" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+
+    <button onclick="toggleText3()"><span><b>Blah blah blah</b></span></button>
+    <p id="demo3" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+  </div>
+
+  <div class="column1">
+    <button onclick="toggleText4()"><span><b>Blah blah blah</b></span></button>
+    <p id="demo4" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+
+    <button onclick="toggleText5()"><span><b>Blah blah</b></span></button>
+    <p id="demo5" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+
+    <button onclick="toggleText6()"><span><b>Blah</b></span></button>
+    <p id="demo6" style="display:none;font-family:system-ui">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor suscipit, iure tenetur eveniet, vero tempore delectus? Perferendis, quisquam ullam consequuntur?</p>
+  </div>
+
+</div>
+
+</body>
+</html>
