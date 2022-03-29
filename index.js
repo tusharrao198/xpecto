@@ -5,6 +5,7 @@ const passportSetup = require("./Utils/passport-setup");
 const cookieSession = require("cookie-session");
 const keys = require("./Utils/keys");
 const authRoutes = require("./Utils/auth-routes");
+const paymentRoutes = require("./Utils/payment");
 
 let app = express();
 
@@ -24,16 +25,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/auth", authRoutes);
+app.use("/payment", paymentRoutes);
 
 app.get("/about", (req, res) => {
     res.render("aboutus");
 });
+
 app.get("/", (req, res) => {
     res.render("index");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
 });
 
 const authCheck = (req, res, next) => {
