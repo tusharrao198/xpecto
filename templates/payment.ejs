@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RazorPay</title>
+    </head>
+    <body>
+        <h1>Hello PAY</h1>
+        <button id="rzp-button1">Pay</button>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+            integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            async function showRazorpay() {
+                const data = await fetch("/payment/razorpay", {
+                    method: "POST",
+                }).then((t) => t.json());
+
+                console.log(" data = ", data);
+
+                const options = {
+                    key: "rzp_test_IVtMfVdUzVJT3C",
+                    currency: data.currency,
+                    amount: data.amount.toString(),
+                    order_id: data.id,
+                    name: "Pukaar",
+                    description: "IIT MANDI Tech Fest",
+                    image: "/logo.svg",
+                    // callback_url: "/payment/verification",
+                    handler: async function (response) {
+                        rec_data = {
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_signature: response.razorpay_signature,
+                        };
+                        console.log("Success = ", rec_data);
+                        const verify = await fetch("/payment/verification", {
+                            method: "POST",
+                        }).then((t) => {
+                            t.json();
+                        });
+                        console.log("verify = ", verify);
+                        // window.location.replace("/payment/verification");
+                        alert("Transaction successful");
+                    },
+                    prefill: {
+                        name: "Rajat",
+                        email: "rajat@rajat.com",
+                        phone_number: "4562",
+                    },
+                };
+                const paymentObject = new window.Razorpay(options);
+                paymentObject.on("payment.failed", function (response) {
+                    console.log("payment - failed");
+                    // alert(response.error.code);
+                    // alert(response.error.description);
+                    // alert(response.error.source);
+                    // alert(response.error.step);
+                    // alert(response.error.reason);
+                    // alert(response.error.metadata.order_id);
+                    // alert(response.error.metadata.payment_id);
+                });
+                paymentObject.open();
+            }
+
+            document.getElementById("rzp-button1").onclick = function (e) {
+                showRazorpay();
+                e.preventDefault();
+            };
+        </script>
+    </body>
+</html>
