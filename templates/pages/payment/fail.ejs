@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%- title %></title>
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-light mb-5" style="background-color: #22527b">
+            <div class="container">
+                <a class="navbar-brand mx-auto" href="/">
+                    <img
+                        src="https://user-images.githubusercontent.com/56690827/160768243-76239809-a9da-41f3-a270-ba9bdd205797.svg"
+                        alt="logo"
+                        class="d-inline-block align-top pull-left"
+                    />
+                </a>
+            </div>
+        </nav>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <h5 class="card-header">Payment Failed!</h5>
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            Please try some other payment method or try again
+                            later.
+                        </p>
+
+                        <a href="/" type="button" class="btn btn-primary"
+                            >Go Home</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
