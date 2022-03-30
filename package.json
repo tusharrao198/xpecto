@@ -23,10 +23,13 @@
     },
     "homepage": "https://github.com/BeingHomosapien/Pukaar#readme",
     "dependencies": {
+        "body-parser": "^1.19.2",
         "cookie-session": "^1.4.0",
         "dotenv": "^16.0.0",
         "ejs": "^3.1.6",
         "express": "^4.17.1",
+        "mongoose": "^6.2.9",
+        "nanoid": "^3.3.2",
         "nodemon": "^2.0.15",
         "passport": "^0.4.1",
         "passport-google-oauth20": "^2.0.0",
