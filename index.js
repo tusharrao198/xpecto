@@ -1,16 +1,25 @@
+const path = require("path");
 const express = require("express");
 const port = process.env.PORT || 5000;
 const passport = require("passport");
-const passportSetup = require("./Utils/passport-setup");
-const cookieSession = require("cookie-session");
-require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const keys = require("./Utils/keys");
-const authRoutes = require("./Utils/auth-routes");
-const paymentRoutes = require("./Utils/payment");
-// const indexWebRoutes = require("./routes/web/index");
-// const paymentWebRoutes = require("./routes/web/payments");
+const cookieSession = require("cookie-session");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const keys = require("./config/keys");
+const authRoutes = require("./middleware/auth");
+const paymentRoutes = require("./middleware/payment");
+const connectDB = require("./config/db");
+
+// Load config
+require("dotenv").config({ path: "./config/config.env" });
+
+// Passport Config
+require("./config/passport")(passport);
+
+// connect to Database
+connectDB();
 
 const app = express();
 
@@ -35,17 +44,19 @@ app.use(
     })
 );
 
+// Sessions middleware
+app.use(
+    session({
+        secret: "random_key_string",
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_DATABASE_URI }),
+    })
+);
+
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_DATABASE_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", (error) => console.error(error));
-db.once("open", () => console.log("[STATUS] Connected to Database"));
 
 // Routes
 app.use("/auth", authRoutes);

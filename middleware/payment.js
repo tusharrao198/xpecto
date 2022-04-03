@@ -4,7 +4,8 @@ var router = express.Router();
 const Razorpay = require("razorpay");
 const PaymentDetail = require("../models/payment-detail");
 const { nanoid } = require("nanoid");
-require("dotenv").config();
+// Load config
+require("dotenv").config({ path: "./config/config.env" });
 
 // Create an instance of Razorpay
 let razorPayInstance = new Razorpay({
@@ -18,7 +19,7 @@ let razorPayInstance = new Razorpay({
  */
 router.get("/", function (req, res, next) {
     // Render form for accepting amount
-    res.render("pages/payment/order", {
+    res.render("payment/order", {
         title: "Nexus'22",
     });
 });
@@ -28,7 +29,7 @@ router.get("/", function (req, res, next) {
  *
  */
 router.post("/order", function (req, res, next) {
-    console.log("inside /order");
+    // console.log("inside /order");
     params = {
         amount: req.body.amount * 100,
         currency: "INR",
@@ -51,7 +52,7 @@ router.post("/order", function (req, res, next) {
             try {
                 // Render Order Confirmation page if saved succesfully
                 await paymentDetail.save();
-                res.render("pages/payment/checkout", {
+                res.render("payment/checkout", {
                     title: "Confirm Order",
                     razorpayKeyId: razorpayKeyId,
                     paymentDetail: paymentDetail,
@@ -97,14 +98,14 @@ router.post("/verify", async function (req, res, next) {
                     throw err;
                 }
                 // Render payment success page, if saved succeffully
-                res.render("pages/payment/success", {
+                res.render("payment/paymentsuccess", {
                     title: "Payment verification successful",
                     paymentDetail: doc,
                 });
             }
         );
     } else {
-        res.render("pages/payment/fail", {
+        res.render("payment/fail", {
             title: "Payment verification failed",
         });
     }
