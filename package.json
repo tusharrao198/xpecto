@@ -1,5 +1,5 @@
 {
-    "name": "pukaar",
+    "name": "xpecto",
     "version": "1.0.0",
     "description": "The technical Fest of IIT Mandi",
     "main": "index.js",
@@ -9,19 +9,19 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BeingHomosapien/Pukaar.git"
+        "url": "git+https://github.com/tusharrao198/xpecto.git"
     },
     "keywords": [
         "Fest",
         "IIT",
         "Mandi"
     ],
-    "author": "Pukaar WebD",
+    "author": "Xpecto WebD",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/BeingHomosapien/Pukaar/issues"
+        "url": "https://github.com/tusharrao198/xpecto/issues"
     },
-    "homepage": "https://github.com/BeingHomosapien/Pukaar#readme",
+    "homepage": "https://github.com/tusharrao198/xpecto#readme",
     "dependencies": {
         "body-parser": "^1.19.2",
         "cookie-session": "^1.4.0",
