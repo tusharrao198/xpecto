@@ -25,9 +25,17 @@ router.get(
     "/google/callback",
     passport.authenticate("google", { failureRedirect: "/error" }),
     function (req, res) {
-        // console.log('req.user')
+        // console.log('req.user') // user info
         // Successful authentication, redirect success.
-        res.redirect("/success");
+        if (process.env.NODE_ENV == "development") {
+            console.log("dev = ", req.headers.host);
+            // console.log("dev url = ", req.url);
+            res.redirect("/success");
+        } else if (process.env.NODE_ENV == "production") {
+            res.redirect(`https://${req.headers.host}/success`);
+        } else {
+            res.redirect("/success");
+        }
     }
 );
 
