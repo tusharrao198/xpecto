@@ -13,10 +13,11 @@ Xpecto - Technical Fest IIT Mandi
  npm install
 ```
 
-5. To activate the localhost server run -
+5. Add that `config.env` file in the config directory provided in the group.
+6. To activate the localhost server run -
 
 ```bash
- nodejs index.js
+ npm start
 ```
 
-6. Now the app is in the development mode. Open (http://localhost:5000) to view it in the browser.
+7. Now the app is in the development mode. Open (http://localhost:5000) to view it in the browser.
