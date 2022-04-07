@@ -33,6 +33,7 @@ app.use(
     })
 );
 
+// set template view engine
 app.set("views", "./templates");
 app.set("view engine", "ejs");
 
@@ -132,5 +133,5 @@ app.get("/error", (req, res) => res.send("error logging in"));
 
 app.listen(port, (err) => {
     if (err) throw err;
-    console.log("Connection Established!!");
+    console.log(`Connection Established!! http://localhost:${port}`);
 });
