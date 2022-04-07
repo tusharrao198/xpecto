@@ -12,6 +12,7 @@ const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
+var url = require('url');
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -80,9 +81,51 @@ app.get("/team", authCheck, (req, res) => {
 });
 
 app.get("/events", authCheck, async (req, res) => {
-    var eventTable = require("./models/Events");
-    const events = await eventTable.find({}).lean();
-    res.render("events", { events: events });
+    var eventTable = require('./models/Events');
+    const allEvents = await eventTable.find({}).lean();
+    res.render("events", {"events":allEvents});
+});
+
+async function findEvent(req){
+    const current_url = url.parse(req.url, true);
+    const params = current_url.query;
+
+    const eventTable = require('./models/Events');
+    const event = await eventTable.findOne({name: params.event}).lean();
+    return event;
+}
+async function findUserTeam(req){
+    const event = await findEvent(req);
+    const teamTable = require('./models/Team');
+    const team = await teamTable.findOne({event: event._id, teamLeader: req.user._id}).lean();
+    return team;
+}
+
+app.get("/event", authCheck, async (req, res) => {
+    const event = await findEvent(req);
+    const team = await findUserTeam(req);
+
+    const context = {"event": event, "team": team};
+    res.render("event", context);
+});
+
+app.get("/createTeam", authCheck, async (req, res) => {
+    const event = await findEvent(req);
+    const teamTable = require('./models/Team');
+    var newteam = new teamTable({event: event._id, name:"testingTeam", teamLeader: req.user._id});
+    newteam.save(function(err){
+        if(err){
+            console.log(err.errors);
+            return err;
+        }
+    })
+    res.redirect(`/event?event=${event.name}`);
+});
+
+app.get("/userTeam", authCheck, async (req, res) => {
+    const event = await findEvent(req);
+    const team = await findUserTeam(req);
+    res.render("userTeam", {"team":team});
 });
 
 app.get("/error", (req, res) => res.send("error logging in"));
