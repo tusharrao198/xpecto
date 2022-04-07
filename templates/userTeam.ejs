@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YoutTeam</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <style>
+            body {
+                padding-top: 70px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="text-primary text-center">
+                    <span class="fa fa-user"></span> Team - <%= team.name %>
+                </h1>
+            </div>
+            <div class="jumbotron">
+                <%= team._id %>
+                <br>
+                <%= team.event %>
+                <br>
+                <%= team.name %>
+                <br>
+                <%= team.teamLeader %>
+                <br>
+                <%= team.members %>
+                <br>
+                <%= team.createdAt %>
+                <br>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event - <%= event.name %></title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <style>
+            body {
+                padding-top: 70px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="text-primary text-center">
+                    <span class="fa fa-user"></span> Event - <%= event.name %>
+                </h1>
+            </div>
+            <div class="jumbotron">
+                <% if(team){ %>
+                    <a href="/userTeam?event=<%= event.name %>">YourTeam</a>
+                <% }else{ %>
+                        <a href="/createTeam?event=<%= event.name %>">CreateTeam</a>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>
