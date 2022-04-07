@@ -86,6 +86,12 @@ app.get("/team", authCheck, (req, res) => {
     res.render("team", { user: req.user });
 });
 
+app.get("/events", authCheck,async (req, res) => {
+    var eventTable = require('./models/Events');
+    const events = await eventTable.find({}).lean();
+    res.render("events", {"events":events});
+});
+
 app.get("/error", (req, res) => res.send("error logging in"));
 
 app.listen(port, (err) => {
