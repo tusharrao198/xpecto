@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Events</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        />
+        <style>
+            body {
+                padding-top: 70px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="text-primary text-center">
+                    <span class="fa fa-user"></span> Events
+                </h1>
+            </div>
+            <% for (var i = 0; i < events.length; i++) { %>
+            <div class="jumbotron">
+                <div class="row">
+                <div class="col-sm-6">
+                    <div class="well">
+                            <div class="timeline-time">
+                                <%= events[i]._id %>
+                                <%= events[i].name %>
+                                <%= events[i].createdAt %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="container">
+            <a href="/success" class="btn btn-danger"
+                ><span class="fa fa-google"></span> Profile</a
+            >
+        </div>
+    </body>
+</html>
