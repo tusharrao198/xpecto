@@ -8,7 +8,8 @@ const cookieSession = require("cookie-session");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const keys = require("./config/keys");
-const authRoutes = require("./middleware/auth");
+const { authCheck } = require("./middleware/auth");
+const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
 
@@ -70,14 +71,6 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-const authCheck = (req, res, next) => {
-    if (!req.user) {
-        res.redirect("/");
-    } else {
-        next();
-    }
-};
-
 app.get("/success", authCheck, (req, res) => {
     res.render("success", { user: req.user });
 });
@@ -86,10 +79,10 @@ app.get("/team", authCheck, (req, res) => {
     res.render("team", { user: req.user });
 });
 
-app.get("/events", authCheck,async (req, res) => {
-    var eventTable = require('./models/Events');
+app.get("/events", authCheck, async (req, res) => {
+    var eventTable = require("./models/Events");
     const events = await eventTable.find({}).lean();
-    res.render("events", {"events":events});
+    res.render("events", { events: events });
 });
 
 app.get("/error", (req, res) => res.send("error logging in"));
