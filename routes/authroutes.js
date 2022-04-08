@@ -30,11 +30,11 @@ router.get(
         if (process.env.NODE_ENV == "development") {
             console.log("dev = ", req.headers.host);
             // console.log("dev url = ", req.url);
-            res.redirect("/success");
+            res.redirect("/profile");
         } else if (process.env.NODE_ENV == "production") {
-            res.redirect(`https://${req.headers.host}/success`);
+            res.redirect(`https://${req.headers.host}/profile`);
         } else {
-            res.redirect("/success");
+            res.redirect("/profile");
         }
     }
 );
