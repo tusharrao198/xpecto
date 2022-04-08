@@ -3,7 +3,7 @@ let hoursItem = document.querySelector("#hours");
 let minutesItem = document.querySelector("#minutes");
 let secondsItem = document.querySelector("#seconds");
 let countDown = () => {
-    let futureDate = new Date("15 May 2022");
+    let futureDate = new Date("14 May 2022");
     let currentDate = new Date();
     let myDate = futureDate - currentDate;
 
