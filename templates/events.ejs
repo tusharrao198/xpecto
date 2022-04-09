@@ -32,33 +32,43 @@
     <body>
         <div class="bg"></div>
         <div class="container">
-            <div class="jumbotron row">
-                <h1 class="col text-primary text-center">
-                    <span class="fa fa-user"></span> Events
+            <div class="p-4 d-flex justify-content-center flex-nowrap">
+                <h1 class="col text-primary mx-auto text-center">
+                    <span class=""></span> Events
                 </h1>
-                <div class="col">
-                    <a href="/profile" class="btn btn-danger"
-                        ><span class="fa fa-google"></span> Profile</a
-                    >
-                </div>
             </div>
             <% for (var i = 0; i < events.length; i++) { %>
-            <div class="jumbotron">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="well">
-                            <div class="timeline-time">
-                                <a href="/event?event=<%=events[i].name %>">
-                                    <%= events[i]._id %>
-                                </a>
-                                <%= events[i].name %> <%= events[i].createdAt %>
-                                <%= events[i].duration %>
-                            </div>
+            <div class="card mb-8 mx-auto" style="max-width: 100%">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                            src="images/aa_1280.jpg"
+                            class="img-fluid rounded-start"
+                            alt="..."
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= events[i].name %></h5>
+                            <p class="card-text"> 
+                                <%= events[i].createdAt %>
+                                <%= events[i].duration %> 
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores quae, aliquam tempore magnam modi asperiores, quidem ex maxime nihil blanditiis molestias nemo laudantium quos eum atque dolores, culpa dolore dignissimos!
+                                <button class='btn btn-link' type="button"><a href="/event?event=<%=events[i].name %>">
+                                    Read More!!
+                                </a></button>
+
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted"
+                                    ><%= events[i].createdAt %></br>Last updated 3 mins ago</small
+                                >
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+            <% } %>
         </div>
-        <% } %>
     </body>
 </html>

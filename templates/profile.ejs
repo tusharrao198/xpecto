@@ -18,21 +18,46 @@
             crossorigin="anonymous"
         />
         <style>
-            body {
+            /* body {
                 padding-top: 70px;
+            } */
+            .bg {
+                height: 100vh;
+                width: 100vw;
+                background: url("../images/xpecto_tempwall.png");
+                /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
+                background-color: #171717;
+                position: fixed;
+                z-index: -1000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 5.5em;
+                padding: 0;
             }
         </style>
     </head>
     <body>
+        <div class="bg"></div>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-primary text-center">
-                    <span class="fa fa-user"></span> Profile Info
+            <div class="p-4 d-flex justify-content-center flex-nowrap">
+                <h1 class="col text-primary mx-auto text-center">
+                    <span class=""></span> Profile
                 </h1>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="well">
-                            <p>
+            </div>
+            <div class="card mb-8 mx-auto" style="max-width: 50%">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img
+                            src="<%= user.image%>"
+                            class="img-fluid rounded-start"
+                            alt="..."
+                        />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= user.displayName %></h5>
+                            <p class="card-text">
                                 <strong>Id</strong>: <%= user._id %><br />
                                 <strong>Email</strong>: <%= user.email %><br />
                                 <strong>Name</strong>: <%= user.displayName
@@ -41,21 +66,14 @@
                                 %><br />
                                 <strong>googleid</strong>: <%= user.googleId
                                 %><br />
-                                <img
-                                    src="<%= user.image%>"
-                                    alt=""
-                                    class="src"
-                                />
                             </p>
+                            <a href="/auth/logout" class="btn btn-danger"
+                                ><span class="fa fa-google"></span> Logout</a
+                            >
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <a href="/auth/logout" class="btn btn-danger"
-                ><span class="fa fa-google"></span> Logout</a
-            >
         </div>
     </body>
 </html>

@@ -1,3 +1,13 @@
+body {
+    width: 100vw;
+    background-color: #171717;
+    background-image: url("../images/xpecto_tempwall.png");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: helvetica;
+}
+
 section {
     padding: 60px 0;
     min-height: 100vh;
@@ -50,7 +60,7 @@ section {
 }
 
 .contactus {
-    background: #0e0f19;
+    /* background: #0e0f19; */
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: center;

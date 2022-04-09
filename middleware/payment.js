@@ -14,13 +14,14 @@ let razorPayInstance = new Razorpay({
 });
 
 /**
- * Make Donation Page
+ * Payment Page
  *
  */
 router.get("/", function (req, res, next) {
     // Render form for accepting amount
     res.render("payment/order", {
-        title: "Nexus'22",
+        title: "Xpecto '22",
+        amount: "100",
     });
 });
 
@@ -31,7 +32,7 @@ router.get("/", function (req, res, next) {
 router.post("/order", function (req, res, next) {
     // console.log("inside /order");
     params = {
-        amount: req.body.amount * 100,
+        amount: process.env.AMOUNT * 100,
         currency: "INR",
         receipt: nanoid(),
         payment_capture: "1",
