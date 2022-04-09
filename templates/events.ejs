@@ -54,10 +54,14 @@
                                 <%= events[i].createdAt %>
                                 <%= events[i].duration %> 
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores quae, aliquam tempore magnam modi asperiores, quidem ex maxime nihil blanditiis molestias nemo laudantium quos eum atque dolores, culpa dolore dignissimos!
-                                <button class='btn btn-link' type="button"><a href="/event?event=<%=events[i].name %>">
-                                    Read More!!
-                                </a></button>
+                            </br></br>
 
+                                <a href="/event?event=<%=events[i].name %>" class="p-2 card-text btn btn-primary">
+                                    <span class="fa fa-home"></span> <%=events[i].name %> | Go To Event</a
+                                >
+                                <a href="/" class="p-2 card-text btn btn-primary">
+                                    <span class="fa fa-home"></span> Back to Home</a
+                                >
                             </p>
                             <p class="card-text">
                                 <small class="text-muted"

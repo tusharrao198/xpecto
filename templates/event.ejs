@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Event | <%= event.name %></title>
+        <title>Event | <%= event.name %> | Xpecto</title>
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
         <!-- CSS only -->
         <link
@@ -14,6 +14,14 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
+        <!-- font-awesome -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            referrerpolicy="no-referrer"
+            integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+            crossorigin="anonymous"
+        />
         <!-- <style>
             body {
                 padding-top: 70px;
@@ -23,17 +31,45 @@
     <body>
         <div class="bg"></div>
         <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-primary text-center">
+            <div class="p-4 d-flex justify-content-center flex-nowrap">
+                <h1 class="col text-primary mx-auto text-center">
                     <span class="fa fa-user"></span> Event - <%= event.name %>
                 </h1>
             </div>
-            <div class="jumbotron">
-                <% if(team){ %>
-                <a href="/userTeam?event=<%= event.name %>">YourTeam</a>
-                <% }else{ %>
-                <a href="/createTeam?event=<%= event.name %>">CreateTeam</a>
-                <% } %>
+            <div class="col-md-8 mx-auto bg-white">
+                <div class="card-body">
+                    <div class="mx-auto text-center">
+                        <% if(team){ %>
+                        <a
+                            class="btn btn-primary"
+                            href="/userTeam?event=<%= event.name %>"
+                            >YourTeam</a
+                        >
+                        <% }else{ %>
+                        <a
+                            class="btn btn-primary"
+                            href="/createTeam?event=<%= event.name %>"
+                            >CreateTeam</a
+                        >
+                        <% } %>
+                    </div>
+                    <h5 class="card-title"><%= event.name %></h5>
+                    <p class="card-text">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Maiores quae, aliquam tempore magnam modi
+                        asperiores, quidem ex maxime nihil blanditiis molestias
+                        nemo laudantium quos eum atque dolores, culpa dolore
+                        dignissimos! Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Cum ducimus blanditiis ratione
+                        laudantium, itaque possimus amet labore recusandae
+                        suscipit explicabo ipsa culpa aut quod error ipsam?
+                        Impedit accusantium nam adipisci! Lorem ipsum dolor sit,
+                        amet consectetur adipisicing elit. In perspiciatis
+                        tenetur eligendi magni dolore repellat. Labore quaerat
+                        temporibus eos fugit, earum soluta accusantium ullam
+                        minima sequi facere. Dolores, ratione asperiores!
+                    </p>
+                </div>
             </div>
         </div>
     </body>
