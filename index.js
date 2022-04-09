@@ -70,6 +70,18 @@ app.get("/about", (req, res) => {
     res.render("aboutus");
 });
 
+app.get("/contact", (req, res) => {
+    res.render("contact");
+});
+
+app.get("/sponsors", (req, res) => {
+    res.render("sponsors");
+});
+
+app.get("/faq", (req, res) => {
+    res.render("faq");
+});
+
 app.get("/", (req, res) => {
     res.render("index");
 });
