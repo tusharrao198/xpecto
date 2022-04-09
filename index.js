@@ -13,6 +13,7 @@ const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
 var url = require("url");
+const { findEvent, findUserTeam } = require("./utils");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -80,23 +81,6 @@ app.get("/profile", authCheck, (req, res) => {
 app.get("/team", authCheck, (req, res) => {
     res.render("team", { user: req.user });
 });
-
-findEvent = async (req) => {
-    const current_url = url.parse(req.url, true);
-    const params = current_url.query;
-
-    const eventTable = require("./models/Events");
-    const event = await eventTable.findOne({ name: params.event }).lean();
-    return event;
-};
-findUserTeam = async (req) => {
-    const event = await findEvent(req);
-    const teamTable = require("./models/Team");
-    const team = await teamTable
-        .findOne({ event: event._id, teamLeader: req.user._id })
-        .lean();
-    return team;
-};
 
 app.get("/events", authCheck, async (req, res) => {
     var eventTable = require("./models/Events");
