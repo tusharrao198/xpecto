@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Google SignIn</title>
+        <title>Login | Xpecto</title>
         <!-- CSS only -->
+        <link href="./css/login.css" rel="stylesheet" type="text/css" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -17,131 +18,152 @@
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossorigin="anonymous"
         />
-        <style>
-            html, body {
-	 width: 100%;
-	 height: 100%;
-}
- html .container, body .container {
-	 display: flex;
-	 justify-content: center;
-	 align-items: center;
-}
- html .container .login-form-wrapper, body .container .login-form-wrapper, html .container .login-form-wrapper .login-input, body .container .login-form-wrapper .login-input {
-	 display: flex;
-	 flex-direction: column;
-	 justify-content: center;
-}
- html .container .login-form-wrapper, body .container .login-form-wrapper {
-	 background: rgba(255, 255, 255, 0.15);
-	 box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.25);
-	 backdrop-filter: blur(2px);
-	 -webkit-backdrop-filter: blur(4px);
-	 border-radius: 24px;
-	 border: 1px solid rgba(255, 255, 255, 0.2);
-}
- html, body {
-	 font-family: "Lato", sans-serif;
-	 background-image: url("https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/keycloak/login/resources/img/keycloak-bg.png?raw=true");
-}
- html .container, body .container {
-	 width: inherit;
-	 height: inherit;
-}
- html .container .logo, body .container .logo {
-	 margin: 0 64px 0 0;
-	 text-align: right;
-}
- html .container .logo h4, body .container .logo h4 {
-	 color: #8f8f8f;
-     font-size: 30px;
-}
- html .container .login-form-wrapper, body .container .login-form-wrapper {
-	 padding: 40px;
-	 min-width: 360px;
-}
- html .container .login-form-wrapper .login-input label, body .container .login-form-wrapper .login-input label {
-	 margin-bottom: 8px;
-	 color: #fff;
-	 font-weight: bold;
-}
- html .container .login-form-wrapper .login-input input, body .container .login-form-wrapper .login-input input, html .container .login-form-wrapper .login-input input:focus, body .container .login-form-wrapper .login-input input:focus {
-	 border: none;
-	 outline: none;
-	 border-radius: 8px;
-	 font-size: 16px;
-	 line-height: 24px;
-	 vertical-align: middle;
-	 padding: 8px 16px;
-	 margin-bottom: 16px;
-}
- html .container .login-form-wrapper .login-input #usernameRequiredMessage, body .container .login-form-wrapper .login-input #usernameRequiredMessage, html .container .login-form-wrapper .login-input #passwordRequiredMessage, body .container .login-form-wrapper .login-input #passwordRequiredMessage {
-	 display: none;
-	 color: red;
-	 font-weight: 700;
-}
- html .container .login-form-wrapper .login-button, body .container .login-form-wrapper .login-button {
-	 border: none;
-	 outline: none;
-	 border-radius: 8px;
-	 font-size: 16px;
-	 line-height: 24px;
-	 vertical-align: middle;
-	 padding: 8px 16px;
-	 background: #0188ce;
-	 color: #fff;
-	 font-weight: 700;
-}
- .error {
-	 border: 1px solid red !important;
-     
-}
-.login-with-google-btn {
-	 transition: background-color 0.3s, box-shadow 0.3s;
-	 padding: 12px 16px 12px 42px;
-	 border: none;
-	 border-radius: 3px;
-	 box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-	 color: #757575;
-	 font-size: 14px;
-	 font-weight: 500;
-	 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-	 background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=");
-	 background-color: white;
-	 background-repeat: no-repeat;
-	 background-position: 12px 11px;
-}
- .login-with-google-btn:hover {
-	 box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-}
- .login-with-google-btn:active {
-	 background-color: #eee;
-}
- .login-with-google-btn:focus {
-	 outline: none;
-	 box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
-}
- .login-with-google-btn:disabled {
-	 filter: grayscale(100%);
-	 background-color: #ebebeb;
-	 box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-	 cursor: not-allowed;
-}
- body {
-	 text-align: center;
-	 padding-top: 2rem;
-}
- 
-        </style>
     </head>
+    <style>
+      html,
+      body {
+          width: 100%;
+          height: 100%;
+      }
+      html .container,
+      body .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      html .container .login-form-wrapper,
+      body .container .login-form-wrapper,
+      html .container .login-form-wrapper .login-input,
+      body .container .login-form-wrapper .login-input {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+      html .container .login-form-wrapper,
+      body .container .login-form-wrapper {
+          background: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(4px);
+          border-radius: 24px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      html,
+      body {
+          font-family: "Lato", sans-serif;
+          /* background-image: url("https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/keycloak/login/resources/img/keycloak-bg.png?raw=true"); */
+          background-image: url("../images/xpecto_tempwall.png");
+      }
+      html .container,
+      body .container {
+          width: inherit;
+          height: inherit;
+      }
+      html .container .logo,
+      body .container .logo {
+          margin: 0 64px 0 0;
+          text-align: right;
+      }
+      html .container .logo h4,
+      body .container .logo h4 {
+          color: #8f8f8f;
+          font-size: 30px;
+      }
+      html .container .login-form-wrapper,
+      body .container .login-form-wrapper {
+          padding: 40px;
+          min-width: 360px;
+      }
+      html .container .login-form-wrapper .login-input label,
+      body .container .login-form-wrapper .login-input label {
+          margin-bottom: 8px;
+          color: #fff;
+          font-weight: bold;
+      }
+      html .container .login-form-wrapper .login-input input,
+      body .container .login-form-wrapper .login-input input,
+      html .container .login-form-wrapper .login-input input:focus,
+      body .container .login-form-wrapper .login-input input:focus {
+          border: none;
+          outline: none;
+          border-radius: 8px;
+          font-size: 16px;
+          line-height: 24px;
+          vertical-align: middle;
+          padding: 8px 16px;
+          margin-bottom: 16px;
+      }
+      html .container .login-form-wrapper .login-input #usernameRequiredMessage,
+      body .container .login-form-wrapper .login-input #usernameRequiredMessage,
+      html .container .login-form-wrapper .login-input #passwordRequiredMessage,
+      body .container .login-form-wrapper .login-input #passwordRequiredMessage {
+          display: none;
+          color: red;
+          font-weight: 700;
+      }
+      html .container .login-form-wrapper .login-button,
+      body .container .login-form-wrapper .login-button {
+          border: none;
+          outline: none;
+          border-radius: 8px;
+          font-size: 16px;
+          line-height: 24px;
+          vertical-align: middle;
+          padding: 8px 16px;
+          background: #0188ce;
+          color: #fff;
+          font-weight: 700;
+      }
+      .error {
+          border: 1px solid red !important;
+      }
+      .login-with-google-btn {
+          transition: background-color 0.3s, box-shadow 0.3s;
+          padding: 12px 16px 12px 42px;
+          border: none;
+          border-radius: 3px;
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+          color: #757575;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+              Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+              sans-serif;
+          background-image: url("https://user-images.githubusercontent.com/56690827/162671333-98e921ee-a8bd-4b22-a538-1bce8ff2e7a4.svg");
+          background-color: white;
+          background-repeat: no-repeat;
+          background-position: 12px 11px;
+      }
+      .login-with-google-btn:hover {
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+      }
+      .login-with-google-btn:active {
+          background-color: #eee;
+      }
+      .login-with-google-btn:focus {
+          outline: none;
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+              0 0 0 3px #c8dafc;
+      }
+      .login-with-google-btn:disabled {
+          filter: grayscale(100%);
+          background-color: #ebebeb;
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+          cursor: not-allowed;
+      }
+      body {
+          text-align: center;
+          padding-top: 2rem;
+      }
+    </style>
     <body>
         <div class="container">
-            <div class="logo">
-              <img src="data:image/jpeg;base64,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" />
-              <h4>Xpecto'22</h4>
+            <div class="logo m-1">
+              <img src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png" />
+              <!-- <h4>Xpecto'22</h4> -->
             </div>
             <form id="loginForm" class="login-form-wrapper">
-              <div class="login-input">
+              <!-- <div class="login-input">
                 <label for="username">Username or email:</label>
                 <input autocomplete="off" id="username" type="text" name="username" />
                 <p id="usernameRequiredMessage">Username or email is required</p>
@@ -151,7 +173,7 @@
                 <input autocomplete="off" id="password" type="password" name="password" />
                 <p id="passwordRequiredMessage">Password is required</p>
               </div>
-              <input id="loginButton" class="login-button" type="submit" value="Log In" />
+              <input id="loginButton" class="login-button" type="submit" value="Log In" /> -->
               <br>
               </a><button type="button" class="login-with-google-btn" >
                   <a href="/auth/google">

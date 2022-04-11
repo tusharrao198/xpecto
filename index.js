@@ -83,7 +83,7 @@ app.get("/faq", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/profile", authCheck, (req, res) => {

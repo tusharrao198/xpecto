@@ -73,9 +73,19 @@
                         <h5>IIT Mandi's</h5>
                         <h2>XPECTO</h2>
                         <p>Technical Fest</p>
-                        <a href="/auth/google">SignIn with Google</a>
+                        <% if(authenticated){ %>
+                        <a href="/events">Explore Events</a>
+                        <% } else {%>
+                        <a href="/auth/login">Login</a>
+                        <%}%>
                     </div>
-                    <div class="logo"></div>
+                    <div class="logo bg-dark">
+                        <img
+                            src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png"
+                            alt=""
+                            class="src img-fluid"
+                        />
+                    </div>
                 </div>
                 <ul class="social">
                     <li>
