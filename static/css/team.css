@@ -73,6 +73,7 @@ overlay2{
 .logo{
   font-size: 1.5em;
   font-weight: bold;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container{
@@ -105,11 +106,17 @@ overlay2{
 
 .team-content h5{
   color: var(--dark-color);
+  color: coral;
   padding: 9px 3px 3px 3px;
   padding-top: 9px;
   padding-bottom: 3px;
+  font-family: 'Open Sans', sans-serif;
   height: 1.8em;
   overflow: hidden;
+}
+.team-content p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
 }
 
 a.col-3 img{
@@ -139,7 +146,7 @@ a.col-3 img{
 .our-team {
   padding: 30px 0 40px;
   margin-bottom: 30px;
-  background-color: rgba(245, 245, 245, 0.7);
+  background-color: rgba(245, 245, 245, 0.247);
   text-align: center;
   overflow: hidden;
   position: relative;
@@ -173,6 +180,7 @@ a.col-3 img{
 
 .our-team:hover .picture::before {
   height: 100%;
+  width: 100%;
 }
 
 .our-team .picture::after {
@@ -189,7 +197,7 @@ a.col-3 img{
 
 .our-team .picture img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50%;
   transform: scale(1);
   transition: all 0.9s ease 0s;
