@@ -17,8 +17,6 @@
         <!-- CSS -->
         <style>
             * {margin: 0; padding: 0;}
-
-
         .breadcrumb {
             /*centering*/
             display: inline-block;
@@ -28,7 +26,6 @@
             /*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
             counter-reset: flag; 
         }
-
         .breadcrumb a {
             text-decoration: none;
             outline: none;
@@ -55,7 +52,6 @@
             border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
             padding-right: 20px;
         }
-
         /*hover/active styles*/
         .breadcrumb a.active, .breadcrumb a:hover{
             background: #333;
@@ -65,7 +61,6 @@
             background: #333;
             background: linear-gradient(135deg, #333, #000);
         }
-
         /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
         .breadcrumb a:after {
             content: '';
@@ -114,8 +109,6 @@
             background: linear-gradient(#444, #222);
             font-weight: bold;
         }
-
-
         .flat a, .flat a:after {
             background: white;
             color: black;
@@ -129,7 +122,6 @@
         .flat a:hover:after, .flat a.active:after{
             background: #9EEB62;
         }
-
     </style>
     <!--CSS End-->
         
