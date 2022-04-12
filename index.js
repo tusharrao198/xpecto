@@ -55,7 +55,7 @@ app.use(passport.session());
 
 // Routes
 app.use("/auth", authRoutes);
-app.use("/payment", paymentRoutes);
+app.use("/payment", authCheck, paymentRoutes);
 
 app.get("/about", (req, res) => {
     res.render("aboutus");
@@ -78,7 +78,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profile", authCheck, (req, res) => {
-    res.render("profile", { user: req.user });
+    res.render("profile", {
+        user: req.user,
+        authenticated: req.isAuthenticated(),
+    });
 });
 
 app.get("/team", (req, res) => {
