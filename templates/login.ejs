@@ -3,10 +3,9 @@
     <head>
         <title>Login | Xpecto</title>
         <!-- CSS only -->
-        <link href="./css/preload.css" rel="stylesheet" type="text/css" />
-        <link href="./css/index.css" rel="stylesheet" type="text/css" />
+        <link href="./css/login.css" rel="stylesheet" type="text/css" />
         <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
@@ -18,7 +17,8 @@
             referrerpolicy="no-referrer"
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossorigin="anonymous"
-        />
+            />
+            <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
     </head>
     <style>
       html,
@@ -156,35 +156,202 @@
           text-align: center;
           padding-top: 2rem;
       }
+
+      /* Navbar */
+
+      .bg {
+    height: 100vh;
+    width: 100vw;
+    background: url("../images/xpecto_tempwall.png");
+    /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
+    background-color: #171717;
+    position: fixed;
+    z-index: -1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5.5em;
+    padding: 0;
+}
+
+           /* navbar styling */
+
+           header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 2rem;
+        }
+
+        .toggle {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: url(https://i.ibb.co/HrfVRcx/menu.png);
+            background-repeat: no-repeat;
+            background-size: 30px;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .toggle.active {
+            background: url(https://i.ibb.co/rt3HybH/close.png);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("../images/xpecto_tempwall.png");
+            background-attachment: fixed;
+
+            transition: 0.5s;
+            z-index: 2;
+            margin: auto;
+        }
+
+        .showcase.active {
+            right: 250px;
+        }
+
+        /* .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        } */
+
+        /* .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #706ea8;
+            mix-blend-mode: overlay;
+        } */
+
+        .menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu ul {
+            position: relative;
+        }
+
+        .menu ul li {
+            list-style: none;
+            margin-bottom: 0.25rem;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .menu ul li a:hover {
+            color: #03a9f4;
+        }
+ 
     </style>
     <body>
-        <div class="container">
-            <div class="logo m-1">
-              <img src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png" />
-              <!-- <h4>Xpecto'22</h4> -->
-            </div>
-            <form id="loginForm" class="login-form-wrapper">
-              <!-- <div class="login-input">
-                <label for="username">Username or email:</label>
-                <input autocomplete="off" id="username" type="text" name="username" />
-                <p id="usernameRequiredMessage">Username or email is required</p>
+
+
+      <div class="bg"></div>
+      <div class="home">
+          <section class="showcase">
+              <header style="display: flex">
+                  <h2 class="logo">Xpecto</h2>
+                  <div class="toggle"></div>
+              </header>
+              <div class="overlay"></div>
+
+
+
+              <div class="container">
+                <div class="logo m-1">
+                  <img src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png" />
+                  <!-- <h4>Xpecto'22</h4> -->
+                </div>
+                <form id="loginForm" class="login-form-wrapper">
+                  <!-- <div class="login-input">
+                    <label for="username">Username or email:</label>
+                    <input autocomplete="off" id="username" type="text" name="username" />
+                    <p id="usernameRequiredMessage">Username or email is required</p>
+                  </div>
+                  <div class="login-input">
+                    <label for="password">Password:</label>
+                    <input autocomplete="off" id="password" type="password" name="password" />
+                    <p id="passwordRequiredMessage">Password is required</p>
+                  </div>
+                  <input id="loginButton" class="login-button" type="submit" value="Log In" /> -->
+                  <br>
+                  </a><button type="button" class="login-with-google-btn" >
+                      <a href="/auth/google">
+                      Sign in with Google
+                      </a>
+                    </button>
+                </form>
+                
               </div>
-              <div class="login-input">
-                <label for="password">Password:</label>
-                <input autocomplete="off" id="password" type="password" name="password" />
-                <p id="passwordRequiredMessage">Password is required</p>
-              </div>
-              <input id="loginButton" class="login-button" type="submit" value="Log In" /> -->
-              <br>
-              </a><button type="button" class="login-with-google-btn" >
-                  <a href="/auth/google">
-                  Sign in with Google
-                  </a>
-                </button>
-            </form>
-            
+          
+
+          </section>
+          <div class="menu">
+              <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/payment">Register</a></li>
+                  <li><a href="/events">Events</a></li>
+                  <li><a href="/sponsors">Sponsors</a></li>
+                  <li><a href="/faq">FAQ</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="/about">About Us</a></li>
+              </ul>
           </div>
-          <script >
+      </div>
+      
+      <script >
+        // Navbar
+        const menuToggle = document.querySelector(".toggle");
+  const showcase = document.querySelector(".showcase");
+  
+  menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  showcase.classList.toggle("active");
+  });
               document.getElementById("password").addEventListener("keyup", function () {
           _toggleEmptyValidation(this.value, "password", "passwordRequiredMessage");
         });
@@ -221,6 +388,9 @@
           }
         }
         
+
+
+
           </script>
     </body>
 </html>
