@@ -8,16 +8,12 @@
         </script>
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="./css/faq.css" />
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-        </style>
+        <link rel="stylesheet" href="./css/navbar.css" />
+
         <title>FAQ | Xpecto</title>
     </head>
 
     <body>
-        <div class="bg"></div>
         <script>
             function toggleText1() {
                 var text = document.getElementById("demo1");
@@ -74,65 +70,92 @@
             }
         </script>
 
-        <h1 class="">Frequently Asked Questions</h1>
-        <div class="row">
-            <div class="column2">
-                <button onclick="toggleText1()">
-                    <span><b>Blah</b></span>
-                </button>
-                <p id="demo1" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
-
-                <button onclick="toggleText2()">
-                    <span><b>Blah blah</b></span>
-                </button>
-                <p id="demo2" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
-
-                <button onclick="toggleText3()">
-                    <span><b>Blah blah blah</b></span>
-                </button>
-                <p id="demo3" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
+    <div class="bg"></div>
+    <div class="home">
+        <section class="showcase">
+            <header>
+                <h2 class="logo">Xpecto</h2>
+                <div class="toggle"></div>
+            </header>
+            <div class="overlay"></div>
+            <div>
+            <h1>Frequently Asked Questions</h1>
+            <div class="row">
+                <div class="column2">
+                    <button onclick="toggleText1()">
+                        <span><b>Blah</b></span>
+                    </button>
+                    <p id="demo1" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+    
+                    <button onclick="toggleText2()">
+                        <span><b>Blah blah</b></span>
+                    </button>
+                    <p id="demo2" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+    
+                    <button onclick="toggleText3()">
+                        <span><b>Blah blah blah</b></span>
+                    </button>
+                    <p id="demo3" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+                </div>
+    
+                <div class="column1">
+                    <button onclick="toggleText4()">
+                        <span><b>Blah blah blah</b></span>
+                    </button>
+                    <p id="demo4" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+    
+                    <button onclick="toggleText5()">
+                        <span><b>Blah blah</b></span>
+                    </button>
+                    <p id="demo5" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+    
+                    <button onclick="toggleText6()">
+                        <span><b>Blah</b></span>
+                    </button>
+                    <p id="demo6" style="display: none; font-family: system-ui">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
+                        Perferendis, quisquam ullam consequuntur?
+                    </p>
+                </div>
             </div>
-
-            <div class="column1">
-                <button onclick="toggleText4()">
-                    <span><b>Blah blah blah</b></span>
-                </button>
-                <p id="demo4" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
-
-                <button onclick="toggleText5()">
-                    <span><b>Blah blah</b></span>
-                </button>
-                <p id="demo5" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
-
-                <button onclick="toggleText6()">
-                    <span><b>Blah</b></span>
-                </button>
-                <p id="demo6" style="display: none; font-family: system-ui">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dolor suscipit, iure tenetur eveniet, vero tempore delectus?
-                    Perferendis, quisquam ullam consequuntur?
-                </p>
             </div>
+        </section>
+        <div class="menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/payment">Register</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/sponsors">Sponsors</a></li>
+                <li><a href="/faq">FAQ</a></li>
+                <li><a href="contact">Contact</a></li>
+                <li><a href="/about">About Us</a></li>
+            </ul>
         </div>
+    </div>
+
+    <script src="./js/script.js" type="text/javascript"></script>
+
+ 
     </body>
 </html>
