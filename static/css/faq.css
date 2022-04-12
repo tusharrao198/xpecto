@@ -1,10 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
     background-color: rgb(251, 255, 255);
+    font-family: "Open Sans", sans-serif;
   }
 h1 {
     text-align: center;
-    font-size: 40px;
-    font-family: system-ui;
+    font-size: 3rem;
+    font-weight: 400;
+    /* font-family: system-ui; */
+    margin-bottom: 1rem;
 }
 
 .column1 {
@@ -31,7 +38,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    font-family: system-ui;
+    /* font-family: system-ui; */
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
