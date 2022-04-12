@@ -32,8 +32,24 @@
             }
 
             body {
+                background: url("../images/xpecto_tempwall.png");
                 background: #fff;
                 font-family: "Open Sans", sans-serif;
+            }
+
+            .bg {
+                height: 100vh;
+                width: 100vw;
+                background: url("../images/xpecto_tempwall.png");
+                /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
+                background-color: #171717;
+                position: fixed;
+                z-index: -1000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 5.5em;
+                padding: 0;
             }
 
             /*heading styling*/
@@ -61,13 +77,6 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
-                background-image: linear-gradient(
-                        rgba(0, 0, 0, 0),
-                        rgba(0, 0, 0, 0.7)
-                    ),
-                    url("images/xpecto_tempwall.png");
-                background-size: cover;
-                background-attachment: fixed;
             }
 
             .spon .s-card img {
@@ -168,7 +177,7 @@
 
             .footer-bottom {
                 background: #000;
-                width: 100vw;
+                width: 100%;
                 padding: 20px;
                 padding-bottom: 40px;
                 text-align: center;
@@ -214,216 +223,293 @@
                     margin-bottom: 20px;
                 }
             }
+
+            /* navbar styling */
+
+            header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 40px 100px;
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header .logo {
+                color: #fff;
+                text-transform: uppercase;
+                cursor: pointer;
+            }
+
+            .toggle {
+                position: relative;
+                width: 60px;
+                height: 60px;
+                background: url(https://i.ibb.co/HrfVRcx/menu.png);
+                background-repeat: no-repeat;
+                background-size: 30px;
+                background-position: center;
+                cursor: pointer;
+            }
+
+            .toggle.active {
+                background: url(https://i.ibb.co/rt3HybH/close.png);
+                background-repeat: no-repeat;
+                background-size: 25px;
+                background-position: center;
+                cursor: pointer;
+            }
+
+            .showcase {
+                position: absolute;
+                right: 0;
+                width: 100%;
+                min-height: 100vh;
+                padding: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: url("../images/xpecto_tempwall.png");
+                background-attachment: fixed;
+
+                transition: 0.5s;
+                z-index: 2;
+                margin: auto;
+            }
+
+            .showcase.active {
+                right: 250px;
+            }
+
+            /* .showcase video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.8;
+            } */
+
+            /* .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #706ea8;
+                mix-blend-mode: overlay;
+            } */
+
+            .menu {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menu ul {
+                position: relative;
+            }
+
+            .menu ul li {
+                list-style: none;
+            }
+
+            .menu ul li a {
+                text-decoration: none;
+                font-size: 24px;
+                color: #fff;
+            }
+
+            .menu ul li a:hover {
+                color: #03a9f4;
+            }
         </style>
     </head>
 
     <body>
-        <nav class="navbar navbar-dark bg-dark fixed-top">
-            <!-- Navbar content -->
-            <!-- hello -->
-            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+        <div class="bg"></div>
+        <div class="home">
+            <section class="showcase">
+                <header>
+                    <h2 class="logo">Xpecto</h2>
+                    <div class="toggle"></div>
+                </header>
+                <div class="overlay"></div>
 
-            <div class="container-fluid bg-dark">
-                <a class="navbar-brand" href="#">Xpecto</a>
-                <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar"
-                >
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div
-                    class="offcanvas offcanvas-end"
-                    tabindex="-1"
-                    id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel"
-                >
-                    <div class="offcanvas-header bg-dark">
-                        <h5
-                            class="offcanvas-title text-light"
-                            id="offcanvasNavbarLabel"
-                        >
-                            Xpecto
-                        </h5>
-                        <button
-                            type="button"
-                            class="btn-close text-reset btn-close-white"
-                            data-bs-dismiss="offcanvas"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="offcanvas-body bg-dark">
-                        <ul
-                            class="navbar-nav justify-content-end flex-grow-1 pe-3"
-                        >
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/payment">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/events">Events</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/sponsors"
-                                    >Sponsors</a
+                <!-- SPONSORS  -->
+
+                <!-- Sponsors section-->
+                <div>
+                    <div class="spon">
+                        <div class="heading" id="head-section">
+                            <center>
+                                <p
+                                    style="
+                                        font-size: 70px;
+                                        padding: 40px;
+                                        padding-bottom: 40px;
+                                        font-family: 'Open Sans', sans-serif;
+                                        color: #fff;
+                                    "
                                 >
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/faq">FAQ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/about">About Us</a>
-                            </li>
-                        </ul>
+                                    Our Sponsors
+                                </p>
+                            </center>
+                        </div>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at01.02.12.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.58.42.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.28.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at01.01.52.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at01.02.02.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at01.02.02.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
+                                /></div
+                        ></a>
+                        <a href="userdetail.html"
+                            ><div class="s-card">
+                                <img
+                                    src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
+                                /></div
+                        ></a>
                     </div>
+
+                    <!-- Sponsors end -->
+                    <!-- FOOTER -->
+                    <footer>
+                        <div class="footer-content">
+                            <h3>Sponsor us</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Porro, minima quas
+                                reprehenderit assumenda voluptatibus ipsa quidem
+                                enim fugiat labore quos.
+                            </p>
+                            <ul class="socials">
+                                <li>
+                                    <a href="#"
+                                        ><i class="fa fa-facebook"></i
+                                    ></a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        ><i class="fa fa-twitter"></i
+                                    ></a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        ><i class="fa fa-linkedin-square"></i
+                                    ></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-bottom">
+                            <p>
+                                copyright &copy; <a href="#">Iit Mandi , HP</a>
+                            </p>
+                            <div class="footer-menu">
+                                <ul class="f-menu">
+                                    <li>
+                                        <a href=""
+                                            >Contact No- +91 6205720019</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-            </div>
-        </nav>
-
-        <!-- Sponsors section-->
-        <div class="spon">
-            <div class="heading" id="head-section">
-                <center>
-                    <p
-                        style="
-                            font-size: 70px;
-                            padding: 40px;
-                            padding-bottom: 40px;
-                            font-family: 'Open Sans', sans-serif;
-                            color: #fff;
-                        "
-                    >
-                        Our Sponsors
-                    </p>
-                </center>
-            </div>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at01.02.12.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.58.42.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.28.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at01.01.52.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at01.02.02.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at01.02.02.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.58.55.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
-                    /></div
-            ></a>
-            <a href="userdetail.html"
-                ><div class="s-card">
-                    <img
-                        src="images/WhatsAppImage2021-05-17at00.59.10.jpeg"
-                    /></div
-            ></a>
-        </div>
-
-        <!-- FOOTER -->
-        <footer>
-            <div class="footer-content">
-                <h3>Sponsor us</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Porro, minima quas reprehenderit assumenda voluptatibus ipsa
-                    quidem enim fugiat labore quos.
-                </p>
-                <ul class="socials">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-linkedin-square"></i></a>
-                    </li>
+            </section>
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/payment">Register</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/sponsors">Sponsors</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    <li><a href="contact">Contact</a></li>
+                    <li><a href="/about">About Us</a></li>
                 </ul>
             </div>
-            <div class="footer-bottom">
-                <p>copyright &copy; <a href="#">Iit Mandi , HP</a></p>
-                <div class="footer-menu">
-                    <ul class="f-menu">
-                        <li><a href="">Contact No- +91 6205720019</a></li>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script>
+        </div>
+
+        <script src="./js/script.js" type="text/javascript"></script>
     </body>
 </html>
