@@ -4,10 +4,8 @@ const port = process.env.PORT || 5000;
 const passport = require("passport");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const cookieSession = require("cookie-session");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const keys = require("./config/keys");
 const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
@@ -41,17 +39,10 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
 
-app.use(
-    cookieSession({
-        maxAge: 24 * 60 * 60 * 1000,
-        keys: [keys.session.cookieKey],
-    })
-);
-
 // Sessions middleware
 app.use(
     session({
-        secret: "random_key_string",
+        secret: process.env.SECRET,
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({ mongoUrl: process.env.MONGO_DATABASE_URI }),
@@ -90,11 +81,11 @@ app.get("/profile", authCheck, (req, res) => {
     res.render("profile", { user: req.user });
 });
 
-app.get("/team", authCheck, (req, res) => {
+app.get("/team", (req, res) => {
     res.render("team", { user: req.user });
 });
 
-app.get("/events", authCheck, async (req, res) => {
+app.get("/events", async (req, res) => {
     var eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
     res.render("events", { events: allEvents });
