@@ -58,19 +58,19 @@ app.use("/auth", authRoutes);
 app.use("/payment", authCheck, paymentRoutes);
 
 app.get("/about", (req, res) => {
-    res.render("aboutus");
+    res.render("aboutus", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/contact", (req, res) => {
-    res.render("contact");
+    res.render("contact", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/sponsors", (req, res) => {
-    res.render("sponsors");
+    res.render("sponsors", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/faq", (req, res) => {
-    res.render("faq");
+    res.render("faq", { authenticated: req.isAuthenticated() });
 });
 
 app.get("/", (req, res) => {
@@ -85,20 +85,30 @@ app.get("/profile", authCheck, (req, res) => {
 });
 
 app.get("/team", (req, res) => {
-    res.render("team", { user: req.user });
+    res.render("team", {
+        user: req.user,
+        authenticated: req.isAuthenticated(),
+    });
 });
 
 app.get("/events", async (req, res) => {
     var eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
-    res.render("events", { events: allEvents });
+    res.render("events", {
+        events: allEvents,
+        authenticated: req.isAuthenticated(),
+    });
 });
 
 app.get("/event", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
 
-    const context = { event: event, team: team };
+    const context = {
+        event: event,
+        team: team,
+        authenticated: req.isAuthenticated(),
+    };
     res.render("event", context);
 });
 
@@ -122,10 +132,15 @@ app.get("/createTeam", authCheck, async (req, res) => {
 app.get("/userTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-    res.render("userTeam", { team: team });
+    res.render("userTeam", {
+        team: team,
+        authenticated: req.isAuthenticated(),
+    });
 });
 
-app.get("/error", (req, res) => res.send("error logging in"));
+app.get("/error", (req, res) =>
+    res.send("error logging in", { authenticated: req.isAuthenticated() })
+);
 
 app.listen(port, (err) => {
     if (err) throw err;
