@@ -81,11 +81,11 @@ app.get("/profile", authCheck, (req, res) => {
     res.render("profile", { user: req.user });
 });
 
-app.get("/team", authCheck, (req, res) => {
+app.get("/team", (req, res) => {
     res.render("team", { user: req.user });
 });
 
-app.get("/events", authCheck, async (req, res) => {
+app.get("/events", async (req, res) => {
     var eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
     res.render("events", { events: allEvents });
