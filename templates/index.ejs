@@ -79,7 +79,7 @@
                         <p>Technical Fest</p>
                         <a href="/events">Explore Events</a>
                         <% if(!authenticated){ %>
-                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/login">Signin with Google</a></li>
                         <%}%>
                         <!-- <% if(authenticated){ %>
                         <a href="/profile">Profile</a>
@@ -113,21 +113,7 @@
                     </li>
                 </ul>
             </section>
-            <div class="menu">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/payment">Register</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/sponsors">Sponsors</a></li>
-                    <li><a href="/team">Our Team</a></li>
-                    <% if(authenticated){ %>
-                    <li><a href="/profile">Profile</a></li>
-                    <%}%>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="contact">Contact</a></li>
-                    <li><a href="/about">About Us</a></li>
-                </ul>
-            </div>
+            <%- include('partials/navbar_menu.ejs') %>
         </div>
 
         <div class="sound">
