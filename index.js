@@ -78,7 +78,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profile", authCheck, (req, res) => {
-    res.render("profile", { user: req.user });
+    res.render("profile", {
+        user: req.user,
+        authenticated: req.isAuthenticated(),
+    });
 });
 
 app.get("/team", (req, res) => {
