@@ -2,6 +2,8 @@ body {
     width: 100vw;
     background-color: #171717;
     background-image: url("../images/xpecto_tempwall.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     background-size: 100% 100%;
     background-attachment: fixed;
     margin: 0;
@@ -119,6 +121,7 @@ body {
 #about .menu:hover .icon svg {
     /* background: linear-gradient(90deg, #FF7E7E, #FF4848); */
     background: #65fe82;
+    background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 1;

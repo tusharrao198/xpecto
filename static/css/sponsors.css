@@ -10,8 +10,12 @@
         }
 
         body {
-            background: url("../images/xpecto_tempwall.png");
             background: #fff;
+            background: url("../images/xpecto_tempwall.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: fixed;
+           
             font-family: "Open Sans", sans-serif;
         }
 
