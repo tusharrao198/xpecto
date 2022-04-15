@@ -11,7 +11,7 @@ const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
 var url = require("url");
-const { findEvent, findUserTeam } = require("./utils");
+const { findEvent, findEventFromId, findUserTeam } = require("./utils");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -114,10 +114,18 @@ app.get("/event", authCheck, async (req, res) => {
 
 app.get("/createTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
+    const context = {
+        event: event
+    };
+    res.render("Team/createTeam", context);
+});
+
+app.post("/createTeam", authCheck, async(req, res) => {
+    const formDetails = req.body;
     const teamTable = require("./models/Team");
     var newteam = new teamTable({
-        event: event._id,
-        name: "testingTeam",
+        event: formDetails.event_id,
+        name: formDetails.team_name,
         teamLeader: req.user._id,
     });
     newteam.save(function (err) {
@@ -126,13 +134,14 @@ app.get("/createTeam", authCheck, async (req, res) => {
             return err;
         }
     });
+    const event = await findEventFromId(formDetails.event_id);
     res.redirect(`/event?event=${event.name}`);
 });
 
 app.get("/userTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-    res.render("userTeam", {
+    res.render("Team/userTeam", {
         team: team,
         authenticated: req.isAuthenticated(),
     });
