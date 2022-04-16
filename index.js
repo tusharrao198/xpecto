@@ -10,8 +10,7 @@ const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
-var url = require("url");
-const { findEvent, findEventFromId, findUserTeam } = require("./utils");
+const { findEvent, findEventFromId, findUserTeam, findUserTeamFromId, createNewTeam, deleteOldInviteCode, createNewInviteCode } = require("./utils");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -121,30 +120,38 @@ app.get("/createTeam", authCheck, async (req, res) => {
 });
 
 app.post("/createTeam", authCheck, async(req, res) => {
-    const formDetails = req.body;
-    const teamTable = require("./models/Team");
-    var newteam = new teamTable({
-        event: formDetails.event_id,
-        name: formDetails.team_name,
-        teamLeader: req.user._id,
-    });
-    newteam.save(function (err) {
-        if (err) {
-            console.log(err.errors);
-            return err;
-        }
-    });
+    await createNewTeam(req);
     const event = await findEventFromId(formDetails.event_id);
     res.redirect(`/event?event=${event.name}`);
 });
 
 app.get("/userTeam", authCheck, async (req, res) => {
-    const event = await findEvent(req);
     const team = await findUserTeam(req);
-    res.render("Team/userTeam", {
+    const inviteCodeTable = require("./models/InviteCode");
+    var inviteCode = await inviteCodeTable.findOne({team: team._id}).lean();
+
+    context = {
         team: team,
         authenticated: req.isAuthenticated(),
-    });
+        inviteCode: inviteCode.code,
+        validUpto: inviteCode.validUpto,
+    };
+    if(inviteCode.validUpto < Date.now())
+    {
+        context.inviteCode = null;
+        context.validUpto = null;
+    }
+
+    res.render("Team/userTeam", context);
+});
+
+app.get("/generateInviteCode", authCheck, async (req, res) => {
+    await deleteOldInviteCode(req)
+    await createNewInviteCode(req);
+
+    const team = await findUserTeamFromId(req);
+    const event = await findEventFromId(team.event);
+    res.redirect(`/userTeam?event=${event.name}`);
 });
 
 app.get("/error", (req, res) =>
