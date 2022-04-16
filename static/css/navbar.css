@@ -15,7 +15,7 @@
 
            /* navbar styling */
 
-           header {
+        header {
             position: absolute;
             top: 0;
             left: 0;
@@ -123,5 +123,29 @@
 
         .menu ul li a:hover {
             color: #03a9f4;
+        }
+        @media (max-width:700px) {
+            header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding-left: 25px;
+                padding-right: 15px;
+                z-index: 1000;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            header .logo {
+                color: #fff;
+                text-transform: uppercase;
+                cursor: pointer;
+                font-size: 1.5rem;
+            }
+
+            
         }
  
