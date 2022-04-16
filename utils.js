@@ -45,6 +45,20 @@ module.exports = {
             }
         });
     },
+    joinTeam: async function(req){
+        const formDetails = req.body;
+        const inviteCodeTable = require("./models/InviteCode");
+        const inviteCode = await inviteCodeTable.findOne({ code: formDetails.invite_code }).lean();
+        if(inviteCode != null){
+            const teamTable = require("./models/Team");
+            await teamTable.updateOne(
+                { _id: inviteCode.team },
+                { $push: { members: req.user._id }}
+            );
+            const team = await teamTable.findOne({_id: inviteCode.team}).lean();
+            console.log(team);
+        }
+    },
     generateString: async function(length) {
         let result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
