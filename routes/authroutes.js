@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const passport = require("passport");
+const passport = require("passport"); 
 
 // auth login
-router.get("/login", (req, res) => {
-    res.render("login");
+router.get("/login", (req, res) => {   
+    res.render("login",{ authenticated: req.isAuthenticated() });
 });
 
 // auth logout
@@ -25,7 +25,7 @@ router.get(
     "/google/callback",
     passport.authenticate("google", { failureRedirect: "/error" }),
     function (req, res) {
-        // console.log('req.user') // user info
+        // user info
         // Successful authentication, redirect success.
         if (process.env.NODE_ENV == "development") {
             console.log("dev = ", req.headers.host);
@@ -34,6 +34,7 @@ router.get(
         } else if (process.env.NODE_ENV == "production") {
             res.redirect(`https://${req.headers.host}/profile`);
         } else {
+
             res.redirect("/profile");
         }
     }

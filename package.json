@@ -32,10 +32,12 @@
         "express-session": "^1.17.2",
         "mongoose": "^6.2.9",
         "nanoid": "^3.3.2",
+        "node-localstorage": "^2.2.1",
         "nodemon": "^2.0.15",
         "passport": "^0.4.1",
         "passport-google-oauth20": "^2.0.0",
         "razorpay": "^2.8.1",
+        "sessionstorage": "^0.1.0",
         "shortid": "^2.2.16"
     }
 }
