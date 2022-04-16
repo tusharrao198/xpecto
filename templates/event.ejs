@@ -23,17 +23,43 @@
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossorigin="anonymous"
         />
-        <!-- <style>
-            body {
-                padding-top: 70px;
+        <style>
+            header {
+                display: flex;
             }
-        </style> -->
+            .showcase.active {
+                right: 250px;
+            }
+            @media (max-width: 768px) {
+                .showcase.active {
+                    right: 50%;
+                }
+            }
+            @media (max-width: 480px) {
+                .showcase.active {
+                    right: 75%;
+                }
+                header .logo {
+                    font-size: 1.5rem;
+                }
+                .text-white {
+                }
+                header {
+                    padding-right: 10px;
+                    display: flex;
+                    /* align-items: flex-end; */
+                }
+                .showcase {
+                    padding-right: 50px;
+                }
+            }
+        </style>
     </head>
     <body>
         <div class="bg"></div>
         <div class="home">
             <section class="showcase">
-                <header style="display: flex">
+                <header>
                     <h2 class="logo">Xpecto '22</h2>
                     <div class="toggle"></div>
                 </header>
