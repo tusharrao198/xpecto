@@ -202,3 +202,9 @@ body {
         margin-top: 20vh;
     }
 }
+@media (max-width:700px) {
+    .text-white{
+        text-align: center;
+        font-size: 25px;
+    }
+}
