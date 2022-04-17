@@ -125,7 +125,7 @@
             color: #03a9f4;
         }
         @media (max-width:700px) {
-            /*header {
+            header {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -144,7 +144,7 @@
                 text-transform: uppercase;
                 cursor: pointer;
                 font-size: 1.5rem;
-            }*/
+            }
            
         }
  
