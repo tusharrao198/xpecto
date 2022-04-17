@@ -17,9 +17,11 @@ module.exports = {
     findUserTeam: async function (req) {
         const event = await module.exports.findEvent(req);
         const teamTable = require("./models/Team");
-        const team = await teamTable
-            .findOne({ event: event._id, teamLeader: req.user._id })
-            .lean();
+
+        var team = await teamTable.findOne({ event: event._id, teamLeader: req.user._id }).lean();
+        if(team == null)
+            team = await teamTable.findOne({ members: req.user._id }).lean();
+
         return team;
     },
     findUserTeamFromId: async function(req){
