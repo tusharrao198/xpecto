@@ -10,8 +10,16 @@ const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
-const { findEvent, findEventFromId, findUserTeam, findUserTeamFromId, createNewTeam, joinTeam, deleteTeam, deleteOldInviteCode, createNewInviteCode } = require("./utils");
-var url = require("url");
+const {
+    findEvent,
+    findEventFromId,
+    findUserTeam,
+    findUserTeamFromId,
+    createNewTeam,
+    joinTeam,
+    deleteOldInviteCode,
+    createNewInviteCode,
+} = require("./utils");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -115,12 +123,12 @@ app.get("/event", authCheck, async (req, res) => {
 app.get("/createTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
-        event: event
+        event: event,
     };
     res.render("Team/createTeam", context);
 });
 
-app.post("/createTeam", authCheck, async(req, res) => {
+app.post("/createTeam", authCheck, async (req, res) => {
     await createNewTeam(req);
     const event = await findEventFromId(req.body.event_id);
     res.redirect(`/event?event=${event.name}`);
@@ -129,7 +137,7 @@ app.post("/createTeam", authCheck, async(req, res) => {
 app.get("/joinTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
-        event: event
+        event: event,
     };
     res.render("Team/joinTeam", context);
 });
@@ -144,7 +152,7 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
     res.redirect(`/event?event=${event.name}`);
 });
 
-app.post("/joinTeam", authCheck, async(req, res) => {
+app.post("/joinTeam", authCheck, async (req, res) => {
     await joinTeam(req);
     const event = await findEventFromId(req.body.event_id);
     res.redirect(`/event?event=${event.name}`);
@@ -153,7 +161,7 @@ app.post("/joinTeam", authCheck, async(req, res) => {
 app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
     const inviteCodeTable = require("./models/InviteCode");
-    var inviteCode = await inviteCodeTable.findOne({team: team._id}).lean();
+    var inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
     context = {
         team: team,
         authenticated: req.isAuthenticated(),
@@ -161,7 +169,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
         validUpto: null,
     };
 
-    if (inviteCode != null && inviteCode.validUpto >= Date.now()){
+    if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
         context.inviteCode = inviteCode.code;
         context.validUpto = inviteCode.validUpto;
     }
@@ -170,7 +178,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
-    await deleteOldInviteCode(req)
+    await deleteOldInviteCode(req);
     await createNewInviteCode(req);
 
     const team = await findUserTeamFromId(req);
