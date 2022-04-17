@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create Team</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Create Team | <%= event.name %></h1>
+            <form action="/createTeam" method="POST">
+                <div class="form-group">
+                    <label for="teamName">Team Name</label>
+                    <input type="text" class="form-control" id="teamName" placeholder="Enter team name" name="team_name">
+                </div>
+                <div style="display: none;">
+                    <input type="text" class="form-control" id="eventId" name="event_id" value="<%= event._id %>">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </body>
+</html>
