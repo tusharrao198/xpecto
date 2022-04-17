@@ -42,18 +42,25 @@
                         </h1>
                     </div>
                     <div class="bg-white p-4" style="max-width: 100%">
-                        <%= team._id %>
+                        Team Name = <%= team.name %>
                         <br />
-                        <%= team.event %>
+                        Team Id = <%= team._id %>
                         <br />
-                        <%= team.name %>
+                        Event Name = <%= team.event %>
                         <br />
-                        <%= team.teamLeader %>
+                        Leader Id = <%= team.teamLeader %>
                         <br />
-                        <%= team.members %>
+                        Team Members = <%= team.members %>
                         <br />
-                        <%= team.createdAt %>
+                        Creation Time = <%= team.createdAt %>
                         <br />
+                        <a href="/generateInviteCode?team=<%= team._id %>">Generate New Invite Code</a>
+                        <% if (inviteCode) {%>
+                        <br />
+                        InviteCode = <%= inviteCode %>
+                        <br />
+                        ValidUpto = <%= validUpto %>
+                        <% } %>
                     </div>
                 </div>
             </section>
