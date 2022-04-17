@@ -2,6 +2,8 @@
     height: 100vh;
     width: 100vw;
     background: url("../images/xpecto_tempwall.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
     background-color: #171717;
     position: fixed;
