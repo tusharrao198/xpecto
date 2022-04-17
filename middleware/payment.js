@@ -17,12 +17,49 @@ let razorPayInstance = new Razorpay({
  * Payment Page
  *
  */
-router.get("/", function (req, res, next) {
-    // Render form for accepting amount
-    res.render("payment/order", {
-        title: "Xpecto '22",
-        amount: "100",
-    });
+ router.get("/", function (req, res, next) {
+
+    if (req.session.user.email.substring(16, 24) == "iitmandi") {
+        PaymentDetail.find({ googleId: req.session.user.googleId }, (errr, doc) => {
+            if (errr) {
+                console.log(err);
+            }
+            else {
+                if (!doc) {
+                    if (req.session.user.email.substring(16, 24) == "iitmandi") {
+                        const paymentDetail = new PaymentDetail({
+                            orderId: req.session.user.googleId,
+                            receiptId: req.session.user.googleId,
+                            paymentId: req.session.user.googleId,
+                            status: "paid",
+                        });
+                        try {
+                            paymentDetail.save();
+                        } catch (err) {
+                            // Throw err if failed to save
+                            if (err) throw err;
+                        }
+
+
+
+                    };
+                } else {
+                    console.log("paid");
+                    res.redirect("/profile");
+                }
+            }
+        });
+    } else {
+
+
+        // Render form for accepting amount
+        res.render("payment/order", {
+            title: "Xpecto '22",
+            amount: "100",
+        });
+    }
+
+
 });
 
 /**
