@@ -92,6 +92,7 @@ header .logo {
     flex-direction: row;
     border: 1px solid black;
     border-style: double;
+    box-sizing: border-box;
 }
 
 .wrapper .logo {
@@ -221,9 +222,13 @@ header .logo {
     }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 700px) {
     .wrapper {
         flex-direction: column;
-        transform: scale(0.60)
+        transform: scale(0.60);
+        padding: 80px;
+    
+
     }
+
 }
