@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta charset="utf-8">
   <link rel="stylesheet" href="./css/contact.css" />
   <link rel="stylesheet" href="./css/navbar.css" />
@@ -25,6 +27,45 @@
     crossorigin="anonymous"></script>
     <title>Contact Us | Xpecto</title>
 </head>
+
+<style>
+     .text-white {
+            text-align: center;
+        }
+        header {
+            display: flex;
+            padding-left: 40px;
+            padding-right: 10px;
+        }
+        .showcase.active {
+            right: 250px;
+        }
+        @media (max-width: 768px) {
+            .showcase.active {
+                right: 50%;
+            }
+        }
+        @media (max-width: 480px) {
+            .showcase.active {
+                right: 75%;
+            }
+            header .logo {
+                font-size: 1.5rem;
+            }
+            .text-white {
+            }
+            header {
+                /* padding-left: 40px; */
+                padding-right: 10px;
+                display: flex;
+                /* align-items: flex-end; */
+            }
+            .showcase {
+                padding-right: 50px;
+            }
+        }
+</style>
+
 
 <body>
     <div class="bg"></div>

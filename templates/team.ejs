@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,6 +38,44 @@
         <title style="font-family: 'Open Sans', sans-serif;">Team | Xpecto</title>
     </head>
 
+
+    <style>
+           .text-white {
+            text-align: center;
+        }
+        header {
+            display: flex;
+            padding-left: 40px;
+            padding-right: 10px;
+        }
+        .showcase.active {
+            right: 250px;
+        }
+        @media (max-width: 768px) {
+            .showcase.active {
+                right: 50%;
+            }
+        }
+        @media (max-width: 480px) {
+            .showcase.active {
+                right: 75%;
+            }
+            header .logo {
+                font-size: 1.5rem;
+            }
+            .text-white {
+            }
+            header {
+                /* padding-left: 40px; */
+                padding-right: 10px;
+                display: flex;
+                /* align-items: flex-end; */
+            }
+            .showcase {
+                padding-right: 50px;
+            }
+        }
+    </style>
     <body>
         <div class="bg">
             <!-- <h1 style="font-family: 'Open Sans', sans-serif;">Xpecto'22</h1> -->
