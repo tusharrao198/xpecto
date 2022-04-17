@@ -121,7 +121,7 @@ app.get("/createTeam", authCheck, async (req, res) => {
 
 app.post("/createTeam", authCheck, async(req, res) => {
     await createNewTeam(req);
-    const event = await findEventFromId(formDetails.event_id);
+    const event = await findEventFromId(req.body.event_id);
     res.redirect(`/event?event=${event.name}`);
 });
 
@@ -129,7 +129,11 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
     const inviteCodeTable = require("./models/InviteCode");
     var inviteCode = await inviteCodeTable.findOne({team: team._id}).lean();
-
+    var tempInviteCode = {code:null,validUpto:null};
+    if(!inviteCode)
+    {
+        inviteCode = tempInviteCode;
+    }
     context = {
         team: team,
         authenticated: req.isAuthenticated(),
