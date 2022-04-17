@@ -2,7 +2,6 @@
     height: 100vh;
     width: 100vw;
     background: url("../images/xpecto_tempwall.png");
-    /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
     background-color: #171717;
     position: fixed;
     z-index: -1000;
@@ -13,141 +12,94 @@
     padding: 0;
 }
 
-           /* navbar styling */
+/* navbar styling */
 
-        header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 100px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        header .logo {
-            color: #fff;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-size: 2.5vw;
-        }
+header .logo {
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 2rem;
+}
 
-        .toggle {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            background: url(https://i.ibb.co/HrfVRcx/menu.png);
-            background-repeat: no-repeat;
-            background-size: 30px;
-            background-position: center;
-            cursor: pointer;
-        }
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: url("../images/menu/open.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+}
 
-        .toggle.active {
-            background: url(https://i.ibb.co/rt3HybH/close.png);
-            background-repeat: no-repeat;
-            background-size: 25px;
-            background-position: center;
-            cursor: pointer;
-        }
+.toggle.active {
+    background: url("../images/menu/close.png");
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center;
+    cursor: pointer;
+}
 
-        .showcase {
-            position: absolute;
-            right: 0;
-            width: 100%;
-            min-height: 100vh;
-            padding: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: url("../images/xpecto_tempwall.png");
-            background-attachment: fixed;
+.showcase {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../images/xpecto_tempwall.png");
+    background-attachment: fixed;
 
-            transition: 0.5s;
-            z-index: 2;
-            margin: auto;
-        }
+    transition: 0.5s;
+    z-index: 2;
+    margin: auto;
+}
 
-        .showcase.active {
-            right: 250px;
-        }
+.showcase.active {
+    right: 250px;
+}
 
-        /* .showcase video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        } */
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        /* .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #706ea8;
-            mix-blend-mode: overlay;
-        } */
+.menu ul {
+    position: relative;
+}
 
-        .menu {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.menu ul li {
+    list-style: none;
+    margin-bottom: 0.25rem;
+}
 
-        .menu ul {
-            position: relative;
-        }
+.menu ul li a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+}
 
-        .menu ul li {
-            list-style: none;
-            margin-bottom: 0.25rem;
-        }
-
-        .menu ul li a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #fff;
-        }
-
-        .menu ul li a:hover {
-            color: #03a9f4;
-        }
-        @media (max-width:700px) {
-            header {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding-left: 25px;
-                padding-right: 15px;
-                z-index: 1000;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-    
-            header .logo {
-                color: #fff;
-                text-transform: uppercase;
-                cursor: pointer;
-               font-size: 5vw;
-            }
-            
-
-            
-        }
-        
- 
+.menu ul li a:hover {
+    color: #03a9f4;
+}

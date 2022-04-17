@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: white;
 }
 
@@ -29,7 +29,7 @@ header .logo {
     position: relative;
     width: 60px;
     height: 60px;
-    background: url(https://i.ibb.co/HrfVRcx/menu.png);
+    background: url("../images/menu/open.png");
     background-repeat: no-repeat;
     background-size: 30px;
     background-position: center;
@@ -37,7 +37,7 @@ header .logo {
 }
 
 .toggle.active {
-    background: url(https://i.ibb.co/rt3HybH/close.png);
+    background: url("../images/menu/close.png");
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: center;
@@ -217,13 +217,13 @@ header .logo {
         font-size: 2em;
     }
     .wrapper {
-        transform: scale(0.75)
+        transform: scale(0.75);
     }
 }
 
 @media (max-width: 580px) {
     .wrapper {
         flex-direction: column;
-        transform: scale(0.60)
+        transform: scale(0.6);
     }
 }
