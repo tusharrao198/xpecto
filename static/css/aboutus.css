@@ -14,7 +14,7 @@ body {
     text-align: center;
     padding-top: 1%;
     font-weight: 450;
-    color: #00cab2;
+    color: white;
     font-family: helvetica;
 }
 
@@ -205,9 +205,9 @@ body {
         margin-top: 20vh;
     }
 }
-@media (max-width:700px) {
+/*@media (max-width:700px) {
     .text-white{
         text-align: center;
         font-size: 25px;
     }
-}
+}*/
