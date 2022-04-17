@@ -61,6 +61,10 @@ module.exports = {
             console.log(team);
         }
     },
+    deleteTeam: async function(team_id){
+        const teamTable = require("./models/Team");
+        await teamTable.deleteOne({ _id:team_id });
+    },
     generateString: async function(length) {
         let result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

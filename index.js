@@ -10,7 +10,8 @@ const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
-const { findEvent, findEventFromId, findUserTeam, findUserTeamFromId, createNewTeam, joinTeam, deleteOldInviteCode, createNewInviteCode } = require("./utils");
+const { findEvent, findEventFromId, findUserTeam, findUserTeamFromId, createNewTeam, joinTeam, deleteTeam, deleteOldInviteCode, createNewInviteCode } = require("./utils");
+var url = require("url");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -131,6 +132,16 @@ app.get("/joinTeam", authCheck, async (req, res) => {
         event: event
     };
     res.render("Team/joinTeam", context);
+});
+
+app.get("/deleteTeam", authCheck, async (req, res) => {
+    const current_url = url.parse(req.url, true);
+    const params = current_url.query;
+
+    await deleteTeam(params.team);
+
+    const event = await findEventFromId(params.event);
+    res.redirect(`/event?event=${event.name}`);
 });
 
 app.post("/joinTeam", authCheck, async(req, res) => {
