@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Join Team</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Join Team | <%= event.name %></h1>
+            <form action="/joinTeam" method="POST">
+                <div class="form-group">
+                    <label for="inviteCode">Invite Code</label>
+                    <input type="text" class="form-control" id="inviteCode" placeholder="Enter invite code" name="invite_code">
+                </div>
+                <div style="display: none;">
+                    <input type="text" class="form-control" id="eventId" name="event_id" value="<%= event._id %>">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </body>
+</html>
