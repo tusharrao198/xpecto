@@ -55,7 +55,7 @@
                 header .logo {
                     font-size: 1.5rem;
                 }
-        
+
                 header {
                     /* padding-left: 10px; */
                     padding-right: 10px;
@@ -66,8 +66,6 @@
                     padding-right: 50px;
                 }
             }
-        
-
         </style>
     </head>
 
@@ -78,7 +76,7 @@
 
         <div class="preloader">
             <h1 class="jumbotron">Xpecto' 22</h1>
-            <h2 style="text-align: center;">The Technical Fest of IIT Mandi</h2>
+            <h2 style="text-align: center">The Technical Fest of IIT Mandi</h2>
             <!-- <div class="logo">
             <img src="./images/xpecto design.svg" alt="none" height="150px" width="150px">
 
@@ -86,9 +84,9 @@
             <div class="enter">
                 <img src="./images/arrow-right.svg" alt="arrow-right" />
                 <% if(!authenticated){ %>
-                <a id="enter" href="#">Enter</a>
+                <a id="enter" class="text-warning" href="#">Enter -> </a>
                 <%}else {%>
-                <a id="enter" href="#">Explore</a>
+                <a id="enter" class="text-warning" href="#">Explore -> </a>
                 <%}%>
             </div>
             <div class="row"><%- include('partials/countdown.ejs') %></div>
@@ -161,7 +159,12 @@
             class="click-sound"
             src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"
         ></audio>
-        <audio class="anthem" src="./audio/anthem.mp3" loop="true" muted></audio>
+        <audio
+            class="anthem"
+            src="./audio/anthem.mp3"
+            loop="true"
+            muted
+        ></audio>
 
         <script src="./js/script.js" type="text/javascript"></script>
         <script src="./js/cursor.js"></script>
