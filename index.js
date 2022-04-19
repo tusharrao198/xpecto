@@ -17,9 +17,11 @@ const {
     findUserTeamFromId,
     createNewTeam,
     joinTeam,
+    deleteTeam,
     deleteOldInviteCode,
     createNewInviteCode,
 } = require("./utils");
+var url = require("url");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
