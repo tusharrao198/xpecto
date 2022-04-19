@@ -84,4 +84,10 @@ h2 a:hover {
     padding-bottom: 20px;
     color: #f27a0e;
     text-align: center;
+    font-weight: 600;
+}
+
+div p {
+    color: yellowgreen;
+    font-weight: 600;
 }

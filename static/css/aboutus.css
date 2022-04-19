@@ -225,3 +225,35 @@ h2 a:hover {
         font-size: 25px;
     }
 }*/
+
+header {
+    display: flex;
+    padding-left: 40px;
+    padding-right: 10px;
+}
+.showcase.active {
+    right: 250px;
+}
+@media (max-width: 768px) {
+    .showcase.active {
+        right: 50%;
+    }
+}
+@media (max-width: 480px) {
+    .showcase.active {
+        right: 75%;
+    }
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    header {
+        /* padding-left: 10px; */
+        padding-right: 10px;
+        display: flex;
+        /* align-items: flex-end; */
+    }
+    .showcase {
+        padding-right: 50px;
+    }
+}

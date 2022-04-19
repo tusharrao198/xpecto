@@ -2,6 +2,7 @@ html,
 body {
     width: 100%;
     height: 100%;
+    text-align: center;
 }
 html .container,
 body .container {
@@ -132,10 +133,6 @@ body .container .login-form-wrapper .login-button {
     background-color: #ebebeb;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
     cursor: not-allowed;
-}
-body {
-    text-align: center;
-    padding-top: 2rem;
 }
 
 /* Navbar */
