@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>Profile | Xpecto</title>
         <!-- CSS only -->
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
@@ -24,6 +26,10 @@
             /* body {
                 padding-top: 70px;
             } */
+
+            header .logo {
+                font-size: 1.5rem;
+            }
             .bg {
                 height: 100vh;
                 width: 100vw;
@@ -38,6 +44,183 @@
                 font-size: 5.5em;
                 padding: 0;
             }
+            header {
+                display: flex;
+                padding-left: 40px;
+                padding-right: 10px;
+            }
+            .showcase.active {
+                right: 250px;
+            }
+            @media (max-width: 768px) {
+                .showcase.active {
+                    right: 50%;
+                }
+            }
+            @media (max-width: 480px) {
+                .showcase.active {
+                    right: 75%;
+                }
+                header .logo {
+                    font-size: 1.5rem;
+                }
+                .text-white {
+                }
+                header {
+                    /* padding-left: 10px; */
+                    padding-right: 10px;
+                    display: flex;
+                    /* align-items: flex-end; */
+                }
+                .showcase {
+                    /* padding-right: 50px; */
+                }
+            }
+            .card {
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                font-weight: bold;
+                /* height: 300px; */
+                width: 450px;
+                padding: 2rem;
+                backdrop-filter: blur(10px) saturate(200%);
+                -webkit-backdrop-filter: blur(10px) saturate(200%);
+                background-color: rgba(17, 25, 40, 0.5);
+                border-radius: 12px;
+                border: 2px solid rgba(255, 255, 255, 0.125);
+            }
+            .profile {
+            }
+            .profile .heading {
+                font-size: 2rem;
+                font-weight: bold;
+                text-align: center;
+            }
+            .last {
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+            }
+            .btn {
+                font-weight: bold;
+                padding: 0.25rem;
+                width: 100px;
+                border-radius: 5px;
+                margin: 0.5rem;
+                transition: 0.2s;
+                font-size: 1.25rem;
+            }
+            .back-home {
+                border: 2px solid #009dbe;
+                background-color: #009dbe;
+                color: white;
+            }
+            .logout {
+                border: 2px solid red;
+                background-color: red;
+                color: white;
+            }
+            .btn:hover {
+                background-color: black;
+                color: white;
+                border-color: black;
+                transition: 0.2s;
+            }
+            .person {
+                font-size: 1.5rem;
+            }
+            #person-image {
+                margin-bottom: 1.5rem;
+            }
+            .person > img {
+                display: flex;
+                justify-content: center;
+                /* justify-items: center; */
+                margin-left: auto;
+                margin-right: auto;
+                /* display: flex; */
+                /* justify-content: center; */
+            }
+
+            .name,
+            .email {
+                margin: 1rem;
+                font-size: 1.25rem;
+            }
+
+            .profile span {
+                font-weight: 500;
+            }
+            .person img {
+                border-radius: 50%;
+            }
+            .name img {
+                width: 25px;
+                margin-right: 0.75rem;
+            }
+
+            .email img {
+                margin-right: 0.75rem;
+                width: 25px;
+            }
+
+            @media (max-width: 480px) {
+                .card {
+                    width: 300px;
+                }
+                .last {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .name,
+                .email {
+                    font-size: 1rem;
+                    display: flex;
+                    flex-direction: column;
+
+                    align-items: center;
+                }
+                .name > img,
+                .email > img {
+                    margin: 0;
+                }
+            }
+            @media (max-width: 400px) {
+                .card {
+                    width: 250px;
+                }
+                .name,
+                .email {
+                    font-size: 0.9rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .name > img,
+                .email > img {
+                    margin: 0;
+                }
+            }
+
+            .list-container {
+                display: none;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                font-weight: bold;
+                width: 450px;
+                padding: 2rem;
+                backdrop-filter: blur(10px) saturate(200%);
+                -webkit-backdrop-filter: blur(10px) saturate(200%);
+                background-color: rgba(17, 25, 40, 0.5);
+                border-radius: 12px;
+                border: 2px solid rgba(255, 255, 255, 0.125);
+                z-index: 0;
+                color: white;
+                font-weight: bold;
+                width: 450px;
+            }
         </style>
     </head>
     <body>
@@ -49,58 +232,68 @@
                     <div class="toggle"></div>
                 </header>
                 <div class="overlay"></div>
-
-                <div class="container">
-                    <div class="p-4 d-flex justify-content-center flex-nowrap">
-                        <h1>
-                            <a href="/" class="btn btn-primary">
-                                <span class="fa fa-user"> Profile </span></a
-                            >
-                        </h1>
-                    </div>
-                    <div class="card mb-8 mx-auto" style="max-width: 40%">
-                        <div class="row g-0">
-                            <div class="col-md-4">
+                <main>
+                    <div class="card">
+                        <div class="profile">
+                            <div class="heading">PROFILE</div>
+                            <hr />
+                            <div class="person">
                                 <img
+                                    id="person-image"
                                     src="<%= user.image%>"
-                                    class="img-fluid rounded-start"
-                                    alt="..."
+                                    alt="image of person"
                                 />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <%= user.displayName %>
-                                    </h5>
-                                    <p class="card-text">
-                                        <!-- <strong>Id</strong>: <%= user._id %><br /> -->
-                                        <strong>Email</strong>: <%= user.email
-                                        %><br />
-                                        <strong>Name</strong>: <%=
-                                        user.displayName %><br />
-                                        <strong>firstName</strong>: <%=
-                                        user.firstName %><br />
-                                        <!-- <strong>googleid</strong>: <%=
-                                        user.googleId %><br /> -->
-                                    </p>
-                                    <a
-                                        href="/"
-                                        class="card-text btn btn-primary"
+                                <div class="name">
+                                    <img
+                                        src="./icons/person.svg"
+                                        alt="person-image"
+                                    />
+                                    <span><%= user.displayName %></span>
+                                </div>
+                                <div class="email">
+                                    <img src="./icons/mail.svg" alt="" />
+                                    <span><%= user.email %></span>
+                                </div>
+
+                                <!-- modal button  -->
+                                <button id="open-modal" style="display: none">
+                                    registered events
+                                </button>
+
+                                <hr />
+                                <div class="last">
+                                    <a href="/">
+                                        <button class="btn back-home">
+                                            Home
+                                        </button></a
                                     >
-                                        <span class="fa fa-home"></span> Back to
-                                        Home</a
-                                    >
-                                    <a
-                                        href="/auth/logout"
-                                        class="card-text btn btn-danger"
-                                        ><span class="fa fa-google-plus"></span>
-                                        Logout</a
+                                    <a href="/auth/logout">
+                                        <button class="btn logout">
+                                            Logout
+                                        </button></a
                                     >
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <!-- <div class="modal"> -->
+                    <div class="list-container hidden">
+                        <div class="list">
+                            <div class="1">1</div>
+                            <div class="2">2</div>
+                            <div class="3">3</div>
+                            <div class="4">4</div>
+                            <div class="5">5</div>
+                            <div class="6">6</div>
+                            <div class="7">7</div>
+                            <div class="8">8</div>
+                            <div class="9">9</div>
+                            <div class="10">10</div>
+                        </div>
+                        <button id="close-modal">close</button>
+                    </div>
+                    <!-- </div> -->
+                </main>
             </section>
             <%- include('partials/navbar_menu.ejs') %>
         </div>
