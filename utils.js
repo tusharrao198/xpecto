@@ -21,11 +21,17 @@ module.exports = {
         var team = await teamTable
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
+
+        var user_id = String(req.user._id)
         if (team == null)
-            team = await teamTable.find({ 
-                "members.member_id" : req.user._id
-            }).lean();
-        console.log(team);
+            team = await teamTable.findOne({
+                members: {
+                    $elemMatch: {
+                        member_id: user_id
+                    }
+                }
+            })
+
         return team;
     },
     findUserTeamFromId: async function (req) {
