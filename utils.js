@@ -22,8 +22,10 @@ module.exports = {
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
         if (team == null)
-            team = await teamTable.findOne({ members: req.user._id }).lean();
-
+            team = await teamTable.find({ 
+                "members.member_id" : req.user._id
+            }).lean();
+        console.log(team);
         return team;
     },
     findUserTeamFromId: async function (req) {
@@ -59,7 +61,7 @@ module.exports = {
             const teamTable = require("./models/Team");
             await teamTable.updateOne(
                 { _id: inviteCode.team },
-                { $push: { _id: req.user._id } }
+                { $push: { members: { member_id: req.user._id }}}
             );
             const team = await teamTable
                 .findOne({ _id: inviteCode.team })
@@ -77,15 +79,11 @@ module.exports = {
 
         const teamTable = require("./models/Team");
 
-        const status = await teamTable.updateOne(
+        const status = await teamTable.findOneAndUpdate(
             { _id: params.team },
             { $pull: { members: { member_id: params.member }}}
         );
-        // await teamTable.findOneAndUpdate(
-        //     { _id: params.team },
-        //     { $addToSet: { participants: participants } },
-        // );
-        console.log(status);
+        console.log("84 -> status",status);
     },
     generateString: async function (length) {
         let result = "";

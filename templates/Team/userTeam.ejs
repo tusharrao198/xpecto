@@ -52,7 +52,7 @@
                         <br />
                         Team Members = 
                         <% for( let index = 0; index < team.members.length; index++ ) { %>
-                            <%= team.members[index] %> <a href="removeMember?team=<%= team._id %>&member=<%= team.members[index] %>">x</a>
+                            <%= team.members[index].member_id %> <a href="removeMember?team=<%= team._id %>&member=<%= team.members[index].member_id %>">x</a>
                         <% } %>
                         <br />
                         Creation Time = <%= team.createdAt %>
