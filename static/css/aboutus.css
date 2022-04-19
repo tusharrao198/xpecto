@@ -10,6 +10,20 @@ body {
     font-family: helvetica;
 }
 
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
 #about .display-1 {
     text-align: center;
     padding-top: 1%;

@@ -15,6 +15,20 @@
     padding: 0;
 }
 
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
 .bg h1 {
     color: #ce121225;
 }

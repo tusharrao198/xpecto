@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: white;
 }
 
@@ -206,8 +206,7 @@ header .logo {
 }
 
 @media (max-width: 991px) {
-    .showcase
-{
+    .showcase {
         padding: 40px;
     }
     .text h2 {
@@ -217,13 +216,13 @@ header .logo {
         font-size: 2em;
     }
     .wrapper {
-        transform: scale(0.75)
+        transform: scale(0.75);
     }
 }
 
 @media (max-width: 580px) {
     .wrapper {
         flex-direction: column;
-        transform: scale(0.60)
+        transform: scale(0.6);
     }
 }

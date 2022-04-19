@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Lacquer&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Lacquer&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 :root {
     --header-height: 3rem;
     /*===== Colors =====*/
-    --first-color: #5B65F5;
-    --first-color-light: #C4C7F5;
-    --dark-color: #0E1026;
-    --white-color: #FBFBFB;
+    --first-color: #5b65f5;
+    --first-color-light: #c4c7f5;
+    --dark-color: #0e1026;
+    --white-color: #fbfbfb;
     /*===== Font and typography =====*/
-    --body-font: 'Open Sans', sans-serif;
+    --body-font: "Open Sans", sans-serif;
     --nav-name-font-size: 1.5rem;
-    --normal-font-size: .938rem;
+    --normal-font-size: 0.938rem;
     /*===== z index =====*/
     --z-fixed: 100;
 }
@@ -32,6 +32,20 @@ body {
     overflow-y: hidden;
 }
 
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
 .home {
     transition: ease-in 2s;
     z-index: 100;
@@ -50,15 +64,16 @@ body {
     border: none;
     background: none;
     color: white;
-    font-size: 2.5vw;
+    font-size: 1.5vw;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
     .sound {
         right: 15px;
         bottom: 15px;
     }
     #toggle {
+        padding-bottom: 18%;
         font-size: 2vh;
     }
 }
