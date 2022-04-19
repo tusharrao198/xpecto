@@ -7,6 +7,8 @@
         <li><a href="/team">Our Team</a></li>
         <% if(authenticated){ %>
         <li><a href="/profile">Profile</a></li>
+        <%}else {%>
+        <li><a href="/auth/login">Login</a></li>
         <%}%>
         <li><a href="/faq">FAQ</a></li>
         <li><a href="contact">Contact</a></li>

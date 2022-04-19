@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <title>Event | <%= event.name %> | Xpecto</title>
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="./css/navbar.css" />
@@ -23,38 +25,42 @@
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossorigin="anonymous"
         />
-        <style>
-            header {
-                display: flex;
-            }
-            .showcase.active {
-                right: 250px;
-            }
-            @media (max-width: 768px) {
-                .showcase.active {
-                    right: 50%;
-                }
-            }
-            @media (max-width: 480px) {
-                .showcase.active {
-                    right: 75%;
-                }
-                header .logo {
-                    font-size: 2.5vw;
-                }
-                .text-white {
-                }
-                header {
-                    padding-right: 10px;
-                    display: flex;
-                    /* align-items: flex-end; */
-                }
-                .showcase {
-                    padding-right: 50px;
-                }
-            }
-        </style>
     </head>
+    <style>
+        header {
+            display: flex;
+            padding-left: 40px;
+            padding-right: 10px;
+        }
+        .showcase.active {
+            right: 250px;
+        }
+        @media (max-width: 768px) {
+            .showcase.active {
+                right: 50%;
+            }
+        }
+        @media (max-width: 480px) {
+            .showcase.active {
+                right: 75%;
+            }
+            header .logo {
+                font-size: 1.5rem;
+            }
+            .text-white {
+            }
+            header {
+                /* padding-left: 10px; */
+                padding-right: 10px;
+                display: flex;
+                /* align-items: flex-end; */
+            }
+            .showcase {
+                padding-right: 50px;
+            }
+        }
+    </style>
+
     <body>
         <div class="bg"></div>
         <div class="home">
@@ -67,7 +73,7 @@
                 <h1 class="text-white">To be Updated Soon!</h1>
 
                 <div class="container">
-                    <!-- <div class="p-4 d-flex justify-content-center flex-nowrap">
+                    <div class="p-4 d-flex justify-content-center flex-nowrap">
                         <h1 class="col text-primary mx-auto text-center">
                             <span class="fa fa-user"></span> Event - <%=
                             event.name %>
@@ -87,6 +93,11 @@
                                     class="btn btn-primary"
                                     href="/createTeam?event=<%= event.name %>"
                                     >CreateTeam</a
+                                >
+                                <a
+                                    class="btn btn-primary"
+                                    href="/joinTeam?event=<%= event.name %>"
+                                    >JoinTeam</a
                                 >
                                 <% } %>
                             </div>
@@ -109,7 +120,7 @@
                                 facere. Dolores, ratione asperiores!
                             </p>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </section>
             <%- include('partials/navbar_menu.ejs') %>

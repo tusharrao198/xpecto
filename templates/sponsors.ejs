@@ -21,7 +21,42 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
-
+<style>
+       .text-white {
+            text-align: center;
+        }
+        header {
+            display: flex;
+            padding-left: 40px;
+            padding-right: 10px;
+        }
+        .showcase.active {
+            right: 250px;
+        }
+        @media (max-width: 768px) {
+            .showcase.active {
+                right: 50%;
+            }
+        }
+        @media (max-width: 480px) {
+            .showcase.active {
+                right: 75%;
+            }
+            header .logo {
+                font-size: 1.5rem;
+            }
+            .text-white {
+            }
+            header {
+                /* padding-left: 40px; */
+                padding-right: 10px;
+                display: flex;
+                /* align-items: flex-end; */
+            }
+            .showcase {
+                padding-right: 50px;
+            }
+        }
     </style>
     </head>
 

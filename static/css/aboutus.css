@@ -2,17 +2,33 @@ body {
     width: 100vw;
     background-color: #171717;
     background-image: url("../images/xpecto_tempwall.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     background-size: 100% 100%;
     background-attachment: fixed;
     margin: 0;
     font-family: helvetica;
 }
 
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
 #about .display-1 {
     text-align: center;
     padding-top: 1%;
     font-weight: 450;
-    color: #00cab2;
+    color: white;
     font-family: helvetica;
 }
 
@@ -119,6 +135,7 @@ body {
 #about .menu:hover .icon svg {
     /* background: linear-gradient(90deg, #FF7E7E, #FF4848); */
     background: #65fe82;
+    background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 1;
@@ -202,9 +219,41 @@ body {
         margin-top: 20vh;
     }
 }
-@media (max-width:700px) {
+/*@media (max-width:700px) {
     .text-white{
         text-align: center;
         font-size: 25px;
+    }
+}*/
+
+header {
+    display: flex;
+    padding-left: 40px;
+    padding-right: 10px;
+}
+.showcase.active {
+    right: 250px;
+}
+@media (max-width: 768px) {
+    .showcase.active {
+        right: 50%;
+    }
+}
+@media (max-width: 480px) {
+    .showcase.active {
+        right: 75%;
+    }
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    header {
+        /* padding-left: 10px; */
+        padding-right: 10px;
+        display: flex;
+        /* align-items: flex-end; */
+    }
+    .showcase {
+        padding-right: 50px;
     }
 }

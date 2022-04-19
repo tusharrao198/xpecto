@@ -2,6 +2,8 @@
     height: 100vh;
     width: 100vw;
     background: url("../images/xpecto_tempwall.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
     background-color: #171717;
     position: fixed;
@@ -13,69 +15,85 @@
     padding: 0;
 }
 
-           /* navbar styling */
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
 
-        header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 100px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
 
-        header .logo {
-            color: #fff;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-size: 2.5vw;
-        }
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
 
-        .toggle {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            background: url(https://i.ibb.co/HrfVRcx/menu.png);
-            background-repeat: no-repeat;
-            background-size: 30px;
-            background-position: center;
-            cursor: pointer;
-        }
+/* navbar styling */
 
-        .toggle.active {
-            background: url(https://i.ibb.co/rt3HybH/close.png);
-            background-repeat: no-repeat;
-            background-size: 25px;
-            background-position: center;
-            cursor: pointer;
-        }
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 100px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .showcase {
-            position: absolute;
-            right: 0;
-            width: 100%;
-            min-height: 100vh;
-            padding: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: url("../images/xpecto_tempwall.png");
-            background-attachment: fixed;
+header .logo {
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 2.5vw;
+}
 
-            transition: 0.5s;
-            z-index: 2;
-            margin: auto;
-        }
+.toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: url(https://i.ibb.co/HrfVRcx/menu.png);
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+    cursor: pointer;
+}
 
-        .showcase.active {
-            right: 250px;
-        }
+.toggle.active {
+    background: url(https://i.ibb.co/rt3HybH/close.png);
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center;
+    cursor: pointer;
+}
 
-        /* .showcase video {
+.showcase {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../images/xpecto_tempwall.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    transition: 0.5s;
+    z-index: 2;
+    margin: auto;
+}
+
+.showcase.active {
+    right: 250px;
+}
+
+/* .showcase video {
             position: absolute;
             top: 0;
             left: 0;
@@ -85,7 +103,7 @@
             opacity: 0.8;
         } */
 
-        /* .overlay {
+/* .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -95,59 +113,53 @@
             mix-blend-mode: overlay;
         } */
 
-        .menu {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .menu ul {
-            position: relative;
-        }
+.menu ul {
+    position: relative;
+}
 
-        .menu ul li {
-            list-style: none;
-            margin-bottom: 0.25rem;
-        }
+.menu ul li {
+    list-style: none;
+    margin-bottom: 0.25rem;
+}
 
-        .menu ul li a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #fff;
-        }
+.menu ul li a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #fff;
+}
 
-        .menu ul li a:hover {
-            color: #03a9f4;
-        }
-        @media (max-width:700px) {
-            header {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding-left: 25px;
-                padding-right: 15px;
-                z-index: 1000;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-    
-            header .logo {
-                color: #fff;
-                text-transform: uppercase;
-                cursor: pointer;
-               font-size: 5vw;
-            }
-            
+.menu ul li a:hover {
+    color: #03a9f4;
+}
+@media (max-width: 700px) {
+    header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 15px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-            
-        }
-        
- 
+    header .logo {
+        color: #fff;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}

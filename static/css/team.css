@@ -43,6 +43,21 @@ body {
     overflow-y: hidden;
 }
 
+h2 {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+h2 a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
+
 .home {
     transition: ease-in 2s;
     z-index: 100;

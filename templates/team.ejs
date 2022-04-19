@@ -1,165 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- CSS only -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
-        <!-- font-awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            referrerpolicy="no-referrer"
-            integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-            crossorigin="anonymous"
-        />
-        <link href="./css/cursor.css" rel="stylesheet" type="text/css" />
-        <link href="./css/preload.css" rel="stylesheet" type="text/css" />
-        <link href="./css/video.css" rel="stylesheet" type="text/css" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
-            rel="stylesheet"
-        />
-        <!-- <link href="./css/temp.css" rel="stylesheet" type="text/css"> -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
-            integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="./css/team.css" />
-        <title style="font-family: 'Open Sans', sans-serif;">Team | Xpecto</title>
-    </head>
 
-    <body>
-        <div class="bg">
-            <!-- <h1 style="font-family: 'Open Sans', sans-serif;">Xpecto'22</h1> -->
-        </div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <div class="home">
-            <section class="showcase">
-                <header>
-                    <a href="/" class=""><h2 class="logo">Xpecto' 22</h2></a>
-                    <div class="toggle"></div>
-                </header>
-                <video
-                    src="./images/campus.mp4"
-                    class="overlay2"
-                    muted
-                    loop
-                    autoplay
-                ></video>
-                <div class="overlay"></div>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        referrerpolicy="no-referrer"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" />
+    <link href="./css/cursor.css" rel="stylesheet" type="text/css" />
+    <link href="./css/preload.css" rel="stylesheet" type="text/css" />
+    <link href="./css/video.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+    <!-- <link href="./css/temp.css" rel="stylesheet" type="text/css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
+        integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/team.css" />
+    <title style="font-family: 'Open Sans', sans-serif;">Team | Xpecto</title>
+</head>
 
-                <div class="container">
-                    <span>Our Team</span>
+
+<style>
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    .text-white {
+        text-align: center;
+    }
+
+    header {
+        display: flex;
+        padding-left: 40px;
+        padding-right: 10px;
+    }
+
+    .showcase.active {
+        right: 250px;
+    }
+
+    @media (max-width: 768px) {
+        .showcase.active {
+            right: 50%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .showcase.active {
+            right: 75%;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+        }
+
+        
+
+        header {
+            /* padding-left: 40px; */
+            padding-right: 10px;
+            display: flex;
+            /* align-items: flex-end; */
+        }
+
+        .showcase {
+            padding-right: 50px;
+        }
+    }
+
+    .showcase header {
+        padding: 40px;
+    }
+
+    @media (max-width:480px) {
+        .showcase header {
+            padding-right: 10px;
+        }
+    }
+</style>
+
+<body>
+    <div class="bg">
+        <!-- <h1 style="font-family: 'Open Sans', sans-serif;">Xpecto'22</h1> -->
+    </div>
+
+    <div class="home">
+        <section class="showcase">
+            <header>
+                <a href="/" class="">
+                    <h2 class="logo">Xpecto' 22</h2>
+                </a>
+                <div class="toggle"></div>
+            </header>
+            <video src="./images/campus.mp4" class="overlay2" muted loop autoplay></video>
+            <div class="overlay"></div>
+
+            <div class="container">
+                <span>Our Team</span>
+                <div class="row justify-content-center Organiser">
+                    <center>
+                        <p>People who made this happen!</p>
+                    </center>
+                    <br><br>
+                    <!--     FIN CARD -->
+                    <!--     INICIO CARD -->
+
+                    <!-- Convenor  -->
+
                     <div class="row justify-content-center Organiser">
-                        <center><p>People who made this happen!</p></center>
-                        <br><br> 
-                        <!--     FIN CARD -->
-                        <!--     INICIO CARD -->
-                        <div class="row justify-content-center Organiser">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="our-team">
-                                    <div class="picture">
-                                        <img
-                                            class="img-fluid"
-                                            src="./images/Lalit_Avatar_For_Xpecto.jpg"
-                                        />
-                                    </div>
-                                    <div class="team-content">
-                                        <h5 class="name">Lalit Mudgal</h5>
-                                        <p>Convenor</p>
-                                    </div>
-                                    <div
-                                        class="social"
-                                        style="padding: 15px; font-size: 9pt"
-                                    >
-                                        <a href="https://facebook.com/universephile" class="col-3"
-                                            ><img
-                                                src="./images/facebook.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="https://instagram.com/akastrophile" class="col-3"
-                                            ><img
-                                                src="./images/instagram.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="#" class="col-3"
-                                            ><img src="./images/github.svg" alt=""
-                                        /></a>
-                                    </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Lalit_Avatar_For_Xpecto copy.png" />
                                 </div>
-                            </div>
-                            
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="our-team">
-                                    <div class="picture">
-                                        <img
-                                            class="img-fluid"
-                                            src="./images/Paras.JPG"
-                                        />
-                                    </div>
-                                    <div class="team-content">
-                                        <h5 class="name">Paras Jain</h5>
-                                        <p>Convenor</p>
-                                    </div>
-                                    <div
-                                        class="social"
-                                        style="padding: 15px; font-size: 9pt"
-                                    >
-                                        <a href="#" class="col-3"
-                                            ><img
-                                                src="./images/facebook.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="#" class="col-3"
-                                            ><img
-                                                src="./images/instagram.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="#" class="col-3"
-                                            ><img src="./images/github.svg" alt=""
-                                        /></a>
-                                    </div>
+                                <div class="team-content">
+                                    <h5 class="name">Lalit Mudgal</h5>
+                                    <p>Convenor</p>
                                 </div>
-                            </div>
-                            
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                                <div class="our-team">
-                                    <div class="picture">
-                                        <img
-                                            class="img-fluid"
-                                            src="./images/Surendra.jpg"
-                                        />
-                                    </div>
-                                    <div class="team-content">
-                                        <h5 class="name">Surendra Singh</h5>
-                                        <p>Convenor</p>
-                                    </div>
-                                    <div
-                                        class="social row"
-                                        style="padding: 15px; font-size: 9pt"
-                                    >
-                                        <a href="https://www.facebook.com/surendrasingh24" class="col-3"
-                                            ><img
-                                                src="./images/facebook.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="https://www.instagram.com/sur.i.rus/" class="col-3"
-                                            ><img
-                                                src="./images/instagram.svg"
-                                                alt=""
-                                        /></a>
-                                        <a href="#" class="col-3"
-                                            ><img src="./images/github.svg" alt=""
-                                        /></a>
-                                    </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://facebook.com/universephile" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://instagram.com/akastrophile" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -167,32 +138,58 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="./images/Ankit_karan.jpg"
-                                    />
+                                    <img class="img-fluid" src="./images/team/Paras copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Paras Jain</h5>
+                                    <p>Convenor</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/surendra copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Surendra Singh</h5>
+                                    <p>Convenor</p>
+                                </div>
+                                <div class="social row" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/surendrasingh24" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/sur.i.rus/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mentors  -->
+
+                <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Ankit_karan copy.png" />
                                 </div>
                                 <div class="team-content">
                                     <h5 class="name">Ankit Karan</h5>
                                     <p>Mentor</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/ankit.karan.58" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://instagram.com/_i_m_ank_" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/ankit.karan.58" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://instagram.com/_i_m_ank_" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -200,133 +197,42 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://avatars.githubusercontent.com/tusharrao198"
-                                    />
+                                    <img class="img-fluid" src="./images/team/abhijeet copy.png" />
                                 </div>
                                 <div class="team-content">
-                                    <h5 class="name">Tushar Rao</h5>
-                                    <p>WebD Head</p>
+                                    <h5 class="name">Abhijeet Manhas</h5>
+                                    <p>Mentor</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/__sicmundus.__/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://github.com/tusharrao198" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/astromanhas" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/abhijeetmanhas/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="https://github.com/abhijeetmanhas" class="col-3"><img
+                                            src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
+                    <!-- Planning and Management Head  -->
+
+                    <div class="row justify-content-center Organiser">
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="./images/Kratika.jpg"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Kratika Gupta</h5>
-                                    <P>Publicity Head</P>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/kratika.gupta.9484/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="./images/Niveditha.jpg"
-                                    />
+                                    <img class="img-fluid" src="./images/team/Niveditha copy.png" />
                                 </div>
                                 <div class="team-content">
                                     <h5 class="name">Niveditha N</h5>
                                     <p>Planning & Management Head</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/profile.php?id=100009269570738" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/nivedithapramod/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="row justify-content-center Organiser">
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="#"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Divyansh Mangla</h5>
-                                    <p>Media Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/profile.php?id=100009269570738" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/nivedithapramod/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -334,32 +240,60 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/C5103AQEvTySHQg1n0A/profile-displayphoto-shrink_200_200/0/1582130527015?e=1655337600&v=beta&t=rXfBjBBn3l4RfCseunZrGVsf8hYgGhGaWdzxgcafaQ4"
-                                    />
+                                    <img class="img-fluid" src="./images/team/Anmolpreet Singh copy.png" />
                                 </div>
                                 <div class="team-content">
                                     <h5 class="name">Anmolpreet Singh</h5>
                                     <p>Panning & management Head</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Harnaman copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Harnaman Kaur</h5>
+                                    <p>Panning & management Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/harnaman.kaur.3/" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/harnaman._.kaur/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="https://github.com/harnaman-hk" class="col-3"><img
+                                            src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WebDev Head and Designing Head  -->
+
+                    <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/tushar.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Tushar Rao</h5>
+                                    <p>WebD Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/__sicmundus.__/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="https://github.com/tusharrao198" class="col-3"><img
+                                            src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -367,197 +301,40 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/C4D03AQFu0AP2y_YEgA/profile-displayphoto-shrink_200_200/0/1647239089646?e=1655337600&v=beta&t=V8nSaV_Zt8mFJeQX7kO5Fcc8il0aaGxF4IqemXIHvaA"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Yash Verma</h5>
-                                    <p>Publicity Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/uchihamangekyoun/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/yashh1024/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/D4E35AQHXZMIKGvASPQ/profile-framedphoto-shrink_200_200/0/1640018905813?e=1649901600&v=beta&t=6JIQpc9SOfDuBRc88Enq7_a9lv2hrv17QMqMifdO44c"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Shivam Sundram</h5>
-                                    <p>Content Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/profile.php?id=100024784236218" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/rated_r_sundram/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/C5603AQE1RB3a7ciyrw/profile-displayphoto-shrink_200_200/0/1626426756394?e=1655337600&v=beta&t=dlBfhKdQt2dB_8oZYTiQiRX4ux66w0IzStvH0xicuwY"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Sourav Sehgal</h5>
-                                    <p>Content Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/sourav.sehgal.777" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/sourav_sehgal3009/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="./images/Shubham Saurav.jpg"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Shubham Saurav</h5>
-                                    <p>Sponsorship Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/shubham.saurav.980967/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/kon_shubh/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="./images/NaveenSai.jpg"
-                                    />
-                                </div>
-                                <div class="team-content">
-                                    <h5 class="name">Naveen Sai</h5>
-                                    <p>Sponsorship Head</p>
-                                </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                            <div class="our-team">
-                                <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/C4E03AQG9v3125jGezQ/profile-displayphoto-shrink_200_200/0/1629549087377?e=1655337600&v=beta&t=lHXj430fJY0nKJzpACU9gtSf7W0mK8fyPnEvbRTAmsI"
-                                    />
+                                    <img class="img-fluid"
+                                        src="./images/team/Roshit Anand copy.png" />
                                 </div>
                                 <div class="team-content">
                                     <h5 class="name">Roshit Anand</h5>
                                     <p>Design Head</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="https://www.instagram.com/" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/" class="col-3"><img src="./images/facebook.svg"
+                                            alt="" /></a>
+                                    <a href="https://www.instagram.com/" class="col-3"><img src="./images/instagram.svg"
+                                            alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sponsorship Head  -->
+
+                    <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Rishabh Garg copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Rishabh Garg</h5>
+                                    <p>Sponsorship Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
@@ -565,36 +342,187 @@
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                             <div class="our-team">
                                 <div class="picture">
-                                    <img
-                                        class="img-fluid"
-                                        src="https://media-exp1.licdn.com/dms/image/D5635AQGasJnY1zycqg/profile-framedphoto-shrink_200_200/0/1635104725954?e=1649901600&v=beta&t=3LuXXgIUPj00XGz7LIIoWqCJ6N3Kn1ZBVBMTk46y0fU"
-                                    />
+                                    <img class="img-fluid" src="./images/team/Naveen Sai copy.png" />
                                 </div>
                                 <div class="team-content">
-                                    <h5 class="name">Nehal Reshu</h5>
-                                    <p>Media Head</p>
+                                    <h5 class="name">Naveen Sai</h5>
+                                    <p>Sponsorship Head</p>
                                 </div>
-                                <div
-                                    class="social"
-                                    style="padding: 15px; font-size: 9pt"
-                                >
-                                    <a href="https://www.facebook.com/nehalreshu/" class="col-3"
-                                        ><img
-                                            src="./images/facebook.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href=https://www.instagram.com/nehalr12/"" class="col-3"
-                                        ><img
-                                            src="./images/instagram.svg"
-                                            alt=""
-                                    /></a>
-                                    <a href="#" class="col-3"
-                                        ><img src="./images/github.svg" alt=""
-                                    /></a>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/" class="col-3"><img src="./images/facebook.svg"
+                                            alt="" /></a>
+                                    <a href="https://www.instagram.com/" class="col-3"><img src="./images/instagram.svg"
+                                            alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Shubham Saurav copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Shubham Saurav</h5>
+                                    <p>Sponsorship Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/shubham.saurav.980967/" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/kon_shubh/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Content Head  -->
+
+                    <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid"
+                                        src="./images/team/Shivam_sundram copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Shivam Sundram</h5>
+                                    <p>Content Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/profile.php?id=100024784236218" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/rated_r_sundram/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid"
+                                        src="./images/team/SouravSehgal copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Sourav Sehgal</h5>
+                                    <p>Content Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/sourav.sehgal.777" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/sourav_sehgal3009/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publicity Head  -->
+                    <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Kratika copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Kratika Gupta</h5>
+                                    <p>Publicity Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/kratika.gupta.9484/" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid"
+                                        src="https://media-exp1.licdn.com/dms/image/C4D03AQFu0AP2y_YEgA/profile-displayphoto-shrink_200_200/0/1647239089646?e=1655337600&v=beta&t=V8nSaV_Zt8mFJeQX7kO5Fcc8il0aaGxF4IqemXIHvaA" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Yash Verma</h5>
+                                    <p>Publicity Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/uchihamangekyoun/" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/yashh1024/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Devansh copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Devansh Kochar</h5>
+                                    <p>Publicity Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Media Head  -->
+
+                    <div class="row justify-content-center Organiser">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Divyansh Mangla copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Divyansh Mangla</h5>
+                                    <p>Media Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="#" class="col-3"><img src="./images/facebook.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/instagram.svg" alt="" /></a>
+                                    <a href="#" class="col-3"><img src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="our-team">
+                                <div class="picture">
+                                    <img class="img-fluid" src="./images/team/Harshit-agarwar copy.png" />
+                                </div>
+                                <div class="team-content">
+                                    <h5 class="name">Harshit Agarwar</h5>
+                                    <p>Media Head</p>
+                                </div>
+                                <div class="social" style="padding: 0px; font-size: 9pt">
+                                    <a href="https://www.facebook.com/harshit.agarwar" class="col-3"><img
+                                            src="./images/facebook.svg" alt="" /></a>
+                                    <a href="https://www.instagram.com/harshit_agarwar__/" class="col-3"><img
+                                            src="./images/instagram.svg" alt="" /></a>
+                                    <a href="https://github.com/harshit-agarwar" class="col-3"><img
+                                            src="./images/github.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="space"></div>
                 </div>
                 <!-- <ul class="social">
@@ -608,28 +536,26 @@
             <a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a>
           </li>
         </ul> -->
-            </section>
-            <%- include('partials/navbar_menu.ejs') %>
-        </div>
+        </section>
+        <%- include('partials/navbar_menu.ejs') %>
+    </div>
 
-        <!-- INICIO GENERAL -->
+    <!-- INICIO GENERAL -->
 
-        <div class="sound">
-            <button id="toggle">Sound: <span id="status">OFF</span></button>
-        </div>
+    <div class="sound">
+        <button id="toggle">Sound: <span id="status">OFF</span></button>
+    </div>
 
-        <img id="cursor" src="./images/gear.png" alt="none" />
-        <audio
-            id="click"
-            class="click-sound"
-            src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"
-        ></audio>
-        <audio class="anthem" src="./audio/anthem.mp3" loop="true"></audio>
+    <img id="cursor" src="./images/gear.png" alt="none" />
+    <audio id="click" class="click-sound"
+        src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"></audio>
+    <audio class="anthem" src="./audio/anthem.mp3" loop="true"></audio>
 
-        <script src="./js/script.js" type="text/javascript"></script>
-        <script src="./js/cursor.js"></script>
-        <script src="./js/sound.js"></script>
-        <script src="./js/scroll.js"></script>
-        <script src="./js/team.js"></script>
-    </body>
+    <script src="./js/script.js" type="text/javascript"></script>
+    <script src="./js/cursor.js"></script>
+    <script src="./js/sound.js"></script>
+    <script src="./js/scroll.js"></script>
+    <script src="./js/team.js"></script>
+</body>
+
 </html>

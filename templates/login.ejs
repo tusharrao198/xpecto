@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <base href="/ ">
         <title>Login | Xpecto</title>
         <!-- CSS only -->
         <link href="./css/login.css" rel="stylesheet" type="text/css" />
         <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
@@ -17,370 +19,110 @@
             referrerpolicy="no-referrer"
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossorigin="anonymous"
-            />
-            <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
+        />
+        <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
     </head>
-    <style>
-      html,
-      body {
-          width: 100%;
-          height: 100%;
-      }
-      html .container,
-      body .container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-      html .container .login-form-wrapper,
-      body .container .login-form-wrapper,
-      html .container .login-form-wrapper .login-input,
-      body .container .login-form-wrapper .login-input {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-      }
-      html .container .login-form-wrapper,
-      body .container .login-form-wrapper {
-          background: rgba(255, 255, 255, 0.15);
-          box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(2px);
-          -webkit-backdrop-filter: blur(4px);
-          border-radius: 24px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      html,
-      body {
-          font-family: "Lato", sans-serif;
-          /* background-image: url("https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/keycloak/login/resources/img/keycloak-bg.png?raw=true"); */
-          background-image: url("../images/xpecto_tempwall.png");
-      }
-      html .container,
-      body .container {
-          width: inherit;
-          height: inherit;
-      }
-      html .container .logo,
-      body .container .logo {
-          margin: 0 64px 0 0;
-          text-align: right;
-      }
-      html .container .logo h4,
-      body .container .logo h4 {
-          color: #8f8f8f;
-          font-size: 30px;
-      }
-      html .container .login-form-wrapper,
-      body .container .login-form-wrapper {
-          padding: 40px;
-          min-width: 360px;
-      }
-      html .container .login-form-wrapper .login-input label,
-      body .container .login-form-wrapper .login-input label {
-          margin-bottom: 8px;
-          color: #fff;
-          font-weight: bold;
-      }
-      html .container .login-form-wrapper .login-input input,
-      body .container .login-form-wrapper .login-input input,
-      html .container .login-form-wrapper .login-input input:focus,
-      body .container .login-form-wrapper .login-input input:focus {
-          border: none;
-          outline: none;
-          border-radius: 8px;
-          font-size: 16px;
-          line-height: 24px;
-          vertical-align: middle;
-          padding: 8px 16px;
-          margin-bottom: 16px;
-      }
-      html .container .login-form-wrapper .login-input #usernameRequiredMessage,
-      body .container .login-form-wrapper .login-input #usernameRequiredMessage,
-      html .container .login-form-wrapper .login-input #passwordRequiredMessage,
-      body .container .login-form-wrapper .login-input #passwordRequiredMessage {
-          display: none;
-          color: red;
-          font-weight: 700;
-      }
-      html .container .login-form-wrapper .login-button,
-      body .container .login-form-wrapper .login-button {
-          border: none;
-          outline: none;
-          border-radius: 8px;
-          font-size: 16px;
-          line-height: 24px;
-          vertical-align: middle;
-          padding: 8px 16px;
-          background: #0188ce;
-          color: #fff;
-          font-weight: 700;
-      }
-      .error {
-          border: 1px solid red !important;
-      }
-      .login-with-google-btn {
-          transition: background-color 0.3s, box-shadow 0.3s;
-          padding: 12px 16px 12px 42px;
-          border: none;
-          border-radius: 3px;
-          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-          color: #757575;
-          font-size: 14px;
-          font-weight: 500;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-              Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
-              sans-serif;
-          background-image: url("https://user-images.githubusercontent.com/56690827/162671333-98e921ee-a8bd-4b22-a538-1bce8ff2e7a4.svg");
-          background-color: white;
-          background-repeat: no-repeat;
-          background-position: 12px 11px;
-      }
-      .login-with-google-btn:hover {
-          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
-      }
-      .login-with-google-btn:active {
-          background-color: #eee;
-      }
-      .login-with-google-btn:focus {
-          outline: none;
-          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
-              0 0 0 3px #c8dafc;
-      }
-      .login-with-google-btn:disabled {
-          filter: grayscale(100%);
-          background-color: #ebebeb;
-          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-          cursor: not-allowed;
-      }
-      body {
-          text-align: center;
-          padding-top: 2rem;
-      }
-
-      /* Navbar */
-
-      .bg {
-    height: 100vh;
-    width: 100vw;
-    background: url("../images/xpecto_tempwall.png");
-    /* background: url("https://user-images.githubusercontent.com/56690827/162190335-422b76d8-99a5-4fca-97e9-5a22d3154800.png"); */
-    background-color: #171717;
-    position: fixed;
-    z-index: -1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5.5em;
-    padding: 0;
-}
-
-           /* navbar styling */
-
-           header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 100px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo {
-            color: #fff;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-size: 2.5vw;
-        }
-
-        .toggle {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            background: url(https://i.ibb.co/HrfVRcx/menu.png);
-            background-repeat: no-repeat;
-            background-size: 30px;
-            background-position: center;
-            cursor: pointer;
-        }
-
-        .toggle.active {
-            background: url(https://i.ibb.co/rt3HybH/close.png);
-            background-repeat: no-repeat;
-            background-size: 25px;
-            background-position: center;
-            cursor: pointer;
-        }
-
-        .showcase {
-            position: absolute;
-            right: 0;
-            width: 100%;
-            min-height: 100vh;
-            padding: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: url("../images/xpecto_tempwall.png");
-            background-attachment: fixed;
-
-            transition: 0.5s;
-            z-index: 2;
-            margin: auto;
-        }
-
-        .showcase.active {
-            right: 250px;
-        }
-
-        /* .showcase video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        } */
-
-        /* .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #706ea8;
-            mix-blend-mode: overlay;
-        } */
-
-        .menu {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .menu ul {
-            position: relative;
-        }
-
-        .menu ul li {
-            list-style: none;
-            margin-bottom: 0.25rem;
-        }
-
-        .menu ul li a {
-            text-decoration: none;
-            font-size: 24px;
-            color: #fff;
-        }
-
-        .menu ul li a:hover {
-            color: #03a9f4;
-        }
- 
-    </style>
     <body>
+        <div class="bg"></div>
+        <div class="home">
+            <section class="showcase">
+                <header style="display: flex">
+                    <h2 class="logo">Xpecto '22</h2>
+                    <div class="toggle"></div>
+                </header>
+                <div class="overlay"></div>
 
-
-      <div class="bg"></div>
-      <div class="home">
-          <section class="showcase">
-              <header style="display: flex">
-                  <h2 class="logo">Xpecto '22</h2>
-                  <div class="toggle"></div>
-              </header>
-              <div class="overlay"></div>
-
-
-
-              <div class="container">
-                <div class="logo m-1">
-                  <img src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png" />
-                  <!-- <h4>Xpecto'22</h4> -->
-                </div>
-                <form id="loginForm" class="login-form-wrapper">
-                  <!-- <div class="login-input">
-                    <label for="username">Username or email:</label>
-                    <input autocomplete="off" id="username" type="text" name="username" />
-                    <p id="usernameRequiredMessage">Username or email is required</p>
-                  </div>
-                  <div class="login-input">
-                    <label for="password">Password:</label>
-                    <input autocomplete="off" id="password" type="password" name="password" />
-                    <p id="passwordRequiredMessage">Password is required</p>
-                  </div>
-                  <input id="loginButton" class="login-button" type="submit" value="Log In" /> -->
-                  <br>
-                  </a><button type="button" class="login-with-google-btn" >
-                      <a href="/auth/google">
-                      Sign in with Google
-                      </a>
-                    </button>
-                </form>
+                <div class="container">
+                    <div class="logo m-1">
+                        <img
+                            src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png"
+                        />
+                        <!-- <h4>Xpecto'22</h4> -->
+                    </div>
                 
-              </div>
-          
-
-          </section>
+                <div class="container2">
+                    <div class="sign-box">
+                        <!-- <div class="logo-google"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"></div> -->
+                        <a href="/auth/google"
+                            ><button class="sign-in">
+                                <img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
+                                />
+                                Sign In
+                            </button></a
+                        >
+                    </div>
+                </div>
+            </section>
             <%- include('partials/navbar_menu.ejs') %>
-      </div>
-      
-      <script >
-        // Navbar
-        const menuToggle = document.querySelector(".toggle");
-  const showcase = document.querySelector(".showcase");
-  
-  menuToggle.addEventListener("click", () => {
-  menuToggle.classList.toggle("active");
-  showcase.classList.toggle("active");
-  });
-              document.getElementById("password").addEventListener("keyup", function () {
-          _toggleEmptyValidation(this.value, "password", "passwordRequiredMessage");
-        });
-        
-        document.getElementById("username").addEventListener("keyup", function () {
-          _toggleEmptyValidation(this.value, "username", "usernameRequiredMessage");
-        });
-        
-        document.getElementById("loginButton").onclick = function () {
-          _authenticate();
-          return false;
-        };
-        
-        function _toggleEmptyValidation(value, inputId, messageId) {
-          let input = document.getElementById(inputId);
-          let message = document.getElementById(messageId);
-          value == "" ? input.classList.add("error") : input.classList.remove("error");
-          message.style.display = value == "" ? "block" : "none";
-        }
-        
-        function _authenticate() {
-          let username = document.getElementById("username").value;
-          let password = document.getElementById("password").value;
-        
-          if (username == "" || password == "") {
-            _toggleEmptyValidation(username, "username", "usernameRequiredMessage");
-            _toggleEmptyValidation(password, "password", "passwordRequiredMessage");
-          } else {
-            if (username == "admin" && password == "Password@123") {
-              alert("Login successfully");
-            } else {
-              alert("Login failed");
+        </div>
+
+        <script>
+            // Navbar
+            const menuToggle = document.querySelector(".toggle");
+            const showcase = document.querySelector(".showcase");
+
+            menuToggle.addEventListener("click", () => {
+                menuToggle.classList.toggle("active");
+                showcase.classList.toggle("active");
+            });
+            document
+                .getElementById("password")
+                .addEventListener("keyup", function () {
+                    _toggleEmptyValidation(
+                        this.value,
+                        "password",
+                        "passwordRequiredMessage"
+                    );
+                });
+
+            document
+                .getElementById("username")
+                .addEventListener("keyup", function () {
+                    _toggleEmptyValidation(
+                        this.value,
+                        "username",
+                        "usernameRequiredMessage"
+                    );
+                });
+
+            document.getElementById("loginButton").onclick = function () {
+                _authenticate();
+                return false;
+            };
+
+            function _toggleEmptyValidation(value, inputId, messageId) {
+                let input = document.getElementById(inputId);
+                let message = document.getElementById(messageId);
+                value == ""
+                    ? input.classList.add("error")
+                    : input.classList.remove("error");
+                message.style.display = value == "" ? "block" : "none";
             }
-          }
-        }
-        
 
+            function _authenticate() {
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
 
-
-          </script>
+                if (username == "" || password == "") {
+                    _toggleEmptyValidation(
+                        username,
+                        "username",
+                        "usernameRequiredMessage"
+                    );
+                    _toggleEmptyValidation(
+                        password,
+                        "password",
+                        "passwordRequiredMessage"
+                    );
+                } else {
+                    if (username == "admin" && password == "Password@123") {
+                        alert("Login successfully");
+                    } else {
+                        alert("Login failed");
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
