@@ -21,6 +21,9 @@ const {
     createNewInviteCode,
 } = require("./utils");
 
+const { generateString } = require("./utils");
+const code=require("./models/code.js");
+
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
 
@@ -189,6 +192,30 @@ app.get("/generateInviteCode", authCheck, async (req, res) => {
 app.get("/error", (req, res) =>
     res.send("error logging in", { authenticated: req.isAuthenticated() })
 );
+
+
+// onetime coupon generate logic
+// app.get("/xyzabc",async (req,res)=>{
+//     const a=[]
+//     for (let index = 0; index < 200; index++) {
+//         let b=(await generateString(16));
+//         a[index]={
+//             code:b,
+//             used:0,
+//         };
+        
+//     }
+//     for (let index = 0; index < 200; index++) {
+//         console.log(a[index].code);
+//         var newDoc =new code(a[index]);
+//         newDoc.save((err)=>{
+//             if (err) return handleError(err);
+//         })
+        
+//     }
+
+// })
+
 
 app.listen(port, (err) => {
     if (err) throw err;

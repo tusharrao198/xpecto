@@ -151,7 +151,7 @@
         <!--breadcrumb-->
         <div class="container">
             <div class="row justify-content-center">
-                <h1 class="text-white">To be Updated Soon!</h1>
+                <!-- <h1 class="text-white">To be Updated Soon!</h1> -->
 
                 <div class="col-md-4 my-8">
                     <div class="dam text-center">
@@ -174,7 +174,7 @@
                                 <div class="d-flex justify-content-center">
                                     <form method="POST" action="/payment/order">
                                         <div class="mb-3">
-                                            Registration Fees: Rs. 100
+                                            Registration Fees: <%= amount %> 
                                         </div>
 
                                         <div class="d-grid">
@@ -188,6 +188,17 @@
                                         </div>
                                     </form>
                                 </div>
+
+
+                                <div>
+                                    <form action="/payment/coupon" class="couponCode" method="POST">
+                                            <h3>Enter Your Coupon Code</h3>
+                                            <input type="text" name="couponcode" id="couponcode"><br>
+                                            <button type="submit">Apply</button>
+                                    </form>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
