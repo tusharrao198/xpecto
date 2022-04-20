@@ -226,6 +226,9 @@ h2 a:hover {
     }
 }*/
 
+header .logo{
+    font-size: 1.5rem;
+}
 header {
     display: flex;
     padding-left: 40px;
