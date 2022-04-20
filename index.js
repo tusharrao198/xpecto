@@ -18,10 +18,14 @@ const {
     createNewTeam,
     joinTeam,
     deleteTeam,
+    removeMember,
     deleteOldInviteCode,
     createNewInviteCode,
 } = require("./utils");
 var url = require("url");
+
+const { generateString } = require("./utils");
+const code=require("./models/code.js");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -68,23 +72,23 @@ app.use("/auth", authRoutes);
 app.use("/payment", authCheck, paymentRoutes);
 
 app.get("/about", (req, res) => {
-    res.render("aboutus", { authenticated: req.isAuthenticated() });
+    res.render("aboutus", { authenticated: req.isAuthenticated(),user: req.session.user});
 });
 
 app.get("/contact", (req, res) => {
-    res.render("contact", { authenticated: req.isAuthenticated() });
+    res.render("contact", { authenticated: req.isAuthenticated(),user: req.session.user });
 });
 
 app.get("/sponsors", (req, res) => {
-    res.render("sponsors", { authenticated: req.isAuthenticated() });
+    res.render("sponsors", { authenticated: req.isAuthenticated(),user: req.session.user });
 });
 
 app.get("/faq", (req, res) => {
-    res.render("faq", { authenticated: req.isAuthenticated() });
+    res.render("faq", { authenticated: req.isAuthenticated() ,user: req.session.user});
 });
 
 app.get("/", (req, res) => {
-    res.render("index", { authenticated: req.isAuthenticated() });
+    res.render("index", { authenticated: req.isAuthenticated() ,user: req.session.user});
 });
 
 app.get("/profile", authCheck, (req, res) => {
@@ -106,7 +110,7 @@ app.get("/events", async (req, res) => {
     const allEvents = await eventTable.find({}).lean();
     res.render("events", {
         events: allEvents,
-        authenticated: req.isAuthenticated(),
+        authenticated: req.isAuthenticated(),user: req.session.user
     });
 });
 
@@ -119,7 +123,7 @@ app.get("/event", authCheck, async (req, res) => {
         team: team,
         authenticated: req.isAuthenticated(),
     };
-    res.render("event", context);
+    res.render("event", {context:context,user: req.session.user});
 });
 
 app.get("/createTeam", authCheck, async (req, res) => {
@@ -127,7 +131,7 @@ app.get("/createTeam", authCheck, async (req, res) => {
     const context = {
         event: event,
     };
-    res.render("Team/createTeam", context);
+    res.render("Team/createTeam", {context:context,user: req.session.user});
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
@@ -141,7 +145,7 @@ app.get("/joinTeam", authCheck, async (req, res) => {
     const context = {
         event: event,
     };
-    res.render("Team/joinTeam", context);
+    res.render("Team/joinTeam", {context:context,user: req.session.user});
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {
@@ -160,6 +164,13 @@ app.post("/joinTeam", authCheck, async (req, res) => {
     res.redirect(`/event?event=${event.name}`);
 });
 
+app.get("/removeMember", authCheck, async (req, res) => {
+    await removeMember(req);
+    const team = await findUserTeamFromId(req);
+    const event = await findEventFromId(team.event);
+    res.redirect(`/userTeam?event=${event.name}`);
+});
+
 app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
     const inviteCodeTable = require("./models/InviteCode");
@@ -168,7 +179,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
         team: team,
         authenticated: req.isAuthenticated(),
         inviteCode: null,
-        validUpto: null,
+        validUpto: null
     };
 
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
@@ -176,7 +187,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
         context.validUpto = inviteCode.validUpto;
     }
 
-    res.render("Team/userTeam", context);
+    res.render("Team/userTeam", {context:context,user: req.session.user});
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
@@ -189,8 +200,32 @@ app.get("/generateInviteCode", authCheck, async (req, res) => {
 });
 
 app.get("/error", (req, res) =>
-    res.send("error logging in", { authenticated: req.isAuthenticated() })
+    res.send("error logging in", { authenticated: req.isAuthenticated() ,user: req.session.user})
 );
+
+
+// onetime coupon generate logic
+// app.get("/xyzabc",async (req,res)=>{
+//     const a=[]
+//     for (let index = 0; index < 200; index++) {
+//         let b=(await generateString(16));
+//         a[index]={
+//             code:b,
+//             used:0,
+//         };
+        
+//     }
+//     for (let index = 0; index < 200; index++) {
+//         console.log(a[index].code);
+//         var newDoc =new code(a[index]);
+//         newDoc.save((err)=>{
+//             if (err) return handleError(err);
+//         })
+        
+//     }
+
+// })
+
 
 app.listen(port, (err) => {
     if (err) throw err;

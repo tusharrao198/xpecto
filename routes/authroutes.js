@@ -3,7 +3,7 @@ const passport = require("passport");
 
 // auth login
 router.get("/login", (req, res) => {
-    res.render("login", { authenticated: req.isAuthenticated() });
+    res.render("login", { authenticated: req.isAuthenticated(),user: req.session.user });
 });
 
 // auth logout
