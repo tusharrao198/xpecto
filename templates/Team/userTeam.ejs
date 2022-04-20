@@ -160,9 +160,8 @@
                 /* color: white; */
                 /* font-weight: bold; */
             }
-            @media(max-width:768px)
-            {
-                .btn-container{
+            @media (max-width: 768px) {
+                .btn-container {
                     flex-direction: column;
                     align-items: center;
                 }
@@ -219,6 +218,10 @@
                 margin-left: auto;
                 margin-right: auto;
             }
+            .remove{
+                color: white;
+                background-color: red;
+            }
         </style>
     </head>
     <body>
@@ -257,7 +260,16 @@
                                     </tr>
                                     <tr>
                                         <td>Team Members</td>
-                                        <td><%= team.members %></td>
+                                        <td>
+                                            <% for( let index = 0; index <
+                                            team.members.length; index++ ) { %>
+                                            <%= team.members[index].member_id %>
+                                            <a
+                                                href="removeMember?team=<%= team._id %>&member=<%= team.members[index].member_id %>"
+                                                ><button class="remove" >x</button>
+                                            </a>
+                                            <% } %>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Creation Time</td>
