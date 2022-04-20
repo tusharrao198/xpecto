@@ -88,7 +88,14 @@ app.get("/faq", (req, res) => {
 });
 
 app.get("/", (req, res) => {
+    if(!(req.session.user)){
+        user={
+            status:0
+        }
+        req.session.user=user;
+    }
     res.render("index", { authenticated: req.isAuthenticated() ,user: req.session.user});
+
 });
 
 app.get("/profile", authCheck, (req, res) => {
