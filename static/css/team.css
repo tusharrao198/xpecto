@@ -10,6 +10,7 @@ body {
   /* height: 100vh; */
   display: flex;
   align-items: center;
+  overflow: scroll;
 }
 :root {
     --header-height: 3rem;
@@ -56,7 +57,10 @@ h2 a:hover {
     text-decoration: none;
     color: #ffff;
 }
+header{
+  font-family: "JetBrains Mono", monospace;
 
+}
 
 .home {
     transition: ease-in 2s;
@@ -265,4 +269,8 @@ a.col-3 img{
 
 .introduccion {
   font-size:9pt;
+}
+header{
+  font-family: "JetBrains Mono", monospace;
+
 }

@@ -29,62 +29,42 @@
 
 
 <style>
-    header .logo {
-        font-size: 1.5rem;
-    }
-
-    .text-white {
-        text-align: center;
-    }
-
-    header {
-        display: flex;
-        padding-left: 40px;
-        padding-right: 10px;
-    }
-
-    .showcase.active {
-        right: 250px;
-    }
-
-    @media (max-width: 768px) {
-        .showcase.active {
-            right: 50%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .showcase.active {
-            right: 75%;
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-        }
-
-        
-
-        header {
-            /* padding-left: 40px; */
-            padding-right: 10px;
-            display: flex;
-            /* align-items: flex-end; */
-        }
-
-        .showcase {
-            padding-right: 50px;
-        }
-    }
-
-    .showcase header {
-        padding: 40px;
-    }
-
-    @media (max-width:480px) {
-        .showcase header {
-            padding-right: 10px;
-        }
-    }
+            header {
+                display: flex;
+                padding-left: 40px;
+                padding-right: 10px;
+            }
+            .showcase.active {
+                right: 250px;
+            }
+            @media (max-width: 768px) {
+                .showcase.active {
+                    right: 50%;
+                }
+            }
+            @media (max-width: 480px) {
+                .showcase.active {
+                    right: 75%;
+                }
+                header .logo {
+                    font-size: 1.5rem;
+                }
+                .text-white {
+                }
+                header {
+                    /* padding-left: 10px; */
+                    padding-right: 10px;
+                    display: flex;
+                    /* align-items: flex-end; */
+                }
+                .showcase {
+                    padding-right: 50px;
+                }
+            }
+            .logo{
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 400;
+}
 </style>
 
 <body>
@@ -95,9 +75,9 @@
     <div class="home">
         <section class="showcase">
             <header>
-                <a href="/" class="">
-                    <h2 class="logo">Xpecto' 22</h2>
-                </a>
+                
+                    <h2 class="logo">Xpecto'22</h2>
+                
                 <div class="toggle"></div>
             </header>
             <video src="./images/campus.mp4" class="overlay2" muted loop autoplay></video>
