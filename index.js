@@ -18,6 +18,7 @@ const {
     createNewTeam,
     joinTeam,
     deleteTeam,
+    removeMember,
     deleteOldInviteCode,
     createNewInviteCode,
 } = require("./utils");
@@ -161,6 +162,13 @@ app.post("/joinTeam", authCheck, async (req, res) => {
     await joinTeam(req);
     const event = await findEventFromId(req.body.event_id);
     res.redirect(`/event?event=${event.name}`);
+});
+
+app.get("/removeMember", authCheck, async (req, res) => {
+    await removeMember(req);
+    const team = await findUserTeamFromId(req);
+    const event = await findEventFromId(team.event);
+    res.redirect(`/userTeam?event=${event.name}`);
 });
 
 app.get("/userTeam", authCheck, async (req, res) => {
