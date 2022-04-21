@@ -1,3 +1,4 @@
+const { create } = require("connect-mongo");
 var url = require("url");
 
 module.exports = {
@@ -37,38 +38,21 @@ module.exports = {
     allEventDetails: async function(req){
         // const event = await module.exports.findEvent(req);
         const teamTable = require("./models/Team");
-
-        // var created_teams = await teamTable
-        //     .findOne({ event: event._id, teamLeader: req.user._id })
-        //     .lean();
         
-        var team = await teamTable
+        var user_id = String(req.user._id);
+        var created_teams = await teamTable
             .find({ teamLeader: req.user._id })
             .lean();
-        console.log(team)
-
-        var joined_teams = await teamTable.findOne({
+        // console.log("created_teams",created_teams)
+        var joined_teams = await teamTable.find({
                 members: {
                     $elemMatch: {
                         member_id: user_id
                     }
                 }
             });
-        console.log(joined_teams);
-        // console.log(created_teams);
-        // console.log(joined_teams);
-
-        var user_id = String(req.user._id)
-        if (team == null)
-            team = await teamTable.findOne({
-                members: {
-                    $elemMatch: {
-                        member_id: user_id
-                    }
-                }
-            })
-
-        return team;
+        // console.log("joined_teams",joined_teams);
+        return {joined_teams : joined_teams, created_teams:created_teams};
     },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
@@ -108,7 +92,7 @@ module.exports = {
             const team = await teamTable
                 .findOne({ _id: inviteCode.team })
                 .lean();
-            console.log(team);
+            // console.log(team);
         }
     },
     deleteTeam: async function (team_id) {
@@ -125,7 +109,7 @@ module.exports = {
             { _id: params.team },
             { $pull: { members: { member_id: params.member }}}
         );
-        console.log("84 -> status",status);
+        // console.log("84 -> status",status);
     },
     generateString: async function (length) {
         let result = "";

@@ -113,10 +113,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/profile", authCheck, async (req, res) => {
-    await allEventDetails(req);
+    const context = await allEventDetails(req);
     res.render("profile", {
         user: req.user,
         authenticated: req.isAuthenticated(),
+        ...context
     });
 });
 
@@ -206,7 +207,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
         inviteCode: null,
         validUpto: null,
     };
-    console.log(team);
+    // console.log(team);
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
         context.inviteCode = inviteCode.code;
         context.validUpto = inviteCode.validUpto;
