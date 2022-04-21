@@ -21,6 +21,7 @@ const {
     removeMember,
     deleteOldInviteCode,
     createNewInviteCode,
+    allEventDetails
 } = require("./utils");
 var url = require("url");
 
@@ -111,7 +112,8 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/profile", authCheck, (req, res) => {
+app.get("/profile", authCheck, async (req, res) => {
+    await allEventDetails(req);
     res.render("profile", {
         user: req.user,
         authenticated: req.isAuthenticated(),
@@ -144,15 +146,16 @@ app.get("/event", authCheck, async (req, res) => {
         team: team,
         authenticated: req.isAuthenticated(),
     };
-    res.render("event", { context: context, user: req.session.user });
+    res.render("event", { ...context, user: req.session.user });
 });
 
 app.get("/createTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
         event: event,
+        authenticated: req.isAuthenticated(),
     };
-    res.render("Team/createTeam", { context: context, user: req.session.user });
+    res.render("Team/createTeam", { ...context, user: req.session.user });
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
@@ -165,8 +168,9 @@ app.get("/joinTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
         event: event,
+        authenticated: req.isAuthenticated(),
     };
-    res.render("Team/joinTeam", { context: context, user: req.session.user });
+    res.render("Team/joinTeam", { ...context, user: req.session.user });
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {
@@ -202,13 +206,13 @@ app.get("/userTeam", authCheck, async (req, res) => {
         inviteCode: null,
         validUpto: null,
     };
-
+    console.log(team);
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
         context.inviteCode = inviteCode.code;
         context.validUpto = inviteCode.validUpto;
     }
 
-    res.render("Team/userTeam", { context: context, user: req.session.user });
+    res.render("Team/userTeam", { ...context, user: req.session.user });
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
