@@ -352,136 +352,88 @@
                     </div>
 
                     <hr />
-
                     <!-- registered events -->
                     <h2 class="reg-heading">Registered Events</h2>
                     <div class="reg-container">
-                        <!-- event1 -->
+                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+
+                        <!-- event -->
                         <div class="card-event">
                             <table>
                                 <tr>
                                     <td>Event</td>
-                                    <td>TestEvent1</td>
+                                    <td><%= created_teams[index].id %></td>
                                 </tr>
                                 <tr>
                                     <td>Team</td>
-                                    <td>TestTeam1</td>
+                                    <td><%= created_teams[index].name %></td>
                                 </tr>
                             </table>
                         </div>
+                        <% } %>
+                    </div>
+                    <div class="reg-container">
+                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
 
-                        <!-- event2  -->
+                        <!-- event -->
                         <div class="card-event">
                             <table>
                                 <tr>
                                     <td>Event</td>
-                                    <td>TestEvent2</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Team</td>
-                                    <td>TestTeam2</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <!-- event3 -->
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>TestEvent3</td>
+                                    <td><%= joined_teams[index].id %></td>
                                 </tr>
                                 <tr>
                                     <td>Team</td>
-                                    <td>TestTeam3</td>
+                                    <td><%= joined_teams[index].name %></td>
                                 </tr>
                             </table>
                         </div>
-
-                        <!-- event4 -->
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>TestEvent4</td>
-                                </tr>
-                                <tr>
-                                    <td>Team</td>
-                                    <td>TestTeam4</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <!-- end -->
+                        <% } %>
                     </div>
                     <hr />
                     <!-- registered events end -->
 
                     <!-- Created Teams -->
                     <h2 class="create-heading">Created Teams</h2>
-                    <div class="create-container">
+                    <div class="reg-container">
+                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+
+                        <!-- event -->
                         <div class="card-event">
                             <table>
                                 <tr>
-                                    <td>Team</td>
-                                    <td>TestTeam1</td>
-                                </tr>
-                                <tr>
                                     <td>Event</td>
-                                    <td>TestEvent1</td>
+                                    <td><%= created_teams[index].id %></td>
                                 </tr>
-                            </table>
-                            <hr />
-                            <div class="members">Members</div>
-                        </div>
-                        <div class="card-event">
-                            <table>
                                 <tr>
                                     <td>Team</td>
-                                    <td>TestTeam1</td>
-                                </tr>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>TestEvent1</td>
+                                    <td><%= created_teams[index].name %></td>
                                 </tr>
                             </table>
-                            <hr />
-                            <div class="members">Members</div>
                         </div>
+                        <% } %>
                     </div>
                     <!-- created team end  -->
                     <hr />
                     <!-- Joined Team -->
                     <h2 class="join-heading">Joined Teams</h2>
-                    <div class="join-container">
+                    <div class="reg-container">
+                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
+
+                        <!-- event -->
                         <div class="card-event">
                             <table>
                                 <tr>
-                                    <td>Team</td>
-                                    <td>TestTeam1</td>
-                                </tr>
-                                <tr>
                                     <td>Event</td>
-                                    <td>TestEvent1</td>
+                                    <td><%= joined_teams[index].id %></td>
                                 </tr>
-                            </table>
-                            <hr />
-                            <div class="members">Members</div>
-                        </div>
-                        <div class="card-event">
-                            <table>
                                 <tr>
                                     <td>Team</td>
-                                    <td>TestTeam1</td>
-                                </tr>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>TestEvent1</td>
+                                    <td><%= joined_teams[index].name %></td>
                                 </tr>
                             </table>
-                            <hr />
-                            <div class="members">Members</div>
                         </div>
+                        <% } %>
                     </div>
                     <!-- Joined teams end  -->
                     <hr />
