@@ -52,7 +52,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
-
+app.use('/xpecto.ico', express.static('../static/images/xpecto.ico'));
 // Sessions middleware
 app.use(
     session({
@@ -66,7 +66,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Routes
 app.use("/auth", authRoutes);
 app.use("/payment", authCheck, paymentRoutes);
