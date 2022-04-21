@@ -34,6 +34,42 @@ module.exports = {
 
         return team;
     },
+    allEventDetails: async function(req){
+        // const event = await module.exports.findEvent(req);
+        const teamTable = require("./models/Team");
+
+        // var created_teams = await teamTable
+        //     .findOne({ event: event._id, teamLeader: req.user._id })
+        //     .lean();
+        
+        var team = await teamTable
+            .find({ teamLeader: req.user._id })
+            .lean();
+        console.log(team)
+
+        var joined_teams = await teamTable.findOne({
+                members: {
+                    $elemMatch: {
+                        member_id: user_id
+                    }
+                }
+            });
+        console.log(joined_teams);
+        // console.log(created_teams);
+        // console.log(joined_teams);
+
+        var user_id = String(req.user._id)
+        if (team == null)
+            team = await teamTable.findOne({
+                members: {
+                    $elemMatch: {
+                        member_id: user_id
+                    }
+                }
+            })
+
+        return team;
+    },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
