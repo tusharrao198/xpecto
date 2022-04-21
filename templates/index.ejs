@@ -130,20 +130,23 @@
         <%- include('partials/navbar_menu.ejs') %>
     </div>
 
-    <div class="sound">
-        <button id="toggle">Sound: <span id="status">OFF</span></button>
-    </div>
+        <img id="cursor" src="./images/gear.png" alt="none" />
+        <!-- <audio
+            id="click"
+            class="click-sound"
+            src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"
+        ></audio>
+        <audio
+            class="anthem"
+            src="./audio/anthem.mp3"
+            loop="true"
+            muted
+        ></audio> -->
 
-    <img id="cursor" src="./images/gear.png" alt="none" />
-    <audio id="click" class="click-sound"
-        src="https://fifpro-gallery-staging.ams3.digitaloceanspaces.com/media/click.mp3"></audio>
-    <audio class="anthem" src="./audio/anthem.mp3" loop="true" muted></audio>
-
-    <script src="./js/script.js" type="text/javascript"></script>
-    <script src="./js/cursor.js"></script>
-    <script src="./js/sound.js"></script>
-    <script src="./js/scroll.js"></script>
-    <script src="./js/countdown.js" type="text/javascript"></script>
-</body>
-
+        <script src="./js/script.js" type="text/javascript"></script>
+        <script src="./js/cursor.js"></script>
+        <!-- <script src="./js/sound.js"></script> -->
+        <script src="./js/scroll.js"></script>
+        <script src="./js/countdown.js" type="text/javascript"></script>
+    </body>
 </html>
