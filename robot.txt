@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /archive/
 Disallow: /404.html
-Disallow: /google738713d69eaa2417.html
+Disallow: /google0acc5e994400b00c.html
 Sitemap: http://xpecto.tech/sitemap.xml
