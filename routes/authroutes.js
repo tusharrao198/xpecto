@@ -1,16 +1,37 @@
 const router = require("express").Router();
 const passport = require("passport");
+const mcache = require("memory-cache");
 
 // auth login
 router.get("/login", (req, res) => {
     res.render("login", { authenticated: req.isAuthenticated(),user: req.session.user });
 });
 
+var cache = (dur)=>{
+    return (req,res,next)=>{
+        let key = '__express__'+req.originalURL||req.url
+        let cachedBody = mcache.get(key)
+        if(cachedBody){
+            window.location.reload();
+            res.send(cachedBody)
+            return
+        }else{
+            res.sendResponse = res.send
+            res.send = (body) => {
+                mcache.put(key, body, duration*1000);
+                res.sendResponse(body)
+            }
+            next()
+        }
+    }
+}
 // auth logout
 router.get("/logout", (req, res) => {
     // req.session = null;
-    req.logout();
-    res.redirect("/");
+    setTimeout(()=>{
+        req.logout();
+        res.redirect("/");
+    },1000);
 });
 
 // auth with google+

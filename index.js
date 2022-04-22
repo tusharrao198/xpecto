@@ -53,6 +53,15 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
 
+app.use(function(req, res, next) {
+    if (!req.user) {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+    }
+    next();
+});
+
 // Sessions middleware
 app.use(
     session({
