@@ -29,7 +29,7 @@ router.get(
         // console.log('req.user') // user info
         // Successful authentication, redirect success.
         if (process.env.NODE_ENV == "development") {
-            console.log("dev = ", req.headers.host);
+            // console.log("dev = ", req.headers.host);
             // console.log("dev url = ", req.url);
             res.redirect("/profile");
         } else if (process.env.NODE_ENV == "production") {

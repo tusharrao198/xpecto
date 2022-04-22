@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
         req.session.user = user
     }
 
-    console.log(req.session.user)
+    // console.log(req.session.user)
     res.render("index", {
         authenticated: req.isAuthenticated(),
         user: req.session.user,
