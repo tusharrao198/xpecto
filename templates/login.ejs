@@ -1,137 +1,129 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <base href="/ ">
-        <title>Login | Xpecto</title>
-        <meta property="og:url" content="https://xpecto.tech/" />
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/ ">
+    <title>Login | Xpecto</title>
+    <meta property="og:url" content="https://xpecto.tech/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Xepecto'22" />
     <meta name="description" content=" Xpecto is science and technology festival of Indian
     Institute of Technology, Mandi. It has been ramped up to
     include the most electrifying events, prompting great
     discoveries, as well as enthralling brainstorming and
-    grand prizes."/>
-        <!-- CSS only -->
-        <link href="./css/login.css" rel="stylesheet" type="text/css" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
-        <link rel="shortcut icon" href="./images/xpecto.ico" type="image/x-icon" />
-        <!-- font-awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            referrerpolicy="no-referrer"
-            integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-            crossorigin="anonymous"
-        />
-        <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
-    </head>
-    <body>
-        <div class="bg"></div>
-        <div class="home">
-            <section class="showcase">
-                <header style="display: flex">
-                    <h2 class="logo">Xpecto'22</h2>
-                    <div class="toggle"></div>
-                </header>
-                <div class="overlay"></div>
+    grand prizes." />
+    <!-- CSS only -->
+    <link href="./css/login.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="shortcut icon" href="./images/xpecto.ico" type="image/x-icon" />
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        referrerpolicy="no-referrer"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="./css/navbar.css"> -->
+</head>
 
-                <div class="container">
-                    <div class="logo m-1">
-                        <img
-                            src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png"
-                        />
-                        <!-- <h4>Xpecto'22</h4> -->
-                    </div>
-                
+<body>
+    <div class="bg"></div>
+    <div class="home">
+        <section class="showcase">
+            <header style="display: flex">
+                <h2 class="logo">Xpecto'22</h2>
+                <div class="toggle"></div>
+            </header>
+            <div class="overlay"></div>
+
+            <div class="container">
+                <div class="logo m-1">
+                    <img
+                        src="https://user-images.githubusercontent.com/56690827/162669761-372be060-ea2f-4712-b77f-d9f8c6a89622.png" />
+                    <!-- <h4>Xpecto'22</h4> -->
+                </div>
+
                 <div class="container2">
                     <div class="sign-box">
                         <!-- <div class="logo-google"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"></div> -->
-                        <a href="/auth/google"
-                            ><button class="sign-in">
+                        <a href="/auth/google"><button class="sign-in">
                                 <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png"
-                                />
+                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png" />
                                 Sign In
-                            </button></a
-                        >
+                            </button></a>
                     </div>
                 </div>
-            </section>
-            <%- include('partials/navbar_menu.ejs') %>
-        </div>
+        </section>
+        <%- include('partials/navbar_menu.ejs') %>
+    </div>
 
-        <script>
-            // Navbar
-            const menuToggle = document.querySelector(".toggle");
-            const showcase = document.querySelector(".showcase");
+    <script>
+        // Navbar
+        const menuToggle = document.querySelector(".toggle");
+        const showcase = document.querySelector(".showcase");
 
-            menuToggle.addEventListener("click", () => {
-                menuToggle.classList.toggle("active");
-                showcase.classList.toggle("active");
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("active");
+            showcase.classList.toggle("active");
+        });
+        document
+            .getElementById("password")
+            .addEventListener("keyup", function () {
+                _toggleEmptyValidation(
+                    this.value,
+                    "password",
+                    "passwordRequiredMessage"
+                );
             });
-            document
-                .getElementById("password")
-                .addEventListener("keyup", function () {
-                    _toggleEmptyValidation(
-                        this.value,
-                        "password",
-                        "passwordRequiredMessage"
-                    );
-                });
 
-            document
-                .getElementById("username")
-                .addEventListener("keyup", function () {
-                    _toggleEmptyValidation(
-                        this.value,
-                        "username",
-                        "usernameRequiredMessage"
-                    );
-                });
+        document
+            .getElementById("username")
+            .addEventListener("keyup", function () {
+                _toggleEmptyValidation(
+                    this.value,
+                    "username",
+                    "usernameRequiredMessage"
+                );
+            });
 
-            document.getElementById("loginButton").onclick = function () {
-                _authenticate();
-                return false;
-            };
+        document.getElementById("loginButton").onclick = function () {
+            _authenticate();
+            return false;
+        };
 
-            function _toggleEmptyValidation(value, inputId, messageId) {
-                let input = document.getElementById(inputId);
-                let message = document.getElementById(messageId);
-                value == ""
-                    ? input.classList.add("error")
-                    : input.classList.remove("error");
-                message.style.display = value == "" ? "block" : "none";
-            }
+        function _toggleEmptyValidation(value, inputId, messageId) {
+            let input = document.getElementById(inputId);
+            let message = document.getElementById(messageId);
+            value == ""
+                ? input.classList.add("error")
+                : input.classList.remove("error");
+            message.style.display = value == "" ? "block" : "none";
+        }
 
-            function _authenticate() {
-                let username = document.getElementById("username").value;
-                let password = document.getElementById("password").value;
+        function _authenticate() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
 
-                if (username == "" || password == "") {
-                    _toggleEmptyValidation(
-                        username,
-                        "username",
-                        "usernameRequiredMessage"
-                    );
-                    _toggleEmptyValidation(
-                        password,
-                        "password",
-                        "passwordRequiredMessage"
-                    );
+            if (username == "" || password == "") {
+                _toggleEmptyValidation(
+                    username,
+                    "username",
+                    "usernameRequiredMessage"
+                );
+                _toggleEmptyValidation(
+                    password,
+                    "password",
+                    "passwordRequiredMessage"
+                );
+            } else {
+                if (username == "admin" && password == "Password@123") {
+                    alert("Login successfully");
                 } else {
-                    if (username == "admin" && password == "Password@123") {
-                        alert("Login successfully");
-                    } else {
-                        alert("Login failed");
-                    }
+                    alert("Login failed");
                 }
             }
-        </script>
-    </body>
+        }
+    </script>
+</body>
+
 </html>

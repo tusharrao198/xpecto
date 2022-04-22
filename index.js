@@ -100,12 +100,14 @@ app.get("/faq", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    if (!req.session.user) {
+    if (req.session.user == null) {
         user = {
             status: 0,
         };
-        req.session.user = user;
+        req.session.user = user
     }
+
+    // console.log(req.session.user)
     res.render("index", {
         authenticated: req.isAuthenticated(),
         user: req.session.user,
