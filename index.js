@@ -102,13 +102,13 @@ app.get("/faq", (req, res) => {
 app.get("/", (req, res) => {
     if (!req.session.user) {
         user = {
-            status: "0",
+            status: 0,
         };
         req.session.user = user
     }
     res.render("index", {
         authenticated: req.isAuthenticated(),
-        user: req.user,
+        user: req.session.user,
     });
 });
 

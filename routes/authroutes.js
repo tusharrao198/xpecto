@@ -10,6 +10,7 @@ router.get("/login", (req, res) => {
 router.get("/logout", (req, res) => {
     // req.session = null;
     req.logout();
+    req.session.user = null;
     res.redirect("/");
 });
 
