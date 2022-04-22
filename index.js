@@ -53,6 +53,16 @@ app.set("view engine", "ejs");
 
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
+
+app.use(function(req, res, next) {
+    if (!req.user) {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+    }
+    next();
+});
+
 app.use('/xpecto.ico', express.static('../static/images/xpecto.ico'));
 // Sessions middleware
 app.use(
@@ -216,6 +226,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
     }
 
     res.render("Team/userTeam", { ...context, user: req.session.user });
+
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
