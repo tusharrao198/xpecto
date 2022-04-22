@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const passport = require("passport");
-const mcache = require("memory-cache");
 
 // auth login
 router.get("/login", (req, res) => {

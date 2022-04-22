@@ -31,14 +31,8 @@
         "express": "^4.17.1",
         "express-seo": "^0.0.1",
         "express-session": "^1.17.2",
-<<<<<<< HEAD
-        "memory-cache": "^0.2.0",
-        "mongoose": "^6.2.9",
-        "nanoid": "^3.3.2",
-=======
         "mongoose": "^6.3.0",
         "nanoid": "^3.3.3",
->>>>>>> 3e527a99d9de894d8e712aa26cd0caa64ca1da51
         "nodemon": "^2.0.15",
         "passport": "^0.4.1",
         "passport-google-oauth20": "^2.0.0",
