@@ -109,6 +109,14 @@ app.get("/faq", (req, res) => {
     });
 });
 
+app.get("/TandC", (req, res) => {
+    res.render("TandC", {
+        authenticated: req.isAuthenticated(),
+        user: req.session.user,
+    });
+});
+
+
 app.get("/", (req, res) => {
     if (req.session.user == null) {
         user = {
