@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config/config.env" });
 const connectDB = require("./config/db");
-
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 // connect to Database
 connectDB();
 
@@ -12,8 +12,16 @@ const userDetails = require("./models/User");
 async function work()
 {
     var teams = await allTeams.find();
-    console.log("Hi\n");
-    console.log(teams);
+    const csvWriter = createCsvWriter({
+        path: 'TeamData.csv',
+        header: [
+            {id: 'eventName', title: 'Event Name'},
+            {id: 'teamName', title: 'Team Name'},
+            {id: 'leader', title: 'Leader'},
+            {id: 'teamMembers', title: 'Team Members'}
+        ]
+    });
+    var records = []
     for(var i=0;i<teams.length;i++)
     {
         var allMembers = [];
@@ -32,16 +40,28 @@ async function work()
                 "Email" : user.email,
                 "PhNo." : user.phoneNumber
             }
-            allMembers.push(userData);
+            allMembers.push(JSON.stringify(userData));
         }
         var leader = await userDetails.findOne({_id: leaderID});
-        const leaderData = {
+        var leaderData = {
             "Name" : leader.displayName,
             "Email" : leader.email,
             "PhNo." : leader.phoneNumber
         }
-        console.log("Event -> ",eventName, "\nTeam -> ",teamName,"\nLeader -> ",leaderData,"\nmembers -> \n",allMembers);
+        var leaderData = JSON.stringify(leaderData);
+        
+        const thisRecord = {
+            "eventName" : eventName,
+            "teamName" : teamName,
+            "leader" : leaderData,
+            "teamMembers" : allMembers
+        }
+        records.push(thisRecord);
     }
+    csvWriter.writeRecords(records)       // returns a promise
+        .then(() => {
+            console.log('...Done');
+    });
 }
 
 work();
