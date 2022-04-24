@@ -33,6 +33,9 @@ const UserSchema = new mongoose.Schema({
         default:0,
         required:true,
     },
+    phoneNumber : {
+        type : Number
+    }
 });
 
 module.exports = mongoose.model("UserDetails", UserSchema);
