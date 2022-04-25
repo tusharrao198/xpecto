@@ -3,13 +3,14 @@ const passport = require("passport");
 
 // auth login
 router.get("/login", (req, res) => {
-    res.render("login", { authenticated: req.isAuthenticated(),user: req.session.user });
+    res.render("login", { authenticated: req.isAuthenticated(), user: req.session.user });
 });
 
 // auth logout
 router.get("/logout", (req, res) => {
     // req.session = null;
     req.logout();
+    req.session.user = null;
     res.redirect("/");
 });
 
@@ -28,7 +29,7 @@ router.get(
         // console.log('req.user') // user info
         // Successful authentication, redirect success.
         if (process.env.NODE_ENV == "development") {
-            console.log("dev = ", req.headers.host);
+            // console.log("dev = ", req.headers.host);
             // console.log("dev url = ", req.url);
             res.redirect("/profile");
         } else if (process.env.NODE_ENV == "production") {

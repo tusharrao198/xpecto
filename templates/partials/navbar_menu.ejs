@@ -1,19 +1,23 @@
 <div class="menu">
     <ul>
         <li><a href="/">Home</a></li>
-        <% if (user.status=="0") { %>
-            <li><a href="/payment">Register</a></li>
-        <% } %>
-        <li><a href="/events">Events</a></li>
-        <li><a href="/sponsors">Sponsors</a></li>
-        <li><a href="/team">Our Team</a></li>
-        <% if(authenticated){ %>
-        <li><a href="/profile">Profile</a></li>
-        <%}else {%>
-        <li><a href="/auth/login">Login</a></li>
-        <%}%>
-        <li><a href="/faq">FAQ</a></li>
-        <li><a href="contact">Contact</a></li>
-        <li><a href="/about">About Us</a></li>
+        <!-- <% if (user.status=="0" ) { %>
+            <li><a href="/profile">Register</a></li>
+            <% } %> -->
+                <li><a href="/events">Events</a></li>
+                <li><a href="/sponsors">Sponsors</a></li>
+                <li><a href="/team">Our Team</a></li>
+                <% if(authenticated){ %>
+                    <li><a href="/profile">Profile</a></li>
+                    <%}else {%>
+                        <li><a href="/auth/login">Login</a></li>
+                        <%}%>
+                            <li><a href="/faq">FAQ</a></li>
+                            <li><a href="contact">Contact</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/TandC">T&Cs</a></li>
+                            <% if(authenticated){ %>
+                                <li><a href="/auth/logout">Logout</a></li>
+                                <%}%>
     </ul>
 </div>

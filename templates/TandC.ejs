@@ -1,0 +1,169 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xpecto | T&Cs</title>
+    <link rel="stylesheet" href="./css/aboutus.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Girassol&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      referrerpolicy="no-referrer"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <style>
+    .content {
+      font-size: 1.25rem;
+      padding: 0;
+      line-height: 1.75;
+      text-transform: uppercase;
+    }
+
+    .card .heading {
+      font-size: 3rem;
+      width: 75%;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .card {
+      display: flex;
+      width: 75%;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+      width: 100vw;
+      /* height: 50vh; */
+      margin: auto;
+      /* text-align:justify; */
+    }
+    /* Glassmorphism card effect */
+    .card {
+      padding: 2rem;
+      backdrop-filter: blur(4.5px) saturate(200%);
+      -webkit-backdrop-filter: blur(4.5px) saturate(200%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      box-shadow: 0 0 50px 10px rgba(255, 255, 255, 0.125);
+    }
+    @media (max-width: 500px) {
+      .showcase {
+        padding: 100px 50px;
+      }
+      .card .heading {
+        font-size: 2rem;
+        margin-bottom: 0;
+      }
+      .content {
+        /* padding-top: 0; */
+        font-size: 0.9rem;
+        line-height: 1.5rem;
+      }
+    }
+    @media screen {
+      .card {
+        margin-top: 2rem;
+        width: 75%;
+      }
+      .showcase {
+        padding-bottom: 50px;
+      }
+    }
+    #about {
+      /* color: white; */
+      color: #03a9f4;
+      font-weight: bold;
+    }
+  </style>
+
+  <body>
+    <div class="bg"></div>
+    <div class="home">
+      <section class="showcase">
+        <header>
+          <h2 class="logo">Xpecto'22</h2>
+          <div class="toggle"></div>
+        </header>
+
+        <div class="card">
+          <div class="heading">Terms and Conditions</div>
+          <div class="content">
+            BY EXECUTING THIS AGREEMENT I CONSENT FORM, YOU ARE EXPRESSLY
+            AGREEING TO ACCESS THE EXPERIAN CREDIT INFORMATION REPORT AND CREDIT
+            SCORE, AGGREGATE SCORES, INFERENCES, REFERENCES AND DETAILS (AS
+            DEFINED BELOW)(TOGETHER REFERRED AS "CREDIT INFORMATION"). YOU
+            HEREBY ALSO IRREVOCABLY AND UNCONDITIONALLY CONSENT TO SUCH CREDIT
+            INFORMATION BEING PROVIDED BY EXPERIAN TO YOU AND Razorpay BY USING
+            EXPERIAN TOOLS, ALGORITHMS AND DEVICES AND YOU HEREBY AGREE,
+            ACKNOWLEDGE AND ACCEPT THE TERMS AND CONDITIONS SET FORTH HEREIN.
+            <br />
+            <br />
+            Razorpay shall access your Credit Information as your authorized
+            representative and Razorpay shall use the Credit Information for
+            limited End Use Purpose consisting of and in relation to the
+            services proposed to be availed by you from Razorpay. We shall not
+            aggregate, retain, store, copy, reproduce, republish, upload, post,
+            transmit, sell or rent the Credit Information to any other person
+            and the same cannot be copied or reproduced other than as agreed
+            herein and in furtherance to CICRA. The Parties agree to protect and
+            keep confidential the Credit Information both online and offline.
+            The Credit Information shared by you, or received on by us on your
+            behalf shall be destroyed, purged, erased promptly within 1 (one)
+            Business Day of upon the completion of the transaction. End Use
+            Purpose for which the Credit Information report was procured.
+            <br />
+            <br/>
+            <h3>GOVERNING LAW AND JURISDICTION</h3>
+            The relationship between you and Razorpay shall be governed by laws
+            of India and all claims or disputes arising there from shall be
+            subject to the exclusive jurisdiction of the courts of Mumbai.
+            <br/>
+            Definitions: Capitalised terms used herein but not defined above
+            shall have the following meanings:
+            <br />
+            <br/>
+            <h3>BUSINESS DAY</h3>
+            means a day (other than a public holiday) on which banks are open for general business in Mumbai.
+            <br/>
+            <br/>
+            <h3>CREDIT INFORMATION REPORT </h3>
+            means the credit information / scores/ aggregates / variables / inferences or reports which shall be generated by Experian;          </div>
+        </div>
+        <!-- <div class="overlay"></div> -->
+      </section>
+      <%- include('partials/navbar_menu.ejs') %>
+    </div>
+
+    <script src="./js/script.js" type="text/javascript"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

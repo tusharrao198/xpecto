@@ -21,7 +21,7 @@ let razorPayInstance = new Razorpay({
  */
 router.get("/", function (req, res, next) {
     if (req.session.user.email.substring(7, 24) == "students.iitmandi") {
-        PaymentDetail.find({ googleId: req.session.user.googleId },async(errr, doc) => {
+        PaymentDetail.find({ googleId: req.session.user.googleId }, async (errr, doc) => {
             if (errr) {
                 console.log(errr);
             }
@@ -180,6 +180,7 @@ router.post("/verify", async function (req, res, next) {
         // and update paymentId and signature, and set status to paid.
         var userUpdated = await UserDetail.updateOne({ googleId: req.session.user.googleId }, { status: 1 })
 
+        req.session.user.status = "1"
         PaymentDetail.findOneAndUpdate(
             { orderId: req.body.razorpay_order_id },
             {

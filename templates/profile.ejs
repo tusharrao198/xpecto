@@ -2,7 +2,14 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xepecto'22" />
+        <meta name="description" content=" Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."/>
         <title>Profile | Xpecto</title>
         <!-- CSS only -->
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
@@ -14,6 +21,7 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="./css/navbar.css" />
+        <link rel="icon" href="./images/xpecto.ico" type="image/x-icon" />
         <!-- font-awesome -->
         <link
             rel="stylesheet"
@@ -76,12 +84,12 @@
                     /* padding-right: 50px; */
                 }
             }
+
             .card {
                 margin-left: auto;
                 margin-right: auto;
                 color: white;
                 font-weight: bold;
-                /* height: 300px; */
                 width: 450px;
                 padding: 2rem;
                 backdrop-filter: blur(10px) saturate(200%);
@@ -89,6 +97,14 @@
                 background-color: rgba(17, 25, 40, 0.5);
                 border-radius: 12px;
                 border: 2px solid rgba(255, 255, 255, 0.125);
+                transition: 0.2s;
+            }
+
+            .card:hover {
+                transition: 0.2s;
+                box-shadow: 0 0 50px -30px #009dbe;
+                backdrop-filter: blur(5px) saturate(200%);
+                -webkit-backdrop-filter: blur(5px) saturate(200%);
             }
             .profile {
             }
@@ -203,23 +219,81 @@
                 }
             }
 
-            .list-container {
-                display: none;
-                margin-left: auto;
-                margin-right: auto;
+            .reg-container,
+            .create-container,
+            .join-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            @media (max-width: 480px) {
+                .reg-container,
+                .create-container,
+                .join-container {
+                    flex-direction: column;
+                    align-items: center;
+                    flex-wrap: nowrap;
+                }
+            }
+            .card-event {
+                margin: 0.5rem;
                 color: white;
                 font-weight: bold;
-                width: 450px;
-                padding: 2rem;
+                /* height: 300px; */
+                width: 200px;
+                padding: 1rem;
                 backdrop-filter: blur(10px) saturate(200%);
                 -webkit-backdrop-filter: blur(10px) saturate(200%);
                 background-color: rgba(17, 25, 40, 0.5);
                 border-radius: 12px;
                 border: 2px solid rgba(255, 255, 255, 0.125);
-                z-index: 0;
+                /* display: flex;
+                align-items: center; */
+                transition: 0.25s;
+                box-shadow: 0 0 50px -25px #009dbe;
+            }
+            .card-event:hover {
+                transform: translateY(-5px);
+                transition: 0.25s;
+            }
+            .card-event table {
+                width: 100%;
+                /* display: flex; */
+                /* align-self: center; */
+            }
+            .card-event tr {
+                /* margin-left: auto; */
+                /* margin-right: auto; */
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1rem;
+                align-items: center;
+                /* align-content: center; */
+            }
+            .card-event td {
+                text-align: center;
+                /* display: flex; */
+            }
+            .card-event tr:nth-child(1) {
+                margin-bottom: 0.5rem;
+            }
+            .card-event td:nth-child(1) {
+                font-size: 1.5rem;
+            }
+            hr {
                 color: white;
+            }
+            .reg-heading,
+            .create-heading,
+            .join-heading {
+                color: white;
+                font-family: "Lato", sans-serif;
                 font-weight: bold;
-                width: 450px;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+            .members {
+                text-align: center;
             }
         </style>
     </head>
@@ -228,7 +302,7 @@
         <div class="home">
             <section class="showcase">
                 <header>
-                    <h2 class="logo"><a href="/">Xpecto'22</a></h2>
+                    <a href="/" class=""><img src="./images/xpecto.png" alt="" class="logo-img"></a>
                     <div class="toggle"></div>
                 </header>
                 <div class="overlay"></div>
@@ -240,7 +314,7 @@
                             <div class="person">
                                 <img
                                     id="person-image"
-                                    src="<%= user.image%>"
+                                    src="<%= user.image %>"
                                     alt="image of person"
                                 />
                                 <div class="name">
@@ -276,23 +350,93 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="modal"> -->
-                    <div class="list-container hidden">
-                        <div class="list">
-                            <div class="1">1</div>
-                            <div class="2">2</div>
-                            <div class="3">3</div>
-                            <div class="4">4</div>
-                            <div class="5">5</div>
-                            <div class="6">6</div>
-                            <div class="7">7</div>
-                            <div class="8">8</div>
-                            <div class="9">9</div>
-                            <div class="10">10</div>
+
+                    <hr />
+                    <!-- registered events -->
+                    <h2 class="reg-heading">Registered Events</h2>
+                    <div class="reg-container">
+                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+
+                        <!-- event -->
+                        <div class="card-event">
+                            <table>
+                                <tr>
+                                    <td>Event</td>
+                                    <td><%= created_teams[index].id %></td>
+                                </tr>
+                                <tr>
+                                    <td>Team</td>
+                                    <td><%= created_teams[index].name %></td>
+                                </tr>
+                            </table>
                         </div>
-                        <button id="close-modal">close</button>
+                        <% } %>
                     </div>
-                    <!-- </div> -->
+                    <div class="reg-container">
+                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
+
+                        <!-- event -->
+                        <div class="card-event">
+                            <table>
+                                <tr>
+                                    <td>Event</td>
+                                    <td><%= joined_teams[index].id %></td>
+                                </tr>
+                                <tr>
+                                    <td>Team</td>
+                                    <td><%= joined_teams[index].name %></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <% } %>
+                    </div>
+                    <hr />
+                    <!-- registered events end -->
+
+                    <!-- Created Teams -->
+                    <h2 class="create-heading">Created Teams</h2>
+                    <div class="reg-container">
+                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+
+                        <!-- event -->
+                        <div class="card-event">
+                            <table>
+                                <tr>
+                                    <td>Event</td>
+                                    <td><%= created_teams[index].id %></td>
+                                </tr>
+                                <tr>
+                                    <td>Team</td>
+                                    <td><%= created_teams[index].name %></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <% } %>
+                    </div>
+                    <!-- created team end  -->
+                    <hr />
+                    <!-- Joined Team -->
+                    <h2 class="join-heading">Joined Teams</h2>
+                    <div class="reg-container">
+                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
+
+                        <!-- event -->
+                        <div class="card-event">
+                            <table>
+                                <tr>
+                                    <td>Event</td>
+                                    <td><%= joined_teams[index].id %></td>
+                                </tr>
+                                <tr>
+                                    <td>Team</td>
+                                    <td><%= joined_teams[index].name %></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <% } %>
+                    </div>
+                    <!-- Joined teams end  -->
+                    <hr />
                 </main>
             </section>
             <%- include('partials/navbar_menu.ejs') %>
