@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
 const TeamSchema = new mongoose.Schema({
-    event:{
+    event: {
         type: String,
         required: true,
     },
     name: {
         type: String,
         required: true,
+        unique: true, // team name must be unique
     },
-    teamLeader:{
+    teamLeader: {
         type: String,
         required: true,
     },
@@ -17,9 +18,9 @@ const TeamSchema = new mongoose.Schema({
         {
             member_id: {
                 type: String,
-                required: true
-            }
-        }
+                required: true,
+            },
+        },
     ],
     createdAt: {
         type: Date,
