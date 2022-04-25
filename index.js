@@ -8,7 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
-const paymentRoutes = require("./middleware/payment");
+// const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
 const {
     findEvent,
@@ -79,7 +79,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Routes
 app.use("/auth", authRoutes);
-app.use("/payment", authCheck, paymentRoutes);
+// app.use("/payment", authCheck, paymentRoutes);
 
 app.get("/about", (req, res) => {
     res.render("aboutus", {
