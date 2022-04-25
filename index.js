@@ -8,6 +8,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
+const upload =require("./multer.js");
+const events = require("./models/Events.js");
 // const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
 const {
@@ -27,6 +29,7 @@ var url = require("url");
 
 const { generateString } = require("./utils");
 const code = require("./models/code.js");
+const paymentDetail = require("./models/payment-detail");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -252,6 +255,36 @@ app.get("/error", (req, res) =>
         user: req.session.user,
     })
 );
+
+app.get("/adminlogin",(req,res)=>{
+    req.session.admin=="0";
+    res.render("admin/adminlogin.ejs");
+});
+
+app.post("/adminauth",(req,res)=>{
+    if(req.body.email==process.env.ADMINEMAIL && req.body.password==process.env.ADMINPASSWORD){
+        req.session.admin="1";
+        res.render("admin/adminoption.ejs");
+    }else{
+        res.redirect("/adminlogin");
+    }
+});
+
+app.post("/addevent",upload.single('image'),async(req,res)=>{
+    if(req.session.admin=="1"){
+        const event = new events(req.body);
+        await event.save((err)=>{
+            if(err){
+                res.send("DATA not saved"+err);
+            }else{
+                res.render("admin/adminoption.ejs");
+            }
+        });
+    }
+});
+
+
+
 
 // onetime coupon generate logic
 // app.get("/xyzabc",async (req,res)=>{
