@@ -7,11 +7,14 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xepecto'22" />
-        <meta name="description" content=" Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content=" Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes."/>
+        grand prizes."
+        />
         <!-- CSS only -->
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="./css/navbar.css" />
@@ -72,7 +75,9 @@
         <div class="home">
             <section class="showcase">
                 <header>
-                    <a href="/" class=""><img src="./images/xpecto.png" alt="" class="logo-img"></a>
+                    <a href="/" class=""
+                        ><img src="./images/xpecto.png" alt="" class="logo-img"
+                    /></a>
                     <div class="toggle"></div>
                 </header>
                 <div class="overlay"></div>
@@ -85,7 +90,7 @@
                     </div>
                     <h1 class="text-white">To be Updated Soon!</h1>
 
-                    <% for (var i = 0; i < events.length; i++) { %>
+                    <!-- <% for (var i = 0; i < events.length; i++) { %>
                         <div class="card mb-8 mx-auto" style="max-width: 100%">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -99,8 +104,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><%= events[i].name %></h5>
                                         <p class="card-text"> 
-                                            <!-- <%= events[i].createdAt %>
-                                            <%= events[i].duration %>  -->
+                                            <%= events[i].createdAt %>
+                                            <%= events[i].duration %> 
                                             <%= events[i].content %> 
                                         </br></br>
             
@@ -120,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                    <% } %>
+                    <% } %> -->
                 </div>
             </section>
             <%- include('partials/navbar_menu.ejs') %>
