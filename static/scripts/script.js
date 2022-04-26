@@ -1,3 +1,23 @@
+// CODE FOR RESPONSIVE NAVBAR
+const toggler = document.querySelector(".toggle");
+const navbar = document.querySelector("nav");
+if (window.innerWidth <= 900) navbar.style.display = "none";
+
+navbar.addEventListener("resize", () => {
+    if (window.innerWidth <= 900) navbar.style.display = "none";
+    else navbar.style.display = "flex";
+});
+toggler.addEventListener("click", () => {
+    if (toggler.getAttribute("src") === "images/menu_open.svg") {
+        toggler.setAttribute("src", "images/menu_close.svg");
+        navbar.style.display = "flex";
+    } else {
+        toggler.setAttribute("src", "images/menu_open.svg");
+        navbar.style.display = "none";
+    }
+});
+// **************************************************************
+
 // CODE FOR PARRALAX EFFECT IN HOME SECTION
 const translateX = document.querySelectorAll(".translateX");
 const translateY = document.querySelectorAll(".translateY");
@@ -18,7 +38,6 @@ window.addEventListener("scroll", () => {
 const header = document.querySelector(".header-glass");
 
 window.addEventListener("scroll", () => {
-    console.log("hello");
     if (window.scrollY > 50) {
         header.classList.remove("active");
     }
@@ -27,26 +46,3 @@ window.addEventListener("scroll", () => {
     }
 });
 // ****************************************************************
-
-// CODE FOR COUNTER 
-let daysItem = document.querySelector("#days");
-let hoursItem = document.querySelector("#hours");
-let minutesItem = document.querySelector("#minutes");
-let secondsItem = document.querySelector("#seconds");
-let countDown = () => {
-    let futureDate = new Date("14 May 2022");
-    let currentDate = new Date();
-    let myDate = futureDate - currentDate;
-
-    let days = Math.floor(myDate / 1000 / 60 / 60 / 24);
-    let hours = Math.floor(myDate / 1000 / 60 / 60) % 24;
-    let minutes = Math.floor(myDate / 1000 / 60) % 60;
-    let seconds = Math.floor(myDate / 1000) % 60;
-    daysItem.innerHTML = days;
-    hoursItem.innerHTML = hours;
-    minutesItem.innerHTML = minutes;
-    secondsItem.innerHTML = seconds;
-};
-countDown();
-setInterval(countDown, 1000);
-//*****************************************************************
