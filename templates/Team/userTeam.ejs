@@ -237,14 +237,16 @@
                     <div class="card">
                         <div class="container">
                             <div>
-                                <h1 class="heading">Team - <%= team.name %></h1>
+                                <h1 class="heading">
+                                    Team - <%= team.name.toUpperCase() %>
+                                </h1>
                                 <hr />
                             </div>
                             <div>
                                 <table>
                                     <tr>
                                         <td>Team Name</td>
-                                        <td><%= team.name %></td>
+                                        <td><%= team.name.toUpperCase() %></td>
                                     </tr>
                                     <tr>
                                         <td>Team ID</td>
@@ -252,22 +254,31 @@
                                     </tr>
                                     <tr>
                                         <td>Event Name</td>
-                                        <td><%= team.event %></td>
+                                        <td><%= event.name.toUpperCase() %></td>
                                     </tr>
                                     <tr>
                                         <td>Leader ID</td>
-                                        <td><%= team.teamLeader %></td>
+                                        <td>
+                                            <%=
+                                            leaderinfo.displayName.toUpperCase()
+                                            %>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Team Members</td>
                                         <td>
                                             <% for( let index = 0; index <
-                                            team.members.length; index++ ) { %>
-                                            <%= team.members[index].member_id %>
+                                            members_info.length; index++ ) { %>
+                                            <%= members_info[index].displayName
+                                            %>
+
                                             <a
-                                                href="removeMember?team=<%= team._id %>&member=<%= team.members[index].member_id %>"
-                                                ><button class="remove">
-                                                    x
+                                                class="p-2"
+                                                href="removeMember?team=<%= team._id %>&member=<%= members_info[index]._id %>"
+                                                ><button
+                                                    class="btn btn-sm remove"
+                                                >
+                                                    X
                                                 </button>
                                             </a>
                                             <% } %>
@@ -293,6 +304,7 @@
                                 </table>
 
                                 <div class="btn-container">
+                                    <% if(leader){ %>
                                     <a
                                         href="/generateInviteCode?team=<%= team._id %>"
                                         ><button class="new btn1">
@@ -305,6 +317,7 @@
                                             Delete Team
                                         </button></a
                                     >
+                                    <%}%>
                                 </div>
                             </div>
                         </div>

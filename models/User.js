@@ -28,14 +28,14 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    status:{
-        type:String,
-        default:0,
-        required:true,
+    status: {
+        type: String,
+        default: 0,
+        required: true,
     },
-    phoneNumber : {
-        type : Number
-    }
+    phoneNumber: {
+        type: Number,
+    },
 });
 
 module.exports = mongoose.model("UserDetails", UserSchema);

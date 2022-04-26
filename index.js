@@ -24,6 +24,7 @@ const {
     deleteOldInviteCode,
     createNewInviteCode,
     allEventDetails,
+    userDetails,
 } = require("./utils");
 var url = require("url");
 
@@ -202,11 +203,20 @@ app.get("/joinTeam", authCheck, async (req, res) => {
 app.get("/deleteTeam", authCheck, async (req, res) => {
     const current_url = url.parse(req.url, true);
     const params = current_url.query;
-
-    await deleteTeam(params.team);
+    const teamTable = require("./models/Team");
 
     const event = await findEventFromId(params.event);
-    res.redirect(`/event?event=${event.name}`);
+
+    var team = await teamTable
+        .findOne({ event: event._id, teamLeader: req.user._id })
+        .lean();
+
+    if (team != null) {
+        await deleteTeam(params.team);
+        res.redirect(`/event?event=${event.name}`);
+    } else {
+        console.log("Only Team Leader can delete a team!");
+    }
 });
 
 app.post("/joinTeam", authCheck, async (req, res) => {
@@ -226,11 +236,40 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
     const inviteCodeTable = require("./models/InviteCode");
     var inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
+
+    // only team leader can delete a team and generate a invite code.
+    const teamTable = require("./models/Team");
+    var teaminfo = await teamTable
+        .findOne({ event: team.event, teamLeader: req.user._id })
+        .lean();
+    let leader = false;
+    if (teaminfo != null) {
+        leader = true;
+    }
+
+    // event details
+    const event = await findEvent(req);
+
+    // user info
+    const leaderinfo = await userDetails(req.user._id);
+
+    //team member details
+    let members_info = [];
+    for (let index = 0; index < team.members.length; index++) {
+        let mem_id = team.members[index].member_id;
+        let info = await userDetails(mem_id);
+        members_info.push(info);
+    }
+    // console.log("m = ", members_info);
     context = {
+        event: event,
         team: team,
         authenticated: req.isAuthenticated(),
         inviteCode: null,
         validUpto: null,
+        leader: leader,
+        leaderinfo: leaderinfo,
+        members_info: members_info,
     };
     // console.log(team);
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
