@@ -5,11 +5,14 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xepecto'22" />
-        <meta name="description" content=" Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content=" Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes."/>
+        grand prizes."
+        />
         <title>Profile | Xpecto</title>
         <!-- CSS only -->
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
@@ -302,7 +305,9 @@
         <div class="home">
             <section class="showcase">
                 <header>
-                    <a href="/" class=""><img src="./images/xpecto.png" alt="" class="logo-img"></a>
+                    <a href="/" class=""
+                        ><img src="./images/xpecto.png" alt="" class="logo-img"
+                    /></a>
                     <div class="toggle"></div>
                 </header>
                 <div class="overlay"></div>
@@ -355,8 +360,13 @@
                     <!-- registered events -->
                     <h2 class="reg-heading">Registered Events</h2>
                     <div class="reg-container">
-                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+                        <% if(created_teams.length == 0) {%>
+                        <button type="button" class="btn btn-info">
+                            No Events Registered!
+                        </button>
 
+                        <%}else {%> <% for( let index = 0; index <
+                        created_teams.length; index++ ) { %>
                         <!-- event -->
                         <div class="card-event">
                             <table>
@@ -370,10 +380,16 @@
                                 </tr>
                             </table>
                         </div>
-                        <% } %>
+                        <% } %> <% } %>
                     </div>
                     <div class="reg-container">
-                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
+                        <% if(joined_teams.length == 0) {%>
+                        <!-- <button type="button" class="btn btn-info">
+                            No Team Joined!
+                        </button> -->
+
+                        <%}else {%> <% for( let index = 0; index <
+                        joined_teams.length; index++ ) { %>
 
                         <!-- event -->
                         <div class="card-event">
@@ -388,7 +404,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <% } %>
+                        <% } %> <% } %>
                     </div>
                     <hr />
                     <!-- registered events end -->
@@ -396,7 +412,13 @@
                     <!-- Created Teams -->
                     <h2 class="create-heading">Created Teams</h2>
                     <div class="reg-container">
-                        <% for( let index = 0; index < created_teams.length; index++ ) { %>
+                        <% if(created_teams.length == 0) {%>
+                        <button type="button" class="btn btn-info">
+                            No Team Created!
+                        </button>
+
+                        <%}else {%> <% for( let index = 0; index <
+                        created_teams.length; index++ ) { %>
 
                         <!-- event -->
                         <div class="card-event">
@@ -411,14 +433,20 @@
                                 </tr>
                             </table>
                         </div>
-                        <% } %>
+                        <% } %> <% } %>
                     </div>
                     <!-- created team end  -->
                     <hr />
                     <!-- Joined Team -->
                     <h2 class="join-heading">Joined Teams</h2>
                     <div class="reg-container">
-                        <% for( let index = 0; index < joined_teams.length; index++ ) { %>
+                        <% if(joined_teams.length == 0) {%>
+                        <button type="button" class="btn btn-info">
+                            No Team Joined!
+                        </button>
+
+                        <%}else {%> <% for( let index = 0; index <
+                        joined_teams.length; index++ ) { %>
 
                         <!-- event -->
                         <div class="card-event">
@@ -433,7 +461,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <% } %>
+                        <% } %> <% } %>
                     </div>
                     <!-- Joined teams end  -->
                     <hr />

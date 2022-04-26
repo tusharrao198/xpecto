@@ -251,7 +251,13 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const event = await findEvent(req);
 
     // user info
-    const leaderinfo = await userDetails(req.user._id);
+    let leaderinfo = null;
+    if (leader) {
+        leaderinfo = await userDetails(req.user._id);
+    } else {
+        const teamdata = await teamTable.findOne({ event: team.event }).lean();
+        leaderinfo = await userDetails(teamdata.teamLeader);
+    }
 
     //team member details
     let members_info = [];
@@ -260,7 +266,6 @@ app.get("/userTeam", authCheck, async (req, res) => {
         let info = await userDetails(mem_id);
         members_info.push(info);
     }
-    // console.log("m = ", members_info);
     context = {
         event: event,
         team: team,
