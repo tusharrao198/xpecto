@@ -5,11 +5,14 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xepecto'22" />
-        <meta name="description" content=" Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content=" Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes."/>
+        grand prizes."
+        />
         <title>Event | <%= event.name %> | Xpecto</title>
         <link href="./css/preload.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="./css/navbar.css" />
@@ -78,7 +81,7 @@
                     <div class="toggle"></div>
                 </header>
                 <div class="overlay"></div>
-                <h1 class="text-white">To be Updated Soon!</h1>
+                <!-- <h1 class="text-white">To be Updated Soon!</h1> -->
 
                 <div class="container">
                     <div class="p-4 d-flex justify-content-center flex-nowrap">
@@ -89,6 +92,18 @@
                     </div>
                     <div class="col-md-8 mx-auto bg-white">
                         <div class="card-body">
+                            <div class="card-img col-md-4">
+                                <h5 class="card-title"><%= event.name %></h5>
+
+                                <img
+                                    src="images/eventimg/<%= event.event_image %>"
+                                    class="img-fluid rounded-start"
+                                    style="padding-left: 50%"
+                                    alt="<%= event.event_image %>"
+                                />
+                            </div>
+                            <p class="card-text"><%= event.content %></p>
+
                             <div class="mx-auto text-center">
                                 <% if(team){ %>
                                 <a
@@ -109,24 +124,6 @@
                                 >
                                 <% } %>
                             </div>
-                            <h5 class="card-title"><%= event.name %></h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Maiores quae, aliquam tempore
-                                magnam modi asperiores, quidem ex maxime nihil
-                                blanditiis molestias nemo laudantium quos eum
-                                atque dolores, culpa dolore dignissimos! Lorem
-                                ipsum dolor sit, amet consectetur adipisicing
-                                elit. Cum ducimus blanditiis ratione laudantium,
-                                itaque possimus amet labore recusandae suscipit
-                                explicabo ipsa culpa aut quod error ipsam?
-                                Impedit accusantium nam adipisci! Lorem ipsum
-                                dolor sit, amet consectetur adipisicing elit. In
-                                perspiciatis tenetur eligendi magni dolore
-                                repellat. Labore quaerat temporibus eos fugit,
-                                earum soluta accusantium ullam minima sequi
-                                facere. Dolores, ratione asperiores!
-                            </p>
                         </div>
                     </div>
                 </div>

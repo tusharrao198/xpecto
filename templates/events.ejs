@@ -90,22 +90,22 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img
-                                        src="images/aa_1280.jpg"
+                                        src="images/eventimg/<%= events[i].event_image %>"
                                         class="img-fluid rounded-start"
-                                        alt="..."
+                                        alt="<%= events[i].event_image %>"
                                     />
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title"><%= events[i].name %></h5>
                                         <p class="card-text"> 
-                                            <%= events[i].createdAt %>
-                                            <%= events[i].duration %> 
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores quae, aliquam tempore magnam modi asperiores, quidem ex maxime nihil blanditiis molestias nemo laudantium quos eum atque dolores, culpa dolore dignissimos!
+                                            <!-- <%= events[i].createdAt %>
+                                            <%= events[i].duration %>  -->
+                                            <%= events[i].content %> 
                                         </br></br>
             
                                             <a href="/event?event=<%=events[i].name %>" class="card-text btn btn-primary">
-                                                <span class="fa fa-home"></span> <%=events[i].name %> | Go To Event</a
+                                                <span class=""></span> <%=events[i].name %> | Go To Event</a
                                             >
                                             <a href="/" class="card-text btn btn-primary">
                                                 <span class="fa fa-home"></span> Back to Home</a
@@ -113,7 +113,7 @@
                                         </p>
                                         <p class="card-text">
                                             <small class="text-muted"
-                                                ><%= events[i].createdAt %></br>Last updated 3 mins ago</small
+                                                ><%= events[i].createdAt %></br>Last updated <%= events[i].duration.hours %> hrs ago</small
                                             >
                                         </p>
                                     </div>

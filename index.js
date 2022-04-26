@@ -8,7 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
-const upload =require("./multer.js");
+const upload = require("./multer.js");
 const events = require("./models/Events.js");
 // const paymentRoutes = require("./middleware/payment");
 const connectDB = require("./config/db");
@@ -23,7 +23,7 @@ const {
     removeMember,
     deleteOldInviteCode,
     createNewInviteCode,
-    allEventDetails
+    allEventDetails,
 } = require("./utils");
 var url = require("url");
 
@@ -57,16 +57,19 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/static"));
 app.use("/images", express.static(__dirname + "static/images"));
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     if (!req.user) {
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.header('Expires', '-1');
-        res.header('Pragma', 'no-cache');
+        res.header(
+            "Cache-Control",
+            "private, no-cache, no-store, must-revalidate"
+        );
+        res.header("Expires", "-1");
+        res.header("Pragma", "no-cache");
     }
     next();
 });
 
-app.use('/xpecto.ico', express.static('../static/images/xpecto.ico'));
+app.use("/xpecto.ico", express.static("../static/images/xpecto.ico"));
 // Sessions middleware
 app.use(
     session({
@@ -119,13 +122,12 @@ app.get("/TandC", (req, res) => {
     });
 });
 
-
 app.get("/", (req, res) => {
     if (req.session.user == null) {
         user = {
             status: 0,
         };
-        req.session.user = user
+        req.session.user = user;
     }
 
     // console.log(req.session.user)
@@ -140,7 +142,7 @@ app.get("/profile", authCheck, async (req, res) => {
     res.render("profile", {
         user: req.user,
         authenticated: req.isAuthenticated(),
-        ...context
+        ...context,
     });
 });
 
@@ -237,7 +239,6 @@ app.get("/userTeam", authCheck, async (req, res) => {
     }
 
     res.render("Team/userTeam", { ...context, user: req.session.user });
-
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
@@ -256,35 +257,35 @@ app.get("/error", (req, res) =>
     })
 );
 
-app.get("/adminlogin",(req,res)=>{
-    req.session.admin=="0";
+app.get("/adminlogin", (req, res) => {
+    req.session.admin == "0";
     res.render("admin/adminlogin.ejs");
 });
 
-app.post("/adminauth",(req,res)=>{
-    if(req.body.email==process.env.ADMINEMAIL && req.body.password==process.env.ADMINPASSWORD){
-        req.session.admin="1";
+app.post("/adminauth", (req, res) => {
+    if (
+        req.body.email == process.env.ADMINEMAIL &&
+        req.body.password == process.env.ADMINPASSWORD
+    ) {
+        req.session.admin = "1";
         res.render("admin/adminoption.ejs");
-    }else{
+    } else {
         res.redirect("/adminlogin");
     }
 });
 
-app.post("/addevent",upload.single('image'),async(req,res)=>{
-    if(req.session.admin=="1"){
+app.post("/addevent", upload.single("image"), async (req, res) => {
+    if (req.session.admin == "1") {
         const event = new events(req.body);
-        await event.save((err)=>{
-            if(err){
-                res.send("DATA not saved"+err);
-            }else{
+        await event.save((err) => {
+            if (err) {
+                res.send("DATA not saved" + err);
+            } else {
                 res.render("admin/adminoption.ejs");
             }
         });
     }
 });
-
-
-
 
 // onetime coupon generate logic
 // app.get("/xyzabc",async (req,res)=>{
