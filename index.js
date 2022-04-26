@@ -191,7 +191,6 @@ app.post("/createTeam", authCheck, async (req, res) => {
 });
 
 app.get("/joinTeam", authCheck, async (req, res) => {
-    console.log("req = ", req);
     const event = await findEvent(req);
     const context = {
         event: event,
