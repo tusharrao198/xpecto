@@ -23,36 +23,36 @@ module.exports = {
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
 
-        var user_id = String(req.user._id)
+        var user_id = String(req.user._id);
         if (team == null)
             team = await teamTable.findOne({
                 members: {
                     $elemMatch: {
-                        member_id: user_id
-                    }
-                }
-            })
+                        member_id: user_id,
+                    },
+                },
+            });
 
         return team;
     },
-    allEventDetails: async function(req){
+    allEventDetails: async function (req) {
         // const event = await module.exports.findEvent(req);
         const teamTable = require("./models/Team");
-        
+
         var user_id = String(req.user._id);
         var created_teams = await teamTable
             .find({ teamLeader: req.user._id })
             .lean();
         // console.log("created_teams",created_teams)
         var joined_teams = await teamTable.find({
-                members: {
-                    $elemMatch: {
-                        member_id: user_id
-                    }
-                }
-            });
+            members: {
+                $elemMatch: {
+                    member_id: user_id,
+                },
+            },
+        });
         // console.log("joined_teams",joined_teams);
-        return {joined_teams : joined_teams, created_teams:created_teams};
+        return { joined_teams: joined_teams, created_teams: created_teams };
     },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
@@ -87,7 +87,7 @@ module.exports = {
             const teamTable = require("./models/Team");
             await teamTable.updateOne(
                 { _id: inviteCode.team },
-                { $push: { members: { member_id: req.user._id }}}
+                { $push: { members: { member_id: req.user._id } } }
             );
             const team = await teamTable
                 .findOne({ _id: inviteCode.team })
@@ -99,7 +99,8 @@ module.exports = {
         const teamTable = require("./models/Team");
         await teamTable.deleteOne({ _id: team_id });
     },
-    removeMember: async function(req){
+
+    removeMember: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
 
@@ -107,7 +108,7 @@ module.exports = {
 
         const status = await teamTable.findOneAndUpdate(
             { _id: params.team },
-            { $pull: { members: { member_id: params.member }}}
+            { $pull: { members: { member_id: params.member } } }
         );
         // console.log("84 -> status",status);
     },

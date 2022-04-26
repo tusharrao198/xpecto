@@ -299,12 +299,14 @@
                                             Generate New Invite Code
                                         </button></a
                                     >
+                                    <% if(leader){ %>
                                     <a
                                         href="/deleteTeam?team=<%= team._id %>&event=<%= team.event %>"
                                         ><button class="delete btn1">
                                             Delete Team
                                         </button></a
                                     >
+                                    <%}%>
                                 </div>
                             </div>
                         </div>

@@ -191,6 +191,7 @@ app.post("/createTeam", authCheck, async (req, res) => {
 });
 
 app.get("/joinTeam", authCheck, async (req, res) => {
+    console.log("req = ", req);
     const event = await findEvent(req);
     const context = {
         event: event,
@@ -202,11 +203,20 @@ app.get("/joinTeam", authCheck, async (req, res) => {
 app.get("/deleteTeam", authCheck, async (req, res) => {
     const current_url = url.parse(req.url, true);
     const params = current_url.query;
-
-    await deleteTeam(params.team);
+    const teamTable = require("./models/Team");
 
     const event = await findEventFromId(params.event);
-    res.redirect(`/event?event=${event.name}`);
+
+    var team = await teamTable
+        .findOne({ event: event._id, teamLeader: req.user._id })
+        .lean();
+
+    if (team != null) {
+        await deleteTeam(params.team);
+        res.redirect(`/event?event=${event.name}`);
+    } else {
+        console.log("Only Team Leader can delete a team!");
+    }
 });
 
 app.post("/joinTeam", authCheck, async (req, res) => {
@@ -226,11 +236,22 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
     const inviteCodeTable = require("./models/InviteCode");
     var inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
+
+    // only team leader can delete a team.
+    const teamTable = require("./models/Team");
+    var teaminfo = await teamTable
+        .findOne({ event: team.event, teamLeader: req.user._id })
+        .lean();
+    let leader = false;
+    if (teaminfo != null) {
+        leader = true;
+    }
     context = {
         team: team,
         authenticated: req.isAuthenticated(),
         inviteCode: null,
         validUpto: null,
+        leader: leader,
     };
     // console.log(team);
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
