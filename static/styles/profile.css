@@ -1,0 +1,183 @@
+.prof-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.profile-card {
+    color: white;
+    font-weight: bold;
+    width: 450px;
+    padding: 2rem;
+    backdrop-filter: blur(10px) saturate(200%);
+    -webkit-backdrop-filter: blur(10px) saturate(200%);
+    background-color: rgba(17, 25, 40, 0.5);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.125);
+    transition: 0.2s;
+}
+.profile-card:hover {
+    transition: 0.2s;
+    box-shadow: 0 0 25px -30px #009dbe;
+    backdrop-filter: blur(5px) saturate(200%);
+    -webkit-backdrop-filter: blur(5px) saturate(200%);
+}
+.profile .heading-prof {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.last {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.last {
+    margin-top: 1rem;
+}
+.btn {
+    font-weight: bold;
+    padding: 0.25rem;
+    width: 100px;
+    border-radius: 5px;
+
+    transition: 0.2s;
+    font-size: 1.25rem;
+}
+.back-home {
+    border: 2px solid rgba(2, 84, 200, 1);
+    background-color: rgba(2, 84, 200, 1);
+    color: white;
+}
+.logout {
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-color: black;
+    transition: 0.2s;
+}
+.person {
+    font-size: 1.5rem;
+}
+#person-image {
+    margin-bottom: 1.5rem;
+}
+.person > img {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.name,
+.email {
+    margin: 1rem;
+    font-size: 1.25rem;
+}
+
+.profile span {
+    font-weight: 500;
+}
+.person img {
+    border-radius: 50%;
+}
+.name i {
+    width: 25px;
+    margin-right: 0.75rem;
+}
+
+.email i {
+    margin-right: 0.75rem;
+    width: 25px;
+}
+
+.card-event {
+    color: white;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    background-color: rgba(0, 75, 180, 0.75);
+    backdrop-filter: blur(5px) saturation(200%);
+    -webkit-backdrop-filter: blur(7px) saturation(200%);
+    transition: 0.3s;
+    border-radius: 7.5px;
+    margin: 1rem;
+}
+
+.card-event:hover {
+    background-color: rgba(2, 84, 200, 1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -15px black;
+    transition: 0.3s;
+}
+tr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+tr:nth-child(1) {
+    margin-bottom: 1rem;
+}
+td:nth-child(1) {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.register-heading {
+    text-align: center;
+    color: white;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+#registered-container div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+@media (max-width: 480px) {
+    .profile-card {
+        width: 300px;
+    }
+    .last {
+        flex-direction: column;
+        align-items: center;
+    }
+    .name,
+    .email {
+        font-size: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .name > i,
+    .email > i {
+        margin: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-card {
+        width: 250px;
+    }
+    .name,
+    .email {
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .name > i,
+    .email > i {
+        margin: 0;
+    }
+}

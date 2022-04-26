@@ -58,7 +58,18 @@ img {
     z-index: 7;
     letter-spacing: 0.51px;
     transform: translateY(200px);
+    animation: shake 0.75s infinite;
 }
+
+ @keyframes shake{
+        0%,100%{
+            transform: translateY(200px);
+        }
+
+        50%{
+            transform: translateY(205px);
+        }
+    }
 .section-padding {
     padding: 80px 0;
     background: #fefefe;
