@@ -1,4 +1,5 @@
 const { create } = require("connect-mongo");
+const { connect } = require("http2");
 var url = require("url");
 
 module.exports = {
@@ -143,5 +144,11 @@ module.exports = {
                 return err;
             }
         });
+    },
+
+    userDetails: async function (user_id) {
+        const User = require("./models/User");
+        let userinfo = await User.findOne({ _id: user_id }).lean();
+        return userinfo;
     },
 };
