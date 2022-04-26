@@ -313,18 +313,34 @@ app.post("/adminauth", (req, res) => {
     }
 });
 
-app.post("/addevent", upload.single("image"), async (req, res) => {
+app.post("/addevent", upload.single('image'), async (req, res) => {
     if (req.session.admin == "1") {
-        const event = new events(req.body);
-        await event.save((err) => {
-            if (err) {
-                res.send("DATA not saved" + err);
+
+        var found = await events.findOne({ name: req.body.name });
+
+        if (!found) {
+            const event = new events(req.body);
+            await event.save((err) => {
+                if (err) {
+                    res.send("DATA not saved" + err);
+                } else {
+                    res.render("admin/adminoption.ejs");
+                }
+            });
+        } else {
+
+            var eventUpdated = await events.updateOne({ name: req.body.name }, req.body);
+            if (!eventUpdated) {
+                res.send("DATA not updated");
             } else {
                 res.render("admin/adminoption.ejs");
             }
-        });
+        }
+
+
     }
 });
+                                            
 
 // onetime coupon generate logic
 // app.get("/xyzabc",async (req,res)=>{
