@@ -83,7 +83,7 @@ nav a:hover {
 .hamburger {
     display: none;
 }
-.hamburger:hover{
+.hamburger:hover {
     cursor: pointer;
 }
 .hamburger img {
@@ -123,7 +123,7 @@ nav a:hover {
         justify-content: center;
         background-color: rgb(0, 20, 47);
         display: none;
-        transition:all 0.5s ease;
+        transition: all 0.5s ease;
     }
     nav a {
         font-size: 1.25rem;
@@ -482,7 +482,7 @@ nav a:hover {
 }
 .event-card-container {
     text-align: center;
-    width: 250px;
+    width: 375px;
     padding: 1rem;
     /* border: 2px solid black; */
     border-radius: 7.5px;
