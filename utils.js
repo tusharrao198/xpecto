@@ -1,4 +1,5 @@
 const { create } = require("connect-mongo");
+const { connect } = require("http2");
 var url = require("url");
 
 module.exports = {
@@ -23,15 +24,15 @@ module.exports = {
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
 
-        var user_id = String(req.user._id)
+        var user_id = String(req.user._id);
         if (team == null)
             team = await teamTable.findOne({
                 members: {
                     $elemMatch: {
-                        member_id: user_id
-                    }
-                }
-            })
+                        member_id: user_id,
+                    },
+                },
+            });
 
         return team;
     },
@@ -47,9 +48,9 @@ module.exports = {
         var joined_teams = await teamTable.find({
             members: {
                 $elemMatch: {
-                    member_id: user_id
-                }
-            }
+                    member_id: user_id,
+                },
+            },
         });
         // console.log("joined_teams",joined_teams);
         return { joined_teams: joined_teams, created_teams: created_teams };
@@ -99,6 +100,7 @@ module.exports = {
         const teamTable = require("./models/Team");
         await teamTable.deleteOne({ _id: team_id });
     },
+
     removeMember: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -142,5 +144,11 @@ module.exports = {
                 return err;
             }
         });
+    },
+
+    userDetails: async function (user_id) {
+        const User = require("./models/User");
+        let userinfo = await User.findOne({ _id: user_id }).lean();
+        return userinfo;
     },
 };

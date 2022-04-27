@@ -46,30 +46,3 @@ module.exports = function (passport) {
         User.findById(id, (err, user) => done(err, user));
     });
 };
-
-// // create config.env in the config folder and set the variables there.
-// const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-// const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-
-// module.exports = (passport) => {
-//     passport.serializeUser(function (user, cb) {
-//         cb(null, user);
-//     });
-
-//     passport.deserializeUser(function (obj, cb) {
-//         cb(null, obj);
-//     });
-
-//     passport.use(
-//         new GoogleStrategy(
-//             {
-//                 clientID: process.env.GOOGLE_CLIENT_ID,
-//                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//                 callbackURL: "/auth/google/callback",
-//             },
-//             function (accessToken, refreshToken, profile, done) {
-//                 return done(null, profile);
-//             }
-//         )
-//     );
-// };

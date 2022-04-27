@@ -39,14 +39,17 @@ app.use("/images", express.static(__dirname + "static/images"));
 
 app.use(function (req, res, next) {
     if (!req.user) {
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.header('Expires', '-1');
-        res.header('Pragma', 'no-cache');
+        res.header(
+            "Cache-Control",
+            "private, no-cache, no-store, must-revalidate"
+        );
+        res.header("Expires", "-1");
+        res.header("Pragma", "no-cache");
     }
     next();
 });
 
-app.use('/xpecto.ico', express.static('../static/images/xpecto.ico'));
+app.use("/xpecto.ico", express.static("../static/images/xpecto.ico"));
 // Sessions middleware
 app.use(
     session({
@@ -66,7 +69,13 @@ app.use("/auth", authRoutes);
 app.get("/", (req, res) => {
     // console.log(req.session.user)
     res.render("index", {
-        authenticated: req.isAuthenticated()
+        authenticated: req.isAuthenticated(),
+    });
+});
+
+app.get("/events", (req, res) => {
+    res.render("events", {
+        authenticated: req.isAuthenticated(),
     });
 });
 

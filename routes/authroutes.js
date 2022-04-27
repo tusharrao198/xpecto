@@ -2,9 +2,12 @@ const router = require("express").Router();
 const passport = require("passport");
 
 // auth login
-// router.get("/login", (req, res) => {
-//     res.render("login", { authenticated: req.isAuthenticated(), user: req.session.user });
-// });
+router.get("/login", (req, res) => {
+    res.render("login", {
+        authenticated: req.isAuthenticated(),
+        user: req.session.user,
+    });
+});
 
 // auth logout
 router.get("/logout", (req, res) => {
@@ -33,7 +36,7 @@ router.get(
             // console.log("dev url = ", req.url);
             res.redirect("/");
         } else if (process.env.NODE_ENV == "production") {
-            res.redirect(`https://${req.headers.host}/profile`);
+            res.redirect(`https://${req.headers.host}/`);
         } else {
             res.redirect("/");
         }

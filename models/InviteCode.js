@@ -12,8 +12,7 @@ const InviteCodeSchema = new mongoose.Schema({
     validUpto: {
         type: Date,
         required: true,
-    }
+    },
 });
-
 
 module.exports = mongoose.model("InviteCode", InviteCodeSchema);
