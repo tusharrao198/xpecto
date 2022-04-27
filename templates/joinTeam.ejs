@@ -141,25 +141,25 @@
         <div class="" id="page">
             <div class="container">
                 <div class="heading">
-                    <span>Create</span>
+                    <span>Join</span>
                     <span>Team</span>
                 </div>
             </div>
             <div class="prof-container">
                 <!-- <div class="content"></div> -->
                 <div class="card">
-                    <div class="create-container">
-                        <h1>Create Team | <%= event.name %></h1>
-                        <hr />
-                        <form action="/createTeam" method="POST">
+                    <div class="join-container">
+                        <h1>Join Team | <%= event.name %></h1>
+                        <form action="/joinTeam" method="POST">
                             <div class="form-group">
-                                <label for="teamName">Team Name</label>
+                                <hr />
+                                <label for="inviteCode">Invite Code</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="teamName"
-                                    placeholder="Enter team name"
-                                    name="team_name"
+                                    id="inviteCode"
+                                    placeholder="Enter invite code"
+                                    name="invite_code"
                                 />
                             </div>
                             <div style="display: none">
@@ -171,7 +171,7 @@
                                     value="<%= event._id %>"
                                 />
                             </div>
-                            <button type="submit" class="btn1">Create</button>
+                            <button type="submit" class="btn1">Join</button>
                         </form>
                     </div>
                 </div>
