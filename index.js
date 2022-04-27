@@ -9,7 +9,24 @@ const MongoStore = require("connect-mongo");
 const { authCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const connectDB = require("./config/db");
+const {
+    findEvent,
+    findEventFromId,
+    findUserTeam,
+    findUserTeamFromId,
+    createNewTeam,
+    joinTeam,
+    deleteTeam,
+    removeMember,
+    deleteOldInviteCode,
+    createNewInviteCode,
+    allEventDetails,
+    userDetails,
+} = require("./utils");
 var url = require("url");
+
+const { generateString } = require("./utils");
+const code = require("./models/code.js");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -63,11 +80,11 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 // Routes
 app.use("/auth", authRoutes);
 
 app.get("/", (req, res) => {
-    // console.log(req.session.user)
     res.render("index", {
         authenticated: req.isAuthenticated(),
     });
@@ -78,6 +95,29 @@ app.get("/events", (req, res) => {
         authenticated: req.isAuthenticated(),
     });
 });
+
+app.get("/profile", authCheck, async (req, res) => {
+    const context = await allEventDetails(req);
+    res.render("profile", {
+        user: req.user,
+        authenticated: req.isAuthenticated(),
+        ...context,
+    });
+});
+
+app.get("/register", (req, res) => {
+    res.render("register", {
+        user: req.session.user,
+        authenticated: req.isAuthenticated(),
+    });
+});
+
+// app.get("/team", (req, res) => {
+//     res.render("team", {
+//         user: req.session.user,
+//         authenticated: req.isAuthenticated(),
+//     });
+// });
 
 app.listen(port, (err) => {
     if (err) throw err;
