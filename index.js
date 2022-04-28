@@ -143,7 +143,6 @@ app.get("/faq", (req, res) => {
 app.get("/event", authCheck, regCheck , async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-    console.log(team);
     
     const context = {
         event: event,
@@ -216,7 +215,7 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
 
 app.post("/joinTeam", authCheck, async (req, res) => {
     await joinTeam(req);
-    const event = await findEventFromId(req.body.event_id);
+    const event = await findEvent(req);
     res.redirect(`/event?event=${event.name}`);
 });
 
