@@ -84,7 +84,6 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Routes
 app.use("/auth", authRoutes);
 
@@ -105,12 +104,17 @@ app.get("/events", async (req, res) => {
 });
 
 app.get("/profile", authCheck, async (req, res) => {
+    // joined teams : created_teams
+
     const context = await allEventDetails(req);
     res.render("profile", {
         user: req.user,
         authenticated: req.isAuthenticated(),
-        ...context,
+        context: context,
     });
+
+    // console.log(typeof (context))
+
 });
 app.get("/terms", (req, res) => {
     res.render("tnc", {
@@ -140,10 +144,10 @@ app.get("/faq", (req, res) => {
 //     });
 // });
 
-app.get("/event", authCheck, regCheck , async (req, res) => {
+app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-    
+
     const context = {
         event: event,
         team: team,
@@ -152,7 +156,7 @@ app.get("/event", authCheck, regCheck , async (req, res) => {
     res.render("event", { ...context, user: req.session.user });
 });
 
-app.get("/eventRegister", authCheck, async(req, res) => {
+app.get("/eventRegister", authCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
         event: event,
@@ -160,12 +164,12 @@ app.get("/eventRegister", authCheck, async(req, res) => {
     };
     res.render("register", { ...context, user: req.session.user });
 });
-app.post("/eventRegister", async(req, res) =>{
+app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
     const eventTable = require('./models/Events');
     await eventTable.updateOne(
         { _id: event._id },
-        { $push: { registeredUsers : { user_id : req.user._id } } }
+        { $push: { registeredUsers: { user_id: req.user._id } } }
     );
     res.redirect(`/event?event=${event.name}`);
 });

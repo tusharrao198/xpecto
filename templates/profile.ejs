@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="images/xpecto-logo-header.png"
-        />
-        <script
-            src="https://kit.fontawesome.com/a1542a4884.js"
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="styles/page.css" />
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Profile | Xpecto</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="images/xpecto-logo-header.png" />
+    <script src="https://kit.fontawesome.com/a1542a4884.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
 
-    <style>
-        #page .container {
-            padding-top: 2.5rem;
-            width: 250px;
-        }
-        #page .heading span {
-            font-size: 2.5rem;
-            padding-right: 2.5rem;
-            transform: skew(0deg);
-        }
+    <title>Profile | Xpecto</title>
+</head>
 
-        #page .heading {
-            line-height: 1.5;
-            padding-left: 7.5rem;
-            padding-top: 25%;
-            display: flex;
-            align-items: baseline;
-            transform: skewX(-7.5deg);
-        }
-    </style>
-    <body>
-        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('partials/navbar.ejs') %>
+<style>
+    #page .container {
+        padding-top: 2.5rem;
+        width: 250px;
+    }
+
+    #page .heading span {
+        font-size: 2.5rem;
+        padding-right: 2.5rem;
+        transform: skew(0deg);
+    }
+
+    #page .heading {
+        line-height: 1.5;
+        padding-left: 7.5rem;
+        padding-top: 25%;
+        display: flex;
+        align-items: baseline;
+        transform: skewX(-7.5deg);
+    }
+</style>
+
+<body>
+    <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+    <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">
@@ -64,18 +60,18 @@
                             <div class="heading-prof">PROFILE</div>
                             <hr />
                             <div class="person">
-                                <img
-                                    id="person-image"
-                                    src="<%= user.image %>"
-                                    alt="image of person"
-                                />
+                                <img id="person-image" src="<%= user.image %>" alt="image of person" />
                                 <div class="name">
                                     <i class="fa-solid fa-user"></i>
-                                    <span><%= user.displayName %></span>
+                                    <span>
+                                        <%= user.displayName %>
+                                    </span>
                                 </div>
                                 <div class="email">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <span><%= user.email %></span>
+                                    <span>
+                                        <%= user.email %>
+                                    </span>
                                 </div>
 
                                 <hr />
@@ -83,13 +79,11 @@
                                     <a href="/">
                                         <button class="btn back-home">
                                             Home
-                                        </button></a
-                                    >
+                                        </button></a>
                                     <a href="/auth/logout">
                                         <button class="btn logout">
                                             Logout
-                                        </button></a
-                                    >
+                                        </button></a>
                                 </div>
                             </div>
                         </div>
@@ -103,19 +97,31 @@
                     <div class="register-heading">Registered Events</div>
 
                     <div>
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Event</td>
-                                    <td>EventName</td>
-                                </tr>
 
-                                <tr>
-                                    <td>Team</td>
-                                    <td>TeamName</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <% if(context.registeredevents.length==0){ %>
+                            <div class="register-heading">No Registered Events</div>
+                            <% }else {%>
+                                <% for(let x of context.registeredevents){ %>
+
+                                    <div class="card-event">
+                                        <table>
+                                            <tr>
+                                                <td>Event</td>
+                                                <td>
+                                                    <%= x.name %>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Team</td>
+                                                <td>
+                                                    <%= x.teamName %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
                     </div>
                 </div>
                 <!-- registered events end -->
@@ -126,19 +132,32 @@
                 <div id="registered-container">
                     <div class="register-heading">Created Teams</div>
                     <div>
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Team</td>
-                                    <td>TeamName</td>
-                                </tr>
+                        <% if(context.created_teams.length==0){ %>
+                            <div class="register-heading">No Created Teams</div>
+                            <% }else {%>
+                                <% for(let x of context.created_teams) {%>
 
-                                <tr>
-                                    <td>Event</td>
-                                    <td>EventName</td>
-                                </tr>
-                            </table>
-                        </div>
+                                    <div class="card-event">
+
+                                        <table>
+
+                                            <tr>
+                                                <td>Team</td>
+                                                <td>
+                                                    <%= x.name %>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Event</td>
+                                                <td>
+                                                    <%= x.eventName %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <% } %>
+                                        <% }%>
                     </div>
                 </div>
                 <!-- created teams end  -->
@@ -149,24 +168,40 @@
                 <div id="registered-container">
                     <div class="register-heading">Joined Teams</div>
                     <div>
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Team</td>
-                                    <td>TeamName</td>
-                                </tr>
+                        <% if(context.joined_teams.length==0){ %>
+                            <div class="register-heading">No Joined Teams</div>
+                            <% }else {%>
 
-                                <tr>
-                                    <td>Event</td>
-                                    <td>EventName</td>
-                                </tr>
-                            </table>
-                        </div>
+                                <% for(let x of context.joined_teams) {%>
+
+                                    <div class="card-event">
+
+                                        <table>
+
+                                            <tr>
+                                                <td>Team</td>
+                                                <td>
+                                                    <%= x.name %>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Event</td>
+                                                <td>
+                                                    <%= x.eventName %>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
+
                     </div>
                 </div>
                 <!-- joined teams end -->
             </div>
         </div>
         <script src="scripts/script.js"></script>
-    </body>
+</body>
+
 </html>
