@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="images/xpecto-logo-header.png"
+        />
+        <script
+            src="https://kit.fontawesome.com/a1542a4884.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="styles/page.css" />
+        <link rel="stylesheet" href="styles/style.css" />
+
+        <title>Team | Xpecto</title>
+    </head>
+
+    <style>
+        #page .container {
+            padding-top: 5rem;
+            width: 250px;
+        }
+        #page .heading span {
+            font-size: 2.5rem;
+            padding-right: 2.5rem;
+            transform: skew(0deg);
+        }
+
+        #page .content {
+            /* width: 90%; */
+            padding-left: 0.1rem;
+            padding-right: 0.1rem;
+        }
+        #page .heading {
+            line-height: 1.5;
+            padding-left: 7.5rem;
+            padding-top: 25%;
+            display: flex;
+            align-items: baseline;
+            transform: skewX(-7.5deg);
+        }
+        .team-list-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .person-card-container {
+            margin: 1rem;
+            width: 250px;
+            background: rgba(0, 37, 84, 0.3);
+            box-shadow: 0 0 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 10px;
+            transition: 0.3s;
+            padding: 1rem;
+        }
+        .person-card-container:hover {
+            box-shadow: 0 0 75px 10px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(0.5px);
+            -webkit-backdrop-filter: blur(0.5px);
+        }
+
+        .person-img {
+            width: 125px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+        .person-card {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        .person-card i {
+            color: white;
+        }
+        .person-name {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0.25rem;
+        }
+        .person-role {
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .social div {
+            text-decoration: none;
+            padding: 0.25rem;
+            transition: 0.3s;
+            margin: 0.5rem 0.3rem 0.25rem 0.3rem;
+        }
+        .social div:hover {
+            transform: translateY(-3px);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        @media (max-width: 400px) {
+            #page .content {
+                padding-left: 0.1rem;
+                padding-right: 0.1rem;
+                margin-left: 0.1rem;
+                margin-right: 0.1rem;
+            }
+        }
+        .content h2 {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1.5rem;
+        }
+    </style>
+    <body>
+        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+        <header class="header-glass active">
+            <div>
+                <img src="images/xpecto-logo-header.png" alt="" />
+                <span>XPECTO'22</span>
+            </div>
+            <nav>
+                <a id="" href="/#home">Home</a>
+                <a id="" href="/#about">About Us</a>
+                <a id="" href="/#contact">Contact Us</a>
+                <a id="" href="/#sponsors">Sponsors</a>
+                <a id="" href="events.html">Events</a>
+                <a id="faq" href="">Faq</a>
+                <% if(!authenticated){ %>
+                <a id="sign" href="/auth/google"
+                    ><i class="fa-brands fa-google"></i> SignIn</a
+                >
+                <% }else{ %>
+                <a id="sign" href="/profile"><i class=""></i> Profile</a>
+                <a id="sign" href="/auth/logout"
+                    ><i class="fa-brands fa-google"></i> Logout</a
+                >
+                <% } %>
+            </nav>
+            <div class="hamburger">
+                <img class="toggle" src="images/menu_open.svg" alt="" />
+            </div>
+        </header>
+        <!-- -----HEADER END----- -->
+
+        <div class="" id="page">
+            <div class="container">
+                <div class="heading">
+                    <span>&nbsp;T</span>
+                    <span>&nbsp;E</span>
+                    <span>&nbsp;A</span>
+                    <span>&nbsp;M</span>
+                </div>
+            </div>
+            <div class="content">
+                <h2>People Who Made This Happen !!!</h2>
+                <div class="team-list-container">
+                    <div class="person-card-container">
+                        <div class="person-card">
+                            <img
+                                class="person-img"
+                                src="images/Team/Lalit_Avatar_For_Xpecto copy.png"
+                                alt=""
+                            />
+                            <div class="person-name">Lalit Mudgal</div>
+                            <div class="person-role">Convenor</div>
+                            <div class="social">
+                                <div>
+                                    <a href="">
+                                        <i
+                                            class="fa-brands fa-facebook-square fa-2x"
+                                        ></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <i
+                                            class="fa-brands fa-instagram-square fa-2x"
+                                        ></i>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <i
+                                            class="fa-brands fa-github-square fa-2x"
+                                        ></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- card end -->
+                </div>
+            </div>
+        </div>
+        <script src="scripts/script.js"></script>
+    </body>
+</html>
