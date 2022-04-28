@@ -161,40 +161,41 @@
                                     <td>Team Name</td>
                                     <td><%= team.name %></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Team ID</td>
                                     <td><%= team._id %></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>Event Name</td>
-                                    <td><%= team.event %></td>
+                                    <td><%= event.name %></td>
                                 </tr>
                                 <tr>
                                     <td>Leader ID</td>
-                                    <td><%= team.teamLeader %></td>
+                                    <td><%= leaderinfo.displayName %></td>
                                 </tr>
                                 <tr>
                                     <td>Team Members</td>
                                     <td>
-                                        <% for( let index = 0; index <
-                                        team.members.length; index++ ) { %> <%=
-                                        team.members[index].member_id %>
-                                        <a
-                                            href="removeMember?team=<%= team._id %>&member=<%= team.members[index].member_id %>"
-                                            ><button class="remove">x</button>
-                                        </a>
+                                        <% for( let index = 0; index < membersinfo.length; index++ ) { %>
+                                            <%= membersinfo[index].displayName %>
+                                            <% if(isLeader) {%>
+                                                <a
+                                                    href="removeMember?team=<%= team._id %>&member=<%= membersinfo[index]._id %>"
+                                                    ><button class="remove">x</button>
+                                                </a>
+                                            <% } %>
                                         <% } %>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Creation Time</td>
                                     <td><%= team.createdAt %></td>
-                                </tr>
+                                </tr> -->
                             </table>
                             <br />
                             <hr />
                             <br />
-                            <% if (inviteCode) {%>
+                            <% if (inviteCode && isLeader) {%>
                             <table>
                                 <tr>
                                     <td>InviteCode</td>
@@ -202,25 +203,28 @@
                                 </tr>
                                 <tr>
                                     <td>ValidUpto</td>
-                                    <td><%= validUpto %> <% } %></td>
+                                    <td><%= validUpto %> </td>
                                 </tr>
                             </table>
                             <br />
                             <hr />
-                            <div class="btn-container">
-                                <a
-                                    href="/generateInviteCode?team=<%= team._id %>"
-                                    ><button class="new btn1">
-                                        Generate New Invite Code
-                                    </button></a
-                                >
-                                <a
-                                    href="/deleteTeam?team=<%= team._id %>&event=<%= team.event %>"
-                                    ><button class="delete btn1">
-                                        Delete Team
-                                    </button></a
-                                >
-                            </div>
+                            <% } %>
+                            <% if(isLeader) {%>
+                                <div class="btn-container">
+                                    <a
+                                        href="/generateInviteCode?team=<%= team._id %>"
+                                        ><button class="new btn1">
+                                            Generate New Invite Code
+                                        </button></a
+                                    >
+                                    <a
+                                        href="/deleteTeam?team=<%= team._id %>&event=<%= team.event %>"
+                                        ><button class="delete btn1">
+                                            Delete Team
+                                        </button></a
+                                    >
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>

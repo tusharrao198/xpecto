@@ -190,9 +190,7 @@ app.post("/createTeam", authCheck, async (req, res) => {
 });
 
 app.get("/joinTeam", authCheck, async (req, res) => {
-    const event = await findEvent(req);
     const context = {
-        event: event,
         authenticated: req.isAuthenticated(),
     };
     res.render("joinTeam", { ...context, user: req.session.user });
@@ -218,9 +216,26 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
 });
 
 app.post("/joinTeam", authCheck, async (req, res) => {
-    await joinTeam(req);
-    const event = await findEvent(req);
-    res.redirect(`/event?event=${event.name}`);
+    const inviteCode = await joinTeam(req);
+    if(inviteCode != null){
+        const team_id = inviteCode.team;
+        const teamTable = require("./models/Team");
+        const team = await teamTable
+            .findOne({ _id: team_id })
+            .lean();
+        const event_id = team.event;
+
+        const event = await findEventFromId(event_id);
+        const eventTable = require('./models/Events');
+        await eventTable.updateOne(
+            { _id: event._id },
+            { $push: { registeredUsers : { user_id : req.user._id } } }
+        );
+        res.redirect(`/event?event=${event.name}`);
+    }
+    else{
+        res.redirect(`/joinTeam`);
+    }
 });
 
 app.get("/removeMember", authCheck, async (req, res) => {
@@ -235,45 +250,56 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const inviteCodeTable = require("./models/InviteCode");
     let inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
 
-    // only team leader can delete a team and generate a invite code.
-    const teamTable = require("./models/Team");
-    let teaminfo = await teamTable
-        .findOne({ event: team.event, teamLeader: req.user._id })
-        .lean();
-    let leader = false;
-    if (teaminfo != null) {
-        leader = true;
+    const leaderInfo = await userDetails(team.teamLeader);
+    let membersId = team.members;
+    let membersInfo = [];
+    for(let i = 0;i<membersId.length;i++){
+        const userInfo = await userDetails(membersId[i].member_id);
+        membersInfo.push(userInfo);
     }
+    // only team leader can delete a team and generate a invite code.
+    // const teamTable = require("./models/Team");
+    // let teaminfo = await teamTable
+    //     .findOne({ event: team.event, teamLeader: req.user._id })
+    //     .lean();
+    // let leader = false;
+    // if (teaminfo != null) {
+    //     leader = true;
+    // }
 
     // event details
     const event = await findEvent(req);
 
     // user info
-    let leaderinfo = null;
-    if (leader) {
-        leaderinfo = await userDetails(req.user._id);
-    } else {
-        const teamdata = await teamTable.findOne({ event: team.event }).lean();
-        leaderinfo = await userDetails(teamdata.teamLeader);
-    }
+    // let leaderinfo = null;
+    // if (leader) {
+    //     leaderinfo = await userDetails(req.user._id);
+    // } else {
+    //     const teamdata = await teamTable.findOne({ event: team.event }).lean();
+    //     leaderinfo = await userDetails(teamdata.teamLeader);
+    // }
 
     //team member details
-    let members_info = [];
-    for (let index = 0; index < team.members.length; index++) {
-        let mem_id = team.members[index].member_id;
-        let info = await userDetails(mem_id);
-        members_info.push(info);
-    }
+    // let members_info = [];
+    // for (let index = 0; index < team.members.length; index++) {
+    //     let mem_id = team.members[index].member_id;
+    //     let info = await userDetails(mem_id);
+    //     members_info.push(info);
+    // }
     context = {
         event: event,
         team: team,
         authenticated: req.isAuthenticated(),
         inviteCode: null,
         validUpto: null,
-        leader: leader,
-        leaderinfo: leaderinfo,
-        members_info: members_info,
+        isLeader: team.teamLeader.toString() === req.user._id.toString(),
+        // leader: leader,
+        leaderinfo: leaderInfo,
+        membersinfo: membersInfo,
     };
+    // console.log(team.teamLeader);
+    // console.log(req.user._id.toString());
+    // console.log(team.teamLeader.toString() === req.user._id.toString());
     // console.log(team);
     if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
         context.inviteCode = inviteCode.code;
