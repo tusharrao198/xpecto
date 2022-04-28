@@ -18,12 +18,13 @@ module.exports = {
     },
     findUserTeam: async function (req) {
         const event = await module.exports.findEvent(req);
+        console.log(event._id);
         const teamTable = require("./models/Team");
-
         var team = await teamTable
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
 
+        console.log(team);
         var user_id = String(req.user._id);
         if (team == null)
             team = await teamTable.findOne({
@@ -71,10 +72,11 @@ module.exports = {
         return team;
     },
     createNewTeam: async function (req) {
+        const event = await module.exports.findEvent(req);
         const formDetails = req.body;
         const teamTable = require("./models/Team");
         var newteam = new teamTable({
-            event: formDetails.event_id,
+            event: event._id,
             name: formDetails.team_name,
             teamLeader: req.user._id,
         });
@@ -171,11 +173,12 @@ module.exports = {
             },
         });
 
-        if(event in registeredEvents){
-            return next();
+        for(var i = 0; i< registeredEvents.length; i++){
+            var id1 = registeredEvents[i]._id;
+            var id2 = event._id;
+            if(id1.toString() == id2.toString())
+                return next();
         }
-        else{
-            res.redirect(`/eventRegister?event=${event.name}`);
-        }
+        res.redirect(`/eventRegister?event=${event.name}`);
     },
 };

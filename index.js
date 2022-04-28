@@ -30,6 +30,7 @@ var url = require("url");
 
 const { generateString } = require("./utils");
 const code = require("./models/code.js");
+const { name } = require("ejs");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -142,6 +143,7 @@ app.get("/faq", (req, res) => {
 app.get("/event", authCheck, regCheck , async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
+    console.log(team);
     
     const context = {
         event: event,
@@ -150,6 +152,7 @@ app.get("/event", authCheck, regCheck , async (req, res) => {
     };
     res.render("event", { ...context, user: req.session.user });
 });
+
 app.get("/eventRegister", authCheck, async(req, res) => {
     const event = await findEvent(req);
     const context = {
@@ -159,14 +162,13 @@ app.get("/eventRegister", authCheck, async(req, res) => {
     res.render("register", { ...context, user: req.session.user });
 });
 app.post("/eventRegister", async(req, res) =>{
-    console.log("Registering");
     const event = await findEvent(req);
-    const context = {
-        event: event,
-        authenticated: req.isAuthenticated(),
-    };
-    res.render("register", { ...context, user: req.session.user });
-    // add user to event registeredUsers here
+    const eventTable = require('./models/Events');
+    await eventTable.updateOne(
+        { _id: event._id },
+        { $push: { registeredUsers : { user_id : req.user._id } } }
+    );
+    res.redirect(`/event?event=${event.name}`);
 });
 
 app.get("/createTeam", authCheck, async (req, res) => {
@@ -175,12 +177,12 @@ app.get("/createTeam", authCheck, async (req, res) => {
         event: event,
         authenticated: req.isAuthenticated(),
     };
-    res.render("Team/createTeam", { ...context, user: req.session.user });
+    res.render("createTeam", { ...context, user: req.session.user });
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
     await createNewTeam(req);
-    const event = await findEventFromId(req.body.event_id);
+    const event = await findEvent(req);
     res.redirect(`/event?event=${event.name}`);
 });
 
@@ -190,7 +192,7 @@ app.get("/joinTeam", authCheck, async (req, res) => {
         event: event,
         authenticated: req.isAuthenticated(),
     };
-    res.render("Team/joinTeam", { ...context, user: req.session.user });
+    res.render("joinTeam", { ...context, user: req.session.user });
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {
@@ -275,7 +277,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
         context.validUpto = inviteCode.validUpto;
     }
 
-    res.render("Team/userTeam", { ...context, user: req.session.user });
+    res.render("userTeam", { ...context, user: req.session.user });
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
