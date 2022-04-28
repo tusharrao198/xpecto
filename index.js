@@ -24,6 +24,7 @@ const {
     createNewInviteCode,
     allEventDetails,
     userDetails,
+    regCheck
 } = require("./utils");
 var url = require("url");
 
@@ -110,13 +111,26 @@ app.get("/profile", authCheck, async (req, res) => {
         ...context,
     });
 });
-
-app.get("/register", (req, res) => {
-    res.render("register", {
-        user: req.session.user,
-        authenticated: req.isAuthenticated(),
+app.get("/terms", (req, res) => {
+    res.render("tnc", {
+        authenticated: req.isAuthenticated()
     });
 });
+
+app.get("/faq", (req, res) => {
+    res.render("faq", {
+        authenticated: req.isAuthenticated(),
+        user: req.session.user,
+    });
+});
+
+
+// app.get("/register", (req, res) => {
+//     res.render("register", {
+//         user: req.session.user,
+//         authenticated: req.isAuthenticated(),
+//     });
+// });
 
 // app.get("/team", (req, res) => {
 //     res.render("team", {
@@ -125,16 +139,34 @@ app.get("/register", (req, res) => {
 //     });
 // });
 
-app.get("/event", authCheck, async (req, res) => {
+app.get("/event", authCheck, regCheck , async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-
+    
     const context = {
         event: event,
         team: team,
         authenticated: req.isAuthenticated(),
     };
     res.render("event", { ...context, user: req.session.user });
+});
+app.get("/eventRegister", authCheck, async(req, res) => {
+    const event = await findEvent(req);
+    const context = {
+        event: event,
+        authenticated: req.isAuthenticated(),
+    };
+    res.render("register", { ...context, user: req.session.user });
+});
+app.post("/eventRegister", async(req, res) =>{
+    console.log("Registering");
+    const event = await findEvent(req);
+    const context = {
+        event: event,
+        authenticated: req.isAuthenticated(),
+    };
+    res.render("register", { ...context, user: req.session.user });
+    // add user to event registeredUsers here
 });
 
 app.get("/createTeam", authCheck, async (req, res) => {
