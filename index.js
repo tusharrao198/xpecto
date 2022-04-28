@@ -31,6 +31,7 @@ var url = require("url");
 const { generateString } = require("./utils");
 const code = require("./models/code.js");
 const { name } = require("ejs");
+const res = require("express/lib/response");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -129,20 +130,11 @@ app.get("/faq", (req, res) => {
     });
 });
 
-
-// app.get("/register", (req, res) => {
-//     res.render("register", {
-//         user: req.session.user,
-//         authenticated: req.isAuthenticated(),
-//     });
-// });
-
-// app.get("/team", (req, res) => {
-//     res.render("team", {
-//         user: req.session.user,
-//         authenticated: req.isAuthenticated(),
-//     });
-// });
+app.get("/ourteam", async (req,res) => {
+    const coreTeamTable = require('./models/coreTeam');
+    let members = await coreTeamTable.find().lean();
+    res.render("team",{authenticated: req.isAuthenticated(), members : members});
+})
 
 app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
