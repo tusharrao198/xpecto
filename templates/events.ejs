@@ -20,6 +20,9 @@
     </head>
 
     <style>
+        #more {
+            display: none;
+        }
         #page .container {
             padding-top: 2.5rem;
             width: 250px;
@@ -37,6 +40,11 @@
             display: flex;
             align-items: baseline;
             transform: skewX(-7.5deg);
+        }
+        @media (max-width: 480px) {
+            #page .content {
+                padding: 2rem 0.25rem;
+            }
         }
     </style>
     <body>
@@ -62,17 +70,22 @@
                     <div class="event-card-container">
                         <div class="event-card">
                             <div class="event-name"><%= events[i].name %></div>
+                            <hr />
+                            <div class="event-description">
+                                <%= events[i].oneline_content %>
+                                <details style="cursor: pointer">
+                                    <summary>Click to Know More</summary>
+                                    <%= events[i].rest_content %>
+                                </details>
+                            </div>
+                            <hr />
                             <a href="/event?event=<%=events[i].name %>"
                                 ><button class="info">
                                     <i
                                         class="fa-solid fa-arrow-right fa-2x"
                                     ></i></button
                             ></a>
-                            <hr />
-                            <div class="event-description">
-                                <%= events[i].oneline_content %>
-                            </div>
-                            <hr />
+                            <br />
 
                             <a href="/eventRegister?event=<%=events[i].name %>"
                                 ><button class="event-register">
@@ -92,6 +105,7 @@
                 </div>
             </div>
         </div>
+
         <script src="scripts/script.js"></script>
     </body>
 </html>
