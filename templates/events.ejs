@@ -87,12 +87,22 @@
                                     ></i></button
                             ></a>
                             <br />
-
-                            <a href="/eventRegister?event=<%=events[i].name %>"
-                                ><button class="event-register">
-                                    Register
-                                </button></a
-                            >
+                            <%if(events[i].registeredUsers.length == 0){%>
+                                <a href="/eventRegister?event=<%=events[i].name %>"
+                                    ><button class="event-register">
+                                        Register
+                                    </button></a
+                                >
+                            <%}%>
+                            <% for(let j=0; j < events[i].registeredUsers.length; j++){%>
+                                <%if(events[i].registeredUsers[j].user_id.toString() != user._id){%>
+                                    <a href="/eventRegister?event=<%=events[i].name %>"
+                                        ><button class="event-register">
+                                            Register
+                                        </button></a
+                                    >
+                                <%}%>
+                            <% } %>
 
                             <a href="<%=events[i].problemset_link %>"
                                 ><button class="event-problem">
