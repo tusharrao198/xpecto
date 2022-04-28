@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="images/xpecto-logo-header.png" />
+    <script src="https://kit.fontawesome.com/a1542a4884.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <title>Register For Event | Xpecto</title>
+</head>
+
+<style>
+    #page .container {
+        padding-top: 2.5rem;
+        width: 250px;
+    }
+
+    #page .heading span {
+        font-size: 2.5rem;
+        padding-right: 2.5rem;
+        transform: skew(0deg);
+    }
+
+    #page .heading {
+        line-height: 1.5;
+        padding-left: 7.5rem;
+        padding-top: 25%;
+        display: flex;
+        align-items: baseline;
+        transform: skewX(-7.5deg);
+    }
+</style>
+
+<body>
+    <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+    <%- include ('partials/navbar.ejs') %>
+    <!-- -----HEADER END----- -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="p-4 d-flex justify-content-center flex-nowrap">
+            <h1 class="col text-primary mx-auto text-center">
+                <span class="fa fa-user"></span> Event - <%= event.name %>
+            </h1>
+        </div>
+    </div>
+    <div class="col-md-8 mx-auto bg-white">
+        <form action="/eventRegister?event=<%=event.name%>" method="post">
+            Are you sure you want to register for event <%= event.name %>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="scripts/script.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,4 +1,5 @@
 const { create } = require("connect-mongo");
+const { connect } = require("http2");
 var url = require("url");
 
 module.exports = {
@@ -18,20 +19,20 @@ module.exports = {
     findUserTeam: async function (req) {
         const event = await module.exports.findEvent(req);
         const teamTable = require("./models/Team");
-
         var team = await teamTable
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
 
-        var user_id = String(req.user._id)
+        var user_id = String(req.user._id);
         if (team == null)
             team = await teamTable.findOne({
+                event: event._id,
                 members: {
                     $elemMatch: {
-                        member_id: user_id
-                    }
-                }
-            })
+                        member_id: user_id,
+                    },
+                },
+            });
 
         return team;
     },
@@ -47,13 +48,20 @@ module.exports = {
         var joined_teams = await teamTable.find({
             members: {
                 $elemMatch: {
-                    member_id: user_id
-                }
-            }
+                    member_id: user_id,
+                },
+            },
         });
         // console.log("joined_teams",joined_teams);
         return { joined_teams: joined_teams, created_teams: created_teams };
     },
+    // findIfUserRegistered: async function(req){
+    //     const eventDetails = await module.exports.allEventDetails(req);
+    //     const event = await module.exports.findEvent(req);
+    //     console.log(eventDetails);
+    //     console.log(event);
+    //     return false;
+    // },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -63,10 +71,11 @@ module.exports = {
         return team;
     },
     createNewTeam: async function (req) {
+        const event = await module.exports.findEvent(req);
         const formDetails = req.body;
         const teamTable = require("./models/Team");
         var newteam = new teamTable({
-            event: formDetails.event_id,
+            event: event._id,
             name: formDetails.team_name,
             teamLeader: req.user._id,
         });
@@ -89,10 +98,6 @@ module.exports = {
                 { _id: inviteCode.team },
                 { $push: { members: { member_id: req.user._id } } }
             );
-            const team = await teamTable
-                .findOne({ _id: inviteCode.team })
-                .lean();
-            // console.log(team);
         }
     },
     deleteTeam: async function (team_id) {
@@ -142,5 +147,32 @@ module.exports = {
                 return err;
             }
         });
+    },
+
+    userDetails: async function (user_id) {
+        const User = require("./models/User");
+        let userinfo = await User.findOne({ _id: user_id }).lean();
+        return userinfo;
+    },
+
+    regCheck: async function (req, res, next) {
+        const event = await module.exports.findEvent(req);
+
+        const eventTable = require("./models/Events");
+        var registeredEvents = await eventTable.find({
+            registeredUsers: {
+                $elemMatch: {
+                    user_id: req.user._id,
+                },
+            },
+        });
+
+        for (var i = 0; i < registeredEvents.length; i++) {
+            var id1 = registeredEvents[i]._id;
+            var id2 = event._id;
+            if (id1.toString() == id2.toString())
+                return next();
+        }
+        res.redirect(`/eventRegister?event=${event.name}`);
     },
 };

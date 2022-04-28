@@ -6,9 +6,9 @@ const CodeSchema = new mongoose.Schema({
         required: true,
     },
     used: {
-        type:Number,
-        required:true,
-    }
+        type: Number,
+        required: true,
+    },
 });
 
-module.exports = mongoose.model("code", CodeSchema );
+module.exports = mongoose.model("code", CodeSchema);

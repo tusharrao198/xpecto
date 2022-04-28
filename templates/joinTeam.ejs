@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="images/xpecto-logo-header.png"
+        />
+        <script
+            src="https://kit.fontawesome.com/a1542a4884.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="styles/page.css" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/profile.css" />
+
+        <title>Document</title>
+    </head>
+
+    <style>
+        #page .content {
+            padding-top: 1rem;
+        }
+        #page .container {
+            padding-top: 7.5rem;
+            width: 500px;
+        }
+        #page .heading {
+            line-height: 2;
+            font-size: 3rem;
+        }
+        .card {
+            /* margin-left: auto; */
+            /* margin-right: auto; */
+            color: white;
+            font-weight: bold;
+            /* height: 300px; */
+            width: 500px;
+            padding: 2rem;
+            backdrop-filter: blur(10px) saturate(200%);
+            -webkit-backdrop-filter: blur(10px) saturate(200%);
+            background-color: rgba(17, 25, 40, 0.5);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.125);
+            margin-top: 6rem;
+            margin-bottom: 100px;
+        }
+
+        .btn1 {
+            font-weight: bold;
+            padding: 0.25rem;
+            width: 100px;
+            border-radius: 5px;
+            transition: 0.2s;
+            font-size: 1.25rem;
+            background-color: rgba(2, 84, 200, 1);
+            color: white;
+            border: 2px solid rgba(2, 84, 200, 1);
+            display: flex;
+            justify-content: center;
+            margin: 2rem auto 1rem auto;
+        }
+        .btn1:hover {
+            cursor: pointer;
+            background-color: darkgreen;
+            color: white;
+            border-color: darkgreen;
+            transition: 0.2s;
+        }
+        .btn1:active {
+            background-color: grey;
+            color: white;
+            border-color: grey;
+            transition: 0.2s;
+        }
+        @media (max-width: 480px) {
+            .card {
+                width: 300px;
+            }
+        }
+        @media (max-width: 320px) {
+            .card {
+                width: 275px;
+            }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.5rem;
+            margin: 1rem;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+        input[type="text"]:focus {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+    </style>
+    <body>
+        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+        <%- include ('partials/navbar.ejs') %>
+        <!-- -----HEADER END----- -->
+
+        <div class="" id="page">
+            <div class="container">
+                <div class="heading">
+                    <span>Join</span>
+                    <span>Team</span>
+                </div>
+            </div>
+            <div class="prof-container">
+                <!-- <div class="content"></div> -->
+                <div class="card">
+                    <div class="join-container">
+                        <h1>Join Team | <%= event.name %></h1>
+                        <form action="/joinTeam?event=<%= event.name %>" method="POST">
+                            <div class="form-group">
+                                <hr />
+                                <label for="inviteCode">Invite Code</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="inviteCode"
+                                    placeholder="Enter invite code"
+                                    name="invite_code"
+                                />
+                            </div>
+                            <!-- <div style="display: none">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="eventId"
+                                    name="event_id"
+                                    value="<%= event._id %>"
+                                />
+                            </div> -->
+                            <button type="submit" class="btn1">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="scripts/script.js"></script>
+    </body>
+</html>
