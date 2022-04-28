@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Document</title>
+        <title>Confirm Submit | Xpecto</title>
     </head>
 
     <style>
@@ -190,7 +190,7 @@
                     <!-- <div class="text-phone">Enter Your Phone Number</div> -->
                     <form
                         name="form1"
-                        action="/submit"
+                        action="/eventRegister?event=<%=event.name%>"
                         method="POST"
                         onsubmit="return phonenumber(document.getElementById('phone').value)"
                     >

@@ -161,7 +161,7 @@ app.get("/eventRegister", authCheck, async (req, res) => {
         event: event,
         authenticated: req.isAuthenticated(),
     };
-    res.render("register", { ...context, user: req.session.user });
+    res.render("submit", { ...context, user: req.session.user });
 });
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);

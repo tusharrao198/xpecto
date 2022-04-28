@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Document</title>
+        <title>Create Team | Xpecto</title>
     </head>
 
     <style>
@@ -130,9 +130,12 @@
                 <!-- <div class="content"></div> -->
                 <div class="card">
                     <div class="create-container">
-                        <h1>Create Team | <%= event.name %></h1>
+                        <h1><%= event.name %></h1>
                         <hr />
-                        <form action="/createTeam?event=<%= event.name %>" method="POST">
+                        <form
+                            action="/createTeam?event=<%= event.name %>"
+                            method="POST"
+                        >
                             <div class="form-group">
                                 <label for="teamName">Team Name</label>
                                 <input
