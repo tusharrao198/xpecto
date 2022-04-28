@@ -35,7 +35,6 @@ const { name } = require("ejs");
 const { is } = require("express/lib/request");
 const res = require("express/lib/response");
 
-
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
 
@@ -97,12 +96,12 @@ app.get("/", (req, res) => {
     });
 });
 
-function isRegistered(user,events) {
+function isRegistered(user, events) {
     let checker = [];
-    for(let i=0;i<events.length;i++){
+    for (let i = 0; i < events.length; i++) {
         checker.push(false);
-        for(let j=0; j < events[i].registeredUsers.length; j++){
-            if(events[i].registeredUsers[j].user_id.toString() == user._id){
+        for (let j = 0; j < events[i].registeredUsers.length; j++) {
+            if (events[i].registeredUsers[j].user_id.toString() == user._id) {
                 checker[i] = true;
             }
         }
@@ -113,15 +112,14 @@ function isRegistered(user,events) {
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
-    const checker = isRegistered(req.session.user,allEvents);
+    const checker = isRegistered(req.session.user, allEvents);
     // console.log(checker);
     res.render("events", {
         events: allEvents,
         authenticated: req.isAuthenticated(),
         user: req.session.user,
-        checker: checker
+        checker: checker,
     });
-    
 });
 
 app.get("/profile", authCheck, async (req, res) => {
@@ -149,11 +147,14 @@ app.get("/faq", (req, res) => {
     });
 });
 
-app.get("/ourteam", async (req,res) => {
-    const coreTeamTable = require('./models/coreTeam');
+app.get("/ourteam", async (req, res) => {
+    const coreTeamTable = require("./models/coreTeam");
     let members = await coreTeamTable.find().lean();
-    res.render("team",{authenticated: req.isAuthenticated(), members : members});
-})
+    res.render("team", {
+        authenticated: req.isAuthenticated(),
+        members: members,
+    });
+});
 
 app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
@@ -229,6 +230,7 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
 
 app.post("/joinTeam", authCheck, async (req, res) => {
     const inviteCode = await joinTeam(req);
+
     if (inviteCode != null) {
         const team_id = inviteCode.team;
         const teamTable = require("./models/Team");
