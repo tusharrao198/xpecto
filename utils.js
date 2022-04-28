@@ -59,7 +59,7 @@ module.exports = {
         var registeredEvs = [];
         for (let i = 0; i < created_teams.length; i++) {
             let x = created_teams[i];
-            let n = x.name
+            let n = x.name;
 
             const event = await events.findOne({ _id: x.event }).lean();
 
@@ -69,7 +69,7 @@ module.exports = {
 
         for (let i = 0; i < joined_teams.length; i++) {
             let x = joined_teams[i];
-            let n = x.name
+            let n = x.name;
 
             const event = await events.findOne({ _id: x.event }).lean();
 
@@ -77,7 +77,11 @@ module.exports = {
             registeredEvs.push({ ...event, teamName: n });
         }
 
-        return { joined_teams: joined_teams, created_teams: created_teams, registeredevents: registeredEvs };
+        return {
+            joined_teams: joined_teams,
+            created_teams: created_teams,
+            registeredevents: registeredEvs,
+        };
     },
     // findIfUserRegistered: async function(req){
     //     const eventDetails = await module.exports.allEventDetails(req);
@@ -117,8 +121,7 @@ module.exports = {
             .findOne({ code: formDetails.invite_code })
             .lean();
 
-        if(inviteCode.validUpto < Date.now())
-            inviteCode = null;
+        if (inviteCode.validUpto < Date.now()) inviteCode = null;
 
         if (inviteCode != null) {
             const teamTable = require("./models/Team");
@@ -132,13 +135,39 @@ module.exports = {
             });
             const leader_team = await teamTable.findOne({
                 _id: inviteCode.team,
-                teamLeader: req.user._id
+                teamLeader: req.user._id,
             });
-            if(member_team == null && leader_team == null)
-                await teamTable.updateOne(
-                    { _id: inviteCode.team },
-                    { $push: { members: { member_id: req.user._id } } }
+
+            if (member_team == null && leader_team == null) {
+                const team_id = inviteCode.team;
+                const teamTable = require("./models/Team");
+                const team = await teamTable.findOne({ _id: team_id }).lean();
+                const event_id = team.event;
+                const event = await module.exports.findEventFromId(event_id);
+
+                let all_reg = await module.exports.allowRegistration(
+                    req,
+                    event
                 );
+                // console.log("To allow user", all_reg);
+                // console.log("Type is ", typeof all_reg);
+                if (all_reg) {
+                    // console.log("Mai ghus gya", all_reg);
+                    const eventTable = require("./models/Events");
+                    await eventTable.updateOne(
+                        { _id: event._id },
+                        {
+                            $push: {
+                                registeredUsers: { user_id: req.user._id },
+                            },
+                        }
+                    );
+                    await teamTable.updateOne(
+                        { _id: inviteCode.team },
+                        { $push: { members: { member_id: req.user._id } } }
+                    );
+                }
+            }
         }
         return inviteCode;
     },
@@ -212,9 +241,37 @@ module.exports = {
         for (var i = 0; i < registeredEvents.length; i++) {
             var id1 = registeredEvents[i]._id;
             var id2 = event._id;
-            if (id1.toString() == id2.toString())
-                return next();
+            if (id1.toString() == id2.toString()) return next();
         }
         res.redirect(`/eventRegister?event=${event.name}`);
+    },
+    allowRegistration: async function (req, event) {
+        const teamTable = require("./models/Team");
+        const member_team = await teamTable.find({
+            members: {
+                $elemMatch: {
+                    member_id: req.user._id,
+                },
+            },
+        });
+        const leader_team = await teamTable.find({
+            teamLeader: req.user._id,
+        });
+
+        let reg_events = [];
+        for (let i = 0; i < member_team.length; i++) {
+            reg_events.push(member_team[i].event);
+        }
+        for (let i = 0; i < leader_team.length; i++) {
+            reg_events.push(leader_team[i].event);
+        }
+
+        // console.log("Ids are ", reg_events);
+        // console.log("event to join is", event._id);
+        let allow_reg = true;
+        for (let i = 0; i < reg_events.length; i++) {
+            if (reg_events[i] === event._id.toString()) allow_reg = false;
+        }
+        return allow_reg;
     },
 };
