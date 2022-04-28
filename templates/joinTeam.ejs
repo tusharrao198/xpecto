@@ -130,8 +130,8 @@
                 <!-- <div class="content"></div> -->
                 <div class="card">
                     <div class="join-container">
-                        <h1>Join Team | <%= event.name %></h1>
-                        <form action="/joinTeam?event=<%= event.name %>" method="POST">
+                        <h1>Join Team</h1>
+                        <form action="/joinTeam" method="POST">
                             <div class="form-group">
                                 <hr />
                                 <label for="inviteCode">Invite Code</label>
@@ -143,15 +143,6 @@
                                     name="invite_code"
                                 />
                             </div>
-                            <!-- <div style="display: none">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="eventId"
-                                    name="event_id"
-                                    value="<%= event._id %>"
-                                />
-                            </div> -->
                             <button type="submit" class="btn1">Join</button>
                         </form>
                     </div>

@@ -113,16 +113,34 @@ module.exports = {
     joinTeam: async function (req) {
         const formDetails = req.body;
         const inviteCodeTable = require("./models/InviteCode");
-        const inviteCode = await inviteCodeTable
+        let inviteCode = await inviteCodeTable
             .findOne({ code: formDetails.invite_code })
             .lean();
+
+        if(inviteCode.validUpto < Date.now())
+            inviteCode = null;
+
         if (inviteCode != null) {
             const teamTable = require("./models/Team");
-            await teamTable.updateOne(
-                { _id: inviteCode.team },
-                { $push: { members: { member_id: req.user._id } } }
-            );
+            const member_team = await teamTable.findOne({
+                _id: inviteCode.team,
+                members: {
+                    $elemMatch: {
+                        member_id: req.user._id,
+                    },
+                },
+            });
+            const leader_team = await teamTable.findOne({
+                _id: inviteCode.team,
+                teamLeader: req.user._id
+            });
+            if(member_team == null && leader_team == null)
+                await teamTable.updateOne(
+                    { _id: inviteCode.team },
+                    { $push: { members: { member_id: req.user._id } } }
+                );
         }
+        return inviteCode;
     },
     deleteTeam: async function (team_id) {
         const teamTable = require("./models/Team");
