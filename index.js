@@ -100,6 +100,7 @@ function isRegistered(user, events) {
     let checker = [];
     for (let i = 0; i < events.length; i++) {
         checker.push(false);
+        if (user == null) continue;
         for (let j = 0; j < events[i].registeredUsers.length; j++) {
             if (events[i].registeredUsers[j].user_id.toString() == user._id) {
                 checker[i] = true;
@@ -112,12 +113,12 @@ function isRegistered(user, events) {
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
-    const checker = isRegistered(req.session.user, allEvents);
+    const checker = isRegistered(req.user, allEvents);
     // console.log(checker);
     res.render("events", {
         events: allEvents,
         authenticated: req.isAuthenticated(),
-        user: req.session.user,
+        user: req.user,
         checker: checker,
     });
 });
@@ -178,6 +179,16 @@ app.get("/eventRegister", authCheck, async (req, res) => {
 });
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
+
+    // saving phone number to userDetails
+    const { phone_number } = req.body;
+    const userinfo = await userDetails(req.user._id);
+    const userTable = require("./models/User");
+    await userTable.updateOne(
+        { _id: req.user._id },
+        { phoneNumber: phone_number }
+    );
+
     const eventTable = require("./models/Events");
     await eventTable.updateOne(
         { _id: event._id },
