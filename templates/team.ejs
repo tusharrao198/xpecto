@@ -123,35 +123,8 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <header class="header-glass active">
-            <div>
-                <img src="images/xpecto-logo-header.png" alt="" />
-                <span>XPECTO'22</span>
-            </div>
-            <nav>
-                <a id="" href="/#home">Home</a>
-                <a id="" href="/#about">About Us</a>
-                <a id="" href="/#contact">Contact Us</a>
-                <a id="" href="/#sponsors">Sponsors</a>
-                <a id="" href="events.html">Events</a>
-                <a id="faq" href="">Faq</a>
-                <% if(!authenticated){ %>
-                <a id="sign" href="/auth/google"
-                    ><i class="fa-brands fa-google"></i> SignIn</a
-                >
-                <% }else{ %>
-                <a id="sign" href="/profile"><i class=""></i> Profile</a>
-                <a id="sign" href="/auth/logout"
-                    ><i class="fa-brands fa-google"></i> Logout</a
-                >
-                <% } %>
-            </nav>
-            <div class="hamburger">
-                <img class="toggle" src="images/menu_open.svg" alt="" />
-            </div>
-        </header>
+        <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
-
         <div class="" id="page">
             <div class="container">
                 <div class="heading">
@@ -164,69 +137,90 @@
             <div class="content">
                 <h2>People Who Made This Happen !!!</h2>
                 <div class="team-list-container">
-                    <% for( let index = 0; index < members.length; index++ ) { %>
-                        <div class="person-card-container">
-                            <div class="person-card">
-                                <% if (members[index].Image_Link) { %>
-                                    <img
-                                        class="person-img"
-                                        src="<%= members[index].Image_Link %>"
-                                        alt=""
-                                    />
-                                <% }else{ %>
-                                    <img
-                                        class="person-img"
-                                        src="https://user-images.githubusercontent.com/79650502/165826483-8bb614d8-cfe8-4d61-ae32-b4c3144a7093.jpg"
-                                        alt=""
-                                    />
-                                <% } %> 
-                                <div class="person-name"><%= members[index].Name %></div>
-                                <div class="person-role"><%= members[index].Position %></div>
-                                <div class="social">
-                                    <div>
-                                        <% if (members[index].Facebook ) { %>
-                                            <a href="<%= members[index].Facebook %>" target="_blank">
-                                                <i
-                                                    class="fa-brands fa-facebook-square fa-2x"
-                                                ></i>
-                                            </a>
-                                        <% }else{ %> 
-                                            <a href="#" target="">
-                                                <i
-                                                    class="fa-brands fa-facebook-square fa-2x"
-                                                ></i>
-                                            </a>
-                                        <% } %> 
-                                    </div>
-                                    <div>
-                                        <% if (members[index].Instagram ) { %>
-                                            <a href="<%= members[index].Instagram %>" target="_blank">
-                                                <i
-                                                    class="fa-brands fa-instagram-square fa-2x"
-                                                ></i>
-                                            </a>
-                                        <% }else{ %>
-                                            <a href="#">
-                                                <i
-                                                    class="fa-brands fa-instagram-square fa-2x"
-                                                ></i>
-                                            </a>
-                                        <% } %> 
-                                    </div>
-                                    <div>
-                                        <% if (members[index].Instagram ) { %>
-                                            <a href="<%= members[index].Linkedin %>" target="_blank">
-                                                <i class="fa-brands fa-linkedin fa-2x"></i>
-                                            </a>
-                                        <% }else{ %> 
-                                            <a href="<%= members[index].Linkedin %>" target="_blank">
-                                                <i class="fa-brands fa-linkedin fa-2x"></i>
-                                            </a>
-                                        <% } %> 
-                                    </div>
+                    <% for( let index = 0; index < members.length; index++ ) {
+                    %>
+                    <div class="person-card-container">
+                        <div class="person-card">
+                            <% if (members[index].Image_Link) { %>
+                            <img
+                                class="person-img"
+                                src="<%= members[index].Image_Link %>"
+                                alt=""
+                            />
+                            <% }else{ %>
+                            <img
+                                class="person-img"
+                                src="https://user-images.githubusercontent.com/79650502/165826483-8bb614d8-cfe8-4d61-ae32-b4c3144a7093.jpg"
+                                alt=""
+                            />
+                            <% } %>
+                            <div class="person-name">
+                                <%= members[index].Name %>
+                            </div>
+                            <div class="person-role">
+                                <%= members[index].Position %>
+                            </div>
+                            <div class="social">
+                                <div>
+                                    <% if (members[index].Facebook ) { %>
+                                    <a
+                                        href="<%= members[index].Facebook %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-facebook-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% }else{ %>
+                                    <a href="#" target="">
+                                        <i
+                                            class="fa-brands fa-facebook-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <% if (members[index].Instagram ) { %>
+                                    <a
+                                        href="<%= members[index].Instagram %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-instagram-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% }else{ %>
+                                    <a href="#">
+                                        <i
+                                            class="fa-brands fa-instagram-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% } %>
+                                </div>
+                                <div>
+                                    <% if (members[index].Instagram ) { %>
+                                    <a
+                                        href="<%= members[index].Linkedin %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-linkedin fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% }else{ %>
+                                    <a
+                                        href="<%= members[index].Linkedin %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-linkedin fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% } %>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
+                    </div>
                     <% } %>
 
                     <!-- card end -->

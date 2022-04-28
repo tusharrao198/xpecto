@@ -1,69 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="images/xpecto-logo-header.png"
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <script
-            src="https://kit.fontawesome.com/a1542a4884.js"
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="styles/page.css" />
-        <link rel="stylesheet" href="styles/style.css" />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Grand - Event and Conference Template</title>
 
-  <title>Grand - Event and Conference Template</title>
+        <!-- Bootstrap CSS -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="styles/css/bootstrap.min.css"
+        />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" type="text/css" href="styles/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/css/animate.css" />
+        <!-- Main Style -->
+        <link rel="stylesheet" type="text/css" href="styles/css/main.css" />
+        <!-- Responsive Style -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="styles/css/responsive.css"
+        />
+    </head>
 
-  <link rel="stylesheet" type="text/css" href="styles/css/animate.css">
-  <!-- Main Style -->
-  <link rel="stylesheet" type="text/css" href="styles/css/main.css">
-  <!-- Responsive Style -->
-  <link rel="stylesheet" type="text/css" href="styles/css/responsive.css">
+    <body>
+        <!-- Header Area wrapper Starts -->
+        <header id="header-wrap">
+            <!-- Main Carousel Section Start -->
+            <div id="main-slide" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img
+                            class="d-block w-100 bg-img"
+                            src="images/event.jpg"
+                            alt="First slide"
+                        />
+                        <div class="carousel-caption d-md-block">
+                            <h1
+                                class="wow fadeInDown heading"
+                                data-wow-delay=".4s"
+                            >
+                                Reel-o-logy
+                            </h1>
+                            <a
+                                href="#"
+                                class="fadeInLeft wow btn btn-common btn-lg"
+                                data-wow-delay=".6s"
+                                >Create Team</a
+                            >
+                            <a
+                                href="assets/<%= event.name %>.pdf"
+                                class="fadeInRight wow btn btn-border btn-lg"
+                                data-wow-delay=".6s"
+                                >Rulebook</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Carousel Section End -->
+        </header>
+        <!-- Header Area wrapper End -->
 
-</head>
-
-<body>
-
-  <!-- Header Area wrapper Starts -->
-  <header id="header-wrap">
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
-
-    </nav>
-    <!-- Navbar End -->
-
-    <!-- Main Carousel Section Start -->
-    <div id="main-slide" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100 bg-img" src="images/event.jpg" alt="First slide">
-          <div class="carousel-caption d-md-block">
-            <h1 class="wow fadeInDown heading" data-wow-delay=".4s">Reel-o-logy</h1>
-            <a href="#" class="fadeInLeft wow btn btn-common btn-lg" data-wow-delay=".6s">Register</a>
-            <a href="assets/<%= event.name %>.pdf" class="fadeInRight wow btn btn-border btn-lg" data-wow-delay=".6s">Rulebook</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Main Carousel Section End -->
-
-  </header>
-  <!-- Header Area wrapper End -->
-
-  <!-- Coundown Section Start -->
-  <!-- <section class="countdown-timer section-padding">
+        <!-- Coundown Section Start -->
+        <!-- <section class="countdown-timer section-padding">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -79,79 +84,109 @@
       </div>
     </div>
   </section> -->
-  <!-- Coundown Section End -->
+        <!-- Coundown Section End -->
 
-  <!-- Services Section Start -->
-  <section id="services" class="services section-padding">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="section-title-header text-center">
-            <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">Event Discription</h1>
-            <p class="wow fadeInDown" data-wow-delay="0.2s">
-              <!-- Do you ever feel like you are destined to be an Instagram
+        <!-- Services Section Start -->
+        <section id="services" class="services section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title-header text-center">
+                            <h1
+                                class="section-title wow fadeInUp"
+                                data-wow-delay="0.2s"
+                            >
+                                Event Discription
+                            </h1>
+                            <p class="wow fadeInDown" data-wow-delay="0.2s">
+                                <!-- Do you ever feel like you are destined to be an Instagram
               star, born to unleash your creativity, imagination and flair through the world of reels? Or do you crave
               the gratification that is unbridled in pursuing the realm of science and technology? Well, XPECTO’22 is
               here to deliver to you the best of both worlds.
               In this pre-event you will get to show off your creativity by creating Instagram reels that are centered
               around science and technology.
               Participants will be required to send their submissions to the Submission link. -->
-              <%= event.description %>
-            </p>
-            <h3 class="text-center">Timeline</h3>
-            <p>Participants must submit their Reels from <%= event.start_time.day %>th May , 2022 <%= event.start_time.time %> to <%= event.end_time.day %>th May , 2022 <%= event.end_time.time %></p>
-            <h3 class="text-center">Submission</h3>
-            <p>You have to submit your reels through this <a
-                href="<%= event.submission_link %>">Submission
-                link.</a>
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-  <!-- Services Section End -->
-
-
-  <!-- Counter Area Start-->
-  <section class="counter-section section-padding">
-    <div class="container">
-      <h1 class="section-title wow fadeInUp dark-heading" data-wow-delay="0.2s">Prizes</h1>
-      <div class="row">
-        <!-- Counter Item -->
-        <div class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center">
-          <div class="counter wow fadeInRight" data-wow-delay="0.3s">
-            <div class="icon dark-heading">
-              <h1>1st Place</h1>
+                                <%= event.description %>
+                            </p>
+                            <h3 class="text-center">Timeline</h3>
+                            <p>
+                                Participants must submit their Reels from <%=
+                                event.start_time.day %>th May , 2022 <%=
+                                event.start_time.time %> to <%=
+                                event.end_time.day %>th May , 2022 <%=
+                                event.end_time.time %>
+                            </p>
+                            <h3 class="text-center">Submission</h3>
+                            <p>
+                                You have to submit your reels through this
+                                <a href="<%= event.submission_link %>"
+                                    >Submission link.</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p> <%= prices.first %></p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center">
-          <div class="counter wow fadeInRight" data-wow-delay="0.3s">
-            <div class="icon dark-heading">
-              <h1>2nd Place</h1>
-            </div>
-            <p><%= prices.second %></p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center">
-          <div class="counter wow fadeInRight" data-wow-delay="0.3s">
-            <div class="icon dark-heading">
-              <h1>3rd Place</h1>
-            </div>
-            <p> <%= prices.third %></p>
-          </div>
-        </div>
+        </section>
+        <!-- Services Section End -->
 
-      </div>
-    </div>
-  </section>
-  <!-- Counter Area End-->
+        <!-- Counter Area Start-->
+        <section class="counter-section section-padding">
+            <div class="container">
+                <h1
+                    class="section-title wow fadeInUp dark-heading"
+                    data-wow-delay="0.2s"
+                >
+                    Prizes
+                </h1>
+                <div class="row">
+                    <!-- Counter Item -->
+                    <div
+                        class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center"
+                    >
+                        <div
+                            class="counter wow fadeInRight"
+                            data-wow-delay="0.3s"
+                        >
+                            <div class="icon dark-heading">
+                                <h1>1st Place</h1>
+                            </div>
+                            <p><%= event.prices.first %></p>
+                        </div>
+                    </div>
+                    <div
+                        class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center"
+                    >
+                        <div
+                            class="counter wow fadeInRight"
+                            data-wow-delay="0.3s"
+                        >
+                            <div class="icon dark-heading">
+                                <h1>2nd Place</h1>
+                            </div>
+                            <p><%= event.prices.second %></p>
+                        </div>
+                    </div>
+                    <div
+                        class="col-md-6 col-lg-4 col-xs-12 work-counter-widget text-center"
+                    >
+                        <div
+                            class="counter wow fadeInRight"
+                            data-wow-delay="0.3s"
+                        >
+                            <div class="icon dark-heading">
+                                <h1>3rd Place</h1>
+                            </div>
+                            <p><%= event.prices.third %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Counter Area End-->
 
-  <!-- Services Section Start -->
-  <!-- <section id="services" class="services section-padding">
+        <!-- Services Section Start -->
+        <!-- <section id="services" class="services section-padding">
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -235,8 +270,8 @@
     </div>
   </section> -->
 
-  <!-- Footer Section Start -->
-  <!-- <footer class="footer-area section-padding">
+        <!-- Footer Section Start -->
+        <!-- <footer class="footer-area section-padding">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12 wow fadeInUp " data-wow-delay="0.2s">
@@ -277,40 +312,35 @@
     </div>
     </div>
   </footer> -->
-  <!-- Footer Section End -->
+        <!-- Footer Section End -->
 
+        <!-- Go to Top Link -->
+        <a href="#" class="back-to-top">
+            <i class="lni-chevron-up"></i>
+        </a>
 
-  <!-- Go to Top Link -->
-  <a href="#" class="back-to-top">
-    <i class="lni-chevron-up"></i>
-  </a>
+        <div id="preloader">
+            <div class="sk-circle">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+            </div>
+        </div>
 
-  <div id="preloader">
-    <div class="sk-circle">
-      <div class="sk-circle1 sk-child"></div>
-      <div class="sk-circle2 sk-child"></div>
-      <div class="sk-circle3 sk-child"></div>
-      <div class="sk-circle4 sk-child"></div>
-      <div class="sk-circle5 sk-child"></div>
-      <div class="sk-circle6 sk-child"></div>
-      <div class="sk-circle7 sk-child"></div>
-      <div class="sk-circle8 sk-child"></div>
-      <div class="sk-circle9 sk-child"></div>
-      <div class="sk-circle10 sk-child"></div>
-      <div class="sk-circle11 sk-child"></div>
-      <div class="sk-circle12 sk-child"></div>
-    </div>
-  </div>
-
-  <script src="scripts/js/jquery-min.js"></script>
-  <script src="scripts/js/bootstrap.min.js"></script>
-  <script src="scripts/js/jquery.countdown.min.js"></script>
-  <script src="scripts/js/wow.js"></script>
-  <script src="scripts/js/jquery.slicknav.js"></script>
-  <script src="scripts/js/main.js"></script>
-
-</body>
-
-        <script src="scripts/script.js" type="text/javascript"></script>
+        <script src="scripts/js/jquery-min.js"></script>
+        <script src="scripts/js/bootstrap.min.js"></script>
+        <script src="scripts/js/jquery.countdown.min.js"></script>
+        <script src="scripts/js/wow.js"></script>
+        <script src="scripts/js/jquery.slicknav.js"></script>
+        <script src="scripts/js/main.js"></script>
     </body>
 </html>
