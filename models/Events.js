@@ -49,6 +49,14 @@ const EventSchema = new mongoose.Schema({
             default: 0,
         },
     },
+    registeredUsers: [
+        {
+            user_id: {
+                type: String,
+                required: true,
+            }
+        }
+    ]
 });
 
 module.exports = mongoose.model("event", EventSchema);
