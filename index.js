@@ -100,6 +100,7 @@ function isRegistered(user, events) {
     let checker = [];
     for (let i = 0; i < events.length; i++) {
         checker.push(false);
+
         if (user == null) continue;
         for (let j = 0; j < events[i].registeredUsers.length; j++) {
             if (events[i].registeredUsers[j].user_id.toString() == user._id) {
