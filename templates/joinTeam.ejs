@@ -116,33 +116,7 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <header class="header-glass active">
-            <div>
-                <img src="images/xpecto-logo-header.png" alt="" />
-                <span>XPECTO'22</span>
-            </div>
-            <nav>
-                <a id="" href="/#home">Home</a>
-                <a id="" href="/#about">About Us</a>
-                <a id="" href="/#contact">Contact Us</a>
-                <a id="" href="/#sponsors">Sponsors</a>
-                <a id="faq" href="#">Faq</a>
-                <a id="" href="events.html">Events</a>
-                <% if(!authenticated){ %>
-                <a id="sign" href="/auth/google"
-                    ><i class="fa-brands fa-google"></i> SignIn</a
-                >
-                <% }else{ %>
-                <a id="sign" href="/profile"><i class=""></i> Profile</a>
-                <a id="sign" href="/auth/logout"
-                    ><i class="fa-brands fa-google"></i> Logout</a
-                >
-                <% } %>
-            </nav>
-            <div class="hamburger">
-                <img class="toggle" src="images/menu_open.svg" alt="" />
-            </div>
-        </header>
+        <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">

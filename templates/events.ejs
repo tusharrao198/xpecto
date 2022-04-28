@@ -41,33 +41,7 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <header class="header-glass active">
-            <div>
-                <img src="images/xpecto-logo-header.png" alt="" />
-                <span>XPECTO'22</span>
-            </div>
-            <nav>
-                <a id="" href="/#home">Home</a>
-                <a id="" href="/#about">About Us</a>
-                <a id="" href="/#contact">Contact Us</a>
-                <a id="" href="/#sponsors">Sponsors</a>
-                <a id="" href="events.html">Events</a>
-                <a id="faq" href="#">Faq</a>
-                <% if(!authenticated){ %>
-                <a id="sign" href="/auth/google"
-                    ><i class="fa-brands fa-google"></i> SignIn</a
-                >
-                <% }else{ %>
-                <a id="sign" href="/profile"><i class=""></i> Profile</a>
-                <a id="sign" href="/auth/logout"
-                    ><i class="fa-brands fa-google"></i> Logout</a
-                >
-                <% } %>
-            </nav>
-            <div class="hamburger">
-                <img class="toggle" src="images/menu_open.svg" alt="" />
-            </div>
-        </header>
+        <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">
@@ -88,7 +62,7 @@
                     <div class="event-card-container">
                         <div class="event-card">
                             <div class="event-name"><%= events[i].name %></div>
-                            <a href="#"
+                            <a href="/event?event=<%=events[i].name %>"
                                 ><button class="info">
                                     <i
                                         class="fa-solid fa-arrow-right fa-2x"
@@ -100,13 +74,13 @@
                             </div>
                             <hr />
 
-                            <a href="/event?event=<%=events[i].name %>"
+                            <a href="/eventRegister?event=<%=events[i].name %>"
                                 ><button class="event-register">
                                     Register
                                 </button></a
                             >
 
-                            <a href="#"
+                            <a href="<%=events[i].problemset_link %>"
                                 ><button class="event-problem">
                                     Problem Set
                                 </button></a

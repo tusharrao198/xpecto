@@ -116,26 +116,7 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <header class="header-glass active">
-            <div>
-                <img src="images/xpecto-logo-header.png" alt="" />
-                <span>XPECTO'22</span>
-            </div>
-            <nav>
-                <a id="" href="index.html#home">Home</a>
-                <a id="" href="index.html#about">About Us</a>
-                <a id="" href="index.html#contact">Contact Us</a>
-                <a id="" href="index.html#sponsors">Sponsors</a>
-                <a id="faq" href="">Faq</a>
-                <a id="" href="events.html">Events</a>
-                <a id="sign" href="/users/googleauth"
-                    ><i class="fa-brands fa-google"></i> SignIn</a
-                >
-            </nav>
-            <div class="hamburger">
-                <img class="toggle" src="images/menu_open.svg" alt="" />
-            </div>
-        </header>
+        <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">
@@ -151,7 +132,7 @@
                     <div class="create-container">
                         <h1>Create Team | <%= event.name %></h1>
                         <hr />
-                        <form action="/createTeam" method="POST">
+                        <form action="/createTeam?event=<%= event.name %>" method="POST">
                             <div class="form-group">
                                 <label for="teamName">Team Name</label>
                                 <input
@@ -160,15 +141,6 @@
                                     id="teamName"
                                     placeholder="Enter team name"
                                     name="team_name"
-                                />
-                            </div>
-                            <div style="display: none">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="eventId"
-                                    name="event_id"
-                                    value="<%= event._id %>"
                                 />
                             </div>
                             <button type="submit" class="btn1">Create</button>
