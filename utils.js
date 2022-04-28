@@ -39,6 +39,7 @@ module.exports = {
     allEventDetails: async function (req) {
         // const event = await module.exports.findEvent(req);
         const teamTable = require("./models/Team");
+        const events = require("./models/Events");
 
         var user_id = String(req.user._id);
         var created_teams = await teamTable
@@ -52,8 +53,31 @@ module.exports = {
                 },
             },
         });
-        // console.log("joined_teams",joined_teams);
-        return { joined_teams: joined_teams, created_teams: created_teams };
+
+        // pushing important details in the queried data
+
+        var registeredEvs = [];
+        for (let i = 0; i < created_teams.length; i++) {
+            let x = created_teams[i];
+            let n = x.name
+
+            const event = await events.findOne({ _id: x.event }).lean();
+
+            created_teams[i]["eventName"] = event.name;
+            registeredEvs.push({ ...event, teamName: n });
+        }
+
+        for (let i = 0; i < joined_teams.length; i++) {
+            let x = joined_teams[i];
+            let n = x.name
+
+            const event = await events.findOne({ _id: x.event }).lean();
+
+            joined_teams[i]["eventName"] = event.name;
+            registeredEvs.push({ ...event, teamName: n });
+        }
+
+        return { joined_teams: joined_teams, created_teams: created_teams, registeredevents: registeredEvs };
     },
     // findIfUserRegistered: async function(req){
     //     const eventDetails = await module.exports.allEventDetails(req);

@@ -104,12 +104,17 @@ app.get("/events", async (req, res) => {
 });
 
 app.get("/profile", authCheck, async (req, res) => {
+    // joined teams : created_teams
+
     const context = await allEventDetails(req);
     res.render("profile", {
         user: req.user,
         authenticated: req.isAuthenticated(),
-        ...context,
+        context: context,
     });
+
+    // console.log(typeof (context))
+
 });
 app.get("/terms", (req, res) => {
     res.render("tnc", {
