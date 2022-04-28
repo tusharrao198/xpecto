@@ -14,10 +14,16 @@ const EventSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    content: {
+
+    oneline_content: {
         type: String,
         required: true,
     },
+
+    rest_content: {
+        type: String,
+    },
+
     event_image: {
         type: String,
         required: true,
@@ -26,10 +32,17 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
+    description: {
+        type: String,
+        required: true
+    },
+
     problemset_link: {
         type: String,
         required: true,
     },
+
 
     createdAt: {
         type: Date,
@@ -96,6 +109,11 @@ const EventSchema = new mongoose.Schema({
         },
     },
 
+    memberlimit:{
+        type:Number,
+        required:true
+    },
+   
     // duration: {
     //     hours: {
     //         type: Number,
