@@ -51,8 +51,8 @@
                 <a id="" href="/#about">About Us</a>
                 <a id="" href="/#contact">Contact Us</a>
                 <a id="" href="/#sponsors">Sponsors</a>
-                <a id="" href="events.html">Events</a>
-                <a id="faq" href="#">Faq</a>
+                <a id="" href="/events">Events</a>
+                <a id="faq" href="/faq">Faq</a>
                 <% if(!authenticated){ %>
                 <a id="sign" href="/auth/google"
                     ><i class="fa-brands fa-google"></i> SignIn</a
@@ -88,7 +88,7 @@
                     <div class="event-card-container">
                         <div class="event-card">
                             <div class="event-name"><%= events[i].name %></div>
-                            <a href="#"
+                            <a href="/event?event=<%=events[i].name %>"
                                 ><button class="info">
                                     <i
                                         class="fa-solid fa-arrow-right fa-2x"
@@ -100,13 +100,13 @@
                             </div>
                             <hr />
 
-                            <a href="/event?event=<%=events[i].name %>"
+                            <a href="/eventRegister?event=<%=events[i].name %>"
                                 ><button class="event-register">
                                     Register
                                 </button></a
                             >
 
-                            <a href="#"
+                            <a href="<%=events[i].problemset_link %>"
                                 ><button class="event-problem">
                                     Problem Set
                                 </button></a

@@ -55,6 +55,13 @@ module.exports = {
         // console.log("joined_teams",joined_teams);
         return { joined_teams: joined_teams, created_teams: created_teams };
     },
+    // findIfUserRegistered: async function(req){
+    //     const eventDetails = await module.exports.allEventDetails(req);
+    //     const event = await module.exports.findEvent(req);
+    //     console.log(eventDetails);
+    //     console.log(event);
+    //     return false;
+    // },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -150,5 +157,25 @@ module.exports = {
         const User = require("./models/User");
         let userinfo = await User.findOne({ _id: user_id }).lean();
         return userinfo;
+    },
+
+    regCheck: async function (req, res, next) {
+        const event = await module.exports.findEvent(req);
+
+        const eventTable = require("./models/Events");
+        var registeredEvents = await eventTable.find({
+            registeredUsers: {
+                $elemMatch: {
+                    user_id: req.user._id,
+                },
+            },
+        });
+
+        if(event in registeredEvents){
+            return next();
+        }
+        else{
+            res.redirect(`/eventRegister?event=${event.name}`);
+        }
     },
 };
