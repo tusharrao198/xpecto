@@ -125,9 +125,36 @@
             }
         }
 
+        tr {
+            margin-bottom: 1rem;
+        }
+
         @media (max-width: 320px) {
             .card {
                 width: 275px;
+            }
+        }
+        @media (min-width: 900px) {
+            tr {
+                display: flex;
+                flex-direction: row;
+            }
+            td {
+                padding: 1rem;
+            }
+            tr:nth-child(1) {
+                margin-right: 1rem;
+            }
+        }
+        @media (max-width: 510px) {
+            .card {
+                width: 350px;
+            }
+        }
+        @media(max-width:400px)
+        {
+            .card{
+                width: 300px;
             }
         }
     </style>
