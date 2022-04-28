@@ -17,6 +17,39 @@
             src="https://kit.fontawesome.com/a1542a4884.js"
             crossorigin="anonymous"
         ></script>
+        <style>
+            marquee {
+                background-color: rgba(0, 27, 61, 0.911);
+                margin-top: -1rem;
+                margin-bottom: 1.5rem;
+                width: 100%;
+                position: relative;
+                display:flex;
+                /* height: 100vh; */
+            }.marquee p{
+                padding-bottom: 0%;
+                color: aliceblue;
+                
+            }
+            .marquee{
+            background-image:rgba(0, 27, 61, 0.911);
+            }
+            .marquee .inner {
+        position: fixed;
+        top: 5rem;
+        z-index: 105;
+        width: 100%;
+        display: flex;
+        color: aqua;
+        font-size: 8rem;
+        
+      }
+      .marquee .inner > * {
+        white-space: nowrap;
+        padding: 0 3rem;
+      }
+    
+        </style>
 
         <title>Xpecto'22</title>
     </head>
@@ -25,6 +58,13 @@
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
         <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
+        <div class="marquee">
+            <div class="inner">
+                <marquee>
+              <p>"Coming Soon! Stay tuned for updates."</p>
+            </marquee>
+            </div>
+        </div>
 
         <main>
             <!-- -----HOME SECTION WITH PARALLAX EFFECT----- -->
