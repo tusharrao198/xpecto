@@ -24,7 +24,8 @@ const {
     createNewInviteCode,
     allEventDetails,
     userDetails,
-    regCheck
+    regCheck,
+    allowRegistration,
 } = require("./utils");
 var url = require("url");
 
@@ -114,11 +115,10 @@ app.get("/profile", authCheck, async (req, res) => {
     });
 
     // console.log(typeof (context))
-
 });
 app.get("/terms", (req, res) => {
     res.render("tnc", {
-        authenticated: req.isAuthenticated()
+        authenticated: req.isAuthenticated(),
     });
 });
 
@@ -128,7 +128,6 @@ app.get("/faq", (req, res) => {
         user: req.session.user,
     });
 });
-
 
 // app.get("/register", (req, res) => {
 //     res.render("register", {
@@ -166,7 +165,7 @@ app.get("/eventRegister", authCheck, async (req, res) => {
 });
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
-    const eventTable = require('./models/Events');
+    const eventTable = require("./models/Events");
     await eventTable.updateOne(
         { _id: event._id },
         { $push: { registeredUsers: { user_id: req.user._id } } }
@@ -186,6 +185,7 @@ app.get("/createTeam", authCheck, async (req, res) => {
 app.post("/createTeam", authCheck, async (req, res) => {
     await createNewTeam(req);
     const event = await findEvent(req);
+
     res.redirect(`/event?event=${event.name}`);
 });
 
@@ -217,23 +217,20 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
 
 app.post("/joinTeam", authCheck, async (req, res) => {
     const inviteCode = await joinTeam(req);
-    if(inviteCode != null){
+    if (inviteCode != null) {
         const team_id = inviteCode.team;
         const teamTable = require("./models/Team");
-        const team = await teamTable
-            .findOne({ _id: team_id })
-            .lean();
+        const team = await teamTable.findOne({ _id: team_id }).lean();
         const event_id = team.event;
 
         const event = await findEventFromId(event_id);
-        const eventTable = require('./models/Events');
-        await eventTable.updateOne(
-            { _id: event._id },
-            { $push: { registeredUsers : { user_id : req.user._id } } }
-        );
+        // const eventTable = require('./models/Events');
+        // await eventTable.updateOne(
+        //     { _id: event._id },
+        //     { $push: { registeredUsers : { user_id : req.user._id } } }
+        // );
         res.redirect(`/event?event=${event.name}`);
-    }
-    else{
+    } else {
         res.redirect(`/joinTeam`);
     }
 });
@@ -253,7 +250,7 @@ app.get("/userTeam", authCheck, async (req, res) => {
     const leaderInfo = await userDetails(team.teamLeader);
     let membersId = team.members;
     let membersInfo = [];
-    for(let i = 0;i<membersId.length;i++){
+    for (let i = 0; i < membersId.length; i++) {
         const userInfo = await userDetails(membersId[i].member_id);
         membersInfo.push(userInfo);
     }
