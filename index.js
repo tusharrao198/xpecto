@@ -32,7 +32,9 @@ var url = require("url");
 const { generateString } = require("./utils");
 const code = require("./models/code.js");
 const { name } = require("ejs");
+const { is } = require("express/lib/request");
 const res = require("express/lib/response");
+
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -95,14 +97,31 @@ app.get("/", (req, res) => {
     });
 });
 
+function isRegistered(user,events) {
+    let checker = [];
+    for(let i=0;i<events.length;i++){
+        checker.push(false);
+        for(let j=0; j < events[i].registeredUsers.length; j++){
+            if(events[i].registeredUsers[j].user_id.toString() == user._id){
+                checker[i] = true;
+            }
+        }
+    }
+    return checker;
+}
+
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
+    const checker = isRegistered(req.session.user,allEvents);
+    // console.log(checker);
     res.render("events", {
         events: allEvents,
         authenticated: req.isAuthenticated(),
         user: req.session.user,
+        checker: checker
     });
+    
 });
 
 app.get("/profile", authCheck, async (req, res) => {
