@@ -18,16 +18,15 @@ module.exports = {
     },
     findUserTeam: async function (req) {
         const event = await module.exports.findEvent(req);
-        console.log(event._id);
         const teamTable = require("./models/Team");
         var team = await teamTable
             .findOne({ event: event._id, teamLeader: req.user._id })
             .lean();
 
-        console.log(team);
         var user_id = String(req.user._id);
         if (team == null)
             team = await teamTable.findOne({
+                event: event._id,
                 members: {
                     $elemMatch: {
                         member_id: user_id,
@@ -89,20 +88,18 @@ module.exports = {
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
+
         const inviteCodeTable = require("./models/InviteCode");
         const inviteCode = await inviteCodeTable
             .findOne({ code: formDetails.invite_code })
             .lean();
+
         if (inviteCode != null) {
             const teamTable = require("./models/Team");
             await teamTable.updateOne(
                 { _id: inviteCode.team },
                 { $push: { members: { member_id: req.user._id } } }
             );
-            const team = await teamTable
-                .findOne({ _id: inviteCode.team })
-                .lean();
-            // console.log(team);
         }
     },
     deleteTeam: async function (team_id) {
