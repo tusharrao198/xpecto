@@ -116,12 +116,13 @@ module.exports = {
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
-        // console.log(formDetails.inviteCode === undefined);
+        // console.log("form = ", formDetails);
+        // console.log(formDetails.invite_code);
         if (
-            formDetails.inviteCode === undefined ||
-            formDetails.inviteCode === null ||
-            formDetails.inviteCode === "" ||
-            formDetails.inviteCode == " "
+            formDetails.invite_code === undefined ||
+            formDetails.invite_code === null ||
+            formDetails.invite_code === "" ||
+            formDetails.invite_code == " "
         ) {
             return null;
         } else {

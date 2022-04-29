@@ -257,7 +257,6 @@ app.get("/joinTeam", authCheck, async (req, res) => {
 
 app.post("/joinTeam", authCheck, async (req, res) => {
     const inviteCode = await joinTeam(req);
-
     if (inviteCode != null) {
         const team_id = inviteCode.team;
         const teamTable = require("./models/Team");
