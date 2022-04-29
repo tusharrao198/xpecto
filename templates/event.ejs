@@ -179,14 +179,12 @@
                                     Create Team
                                 </button></a
                             >
-                            <%}%>
-                            
-                            <% if (team_created) {%>
-                                <a href="/userTeam?event=<%= event.name %>"
-                                    ><button class="btn1 create-team">
-                                        User Team
-                                    </button></a
-                                >
+                            <%}%> <% if (team_created) {%>
+                            <a href="/userTeam?event=<%= event.name %>"
+                                ><button class="btn1 create-team">
+                                    Your Team
+                                </button></a
+                            >
                             <%}%>
 
                             <a
@@ -211,6 +209,7 @@
                         </div>
                         <div class="timeline">
                             <div class="timeline-heading">Timeline</div>
+                            <%if (event.start_time.day != 0) {%>
                             <div class="timeline-content">
                                 Participants must submit their Reels from <%=
                                 event.start_time.day %>th May , 2022 <%=
@@ -218,9 +217,11 @@
                                 event.end_time.day %>th May , 2022 <%=
                                 event.end_time.time %>
                             </div>
+                            <%} else {%> To be Updated Soon! <%}%>
                         </div>
                         <div class="submission">
                             <div class="submission-heading">Submission</div>
+                            <% if (event.submission_link.length > 0) {%>
                             <div class="submission-content">
                                 You have to submit your reels through this
                                 <a
@@ -229,6 +230,11 @@
                                     >Submission link.</a
                                 >
                             </div>
+                            <%}else {%>
+                            <div class="submission-content">
+                                Submission Links Will be provided Soon!
+                            </div>
+                            <%}%>
                         </div>
                     </section>
                 </main>

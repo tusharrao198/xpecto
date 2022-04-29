@@ -54,7 +54,7 @@
 
         <div class="" id="page">
             <div class="container">
-                <div class="heading">
+                <div class="heading" style="color: aqua">
                     <span>&nbsp;E</span>
                     <span>&nbsp;V</span>
                     <span>&nbsp;E</span>
@@ -74,7 +74,9 @@
                     <% for (let i = 0; i < events.length; i++) { %>
                     <div class="event-card-container">
                         <div class="event-card">
-                            <div class="event-name"><%= events[i].name %></div>
+                            <div class="event-name" style="color: aqua">
+                                <%= events[i].name %>
+                            </div>
                             <hr />
                             <div class="event-description">
                                 <%= events[i].oneline_content %>

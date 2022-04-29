@@ -27,6 +27,7 @@
     <style>
         .join-container h1 {
             text-align: center;
+            color: aqua;
         }
         #page .content {
             padding-top: 1rem;
@@ -167,11 +168,13 @@
             let inviteCode = ejs.render("<%= inviteCode %>");
             const msg = document.querySelector(".msg");
             if (invalidCode && inviteCode > 0) {
-                msg.innerHTML = "Couldn't Join A Team Invalid Code!";
-                setTimeout(() => msg.remove(), 3000);
+                msg.style.color = "yellow";
+                msg.innerHTML = "Couldn't Join A Team, Invalid Code!";
+                setTimeout(() => msg.remove(), 2000);
             } else if (invalidCode) {
+                msg.style.color = "yellow";
                 msg.innerHTML = "Please Enter a Invite Code to join a Team!";
-                setTimeout(() => msg.remove(), 3000);
+                setTimeout(() => msg.remove(), 2000);
             }
         </script>
     </body>
