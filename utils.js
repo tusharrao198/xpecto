@@ -116,60 +116,82 @@ module.exports = {
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
-        const inviteCodeTable = require("./models/InviteCode");
-        let inviteCode = await inviteCodeTable
-            .findOne({ code: formDetails.invite_code })
-            .lean();
+        // console.log(formDetails.inviteCode === undefined);
+        if (
+            formDetails.inviteCode === undefined ||
+            formDetails.inviteCode === null ||
+            formDetails.inviteCode === "" ||
+            formDetails.inviteCode == " "
+        ) {
+            return null;
+        } else {
+            const inviteCodeTable = require("./models/InviteCode");
+            let inviteCode = await inviteCodeTable
+                .findOne({ code: formDetails.invite_code })
+                .lean();
 
-        if (inviteCode.validUpto < Date.now()) inviteCode = null;
+            if (inviteCode.validUpto < Date.now()) inviteCode = null;
 
-        if (inviteCode != null) {
-            const teamTable = require("./models/Team");
-            const member_team = await teamTable.findOne({
-                _id: inviteCode.team,
-                members: {
-                    $elemMatch: {
-                        member_id: req.user._id,
-                    },
-                },
-            });
-            const leader_team = await teamTable.findOne({
-                _id: inviteCode.team,
-                teamLeader: req.user._id,
-            });
-
-            if (member_team == null && leader_team == null) {
-                const team_id = inviteCode.team;
+            if (inviteCode != null) {
                 const teamTable = require("./models/Team");
-                const team = await teamTable.findOne({ _id: team_id }).lean();
-                const event_id = team.event;
-                const event = await module.exports.findEventFromId(event_id);
+                const member_team = await teamTable.findOne({
+                    _id: inviteCode.team,
+                    members: {
+                        $elemMatch: {
+                            member_id: req.user._id,
+                        },
+                    },
+                });
+                const leader_team = await teamTable.findOne({
+                    _id: inviteCode.team,
+                    teamLeader: req.user._id,
+                });
 
-                let all_reg = await module.exports.allowRegistration(
-                    req,
-                    event
-                );
-                // console.log("To allow user", all_reg);
-                // console.log("Type is ", typeof all_reg);
-                if (all_reg) {
-                    // console.log("Mai ghus gya", all_reg);
-                    const eventTable = require("./models/Events");
-                    await eventTable.updateOne(
-                        { _id: event._id },
-                        {
-                            $push: {
-                                registeredUsers: { user_id: req.user._id },
-                            },
-                        }
+                if (member_team == null && leader_team == null) {
+                    const team_id = inviteCode.team;
+                    const teamTable = require("./models/Team");
+                    const team = await teamTable
+                        .findOne({ _id: team_id })
+                        .lean();
+                    const event_id = team.event;
+                    const event = await module.exports.findEventFromId(
+                        event_id
                     );
-                    await teamTable.updateOne(
-                        { _id: inviteCode.team },
-                        { $push: { members: { member_id: req.user._id } } }
+
+                    let all_reg = await module.exports.allowRegistration(
+                        req,
+                        event
                     );
+                    // console.log("To allow user", all_reg);
+                    // console.log("Type is ", typeof all_reg);
+                    if (all_reg) {
+                        // console.log("Mai ghus gya", all_reg);
+                        const eventTable = require("./models/Events");
+                        await eventTable.updateOne(
+                            { _id: event._id },
+                            {
+                                $push: {
+                                    registeredUsers: {
+                                        user_id: req.user._id,
+                                    },
+                                },
+                            }
+                        );
+                        await teamTable.updateOne(
+                            { _id: inviteCode.team },
+                            {
+                                $push: {
+                                    members: {
+                                        member_id: req.user._id,
+                                    },
+                                },
+                            }
+                        );
+                    }
                 }
             }
+            return inviteCode;
         }
-        return inviteCode;
     },
     deleteTeam: async function (team_id) {
         const teamTable = require("./models/Team");

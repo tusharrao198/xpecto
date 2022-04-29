@@ -201,6 +201,7 @@
                                 id="coupon"
                                 placeholder="Enter Coupon Code"
                                 name="coupon_code"
+                                required
                             /> -->
                             <label for="phone">Phone</label>
                             <input
@@ -208,6 +209,7 @@
                                 id="phone"
                                 placeholder="Enter Phone"
                                 name="phone_number"
+                                required
                             />
                         </div>
 
@@ -224,7 +226,7 @@
                 if (inputtxt.match(phoneno)) {
                     return true;
                 } else {
-                    alert("Not a valid Phone Number");
+                    alert("Enter a valid 10 Digit Phone Number");
                     return false;
                 }
                 event.preventDefault();

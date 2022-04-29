@@ -14,6 +14,9 @@ router.get("/logout", (req, res) => {
     // req.session = null;
     req.logout();
     req.session.user = null;
+    if (req.session.returnTo === undefined) {
+        delete req.session.returnTo;
+    }
     res.redirect("/");
 });
 
@@ -34,11 +37,19 @@ router.get(
         if (process.env.NODE_ENV == "development") {
             // console.log("dev = ", req.headers.host);
             // console.log("dev url = ", req.url);
-            res.redirect("/");
+            res.redirect(req.session.returnTo || "/");
+            delete req.session.returnTo;
+            // res.redirect("/");
         } else if (process.env.NODE_ENV == "production") {
-            res.redirect(`https://${req.headers.host}/`);
+            // res.redirect(`https://${req.headers.host}/`);
+
+            res.redirect(
+                req.session.returnTo || `https://${req.headers.host}/`
+            );
+            delete req.session.returnTo;
         } else {
-            res.redirect("/");
+            res.redirect(req.session.returnTo || "/");
+            delete req.session.returnTo;
         }
     }
 );

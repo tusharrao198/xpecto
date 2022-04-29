@@ -17,11 +17,11 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <<<<<<< HEAD
+        <% if (teams.length===0) {%>
         <title>Join Team | Xpecto</title>
-        =======
-        <title>Team: <%= team.name %> | Xpecto</title>
-        >>>>>>> 9904d8b (Updated userteam page)
+        <% } else{ %>
+        <title>Team: <%= teams.name %> | Xpecto</title>
+        <% } %>
     </head>
 
     <style>
@@ -142,20 +142,37 @@
                             <div class="form-group">
                                 <hr />
                                 <label for="inviteCode">Invite Code</label>
+                                <div class="msg"></div>
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="inviteCode"
                                     placeholder="Enter invite code"
                                     name="invite_code"
+                                    required
                                 />
                             </div>
-                            <button type="submit" class="btn1">Join</button>
+                            <button id="joinButton" type="submit" class="btn1">
+                                Join
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript">
+            let invalidCode = ejs.render("<%= invalidCode %>");
+            let inviteCode = ejs.render("<%= inviteCode %>");
+            const msg = document.querySelector(".msg");
+            if (invalidCode && inviteCode > 0) {
+                msg.innerHTML = "Couldn't Join A Team Invalid Code!";
+                setTimeout(() => msg.remove(), 3000);
+            } else if (invalidCode) {
+                msg.innerHTML = "Please Enter a Invite Code to join a Team!";
+                setTimeout(() => msg.remove(), 3000);
+            }
+        </script>
     </body>
 </html>

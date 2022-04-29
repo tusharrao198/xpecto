@@ -161,12 +161,12 @@ app.get("/ourteam", async (req, res) => {
 app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
     const team = await findUserTeam(req);
-
     const context = {
         event: event,
         firstPrizeAmount: event.prices.first,
         team: team,
         authenticated: req.isAuthenticated(),
+        team_created: team != null ? true : false,
     };
     res.render("event", { ...context, user: req.session.user });
 });
@@ -210,16 +210,13 @@ app.get("/createTeam", authCheck, async (req, res) => {
 
 app.post("/createTeam", authCheck, async (req, res) => {
     await createNewTeam(req);
+    console.log(req.body);
     const event = await findEvent(req);
+    context = {
+        created: true,
+    };
 
     res.redirect(`/event?event=${event.name}`);
-});
-
-app.get("/joinTeam", authCheck, async (req, res) => {
-    const context = {
-        authenticated: req.isAuthenticated(),
-    };
-    res.render("joinTeam", { ...context, user: req.session.user });
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {
@@ -241,6 +238,23 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
     }
 });
 
+app.get("/joinTeam", authCheck, async (req, res) => {
+    const teamTable = require("./models/Team");
+    let teams = await teamTable.find().lean();
+    const context = {
+        authenticated: req.isAuthenticated(),
+        teams: teams,
+        invalidCode: false,
+        inviteCode: 0,
+    };
+    if (teams.length === 0) {
+        console.log("No teams formed till now!, teams = ", teams);
+        res.render("joinTeam", { ...context, user: req.session.user });
+    } else {
+        res.render("joinTeam", { ...context, user: req.session.user });
+    }
+});
+
 app.post("/joinTeam", authCheck, async (req, res) => {
     const inviteCode = await joinTeam(req);
 
@@ -258,7 +272,17 @@ app.post("/joinTeam", authCheck, async (req, res) => {
         // );
         res.redirect(`/event?event=${event.name}`);
     } else {
-        res.redirect(`/joinTeam`);
+        // console.log("inviteCode is invalid");
+        const teamTable = require("./models/Team");
+        let teams = await teamTable.find().lean();
+        const context = {
+            authenticated: req.isAuthenticated(),
+            teams: teams,
+            invalidCode: true,
+            inviteCode: req.body.invite_code.length,
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("joinTeam", { ...context, user: req.session.user });
     }
 });
 

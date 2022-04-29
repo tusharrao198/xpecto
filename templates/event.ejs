@@ -173,11 +173,14 @@
                     <section class="first">
                         <h1><%= event.name.toUpperCase()%></h1>
                         <div class="btn-group">
+                            <% if (!team_created) {%>
                             <a href="/createTeam?event=<%= event.name %>"
                                 ><button class="btn1 create-team">
                                     Create Team
                                 </button></a
                             >
+                            <%}%>
+
                             <a
                                 target="_blank"
                                 href="assets/<%= event.name %>.pdf"
