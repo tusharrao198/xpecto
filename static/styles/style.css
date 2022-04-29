@@ -392,6 +392,12 @@ nav a:hover {
     margin-top: 2rem;
 }
 
+.email-content a,
+.phone-content a {
+    text-decoration: none;
+    color: #ffff;
+}
+
 .phone-content .phone {
     margin-top: 1rem;
 }
@@ -456,6 +462,9 @@ nav a:hover {
     background-color: #060539;
     border-radius: 5px;
     transition: 0.3s;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 #sponsors .spon:hover {
@@ -561,4 +570,3 @@ hr {
         font-size: 0.8rem;
     }
 }
-

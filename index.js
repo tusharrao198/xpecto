@@ -164,6 +164,7 @@ app.get("/event", authCheck, regCheck, async (req, res) => {
 
     const context = {
         event: event,
+        firstPrizeAmount: event.prices.first,
         team: team,
         authenticated: req.isAuthenticated(),
     };
