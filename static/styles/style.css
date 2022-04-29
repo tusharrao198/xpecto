@@ -260,7 +260,18 @@ nav a:hover {
     margin: 1rem;
     padding: 0;
 }
-#about .btn1 {
+
+.event-join-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+.btn1-event-join {
+    font-size: 2rem;
+}
+#about .btn1,
+.btn1-event-join {
     letter-spacing: -1px;
     color: white;
     font-size: 1.25rem;
@@ -273,7 +284,8 @@ nav a:hover {
     transition: 0.3s;
     box-shadow: 0 10px 50px 0 black;
 }
-#about .btn1:hover {
+#about .btn1:hover,
+.btn1-event-join:hover {
     background-color: rgba(0, 20, 47);
     cursor: pointer;
     transition: 0.3s;
@@ -282,6 +294,9 @@ nav a:hover {
 #about .btn1:active {
     transition: 0.3s;
     transform: translateY(2px);
+}
+.btn1-event-join {
+    font-size: 2.25rem;
 }
 
 /* -----CONTACT SECTION DESIGNING----- */
