@@ -317,7 +317,7 @@ nav a:hover {
 #contact .card {
     margin: 1rem;
     width: 300px;
-    height: 200px;
+    height: 250px;
     background: rgba(0, 37, 84, 0.3);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(20px);
