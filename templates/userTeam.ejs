@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Team: <%= team.name %> | Xpecto</title>
+        <title>Your Team | Xpecto</title>
     </head>
 
     <style>
@@ -178,7 +178,7 @@
                     <div class="user-container">
                         <div>
                             <h1 class="user-heading">
-                                Team - <%= team.name %>
+                                Team - <%= team.name.toUpperCase() %>
                             </h1>
                             <br />
                             <hr />
@@ -188,7 +188,7 @@
                             <table>
                                 <tr>
                                     <td>Team Name</td>
-                                    <td><%= team.name %></td>
+                                    <td><%= team.name.toUpperCase() %></td>
                                 </tr>
                                 <!-- <tr>
                                     <td>Team ID</td>
