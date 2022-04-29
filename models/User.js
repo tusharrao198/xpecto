@@ -36,6 +36,18 @@ const UserSchema = new mongoose.Schema({
     phoneNumber: {
         type: Number,
     },
+    fullName: {
+        type: String,
+    },
+    collegeName: {
+        type: String,
+    },
+    degree: {
+        type: String,
+    },
+    branch: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model("UserDetails", UserSchema);
