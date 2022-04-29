@@ -166,14 +166,20 @@
         <script type="text/javascript">
             let invalidCode = ejs.render("<%= invalidCode %>");
             let inviteCode = ejs.render("<%= inviteCode %>");
+            let allowedTeamSize = ejs.render("<%= allowedTeamSize %>");
             const msg = document.querySelector(".msg");
-            if (invalidCode && inviteCode > 0) {
+            // console.log("asd = ", !invalidCode && !allowedTeamSize);
+            if (!invalidCode && !allowedTeamSize) {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Team Full!";
+                setTimeout(() => msg.remove(), 2000);
+            } else if (allowedTeamSize && invalidCode && inviteCode > 0) {
                 msg.style.color = "yellow";
                 msg.innerHTML = "Couldn't Join A Team, Invalid Code!";
                 setTimeout(() => msg.remove(), 2000);
-            } else if (invalidCode) {
+            } else {
                 msg.style.color = "yellow";
-                msg.innerHTML = "Please Enter a Invite Code to join a Team!";
+                msg.innerHTML = "Please Enter a Code to join a Team!";
                 setTimeout(() => msg.remove(), 2000);
             }
         </script>

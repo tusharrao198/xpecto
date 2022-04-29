@@ -298,4 +298,68 @@ module.exports = {
         }
         return allow_reg;
     },
+
+    maxteamSize: async function (req) {
+        // console.log("else mein a gya");
+        const formDetails = req.body;
+        if (
+            formDetails.invite_code === undefined ||
+            formDetails.invite_code === null ||
+            formDetails.invite_code === "" ||
+            formDetails.invite_code == " "
+        ) {
+            return "invalidCode";
+        }
+        const inviteCodeTable = require("./models/InviteCode");
+        let inviteCode = await inviteCodeTable
+            .findOne({ code: formDetails.invite_code })
+            .lean();
+        if (inviteCode != null) {
+            const team_id = inviteCode.team;
+            const teamTable = require("./models/Team");
+
+            const member_team = await teamTable.findOne({
+                _id: inviteCode.team,
+                members: {
+                    $elemMatch: {
+                        member_id: req.user._id,
+                    },
+                },
+            });
+            const leader_team = await teamTable.findOne({
+                _id: inviteCode.team,
+                teamLeader: req.user._id,
+            });
+
+            const team = await teamTable.findOne({ _id: team_id }).lean();
+            const event_id = team.event;
+            const event = await module.exports.findEventFromId(event_id);
+
+            let teamMaxSize = event.teamMaxSize;
+            if (teamMaxSize === "any") {
+                teamMaxSize = 3;
+                console.log("teamsize update due to any = ", teamMaxSize);
+            }
+
+            console.log("member_team = ", member_team);
+            let teamSizeCount = 1;
+            if (member_team != null) {
+                teamSizeCount += member_team.members.length;
+            }
+            if (leader_team != null) {
+                teamSizeCount += 1; // counting leader
+            }
+
+            if (teamSizeCount >= teamMaxSize) {
+                // context = {
+                //     teamSizeCount: teamSizeCount,
+                //     msg: `Only maximum of ${event.teamSizeCount} can participate in a team`,
+                // };
+                console.log("FFFF");
+                return "false";
+            }
+            console.log("TRUEEE");
+            return "true";
+        }
+    },
 };

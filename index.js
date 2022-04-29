@@ -26,6 +26,7 @@ const {
     userDetails,
     regCheck,
     allowRegistration,
+    maxteamSize,
 } = require("./utils");
 var url = require("url");
 
@@ -250,6 +251,7 @@ app.get("/joinTeam", authCheck, async (req, res) => {
         teams: teams,
         invalidCode: false,
         inviteCode: 0,
+        allowedTeamSize: true,
     };
     if (teams.length === 0) {
         // console.log("No teams formed till now!, teams = ", teams);
@@ -260,22 +262,55 @@ app.get("/joinTeam", authCheck, async (req, res) => {
 });
 
 app.post("/joinTeam", authCheck, async (req, res) => {
-    const inviteCode = await joinTeam(req);
-    if (inviteCode != null) {
-        const team_id = inviteCode.team;
-        const teamTable = require("./models/Team");
-        const team = await teamTable.findOne({ _id: team_id }).lean();
-        const event_id = team.event;
+    const allowedTeamSize = await maxteamSize(req);
+    if (allowedTeamSize === "true") {
+        console.log("allowed11");
+        const inviteCode = await joinTeam(req);
+        if (inviteCode != null) {
+            const team_id = inviteCode.team;
+            const teamTable = require("./models/Team");
+            const team = await teamTable.findOne({ _id: team_id }).lean();
+            const event_id = team.event;
 
-        const event = await findEventFromId(event_id);
-        // const eventTable = require('./models/Events');
-        // await eventTable.updateOne(
-        //     { _id: event._id },
-        //     { $push: { registeredUsers : { user_id : req.user._id } } }
-        // );
-        res.redirect(`/event?event=${event.name}`);
+            const event = await findEventFromId(event_id);
+            // const eventTable = require('./models/Events');
+            // await eventTable.updateOne(
+            //     { _id: event._id },
+            //     { $push: { registeredUsers : { user_id : req.user._id } } }
+            // );
+            res.redirect(`/event?event=${event.name}`);
+        } else {
+            console.log("inviteCode is invalid");
+            const teamTable = require("./models/Team");
+            let teams = await teamTable.find().lean();
+            const context = {
+                authenticated: req.isAuthenticated(),
+                teams: teams,
+                invalidCode: true,
+                inviteCode: req.body.invite_code.length,
+                allowedTeamSize: true,
+            };
+            // res.redirect(`/joinTeam`);
+            res.render("joinTeam", { ...context, user: req.session.user });
+        }
+    } else if (allowedTeamSize === "false") {
+        console.log("allowedTeamSize is false");
+        const teamTable = require("./models/Team");
+        let teams = await teamTable.find().lean();
+        const context = {
+            authenticated: req.isAuthenticated(),
+            teams: teams,
+            invalidCode: false,
+            inviteCode: req.body.invite_code.length,
+            allowedTeamSize: false,
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("joinTeam", {
+            ...context,
+            user: req.session.user,
+        });
     } else {
-        console.log("inviteCode is invalid");
+        console.log("inviteCode is true");
         const teamTable = require("./models/Team");
         let teams = await teamTable.find().lean();
         const context = {
@@ -283,9 +318,13 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             teams: teams,
             invalidCode: true,
             inviteCode: req.body.invite_code.length,
+            allowedTeamSize: true,
         };
         // res.redirect(`/joinTeam`);
-        res.render("joinTeam", { ...context, user: req.session.user });
+        res.render("joinTeam", {
+            ...context,
+            user: req.session.user,
+        });
     }
 });
 
