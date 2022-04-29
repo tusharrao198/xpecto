@@ -180,12 +180,13 @@
                                 </button></a
                             >
                             <%}%>
-                            <% else {%>
-                            <a href="/userTeam?event=<%= event.name %>"
-                                ><button class="btn1 create-team">
-                                    Your Team
-                                </button></a
-                            >
+                            
+                            <% if (team_created) {%>
+                                <a href="/userTeam?event=<%= event.name %>"
+                                    ><button class="btn1 create-team">
+                                        User Team
+                                    </button></a
+                                >
                             <%}%>
 
                             <a

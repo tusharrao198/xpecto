@@ -210,7 +210,7 @@ app.get("/createTeam", authCheck, async (req, res) => {
 
 app.post("/createTeam", authCheck, async (req, res) => {
     await createNewTeam(req);
-    console.log(req.body);
+    // console.log(req.body);
     const event = await findEvent(req);
     context = {
         created: true,
@@ -234,7 +234,7 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
         await deleteTeam(params.team);
         res.redirect(`/event?event=${event.name}`);
     } else {
-        console.log("Only Team Leader can delete a team!");
+        // console.log("Only Team Leader can delete a team!");
     }
 });
 
@@ -248,7 +248,7 @@ app.get("/joinTeam", authCheck, async (req, res) => {
         inviteCode: 0,
     };
     if (teams.length === 0) {
-        console.log("No teams formed till now!, teams = ", teams);
+        // console.log("No teams formed till now!, teams = ", teams);
         res.render("joinTeam", { ...context, user: req.session.user });
     } else {
         res.render("joinTeam", { ...context, user: req.session.user });
