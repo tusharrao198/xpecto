@@ -43,7 +43,7 @@ img {
     white-space: nowrap;
     letter-spacing: 3px;
     z-index: 5;
-    right: -200px;
+    right: -90px;
 }
 #btn {
     font-size: 18px;
@@ -61,15 +61,16 @@ img {
     animation: shake 0.75s infinite;
 }
 
- @keyframes shake{
-        0%,100%{
-            transform: translateY(200px);
-        }
-
-        50%{
-            transform: translateY(205px);
-        }
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateY(200px);
     }
+
+    50% {
+        transform: translateY(205px);
+    }
+}
 .section-padding {
     padding: 80px 0;
     background: #fefefe;
