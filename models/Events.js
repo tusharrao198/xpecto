@@ -35,7 +35,7 @@ const EventSchema = new mongoose.Schema({
 
     description: {
         type: String,
-        required: true
+        required: true,
     },
 
     problemset_link: {
@@ -43,77 +43,70 @@ const EventSchema = new mongoose.Schema({
         required: true,
     },
 
-
     createdAt: {
         type: Date,
         default: Date.now,
     },
-    
+
     start_time: {
-        day:{
-            type:Number,
-            required:true
+        day: {
+            type: Number,
+            required: true,
         },
-        time:{
-            type:String,
-            required:true   
-        }
+        time: {
+            type: String,
+            required: true,
+        },
     },
-    
+
     end_time: {
-        day:{
-            type:Number,
-            required:true
+        day: {
+            type: Number,
+            required: true,
         },
-        time:{
-            type:String,
-            required:true   
-        }
+        time: {
+            type: String,
+            required: true,
+        },
     },
 
     prices: {
-        first:{
-            type:Number,
-            required:true
+        first: {
+            type: Number,
+            required: true,
         },
-        second:{
-            type:String,
-            required:true   
+        second: {
+            type: String,
+            required: true,
         },
-        third:{
-            type:String,
-            required:true
-        }
+        third: {
+            type: String,
+            required: true,
+        },
     },
 
     coordinators: {
-        first:{
-            name:{
-                type:String,
-                required:true
+        first: {
+            name: {
+                type: String,
+                required: true,
             },
-            contact:{
-                type:String,
-                required:true
-            }
+            contact: {
+                type: String,
+                required: true,
+            },
         },
-        second:{
-            name:{
-                type:String,
-                required:true
+        second: {
+            name: {
+                type: String,
+                required: true,
             },
-            contact:{
-                type:String,
-                required:true
-            }
+            contact: {
+                type: String,
+                required: true,
+            },
         },
     },
-
-    memberlimit:{
-        type:Number,
-        required:true
-    },
-   
     // duration: {
     //     hours: {
     //         type: Number,
@@ -128,7 +121,7 @@ const EventSchema = new mongoose.Schema({
     //         default: 0,
     //     },
     // },
-    
+
     registeredUsers: [
         {
             user_id: {
@@ -137,6 +130,9 @@ const EventSchema = new mongoose.Schema({
             },
         },
     ],
+    teamMaxSize: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model("event", EventSchema);

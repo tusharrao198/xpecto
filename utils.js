@@ -131,7 +131,8 @@ module.exports = {
                 .findOne({ code: formDetails.invite_code })
                 .lean();
 
-            if (inviteCode.validUpto < Date.now()) inviteCode = null;
+            if (inviteCode && inviteCode.validUpto < Date.now())
+                inviteCode = null;
 
             if (inviteCode != null) {
                 const teamTable = require("./models/Team");
@@ -147,7 +148,7 @@ module.exports = {
                     _id: inviteCode.team,
                     teamLeader: req.user._id,
                 });
-
+                // if a user is not in a team and not a leader
                 if (member_team == null && leader_team == null) {
                     const team_id = inviteCode.team;
                     const teamTable = require("./models/Team");

@@ -225,16 +225,20 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
     const teamTable = require("./models/Team");
 
     const event = await findEventFromId(params.event);
-
-    let team = await teamTable
-        .findOne({ event: event._id, teamLeader: req.user._id })
-        .lean();
-
-    if (team != null) {
-        await deleteTeam(params.team);
-        res.redirect(`/event?event=${event.name}`);
+    if (event == null) {
+        res.redirect(`/events`);
     } else {
-        // console.log("Only Team Leader can delete a team!");
+        let team = await teamTable
+            .findOne({ event: event._id, teamLeader: req.user._id })
+            .lean();
+
+        if (team != null) {
+            await deleteTeam(params.team);
+            res.redirect(`/event?event=${event.name}`);
+        } else {
+            console.log("Only Team Leader can delete a team!");
+            res.redirect(`/userTeam?event=${event.name}`);
+        }
     }
 });
 
@@ -271,7 +275,7 @@ app.post("/joinTeam", authCheck, async (req, res) => {
         // );
         res.redirect(`/event?event=${event.name}`);
     } else {
-        // console.log("inviteCode is invalid");
+        console.log("inviteCode is invalid");
         const teamTable = require("./models/Team");
         let teams = await teamTable.find().lean();
         const context = {
@@ -294,66 +298,72 @@ app.get("/removeMember", authCheck, async (req, res) => {
 
 app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
-    const inviteCodeTable = require("./models/InviteCode");
-    let inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
+    if (team == null) {
+        res.redirect("/events");
+    } else {
+        const inviteCodeTable = require("./models/InviteCode");
+        let inviteCode = await inviteCodeTable
+            .findOne({ team: team._id })
+            .lean();
 
-    const leaderInfo = await userDetails(team.teamLeader);
-    let membersId = team.members;
-    let membersInfo = [];
-    for (let i = 0; i < membersId.length; i++) {
-        const userInfo = await userDetails(membersId[i].member_id);
-        membersInfo.push(userInfo);
+        const leaderInfo = await userDetails(team.teamLeader);
+        let membersId = team.members;
+        let membersInfo = [];
+        for (let i = 0; i < membersId.length; i++) {
+            const userInfo = await userDetails(membersId[i].member_id);
+            membersInfo.push(userInfo);
+        }
+        // only team leader can delete a team and generate a invite code.
+        // const teamTable = require("./models/Team");
+        // let teaminfo = await teamTable
+        //     .findOne({ event: team.event, teamLeader: req.user._id })
+        //     .lean();
+        // let leader = false;
+        // if (teaminfo != null) {
+        //     leader = true;
+        // }
+
+        // event details
+        const event = await findEvent(req);
+
+        // user info
+        // let leaderinfo = null;
+        // if (leader) {
+        //     leaderinfo = await userDetails(req.user._id);
+        // } else {
+        //     const teamdata = await teamTable.findOne({ event: team.event }).lean();
+        //     leaderinfo = await userDetails(teamdata.teamLeader);
+        // }
+
+        //team member details
+        // let members_info = [];
+        // for (let index = 0; index < team.members.length; index++) {
+        //     let mem_id = team.members[index].member_id;
+        //     let info = await userDetails(mem_id);
+        //     members_info.push(info);
+        // }
+        context = {
+            event: event,
+            team: team,
+            authenticated: req.isAuthenticated(),
+            inviteCode: null,
+            validUpto: null,
+            isLeader: team.teamLeader.toString() === req.user._id.toString(),
+            // leader: leader,
+            leaderinfo: leaderInfo,
+            membersinfo: membersInfo,
+        };
+        // console.log(team.teamLeader);
+        // console.log(req.user._id.toString());
+        // console.log(team.teamLeader.toString() === req.user._id.toString());
+        // console.log(team);
+        if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
+            context.inviteCode = inviteCode.code;
+            context.validUpto = inviteCode.validUpto;
+        }
+
+        res.render("userTeam", { ...context, user: req.session.user });
     }
-    // only team leader can delete a team and generate a invite code.
-    // const teamTable = require("./models/Team");
-    // let teaminfo = await teamTable
-    //     .findOne({ event: team.event, teamLeader: req.user._id })
-    //     .lean();
-    // let leader = false;
-    // if (teaminfo != null) {
-    //     leader = true;
-    // }
-
-    // event details
-    const event = await findEvent(req);
-
-    // user info
-    // let leaderinfo = null;
-    // if (leader) {
-    //     leaderinfo = await userDetails(req.user._id);
-    // } else {
-    //     const teamdata = await teamTable.findOne({ event: team.event }).lean();
-    //     leaderinfo = await userDetails(teamdata.teamLeader);
-    // }
-
-    //team member details
-    // let members_info = [];
-    // for (let index = 0; index < team.members.length; index++) {
-    //     let mem_id = team.members[index].member_id;
-    //     let info = await userDetails(mem_id);
-    //     members_info.push(info);
-    // }
-    context = {
-        event: event,
-        team: team,
-        authenticated: req.isAuthenticated(),
-        inviteCode: null,
-        validUpto: null,
-        isLeader: team.teamLeader.toString() === req.user._id.toString(),
-        // leader: leader,
-        leaderinfo: leaderInfo,
-        membersinfo: membersInfo,
-    };
-    // console.log(team.teamLeader);
-    // console.log(req.user._id.toString());
-    // console.log(team.teamLeader.toString() === req.user._id.toString());
-    // console.log(team);
-    if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
-        context.inviteCode = inviteCode.code;
-        context.validUpto = inviteCode.validUpto;
-    }
-
-    res.render("userTeam", { ...context, user: req.session.user });
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {

@@ -14,7 +14,7 @@ router.get("/logout", (req, res) => {
     // req.session = null;
     req.logout();
     req.session.user = null;
-    if (req.session.returnTo === undefined) {
+    if (req.session.returnTo === undefined || req.session.returnTo === null) {
         delete req.session.returnTo;
     }
     res.redirect("/");
