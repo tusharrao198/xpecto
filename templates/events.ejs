@@ -111,7 +111,17 @@
                             <div class="team-size">
                                 <div class="team-size-heading">Team Size</div>
                                 <div>:</div>
-                                <div class="team-size-value">3-5</div>
+                                <% if(events[i].teamMinSize ===
+                                events[i].teamMaxSize) { %>
+                                <div class="team-size-value">
+                                    <%= events[i].teamMinSize %>
+                                </div>
+                                <%}else {%>
+                                <div class="team-size-value">
+                                    <%= events[i].teamMinSize %>-<%=
+                                    events[i].teamMaxSize %>
+                                </div>
+                                <%}%>
                             </div>
                             <hr />
                             <a href="/event?event=<%=events[i].name %>"
