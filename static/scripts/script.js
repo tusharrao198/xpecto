@@ -1,6 +1,7 @@
 // CODE FOR RESPONSIVE NAVBAR
 const toggler = document.querySelector(".toggle");
 const navbar = document.querySelector("nav");
+const closeTap = document.querySelectorAll(".close")
 if (window.innerWidth <= 900) navbar.style.display = "none";
 
 navbar.addEventListener("resize", () => {
@@ -16,6 +17,11 @@ toggler.addEventListener("click", () => {
         navbar.style.display = "none";
     }
 });
+for (let i = 0; i < closeTap.length; i++)
+    closeTap[i].addEventListener("click", () => {
+        toggler.setAttribute("src", "images/menu_open.svg");
+        navbar.style.display = "none";
+    });
 // **************************************************************
 
 // CODE FOR PARRALAX EFFECT IN HOME SECTION
