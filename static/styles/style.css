@@ -231,7 +231,7 @@ nav a:hover {
     background-image: url("../images/svg/polygon.svg");
     background-attachment: fixed;
     color: white;
-    padding: 2rem 0;
+    padding: 3rem 0 2rem 0;
 }
 
 #about .heading {
@@ -258,6 +258,8 @@ nav a:hover {
 }
 #about .pages-btn a {
     margin: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
     padding: 0;
 }
 
@@ -301,13 +303,14 @@ nav a:hover {
 
 /* -----CONTACT SECTION DESIGNING----- */
 #contact .heading {
+    margin-bottom: 3.5rem;
     color: white;
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
 }
 #contact {
-    padding: 1rem;
+    padding: 3rem 1rem 3rem 1rem;
     background-image: url("../images/svg/circles.svg");
     background-color: rgb(0, 10, 22);
     background-attachment: fixed;
@@ -339,10 +342,16 @@ nav a:hover {
     padding: 1rem;
 }
 #contact .content i {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     margin-top: 1rem;
 }
 
+#contact .phone-content .phone a div {
+    margin-bottom: 0.5rem;
+}
+#contact .phone-content .phone {
+    margin-top: 1rem;
+}
 /* -----DESIGNING OF RIBBON FOLDING EFFECT ON CONTACT CARDS----- */
 .ribbon {
     width: 150px;
@@ -445,7 +454,7 @@ nav a:hover {
 
 /* -----SPONSORS SECTION DESIGNING----- */
 #sponsors {
-    padding: 1rem;
+    padding: 3rem 2rem 3rem 2rem;
     background-image: linear-gradient(
         to right bottom,
         #030060,
@@ -472,7 +481,8 @@ nav a:hover {
     font-weight: bold;
 }
 
-#sponsors .spon, #faq .faq-soon {
+#sponsors .spon,
+#faq .faq-soon {
     padding: 1rem;
     margin: 1rem;
     background-color: #060539;
@@ -483,7 +493,8 @@ nav a:hover {
     font-size: 1.5rem;
 }
 
-#sponsors .spon:hover, #faq .faq-soon:hover{
+#sponsors .spon:hover,
+#faq .faq-soon:hover {
     box-shadow: 0 20px 50px -15px black;
     transform: translateY(-2.5px);
     transition: 0.3s;
@@ -591,14 +602,11 @@ hr {
 /* -----STYLING FAQ SECTION----- */
 
 #faq {
-    /* background-color: #020111; */
-    /* padding:2rem 0.1rem; */
     background-image: url("../images/svg/circles.svg");
     background-color: rgb(0, 10, 22);
     background-attachment: fixed;
     color: white;
-    /* padding: ; */
-    padding:1.5rem 0.1rem 2.5rem 0.1rem !important;
+    padding: 3rem 2rem 3rem 2rem;
 }
 #faq .faq-container {
     display: flex;
