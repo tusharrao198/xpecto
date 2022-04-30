@@ -7,13 +7,19 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes." />
-        <meta name="keywords" content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -56,6 +62,12 @@
                 padding: 2rem 0.25rem;
             }
         }
+        .team-size {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin: 0.5rem;
+        }
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
@@ -94,6 +106,12 @@
                                     <summary>Click to Know More</summary>
                                     <%= events[i].rest_content %>
                                 </details>
+                            </div>
+                            <hr />
+                            <div class="team-size">
+                                <div class="team-size-heading">Team Size</div>
+                                <div>:</div>
+                                <div class="team-size-value">3-5</div>
                             </div>
                             <hr />
                             <a href="/event?event=<%=events[i].name %>"
