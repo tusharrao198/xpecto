@@ -7,13 +7,19 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes." />
-        <meta name="keywords" content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -151,6 +157,7 @@
                         >
                             <div class="form-group">
                                 <label for="teamName">Team Name</label>
+                                <div class="msg"></div>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -167,5 +174,15 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script type="text/javascript">
+            let uniqueTeam = ejs.render("<%= uniqueTeam %>").toString();
+            const msg = document.querySelector(".msg");
+            console.log("asd = ", uniqueTeam);
+            if (uniqueTeam === "false") {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Team Name already taken!";
+                setTimeout(() => msg.remove(), 2000);
+            }
+        </script>
     </body>
 </html>

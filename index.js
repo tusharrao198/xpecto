@@ -27,6 +27,7 @@ const {
     regCheck,
     allowRegistration,
     maxteamSize,
+    checkTeamName,
 } = require("./utils");
 var url = require("url");
 
@@ -219,19 +220,32 @@ app.get("/createTeam", authCheck, async (req, res) => {
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
+        uniqueTeam: true,
     };
     res.render("createTeam", { ...context, user: req.session.user });
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
-    await createNewTeam(req);
-    // console.log(req.body);
-    const event = await findEvent(req);
-    context = {
-        created: true,
-    };
+    const uniqueTeam = await checkTeamName(req);
+    if (!uniqueTeam) {
+        const context = {
+            authenticated: req.isAuthenticated(),
+            uniqueTeam: uniqueTeam,
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("createTeam", {
+            ...context,
+            user: req.session.user,
+        });
+    } else {
+        await createNewTeam(req);
+        const event = await findEvent(req);
+        context = {
+            created: true,
+        };
 
-    res.redirect(`/event?event=${event.name}`);
+        res.redirect(`/event?event=${event.name}`);
+    }
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {

@@ -362,4 +362,27 @@ module.exports = {
             return "true";
         }
     },
+
+    checkTeamName: async function (req) {
+        const { team_name } = req.body;
+        if (
+            team_name == null ||
+            team_name == undefined ||
+            team_name == "" ||
+            team_name === " "
+        ) {
+            return false;
+        }
+        const teamTable = require("./models/Team");
+        const allTeams = await teamTable.find().lean();
+        let uniqueTeam = true;
+        for (let i = 0; i < allTeams.length; i++) {
+            if (allTeams[i].name === team_name.toString()) {
+                uniqueTeam = false;
+                console.log("team not unique");
+                break;
+            }
+        }
+        return uniqueTeam;
+    },
 };
