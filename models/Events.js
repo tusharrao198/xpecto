@@ -131,7 +131,12 @@ const EventSchema = new mongoose.Schema({
         },
     ],
     teamMaxSize: {
-        type: String,
+        type: Number,
+        required: true,
+    },
+    teamMinSize: {
+        type: Number,
+        required: true,
     },
 });
 
