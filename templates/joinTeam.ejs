@@ -7,13 +7,19 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes." />
-        <meta name="keywords" content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -174,16 +180,22 @@
         <script src="scripts/script.js"></script>
         <script src="scripts/ejs.js"></script>
         <script type="text/javascript">
-            let invalidCode = ejs.render("<%= invalidCode %>");
+            let invalidCode = ejs.render("<%= invalidCode %>").toString();
             let inviteCode = ejs.render("<%= inviteCode %>");
-            let allowedTeamSize = ejs.render("<%= allowedTeamSize %>");
+            let allowedTeamSize = ejs
+                .render("<%= allowedTeamSize %>")
+                .toString();
             const msg = document.querySelector(".msg");
-            // console.log("asd = ", !invalidCode && !allowedTeamSize);
-            if (!invalidCode && !allowedTeamSize) {
+            console.log("asd = ", invalidCode, allowedTeamSize);
+            if (invalidCode === "false" && allowedTeamSize === "false") {
                 msg.style.color = "yellow";
-                msg.innerHTML = "Team Full!";
+                msg.innerHTML = "Team already Full!";
                 setTimeout(() => msg.remove(), 2000);
-            } else if (allowedTeamSize && invalidCode && inviteCode > 0) {
+            } else if (
+                allowedTeamSize === "true" &&
+                invalidCode === "true" &&
+                inviteCode > 0
+            ) {
                 msg.style.color = "yellow";
                 msg.innerHTML = "Couldn't Join A Team, Invalid Code!";
                 setTimeout(() => msg.remove(), 2000);

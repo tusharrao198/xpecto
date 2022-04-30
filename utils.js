@@ -336,10 +336,10 @@ module.exports = {
             const event = await module.exports.findEventFromId(event_id);
 
             let teamMaxSize = event.teamMaxSize;
-            if (teamMaxSize === "any") {
-                teamMaxSize = 3;
-                console.log("teamsize update due to any = ", teamMaxSize);
-            }
+            // if (teamMaxSize === "any") {
+            //     teamMaxSize = 3;
+            //     console.log("teamsize update due to any = ", teamMaxSize);
+            // }
 
             console.log("member_team = ", member_team);
             let teamSizeCount = 1;
@@ -355,10 +355,10 @@ module.exports = {
                 //     teamSizeCount: teamSizeCount,
                 //     msg: `Only maximum of ${event.teamSizeCount} can participate in a team`,
                 // };
-                console.log("FFFF");
+                // console.log("FFFF");
                 return "false";
             }
-            console.log("TRUEEE");
+            // console.log("TRUEEE");
             return "true";
         }
     },
