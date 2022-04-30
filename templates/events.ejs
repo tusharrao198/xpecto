@@ -30,6 +30,41 @@
     </head>
 
     <style>
+        table{
+            align-items: center;
+        }
+        tr th{
+	font-weight:bold;
+    text-align: center;
+
+    }
+tr th, tr td{
+	padding:3px;
+    text-align: center;
+    padding-bottom: 0%;
+}
+#table tbody tr td {
+  text-align: center;
+  padding: 15px 10px;
+}
+th{
+    border: 5px solid #556eff;
+    
+}
+th{
+    text-align: center;
+}
+td{
+	border: 5px solid #556eff;
+    text-align: center;
+}
+.c1{
+	background:#556eff;
+}
+.c2{
+	background:#556eff;
+}
+
         #more {
             display: none;
         }
@@ -53,7 +88,7 @@
         }
         @media (max-width: 480px) {
             #page .content {
-                padding: 2rem 0.25rem;
+                padding: 2rem 0.25rem;        
             }
         }
     </style>
@@ -94,6 +129,13 @@
                                     <summary>Click to Know More</summary>
                                     <%= events[i].rest_content %>
                                 </details>
+                                <h4>Team Size</h4>
+                                <table class="table">
+                                        <tr>
+                                          <th class="c1">Team Size</th>
+                                          <th class="c2">Max-Min</th>
+                                </table>
+                                
                             </div>
                             <hr />
                             <a href="/event?event=<%=events[i].name %>"
