@@ -35,6 +35,7 @@ const UserSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: Number,
+        required: true,
     },
     fullName: {
         type: String,
@@ -46,6 +47,9 @@ const UserSchema = new mongoose.Schema({
         type: String,
     },
     branch: {
+        type: String,
+    },
+    referralCode: {
         type: String,
     },
 });

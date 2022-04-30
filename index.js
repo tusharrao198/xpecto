@@ -184,7 +184,14 @@ app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
 
     // saving phone number to userDetails
-    const { phone_number, fullName, collegeName, degree, branch } = req.body;
+    const {
+        referralCode,
+        phone_number,
+        fullName,
+        collegeName,
+        degree,
+        branch,
+    } = req.body;
     const userinfo = await userDetails(req.user._id);
     const userTable = require("./models/User");
     await userTable.updateOne(
@@ -195,6 +202,7 @@ app.post("/eventRegister", async (req, res) => {
             collegeName: collegeName,
             degree: degree,
             branch: branch,
+            referralCode: referralCode,
         }
     );
 
