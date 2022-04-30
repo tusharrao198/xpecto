@@ -7,13 +7,19 @@
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes." />
-        <meta name="keywords" content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -182,6 +188,7 @@
                 <main>
                     <section class="first">
                         <h1><%= event.name.toUpperCase()%></h1>
+                        <div class="msg"></div>
                         <div class="btn-group">
                             <% if (!team_created) {%>
                             <a href="/createTeam?event=<%= event.name %>"
@@ -197,6 +204,14 @@
                             >
                             <%}%>
 
+                            <!-- <a
+                                target="_blank"
+                                href="assets/<%= event.name %>.pdf"
+                                ><button class="btn1 rulebook">
+                                    Rulebook
+                                </button></a
+                            > -->
+                            <% if (event.name==='Reel-o-logy') {%>
                             <a
                                 target="_blank"
                                 href="assets/<%= event.name %>.pdf"
@@ -204,6 +219,13 @@
                                     Rulebook
                                 </button></a
                             >
+                            <%} else {%>
+                            <a href="#"
+                                ><button id="rulebook_" class="btn1 rulebook">
+                                    Rulebook
+                                </button>
+                            </a>
+                            <%}%>
                         </div>
                     </section>
                     <hr />
@@ -288,5 +310,15 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script type="text/javascript">
+            const element = document.getElementById("rulebook_");
+            element.addEventListener("click", rulebook);
+            const msg = document.querySelector(".msg");
+            function rulebook() {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Event Has Not Started Yet!";
+                setTimeout(() => msg.remove(), 5000);
+            }
+        </script>
     </body>
 </html>

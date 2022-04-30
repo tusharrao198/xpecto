@@ -98,6 +98,16 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/registrations", authCheck, async (req, res) => {
+    const User = require("./models/User");
+    let regdata = await User.find().lean();
+    res.render("admin/regdata", {
+        authenticated: req.isAuthenticated(),
+        totalreg: regdata.length,
+        alluserinfo: regdata,
+    });
+});
+
 function isRegistered(user, events) {
     let checker = [];
     for (let i = 0; i < events.length; i++) {
