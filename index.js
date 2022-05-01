@@ -28,14 +28,16 @@ const {
     allowRegistration,
     maxteamSize,
     checkTeamName,
+    saveReferralCode,
+    generateString,
 } = require("./utils");
 var url = require("url");
 
-const { generateString } = require("./utils");
 const code = require("./models/code.js");
 const { name } = require("ejs");
 const { is } = require("express/lib/request");
 const res = require("express/lib/response");
+const { none } = require("./multer.js");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -521,33 +523,52 @@ app.post("/addevent", upload.single("image"), async (req, res) => {
             if (!eventUpdated) {
                 res.send("DATA not updated");
             } else {
-                res.render("admin/adminoption.ejs");
+                res.render("admin/adminoption");
             }
         }
     }
 });
 
-// onetime coupon generate logic
 app.get("/xyzgeneratecodeabc", async (req, res) => {
+    context = {
+        authenticated: req.isAuthenticated(),
+        success: "false",
+        get_call: "true",
+        campus_ambassador_name: "",
+        place: "",
+        code: "",
+    };
+    res.render("admin/couponCode", { ...context, user: req.user });
+});
+
+// onetime coupon generate logic
+app.post("/xyzgeneratecodeabc", async (req, res) => {
     if (req.session.admin === "1") {
-        const a = [];
-        for (let index = 0; index < 1; index++) {
-            let b = await generateString(8);
-            a[index] = {
-                code: b,
-                used: 0,
-            };
+        console.log("req body =", req.body);
+        const referralCode = await generateString(8);
+        const response = await saveReferralCode(req, referralCode);
+        console.log("res = ", referralCode, typeof referralCode);
+
+        const codeTable = require("./models/code");
+        const data = await codeTable
+            .findOne({ code: referralCode.toString() })
+            .lean();
+
+        console.log("code_saved = ", data);
+        let final_res = "false";
+        if (data !== null && data !== undefined) {
+            final_res = "true";
         }
-        for (let index = 0; index < 1; index++) {
-            console.log(a[index].code);
-            var newDoc = new code(a[index]);
-            newDoc.save((err) => {
-                if (err) {
-                    return handleError(err);
-                } else {
-                    res.render("");
-                }
-            });
+        context = {
+            authenticated: req.isAuthenticated(),
+            success: final_res,
+            codeinfo: req.body,
+            get_call: "false",
+        };
+        if (final_res) {
+            res.render("admin/couponCode", { ...context, user: req.user });
+        } else {
+            res.render("admin/couponCode", { ...context, user: req.user });
         }
     } else {
         res.redirect("/adminlogin");

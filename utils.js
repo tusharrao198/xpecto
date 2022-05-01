@@ -223,6 +223,30 @@ module.exports = {
         }
         return result;
     },
+
+    saveReferralCode: async function (req, code) {
+        const codeTable = require("./models/code");
+        const { campus_ambassador_name, place } = req.body;
+        const data = {
+            campus_ambassador_name: campus_ambassador_name,
+            place: place,
+            code: code,
+            used: 0,
+        };
+        const newDoc = new codeTable(data);
+        newDoc.save((err) => {
+            if (err) {
+                // console.log(handleError(err));
+                return false;
+                // return handleError(err);
+                // res.send({ error: err, saved: false });
+            } else {
+                console.log("TRUE");
+                return true;
+                // res.send({ saved: true });
+            }
+        });
+    },
     deleteOldInviteCode: async function (req) {
         const inviteCodeTable = require("./models/InviteCode");
         const team = await module.exports.findUserTeamFromId(req);
