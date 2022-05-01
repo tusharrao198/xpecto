@@ -98,14 +98,19 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/registrations", authCheck, async (req, res) => {
-    const User = require("./models/User");
-    let regdata = await User.find().lean();
-    res.render("admin/regdata", {
-        authenticated: req.isAuthenticated(),
-        totalreg: regdata.length,
-        alluserinfo: regdata,
-    });
+// only admin can access this route.
+app.get("/registrations", async (req, res) => {
+    if (req.session.admin === "1") {
+        const User = require("./models/User");
+        let regdata = await User.find().lean();
+        res.render("admin/regdata", {
+            authenticated: req.isAuthenticated(),
+            totalreg: regdata.length,
+            alluserinfo: regdata,
+        });
+    } else {
+        res.redirect("/adminlogin");
+    }
 });
 
 function isRegistered(user, events) {
@@ -194,7 +199,7 @@ app.get("/eventRegister", authCheck, async (req, res) => {
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
 
-    // saving phone number to userDetails
+    // saving required info to userDetails
     const {
         referralCode,
         phone_number,
@@ -470,7 +475,8 @@ app.post("/adminauth", (req, res) => {
         req.body.password == process.env.ADMINPASSWORD
     ) {
         req.session.admin = "1";
-        res.render("admin/adminoption.ejs");
+        res.redirect("/registrations");
+        // res.render("admin/adminoption.ejs");
     } else {
         res.redirect("/adminlogin");
     }
@@ -499,7 +505,7 @@ app.post("/addevent", upload.single("image"), async (req, res) => {
                 if (err) {
                     res.send("DATA not saved" + err);
                 } else {
-                    res.render("admin/adminoption.ejs");
+                    res.render("admin/adminoption");
                 }
             });
         } else {
@@ -518,6 +524,33 @@ app.post("/addevent", upload.single("image"), async (req, res) => {
                 res.render("admin/adminoption.ejs");
             }
         }
+    }
+});
+
+// onetime coupon generate logic
+app.get("/xyzgeneratecodeabc", async (req, res) => {
+    if (req.session.admin === "1") {
+        const a = [];
+        for (let index = 0; index < 1; index++) {
+            let b = await generateString(8);
+            a[index] = {
+                code: b,
+                used: 0,
+            };
+        }
+        for (let index = 0; index < 1; index++) {
+            console.log(a[index].code);
+            var newDoc = new code(a[index]);
+            newDoc.save((err) => {
+                if (err) {
+                    return handleError(err);
+                } else {
+                    res.render("");
+                }
+            });
+        }
+    } else {
+        res.redirect("/adminlogin");
     }
 });
 
