@@ -41,7 +41,6 @@
                 width: 100%;
                 position: relative;
                 display: flex;
-
             }
             .marquee p {
                 background-color: rgb(0, 20, 47);
@@ -157,17 +156,10 @@
             <section id="about">
                 <div class="heading">ABOUT US</div>
                 <div class="content">
-                    Xpecto is the first independent inter college technical fest
-                    of IIT Mandi organized by the esteemed Science and Technical
-                    Council(SNTC) club, IIT Mandi.
+                    <%if (homepageInfo !=="false") {%> <%=
+                    homepageInfo.first_para%>
                     <br />
-                    Xpecto aspires to compile variety of the country' brightest
-                    minds beneath one roof and supply them with distinctive and
-                    exciting expertises in science, technology, and management
-                    through the excess of events starting from intense workshops
-                    to hackathons, contests, conferences, and entertaining
-                    shows. It is a platform for learning, experiencing and
-                    networking through interaction and collaboration.
+                    <%= homepageInfo.second_para%> <%}%>
                 </div>
 
                 <!-- -----BUTTONS FOR T&C AND PRIVACY POLICY-----  -->
@@ -301,11 +293,18 @@
                 <div class="content">
                     <!-- <h1 style="color: white">To be Updated Soon!</h1> -->
                     <div class="spon card">
-                        To be Updated Soon!
+                        <%if (sponInfo.length>0) {%> <% for (let i = 0; i <
+                        sponInfo.length; i++) { %>
                         <!-- <img
                             src="images/xpecto-logo-body.png"
                             alt="xpecto-logo"
                         /> -->
+                        <img
+                            src="<%=sponInfo[i].spon_imagelink%>"
+                            alt="<%=sponInfo[i].sponsor_name%>-logo"
+                        />
+
+                        <%}%> <%}else {%>To be Updated Soon! <%} %>
                     </div>
                 </div>
                 <br />
@@ -316,39 +315,24 @@
             <section id="faq">
                 <div class="heading">FAQ</div>
                 <div class="faq-container">
-                    <div class="faq-soon">To be Updated Soon!</div>
                     <!-- to show faq remove style attribute from below div and comment out above line -->
-                    <div class="wrapper" style="display: none">
+                    <div class="wrapper">
+                        <%if (faqInfo.length>0) {%> <% for (let i = 0; i <
+                        faqInfo.length; i++) { %>
                         <div class="container">
                             <div class="question">
-                                How do I verify my email?
+                                <%= faqInfo[i].question%>
                             </div>
                             <div class="answercont">
                                 <div class="answer">
-                                    Click the link in the verification email
-                                    from verify@codepen.io (be sure to check
-                                    your spam folder or other email tabs if it's
-                                    not in your inbox). Or, send an email with
-                                    the subject "Verify" to verify@codepen.io
-                                    from the email address you use for your
-                                    CodePen account.
+                                    <%= faqInfo[i].answer%>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="container">
-                            <div class="question">What are forks?</div>
-                            <div class="answercont">
-                                <div class="answer">
-                                    A fork is a complete copy of a Pen or
-                                    Project that you can save to your own
-                                    account and modify. Your forked copy comes
-                                    with everything the original author wrote,
-                                    including all of the code and any
-                                    dependencies.
-                                </div>
-                            </div>
-                        </div>
+                        <%}%> <%}else {%>
+                        <div class="faq-soon">To be Updated Soon!</div>
+                        <%} %>
                     </div>
                 </div>
             </section>

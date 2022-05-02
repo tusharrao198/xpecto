@@ -286,13 +286,11 @@ module.exports = {
             }
         });
     },
-
     userDetails: async function (user_id) {
         const User = require("./models/User");
         let userinfo = await User.findOne({ _id: user_id }).lean();
         return userinfo;
     },
-
     regCheck: async function (req, res, next) {
         const event = await module.exports.findEvent(req);
 
@@ -341,7 +339,6 @@ module.exports = {
         }
         return allow_reg;
     },
-
     maxteamSize: async function (req) {
         // console.log("else mein a gya");
         const formDetails = req.body;
@@ -405,7 +402,6 @@ module.exports = {
             return "true";
         }
     },
-
     checkTeamName: async function (req) {
         const { team_name } = req.body;
         if (
@@ -427,5 +423,20 @@ module.exports = {
             }
         }
         return uniqueTeam;
+    },
+    homepageInfo: async function () {
+        const Info = require("./models/Info");
+        let info = await Info.find().lean();
+        return info;
+    },
+    sponsorsInfo: async function () {
+        const sponInfo = require("./models/Sponsors");
+        let info = await sponInfo.find().lean();
+        return info;
+    },
+    FAQInfo: async function () {
+        const faqInfo = require("./models/Faq");
+        let info = await faqInfo.find().lean();
+        return info;
     },
 };

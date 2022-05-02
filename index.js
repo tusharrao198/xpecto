@@ -30,6 +30,9 @@ const {
     checkTeamName,
     saveReferralCode,
     generateString,
+    homepageInfo,
+    sponsorsInfo,
+    FAQInfo,
 } = require("./utils");
 var url = require("url");
 
@@ -94,9 +97,19 @@ app.use(passport.session());
 // Routes
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    const homepageinfo = await homepageInfo();
+    const sponinfo = await sponsorsInfo();
+    const faqinfo = await FAQInfo();
     res.render("index", {
         authenticated: req.isAuthenticated(),
+        homepageInfo:
+            homepageinfo === null || homepageinfo === undefined
+                ? "false"
+                : homepageinfo[0],
+        sponInfo:
+            sponinfo === null || sponinfo === undefined ? "false" : sponinfo,
+        faqInfo: faqinfo === null || faqinfo === undefined ? "false" : faqinfo,
     });
 });
 
