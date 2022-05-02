@@ -62,9 +62,13 @@ module.exports = {
             let n = x.name;
 
             const event = await events.findOne({ _id: x.event }).lean();
-
-            created_teams[i]["eventName"] = event.name;
-            registeredEvs.push({ ...event, teamName: n });
+            if (event === null || event === undefined) {
+                created_teams[i]["eventName"] = null;
+                registeredEvs.push({ ...event, teamName: n });
+            } else {
+                created_teams[i]["eventName"] = event.name;
+                registeredEvs.push({ ...event, teamName: n });
+            }
         }
 
         for (let i = 0; i < joined_teams.length; i++) {
@@ -213,8 +217,7 @@ module.exports = {
     },
     generateString: async function (length) {
         let result = "";
-        var characters =
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         const charactersLength = characters.length;
         for (let i = 0; i < length; i++) {
             result += characters.charAt(
@@ -227,25 +230,41 @@ module.exports = {
     saveReferralCode: async function (req, code) {
         const codeTable = require("./models/code");
         const { campus_ambassador_name, place } = req.body;
+        const person_name = campus_ambassador_name
+            .split(" ")
+            .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+            .join(" ");
+
+        const person_palce = place
+            .split(" ")
+            .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+            .join(" ");
+
         const data = {
-            campus_ambassador_name: campus_ambassador_name,
-            place: place,
+            campus_ambassador_name: person_name,
+            place: person_palce,
             code: code,
             used: 0,
         };
-        const newDoc = new codeTable(data);
-        newDoc.save((err) => {
-            if (err) {
-                // console.log(handleError(err));
+
+        try {
+            let codedata = await codeTable
+                .findOne({ code: referralCode })
+                .lean();
+            console.log("f = ", found_data);
+
+            if (found_data) {
+                console.log("Already present!");
+                done(null, codedata);
                 return false;
-                // return handleError(err);
-                // res.send({ error: err, saved: false });
             } else {
-                console.log("TRUE");
+                codedata = await codeTable.create(data);
+                done(null, codedata);
                 return true;
-                // res.send({ saved: true });
             }
-        });
+        } catch (err) {
+            console.error(err);
+        }
     },
     deleteOldInviteCode: async function (req) {
         const inviteCodeTable = require("./models/InviteCode");

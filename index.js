@@ -543,20 +543,15 @@ app.get("/xyzgeneratecodeabc", async (req, res) => {
 
 // onetime coupon generate logic
 app.post("/xyzgeneratecodeabc", async (req, res) => {
+    console.log("req.session.admin = ", req.session.admin);
     if (req.session.admin === "1") {
         console.log("req body =", req.body);
         const referralCode = await generateString(8);
         const response = await saveReferralCode(req, referralCode);
-        console.log("res = ", referralCode, typeof referralCode);
-
-        const codeTable = require("./models/code");
-        const data = await codeTable
-            .findOne({ code: referralCode.toString() })
-            .lean();
-
-        console.log("code_saved = ", data);
+        console.log("referralCode = ", referralCode, typeof referralCode);
+        console.log("response = ", response);
         let final_res = "false";
-        if (data !== null && data !== undefined) {
+        if (response !== null && response !== undefined) {
             final_res = "true";
         }
         context = {
