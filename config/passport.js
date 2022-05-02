@@ -20,7 +20,7 @@ module.exports = function (passport) {
                     firstName: profile.name.givenName,
                     lastName: profile.name.familyName,
                     image: profile.photos[0].value,
-                    phoneNumber: 0000000000,
+                    phoneNumber: 0000000000, // do not remove
                 };
 
                 try {

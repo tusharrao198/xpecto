@@ -179,6 +179,7 @@ app.get("/ourteam", async (req, res) => {
 
 app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
+
     const team = await findUserTeam(req);
     const context = {
         event: event,
@@ -192,6 +193,7 @@ app.get("/event", authCheck, regCheck, async (req, res) => {
 
 app.get("/eventRegister", authCheck, async (req, res) => {
     const event = await findEvent(req);
+
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
@@ -225,6 +227,7 @@ app.post("/eventRegister", async (req, res) => {
     );
 
     const eventTable = require("./models/Events");
+
     await eventTable.updateOne(
         { _id: event._id },
         { $push: { registeredUsers: { user_id: req.user._id } } }

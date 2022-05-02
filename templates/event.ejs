@@ -190,13 +190,14 @@
                         <h1><%= event.name.toUpperCase()%></h1>
                         <div class="msg"></div>
                         <div class="btn-group">
-                            <% if (!team_created) {%>
+                            <% if (!team_created && event.teamMaxSize > 1) {%>
                             <a href="/createTeam?event=<%= event.name %>"
                                 ><button class="btn1 create-team">
                                     Create Team
                                 </button></a
                             >
-                            <%}%> <% if (team_created) {%>
+                            <%}%> <% if (team_created && event.teamMaxSize > 1)
+                            {%>
                             <a href="/userTeam?event=<%= event.name %>"
                                 ><button class="btn1 create-team">
                                     Your Team
