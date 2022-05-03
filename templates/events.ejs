@@ -102,10 +102,14 @@
                             <hr />
                             <div class="event-description">
                                 <%= events[i].oneline_content %>
+                                <%if(events[i].rest_content.length> 0) {%>
+
                                 <details style="cursor: pointer">
                                     <summary>Click to Know More</summary>
                                     <%= events[i].rest_content %>
                                 </details>
+
+                                <%}%>
                             </div>
                             <hr />
                             <div class="team-size">
@@ -159,5 +163,12 @@
         </div>
 
         <script src="scripts/script.js"></script>
+        <script type="text/javascript">
+            const msg = document.querySelector(".eventi");
+            console.log("MSG = ", msg);
+            function clickme(i) {
+                console.log(" i = ", i);
+            }
+        </script>
     </body>
 </html>
