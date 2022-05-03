@@ -11,6 +11,7 @@ const authRoutes = require("./routes/authroutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
 const connectDB = require("./config/db");
+const axios = require("axios");
 const {
     findEvent,
     findEventFromId,
@@ -135,7 +136,8 @@ app.get("/regcodecount", adminCheck, async (req, res) => {
     const referdata = await numberofReg_referCode();
     res.render("admin/refcoderegdata", {
         authenticated: req.isAuthenticated(),
-        refcode_data: referdata,
+        refcode_data: referdata[0],
+        totalreg: referdata[1],
     });
 });
 

@@ -472,6 +472,7 @@ module.exports = {
         const refferalCodes = require("./models/referralcodes");
         const User = require("./models/User");
         let regdata = await User.find().lean();
+
         let refercodedata = await refferalCodes.find().lean();
 
         let referdata = [];
@@ -501,11 +502,16 @@ module.exports = {
             referdata.push(addd);
         }
 
+        // sorting data
+        referdata.sort((a, b) => {
+            return b.count - a.count;
+        });
+
         let totalreg = 0;
         for (let i = 0; i < referdata.length; i++) {
             totalreg += referdata[i].count;
         }
         // console.log("totalreg = ", totalreg);
-        return referdata;
+        return [referdata, totalreg];
     },
 };
