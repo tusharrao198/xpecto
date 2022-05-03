@@ -33,6 +33,7 @@ const {
     homepageInfo,
     sponsorsInfo,
     FAQInfo,
+    findIfUserRegistered,
 } = require("./utils");
 var url = require("url");
 
@@ -259,11 +260,14 @@ app.get("/createTeam", authCheck, async (req, res) => {
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
+    const event = await findEvent(req);
     const uniqueTeam = await checkTeamName(req);
+    // console.log("checkTeamName = ", uniqueTeam);
     if (!uniqueTeam) {
         const context = {
+            event: event,
             authenticated: req.isAuthenticated(),
-            uniqueTeam: uniqueTeam,
+            uniqueTeam: uniqueTeam.toString(),
         };
         // res.redirect(`/joinTeam`);
         res.render("createTeam", {
@@ -305,6 +309,11 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
 });
 
 app.get("/joinTeam", authCheck, async (req, res) => {
+    // const check = await findIfUserRegistered(req);
+    // console.log("check = ", check);
+    // if (!check) {
+    //     // res.redirect("/eventRegister");
+    // }
     const teamTable = require("./models/Team");
     let teams = await teamTable.find().lean();
     const context = {

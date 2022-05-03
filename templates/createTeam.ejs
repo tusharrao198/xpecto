@@ -170,10 +170,11 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
         <script type="text/javascript">
             let uniqueTeam = ejs.render("<%= uniqueTeam %>").toString();
             const msg = document.querySelector(".msg");
-            console.log("asd = ", uniqueTeam);
+            console.log("uniqueTeam = ", uniqueTeam);
             if (uniqueTeam === "false") {
                 msg.style.color = "yellow";
                 msg.innerHTML = "Team Name already taken!";

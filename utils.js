@@ -87,13 +87,31 @@ module.exports = {
             registeredevents: registeredEvs,
         };
     },
-    // findIfUserRegistered: async function(req){
-    //     const eventDetails = await module.exports.allEventDetails(req);
-    //     const event = await module.exports.findEvent(req);
-    //     console.log(eventDetails);
-    //     console.log(event);
-    //     return false;
-    // },
+    allTeamDetails: async function (req) {
+        const teamTable = require("./models/Team");
+        let team1 = await teamTable.find({ teamLeader: req.user._id }).lean();
+        return team1;
+    },
+    findIfUserRegistered: async function (req) {
+        const eventDetails = await module.exports.allEventDetails(req);
+        const teamDetails = await module.exports.allTeamDetails(req);
+        if (teamDetails === null || teamDetails === undefined) {
+            return false;
+        }
+        // const event = await module.exports.findEvent(req);
+        // console.log("teamDetails = ", teamDetails);
+        // console.log("userid = ", req.user._id, typeof req.user._id);
+
+        for (let i = 0; i < teamDetails.length; i++) {
+            if (
+                teamDetails[i].teamLeader.toString() === req.user._id.toString()
+            ) {
+                return true;
+                // if true that means user has created a team and have already filled the details.
+            }
+        }
+        return false;
+    },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -226,7 +244,6 @@ module.exports = {
         }
         return result;
     },
-
     saveReferralCode: async function (req, code) {
         const codeTable = require("./models/code");
         const { campus_ambassador_name, place } = req.body;
