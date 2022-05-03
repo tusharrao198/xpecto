@@ -241,19 +241,23 @@
                                 Event Description
                             </div>
                             <div class="event-desc-content">
-                                <%= event.oneline_content %><%=
-                                event.rest_content %>
+                                <%= event.description %>
                             </div>
                         </div>
                         <div class="timeline">
                             <div class="timeline-heading">Timeline</div>
                             <%if (event.start_time.day != 0) {%>
                             <div class="timeline-content">
-                                Participants must submit their Reels from <%=
-                                event.start_time.day %>th May , 2022 <%=
-                                event.start_time.time %> to <%=
-                                event.end_time.day %>th May , 2022 <%=
-                                event.end_time.time %>
+                                Participants must submit their Reels from
+                                <b
+                                    ><%= event.start_time.day %> <%=
+                                    event.start_time.time %></b
+                                >
+                                to
+                                <b>
+                                    <%= event.end_time.day %> <%=
+                                    event.end_time.time %>
+                                </b>
                             </div>
                             <%} else {%> To be Updated Soon! <%}%>
                         </div>

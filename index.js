@@ -11,7 +11,6 @@ const authRoutes = require("./routes/authroutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
 const connectDB = require("./config/db");
-const axios = require("axios");
 const {
     findEvent,
     findEventFromId,
