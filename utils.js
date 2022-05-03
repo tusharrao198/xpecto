@@ -135,6 +135,8 @@ module.exports = {
                 return err;
             }
         });
+
+        console.log(newteam)
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
@@ -302,6 +304,7 @@ module.exports = {
                 return err;
             }
         });
+        console.log(newInviteCode)
     },
     userDetails: async function (user_id) {
         const User = require("./models/User");
@@ -398,7 +401,7 @@ module.exports = {
             //     console.log("teamsize update due to any = ", teamMaxSize);
             // }
 
-            console.log("member_team = ", member_team);
+            // console.log("member_team = ", member_team);
             let teamSizeCount = 1;
             if (member_team != null) {
                 teamSizeCount += member_team.members.length;
@@ -406,7 +409,7 @@ module.exports = {
             if (leader_team != null) {
                 teamSizeCount += 1; // counting leader
             }
-
+            console.log(teamSizeCount)
             if (teamSizeCount >= teamMaxSize) {
                 // context = {
                 //     teamSizeCount: teamSizeCount,

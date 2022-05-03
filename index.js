@@ -169,7 +169,6 @@ app.get("/events", async (req, res) => {
 
 app.get("/profile", authCheck, async (req, res) => {
     // joined teams : created_teams
-
     const context = await allEventDetails(req);
     res.render("profile", {
         user: req.user,
@@ -221,6 +220,7 @@ app.get("/eventRegister", authCheck, async (req, res) => {
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
+        isPerson: "false",
     };
     res.render("submit", { ...context, user: req.session.user });
 });
@@ -332,12 +332,14 @@ app.get("/joinTeam", authCheck, async (req, res) => {
         invalidCode: false,
         inviteCode: 0,
         allowedTeamSize: true,
+        isPerson: "true",
     };
+
     if (teams.length === 0) {
         // console.log("No teams formed till now!, teams = ", teams);
-        res.render("joinTeam", { ...context, user: req.session.user });
+        res.render("submit", { ...context, user: req.session.user });
     } else {
-        res.render("joinTeam", { ...context, user: req.session.user });
+        res.render("submit", { ...context, user: req.session.user });
     }
 });
 
@@ -345,6 +347,7 @@ app.post("/joinTeam", authCheck, async (req, res) => {
     const allowedTeamSize = await maxteamSize(req);
     if (allowedTeamSize === "true") {
         console.log("allowed11");
+
         const inviteCode = await joinTeam(req);
         if (inviteCode != null) {
             const team_id = inviteCode.team;
@@ -358,6 +361,27 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             //     { _id: event._id },
             //     { $push: { registeredUsers : { user_id : req.user._id } } }
             // );
+            const {
+                referralCode,
+                phone_number,
+                fullName,
+                collegeName,
+                degree,
+                branch,
+            } = req.body;
+            const userinfo = await userDetails(req.user._id);
+            const userTable = require("./models/User");
+            await userTable.updateOne(
+                { _id: req.user._id },
+                {
+                    phoneNumber: phone_number,
+                    fullName: fullName,
+                    collegeName: collegeName,
+                    degree: degree,
+                    branch: branch,
+                    referralCode: referralCode,
+                }
+            );
             res.redirect(`/event?event=${event.name}`);
         } else {
             console.log("inviteCode is invalid");
@@ -369,9 +393,10 @@ app.post("/joinTeam", authCheck, async (req, res) => {
                 invalidCode: true,
                 inviteCode: req.body.invite_code.length,
                 allowedTeamSize: true,
+                isPerson: "true",
             };
             // res.redirect(`/joinTeam`);
-            res.render("joinTeam", { ...context, user: req.session.user });
+            res.render("submit", { ...context, user: req.session.user });
         }
     } else if (allowedTeamSize === "false") {
         console.log("allowedTeamSize is false");
@@ -383,9 +408,10 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             invalidCode: false,
             inviteCode: req.body.invite_code.length,
             allowedTeamSize: false,
+            isPerson: "true",
         };
         // res.redirect(`/joinTeam`);
-        res.render("joinTeam", {
+        res.render("submit", {
             ...context,
             user: req.session.user,
         });
@@ -399,9 +425,10 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             invalidCode: true,
             inviteCode: req.body.invite_code.length,
             allowedTeamSize: true,
+            isPerson: "true",
         };
         // res.redirect(`/joinTeam`);
-        res.render("joinTeam", {
+        res.render("submit", {
             ...context,
             user: req.session.user,
         });
