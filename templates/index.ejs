@@ -4,6 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="home Page, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -18,40 +34,44 @@
             crossorigin="anonymous"
         ></script>
         <style>
+            @media (max-width: 900px) {
+                nav {
+                    top: 90px;
+                }
+            }
             marquee {
-                background-color: rgba(0, 27, 61, 0.911);
+                background-color: rgb(0, 20, 47);
                 margin-top: -1rem;
-                margin-bottom: 1.5rem;
+                margin-bottom: 0rem;
                 width: 100%;
                 position: relative;
-                display:flex;
-                /* height: 100vh; */
-            }.marquee p{
-                padding-bottom: 0%;
-                color: aliceblue;
-                
+                display: flex;
             }
-            .marquee{
-            background-image:rgba(0, 27, 61, 0.911);
+            .marquee p {
+                background-color: rgb(0, 20, 47);
+                padding: 0.25rem;
+                color: aliceblue;
+                /* margin-bottom:; */
             }
             .marquee .inner {
-        position: fixed;
-        top: 5rem;
-        z-index: 105;
-        width: 100%;
-        display: flex;
-        color: aqua;
-        font-size: 8rem;
-        
-      }
-      .marquee .inner > * {
-        white-space: nowrap;
-        padding: 0 3rem;
-      }
-    
+                position: fixed;
+                top: 5rem;
+                z-index: 105;
+                width: 100%;
+                display: flex;
+                color: aqua;
+                font-size: 8rem;
+            }
+            .marquee .inner > * {
+                white-space: nowrap;
+                padding: 0 3rem;
+            }
+            marquee a {
+                color: cyan;
+            }
         </style>
 
-        <title>Xpecto'22</title>
+        <title>Xpecto</title>
     </head>
 
     <body>
@@ -61,8 +81,11 @@
         <div class="marquee">
             <div class="inner">
                 <marquee>
-              <p>"Coming Soon! Stay tuned for updates."</p>
-            </marquee>
+                    <p style="font-size: 20px">
+                        Reel-o-logy Event is live now!
+                        <a href="/event?event=Reel-o-logy">Click Here.</a>
+                    </p>
+                </marquee>
             </div>
         </div>
 
@@ -136,28 +159,24 @@
             <section id="about">
                 <div class="heading">ABOUT US</div>
                 <div class="content">
-                    SnTC ,short for, Science and Technology Council is IIT
-                    Mandi's Technical Society. It is a body of students advised
-                    by faculty. Some events of SnTC are Inter IIT Tech Meet,
-                    Avishkar and Utkarsh.
+                    <%if (homepageInfo !=="false") {%> <%=
+                    homepageInfo.first_para%>
                     <br />
-                    Xpecto is science and technology festival of Indian
-                    Institute of Technology, Mandi It has been ramped up to
-                    include the most electrifying events, prompting great
-                    discoveries, as well as enthralling brainstorming and grand
-                    prizes. Each Technical Club will host some exciting events
-                    that will highlight and award participants' greatest ideas
-                    and breakthroughs. So get in touch with your pals, mark your
-                    calendars, and get ready for Xpecto 2022-23.
+                    <%= homepageInfo.second_para%> <%}%>
                 </div>
 
                 <!-- -----BUTTONS FOR T&C AND PRIVACY POLICY-----  -->
                 <div class="pages-btn">
-                    <a href="/terms"
+                    <!-- <a href="/terms"
                         ><button class="btn1 tnc">Terms & Conditions</button></a
                     >
                     <a href="#"
                         ><button class="btn1 priv">Privacy Policy</button></a
+                    > -->
+                    <a
+                        target="_blank"
+                        href="https://drive.google.com/file/d/1mc65HcORPpoOoasgCvTP7Im7s7CXZ3Wm/edit"
+                        ><button class="btn1 tnc">Publicity Brochure</button></a
                     >
                 </div>
                 <!-- -----BUTTONS END----- -->
@@ -192,7 +211,15 @@
                         </div>
                         <div class="email-content">
                             <i class="fa-solid fa-envelope fa-2x"></i>
-                            <div class="email">team@xpecto.tech</div>
+
+                            <a href="mailto:team@xpecto.tech"
+                                ><div class="email">team@xpecto.tech</div></a
+                            >
+                            <a href="mailto:publicity@xpecto.tech"
+                                ><div class="email">
+                                    publicity@xpecto.tech
+                                </div></a
+                            >
                         </div>
                     </div>
                     <!-- -----EMAIL END----- -->
@@ -205,9 +232,26 @@
                         <div class="phone-content">
                             <i class="fa-solid fa-phone fa-2x"></i>
                             <div class="phone">
-                                <div>Surendra: <span>+91 7850084013</span></div>
-                                <div>Lalit: <span>+91 9990991108</span></div>
-                                <div>Paras: <span>+91 7860688567</span></div>
+                                <a href="tel:7850084013"
+                                    ><div>
+                                        Surendra: <span>+91 7850084013</span>
+                                    </div></a
+                                >
+                                <a href="tel:9990991108"
+                                    ><div>
+                                        Lalit: <span>+91 9990991108</span>
+                                    </div></a
+                                >
+                                <a href="tel:7860688567"
+                                    ><div>
+                                        Paras: <span>+91 7860688567</span>
+                                    </div></a
+                                >
+                                <!-- <a href="tel:9214831344"
+                                    ><div>
+                                        Kratika: <span>+91 9214831344</span>
+                                    </div></a
+                                > -->
                             </div>
                         </div>
                     </div>
@@ -216,31 +260,31 @@
 
                 <!-- -----SOCIAL HANDLES ICONS-----  -->
                 <div class="social">
-                    <div>
+                    <!-- <div>
                         <a href="#">
                             <i class="fa-brands fa-facebook-square fa-3x"></i>
                         </a>
-                    </div>
+                    </div> -->
                     <div>
-                        <a href="#">
+                        <a href="https://twitter.com/XpectoTech">
                             <i class="fa-brands fa-twitter-square fa-3x"></i>
                         </a>
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="https://www.linkedin.com/company/xpecto-tech/">
                             <i class="fa-brands fa-linkedin fa-3x"></i>
                         </a>
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="https://www.instagram.com/xpecto.tech/">
                             <i class="fa-brands fa-instagram-square fa-3x"></i>
                         </a>
                     </div>
-                    <div>
+                    <!-- <div>
                         <a href="#">
                             <i class="fa-brands fa-youtube-square fa-3x"></i>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- -----ICONS END----- -->
             </section>
@@ -250,32 +294,58 @@
             <section id="sponsors">
                 <div class="heading">Sponsors</div>
                 <div class="content">
-                    <div class="spon">
-                        <img src="images/xpecto-logo-body.png" alt="" />
-                    </div>
+                    <!-- <h1 style="color: white">To be Updated Soon!</h1> -->
                     <div class="spon card">
-                        <img src="images/xpecto-logo-body.png" alt="" />
+                        <%if (sponInfo.length>0) {%> <% for (let i = 0; i <
+                        sponInfo.length; i++) { %>
+                        <!-- <img
+                            src="images/xpecto-logo-body.png"
+                            alt="xpecto-logo"
+                        /> -->
+                        <img
+                            src="<%=sponInfo[i].spon_imagelink%>"
+                            alt="<%=sponInfo[i].sponsor_name%>-logo"
+                        />
+
+                        <%}%> <%}else {%>To be Updated Soon! <%} %>
                     </div>
-                    <div class="spon card">
-                        <img src="images/xpecto-logo-body.png" alt="" />
-                    </div>
-                    <div class="spon card">
-                        <img src="images/xpecto-logo-body.png" alt="" />
-                    </div>
-                    <div class="spon card">
-                        <img src="images/xpecto-logo-body.png" alt="" />
-                    </div>
-                    <div class="spon card">
-                        <img src="images/xpecto-logo-body.png" alt="" />
+                </div>
+                <br />
+            </section>
+            <!-- -----SPONSORS SECTION END----- -->
+
+            <!-- -----FAQ Section-----  -->
+            <section id="faq">
+                <div class="heading">FAQ</div>
+                <div class="faq-container">
+                    <!-- to show faq remove style attribute from below div and comment out above line -->
+                    <div class="wrapper">
+                        <%if (faqInfo.length>0) {%> <% for (let i = 0; i <
+                        faqInfo.length; i++) { %>
+                        <div class="container">
+                            <div class="question">
+                                <%= faqInfo[i].question%>
+                            </div>
+                            <div class="answercont">
+                                <div class="answer">
+                                    <%= faqInfo[i].answer%>
+                                </div>
+                            </div>
+                        </div>
+
+                        <%}%> <%}else {%>
+                        <div class="faq-soon">To be Updated Soon!</div>
+                        <%} %>
                     </div>
                 </div>
             </section>
-            <!-- -----SPONSORS SECTION END----- -->
+            <!-- -----FAQ Section End-----  -->
         </main>
 
         <footer></footer>
 
         <script src="scripts/script.js"></script>
         <script src="scripts/countdown.js"></script>
+        <script src="scripts/faq.js"></script>
     </body>
 </html>

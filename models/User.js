@@ -35,6 +35,22 @@ const UserSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: Number,
+        required: true,
+    },
+    fullName: {
+        type: String,
+    },
+    collegeName: {
+        type: String,
+    },
+    degree: {
+        type: String,
+    },
+    branch: {
+        type: String,
+    },
+    referralCode: {
+        type: String,
     },
 });
 

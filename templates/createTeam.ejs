@@ -4,6 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -17,10 +33,13 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Document</title>
+        <title>Create Team | Xpecto</title>
     </head>
 
     <style>
+        .create-container h1 {
+            text-align: center;
+        }
         #page .content {
             padding-top: 1rem;
         }
@@ -33,20 +52,16 @@
             font-size: 3rem;
         }
         .card {
-            /* margin-left: auto; */
-            /* margin-right: auto; */
             color: white;
             font-weight: bold;
-            /* height: 300px; */
             width: 500px;
             padding: 2rem;
             backdrop-filter: blur(10px) saturate(200%);
             -webkit-backdrop-filter: blur(10px) saturate(200%);
-            background-color: rgba(17, 25, 40, 0.5);
+            background-color: rgba(0, 16, 45, 0.781);
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.125);
-            margin-top: 6rem;
-            margin-bottom: 100px;
+            margin-top: 7rem;
         }
 
         .btn1 {
@@ -121,7 +136,7 @@
 
         <div class="" id="page">
             <div class="container">
-                <div class="heading">
+                <div class="heading" style="color: aqua">
                     <span>Create</span>
                     <span>Team</span>
                 </div>
@@ -130,17 +145,22 @@
                 <!-- <div class="content"></div> -->
                 <div class="card">
                     <div class="create-container">
-                        <h1>Create Team | <%= event.name %></h1>
+                        <h1><%= event.name %></h1>
                         <hr />
-                        <form action="/createTeam?event=<%= event.name %>" method="POST">
+                        <form
+                            action="/createTeam?event=<%= event.name %>"
+                            method="POST"
+                        >
                             <div class="form-group">
                                 <label for="teamName">Team Name</label>
+                                <div class="msg"></div>
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="teamName"
                                     placeholder="Enter team name"
                                     name="team_name"
+                                    required
                                 />
                             </div>
                             <button type="submit" class="btn1">Create</button>
@@ -150,5 +170,16 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript">
+            let uniqueTeam = ejs.render("<%= uniqueTeam %>").toString();
+            const msg = document.querySelector(".msg");
+            console.log("uniqueTeam = ", uniqueTeam);
+            if (uniqueTeam === "false") {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Team Name already taken!";
+                setTimeout(() => msg.remove(), 2000);
+            }
+        </script>
     </body>
 </html>

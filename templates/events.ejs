@@ -4,6 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -46,6 +62,16 @@
                 padding: 2rem 0.25rem;
             }
         }
+        .team-size {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin: 0.5rem;
+        }
+        body {
+            background: url("../images/svg/hexagon.svg");
+            background-attachment: fixed;
+        }
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
@@ -54,7 +80,7 @@
 
         <div class="" id="page">
             <div class="container">
-                <div class="heading">
+                <div class="heading" style="color: aqua">
                     <span>&nbsp;E</span>
                     <span>&nbsp;V</span>
                     <span>&nbsp;E</span>
@@ -64,19 +90,54 @@
                 </div>
             </div>
             <div class="content">
+                <div class="event-join-link">
+                    <a href="/joinTeam %>"
+                        ><button class="btn1-event-join">Join a Team</button></a
+                    >
+                </div>
                 <div class="events-list-container">
                     <!-- card start -->
                     <% for (let i = 0; i < events.length; i++) { %>
                     <div class="event-card-container">
                         <div class="event-card">
-                            <div class="event-name"><%= events[i].name %></div>
+                            <%if (events[i].name==='Epidemic') {%>
+                            <div class="event-name" style="color: aqua">
+                                \Epidemic
+                            </div>
+
+                            <%} else {%>
+                            <div class="event-name" style="color: aqua">
+                                <%= events[i].name %>
+                            </div>
+                            <%}%>
+
                             <hr />
                             <div class="event-description">
                                 <%= events[i].oneline_content %>
+                                <%if(events[i].rest_content.length> 0) {%>
+
                                 <details style="cursor: pointer">
                                     <summary>Click to Know More</summary>
                                     <%= events[i].rest_content %>
                                 </details>
+
+                                <%}%>
+                            </div>
+                            <hr />
+                            <div class="team-size">
+                                <div class="team-size-heading">Team Size</div>
+                                <div>:</div>
+                                <% if(events[i].teamMinSize ===
+                                events[i].teamMaxSize) { %>
+                                <div class="team-size-value">
+                                    <%= events[i].teamMinSize %>
+                                </div>
+                                <%}else {%>
+                                <div class="team-size-value">
+                                    <%= events[i].teamMinSize %>-<%=
+                                    events[i].teamMaxSize %>
+                                </div>
+                                <%}%>
                             </div>
                             <hr />
                             <a href="/event?event=<%=events[i].name %>"
@@ -87,13 +148,20 @@
                             ></a>
                             <br />
 
+                            <% if(checker[i]==false) {%>
                             <a href="/eventRegister?event=<%=events[i].name %>"
                                 ><button class="event-register">
                                     Register
                                 </button></a
                             >
+                            <%}%>
 
-                            <a href="<%=events[i].problemset_link %>"
+                            <!-- <a href="<%=events[i].problemset_link %>"
+                                ><button class="event-problem">
+                                    Problem Set
+                                </button></a
+                            > -->
+                            <a href="/event?event=<%=events[i].name %>"
                                 ><button class="event-problem">
                                     Problem Set
                                 </button></a
@@ -107,5 +175,12 @@
         </div>
 
         <script src="scripts/script.js"></script>
+        <script type="text/javascript">
+            const msg = document.querySelector(".eventi");
+            console.log("MSG = ", msg);
+            function clickme(i) {
+                console.log(" i = ", i);
+            }
+        </script>
     </body>
 </html>

@@ -4,6 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -17,10 +33,13 @@
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Document</title>
+        <title>Your Team | Xpecto</title>
     </head>
 
     <style>
+        .user-container h1 {
+            text-align: center;
+        }
         #page .content {
             padding-top: 1rem;
         }
@@ -39,11 +58,10 @@
             padding: 2rem;
             backdrop-filter: blur(10px) saturate(200%);
             -webkit-backdrop-filter: blur(10px) saturate(200%);
-            background-color: rgba(17, 25, 40, 0.5);
+            background-color: rgba(0, 16, 45, 0.781);
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.125);
-            margin-top: 6rem;
-            margin-bottom: 100px;
+            margin-top: 7rem;
         }
 
         .btn-container {
@@ -124,10 +142,36 @@
                 font-size: 0.75rem;
             }
         }
-        
+
+        tr {
+            margin-bottom: 1rem;
+        }
+
         @media (max-width: 320px) {
             .card {
                 width: 275px;
+            }
+        }
+        @media (min-width: 900px) {
+            tr {
+                display: flex;
+                flex-direction: row;
+            }
+            td {
+                padding: 1rem;
+            }
+            tr:nth-child(1) {
+                margin-right: 1rem;
+            }
+        }
+        @media (max-width: 510px) {
+            .card {
+                width: 350px;
+            }
+        }
+        @media (max-width: 400px) {
+            .card {
+                width: 300px;
             }
         }
     </style>
@@ -138,7 +182,7 @@
 
         <div class="" id="page">
             <div class="container">
-                <div class="heading">
+                <div class="heading" style="color: aqua">
                     <span>User</span>
                     <span>Team</span>
                 </div>
@@ -148,8 +192,8 @@
                 <div class="card">
                     <div class="user-container">
                         <div>
-                            <h1 class="user-heading">
-                                Team - <%= team.name %>
+                            <h1 class="user-heading" style="color: aqua">
+                                Team - <%= team.name.toUpperCase() %>
                             </h1>
                             <br />
                             <hr />
@@ -159,42 +203,43 @@
                             <table>
                                 <tr>
                                     <td>Team Name</td>
-                                    <td><%= team.name %></td>
+                                    <td><%= team.name.toUpperCase() %></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Team ID</td>
                                     <td><%= team._id %></td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td>Event Name</td>
-                                    <td><%= team.event %></td>
+                                    <td><%= event.name %></td>
                                 </tr>
                                 <tr>
                                     <td>Leader ID</td>
-                                    <td><%= team.teamLeader %></td>
+                                    <td><%= leaderinfo.displayName %></td>
                                 </tr>
                                 <tr>
                                     <td>Team Members</td>
                                     <td>
                                         <% for( let index = 0; index <
-                                        team.members.length; index++ ) { %> <%=
-                                        team.members[index].member_id %>
+                                        membersinfo.length; index++ ) { %> <%=
+                                        membersinfo[index].displayName %> <%
+                                        if(isLeader) {%>
                                         <a
-                                            href="removeMember?team=<%= team._id %>&member=<%= team.members[index].member_id %>"
+                                            href="removeMember?team=<%= team._id %>&member=<%= membersinfo[index]._id %>"
                                             ><button class="remove">x</button>
                                         </a>
-                                        <% } %>
+                                        <% } %> <% } %>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Creation Time</td>
                                     <td><%= team.createdAt %></td>
-                                </tr>
+                                </tr> -->
                             </table>
                             <br />
                             <hr />
                             <br />
-                            <% if (inviteCode) {%>
+                            <% if (inviteCode && isLeader) {%>
                             <table>
                                 <tr>
                                     <td>InviteCode</td>
@@ -202,11 +247,12 @@
                                 </tr>
                                 <tr>
                                     <td>ValidUpto</td>
-                                    <td><%= validUpto %> <% } %></td>
+                                    <td><%= validUpto %></td>
                                 </tr>
                             </table>
                             <br />
                             <hr />
+                            <% } %> <% if(isLeader) {%>
                             <div class="btn-container">
                                 <a
                                     href="/generateInviteCode?team=<%= team._id %>"
@@ -221,6 +267,7 @@
                                     </button></a
                                 >
                             </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>

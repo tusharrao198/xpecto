@@ -4,6 +4,22 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -53,19 +69,22 @@
         .person-card-container {
             margin: 1rem;
             width: 250px;
-            background: rgba(0, 37, 84, 0.3);
-            box-shadow: 0 0 32px 0 rgba(31, 38, 135, 0.37);
+            background: rgba(0, 16, 45, 0.781);
+            box-shadow: 0 0 25px -5px rgba(31, 38, 135, 0.37);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 10px;
             transition: 0.3s;
             padding: 1rem;
+            transition: 0.25s;
         }
         .person-card-container:hover {
-            box-shadow: 0 0 75px 10px rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(0.5px);
-            -webkit-backdrop-filter: blur(0.5px);
+            transition: 0.25s;
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px -5px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(100px);
+            -webkit-backdrop-filter: blur(100px);
         }
 
         .person-img {
@@ -123,38 +142,11 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <header class="header-glass active">
-            <div>
-                <img src="images/xpecto-logo-header.png" alt="" />
-                <span>XPECTO'22</span>
-            </div>
-            <nav>
-                <a id="" href="/#home">Home</a>
-                <a id="" href="/#about">About Us</a>
-                <a id="" href="/#contact">Contact Us</a>
-                <a id="" href="/#sponsors">Sponsors</a>
-                <a id="" href="events.html">Events</a>
-                <a id="faq" href="">Faq</a>
-                <% if(!authenticated){ %>
-                <a id="sign" href="/auth/google"
-                    ><i class="fa-brands fa-google"></i> SignIn</a
-                >
-                <% }else{ %>
-                <a id="sign" href="/profile"><i class=""></i> Profile</a>
-                <a id="sign" href="/auth/logout"
-                    ><i class="fa-brands fa-google"></i> Logout</a
-                >
-                <% } %>
-            </nav>
-            <div class="hamburger">
-                <img class="toggle" src="images/menu_open.svg" alt="" />
-            </div>
-        </header>
+        <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
-
         <div class="" id="page">
             <div class="container">
-                <div class="heading">
+                <div class="heading" style="color: aqua">
                     <span>&nbsp;T</span>
                     <span>&nbsp;E</span>
                     <span>&nbsp;A</span>
@@ -162,42 +154,93 @@
                 </div>
             </div>
             <div class="content">
-                <h2>People Who Made This Happen !!!</h2>
+                <h2 style="color: aqua">People Who Made This Happen !!!</h2>
                 <div class="team-list-container">
+                    <% for( let index = 0; index < members.length; index++ ) {
+                    %>
                     <div class="person-card-container">
                         <div class="person-card">
+                            <% if (members[index].Image_Link) { %>
                             <img
                                 class="person-img"
-                                src="images/Team/Lalit_Avatar_For_Xpecto copy.png"
+                                src="<%= members[index].Image_Link %>"
                                 alt=""
                             />
-                            <div class="person-name">Lalit Mudgal</div>
-                            <div class="person-role">Convenor</div>
+                            <% }else{ %>
+                            <img
+                                class="person-img"
+                                src="https://user-images.githubusercontent.com/79650502/165826483-8bb614d8-cfe8-4d61-ae32-b4c3144a7093.jpg"
+                                alt=""
+                            />
+                            <% } %>
+                            <div class="person-name">
+                                <%= members[index].Name %>
+                            </div>
+                            <div class="person-role">
+                                <%= members[index].Position %>
+                            </div>
                             <div class="social">
                                 <div>
-                                    <a href="">
+                                    <% if (members[index].Facebook ) { %>
+                                    <a
+                                        href="<%= members[index].Facebook %>"
+                                        target="_blank"
+                                    >
                                         <i
                                             class="fa-brands fa-facebook-square fa-2x"
                                         ></i>
                                     </a>
+                                    <% }else{ %>
+                                    <a href="#" target="">
+                                        <i
+                                            class="fa-brands fa-facebook-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% } %>
                                 </div>
                                 <div>
+                                    <% if (members[index].Instagram ) { %>
+                                    <a
+                                        href="<%= members[index].Instagram %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-instagram-square fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% }else{ %>
                                     <a href="#">
                                         <i
                                             class="fa-brands fa-instagram-square fa-2x"
                                         ></i>
                                     </a>
+                                    <% } %>
                                 </div>
                                 <div>
-                                    <a href="#">
+                                    <% if (members[index].Instagram ) { %>
+                                    <a
+                                        href="<%= members[index].Linkedin %>"
+                                        target="_blank"
+                                    >
                                         <i
-                                            class="fa-brands fa-github-square fa-2x"
+                                            class="fa-brands fa-linkedin fa-2x"
                                         ></i>
                                     </a>
+                                    <% }else{ %>
+                                    <a
+                                        href="<%= members[index].Linkedin %>"
+                                        target="_blank"
+                                    >
+                                        <i
+                                            class="fa-brands fa-linkedin fa-2x"
+                                        ></i>
+                                    </a>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <% } %>
 
                     <!-- card end -->
                 </div>

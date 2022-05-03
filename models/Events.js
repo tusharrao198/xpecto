@@ -14,10 +14,16 @@ const EventSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    content: {
+
+    oneline_content: {
         type: String,
         required: true,
     },
+
+    rest_content: {
+        type: String,
+    },
+
     event_image: {
         type: String,
         required: true,
@@ -26,6 +32,12 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+
+    description: {
+        type: String,
+        required: true,
+    },
+
     problemset_link: {
         type: String,
         required: true,
@@ -35,28 +47,97 @@ const EventSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    duration: {
-        hours: {
+
+    start_time: {
+        day: {
             type: Number,
-            default: 24,
+            required: true,
         },
-        minutes: {
-            type: Number,
-            default: 0,
-        },
-        seconds: {
-            type: Number,
-            default: 0,
+        time: {
+            type: String,
+            required: true,
         },
     },
+
+    end_time: {
+        day: {
+            type: Number,
+            required: true,
+        },
+        time: {
+            type: String,
+            required: true,
+        },
+    },
+
+    prices: {
+        first: {
+            type: Number,
+            required: true,
+        },
+        second: {
+            type: String,
+            required: true,
+        },
+        third: {
+            type: String,
+            required: true,
+        },
+    },
+
+    coordinators: {
+        first: {
+            name: {
+                type: String,
+                required: true,
+            },
+            contact: {
+                type: String,
+                required: true,
+            },
+        },
+        second: {
+            name: {
+                type: String,
+                required: true,
+            },
+            contact: {
+                type: String,
+                required: true,
+            },
+        },
+    },
+    // duration: {
+    //     hours: {
+    //         type: Number,
+    //         default: 24,
+    //     },
+    //     minutes: {
+    //         type: Number,
+    //         default: 0,
+    //     },
+    //     seconds: {
+    //         type: Number,
+    //         default: 0,
+    //     },
+    // },
+
     registeredUsers: [
         {
             user_id: {
                 type: String,
-                required: true,
-            }
-        }
-    ]
+                unique: true,
+            },
+        },
+    ],
+    teamMaxSize: {
+        type: Number,
+        required: true,
+    },
+    teamMinSize: {
+        type: Number,
+        required: true,
+    },
 });
 
 module.exports = mongoose.model("event", EventSchema);

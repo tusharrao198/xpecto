@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:url" content="https://xpecto.tech/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="images/xpecto-logo-header.png"
+        />
+        <script
+            src="https://kit.fontawesome.com/a1542a4884.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="styles/page.css" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/profile.css" />
+
+        <title>Confirm Submit | Xpecto</title>
+    </head>
+
+    <style>
+        #page .container {
+            padding-top: 2.5rem;
+            width: 250px;
+        }
+        #page .heading span {
+            font-size: 2.5rem;
+            padding-right: 2.5rem;
+            transform: skew(0deg);
+        }
+
+        #page .heading {
+            line-height: 1.5;
+            padding-left: 7.5rem;
+            padding-top: 25%;
+            display: flex;
+            align-items: baseline;
+            transform: skewX(-7.5deg);
+        }
+        .card {
+            color: white;
+            font-weight: bold;
+            width: 700px;
+            padding: 2rem;
+            backdrop-filter: blur(10px) saturate(200%);
+            -webkit-backdrop-filter: blur(10px) saturate(200%);
+            background-color: rgba(0, 16, 45, 0.781);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.125);
+            margin-top: 6rem;
+            /* margin-bottom: 100px; */
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn1 {
+            width: 200px;
+            text-decoration: none;
+            padding: 0.25rem;
+            border-radius: 5px;
+            transition: 0.2s;
+            font-size: 1.25rem;
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem auto;
+            color: white;
+            border: 2px solid rgba(2, 84, 200, 1);
+            background-color: rgba(2, 84, 200, 1);
+        }
+
+        .btn1:hover {
+            background-color: grey;
+            color: white;
+            border-color: grey;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        @media (max-width: 480px) {
+            .btn1 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 920px) {
+            .card {
+                width: 500px;
+            }
+        }
+        @media (max-width: 480px) {
+            .card {
+                width: 300px;
+            }
+            .btn1 {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .card {
+                width: 275px;
+            }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+        input[type="tel"],
+        input[type="text"] {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+        }
+        input[type="tel"]:focus,
+        input[type="text"]:focus {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+        }
+        .text-phone,
+        .text-submit {
+            font-weight: bold;
+            text-align: center;
+            margin: 1rem;
+        }
+        .text-submit {
+            font-size: 1.5rem;
+        }
+        .text-phone {
+            font: 1.25rem;
+        }
+        .event-heading {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        @media (max-width: 550px) {
+            .event-heading {
+                font-size: 2rem;
+            }
+            .card {
+                width: 300px;
+            }
+        }
+    </style>
+    <body>
+        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+        <%- include ('partials/navbar.ejs') %>
+        <!-- -----HEADER END----- -->
+
+        <div class="" id="page">
+            <div class="container">
+                <div class="heading" style="color: aqua">
+                    <span>&nbsp;S</span>
+                    <span>&nbsp;U</span>
+                    <span>&nbsp;B</span>
+                    <span>&nbsp;M</span>
+                    <span>&nbsp;I</span>
+                    <span>&nbsp;T</span>
+                </div>
+            </div>
+            <div class="prof-container">
+                <!-- <div class="content"></div> -->
+                <div class="card">
+                    <div class="event-heading" style="color: aqua">
+                        <%= event.name %>
+                    </div>
+                    <div class="text-submit">Please Provide the Details!</div>
+                    <!-- <div class="text-phone">Enter Your Phone Number</div> -->
+                    <form
+                        name="form1"
+                        action="/eventRegister?event=<%=event.name%>"
+                        method="POST"
+                        onsubmit="return phonenumber(document.getElementById('phone').value)"
+                    >
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter Full Name"
+                                name="fullName"
+                                required
+                            />
+                            <label for="referralCode">Referral Code</label>
+                            <input
+                                type="text"
+                                id="referralCode"
+                                placeholder="Optional"
+                                name="referralCode"
+                            />
+                            <label for="collegeName">College</label>
+                            <input
+                                type="text"
+                                id="coupon"
+                                placeholder="Enter College"
+                                name="collegeName"
+                                required
+                            />
+                            <label for="degree">Degree</label>
+                            <input
+                                type="text"
+                                id="degree"
+                                placeholder="Enter Degree"
+                                name="degree"
+                                required
+                            />
+                            <label for="branch">Specialization</label>
+                            <input
+                                type="text"
+                                id="branch"
+                                placeholder="Enter Specialization"
+                                name="branch"
+                                required
+                            />
+                            <label for="phone">Phone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter Phone"
+                                name="phone_number"
+                                required
+                            />
+                        </div>
+
+                        <button type="submit" class="btn1">Submit</button>
+                        <p id="demo"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="scripts/script.js"></script>
+        <script>
+            function phonenumber(inputtxt) {
+                var phoneno = /^\d{10}$/;
+                if (inputtxt.match(phoneno)) {
+                    return true;
+                } else {
+                    alert("Enter a valid 10 Digit Phone Number");
+                    return false;
+                }
+                event.preventDefault();
+            }
+            document.querySelector(".btn1").addEventListener("submit", (e) => {
+                if (!phonenumber) e.preventDefault();
+            });
+        </script>
+    </body>
+</html>

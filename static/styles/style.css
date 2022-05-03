@@ -115,8 +115,8 @@ nav a:hover {
     }
     nav {
         position: absolute;
-        top: 75px;
         width: 100%;
+        top: 75px;
         left: 0;
         flex-direction: column;
         align-items: center;
@@ -231,7 +231,7 @@ nav a:hover {
     background-image: url("../images/svg/polygon.svg");
     background-attachment: fixed;
     color: white;
-    padding: 2rem 0;
+    padding: 3rem 0 2rem 0;
 }
 
 #about .heading {
@@ -258,9 +258,22 @@ nav a:hover {
 }
 #about .pages-btn a {
     margin: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
     padding: 0;
 }
-#about .btn1 {
+
+.event-join-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+.btn1-event-join {
+    font-size: 2rem;
+}
+#about .btn1,
+.btn1-event-join {
     letter-spacing: -1px;
     color: white;
     font-size: 1.25rem;
@@ -273,7 +286,8 @@ nav a:hover {
     transition: 0.3s;
     box-shadow: 0 10px 50px 0 black;
 }
-#about .btn1:hover {
+#about .btn1:hover,
+.btn1-event-join:hover {
     background-color: rgba(0, 20, 47);
     cursor: pointer;
     transition: 0.3s;
@@ -283,16 +297,20 @@ nav a:hover {
     transition: 0.3s;
     transform: translateY(2px);
 }
+.btn1-event-join {
+    font-size: 2.25rem;
+}
 
 /* -----CONTACT SECTION DESIGNING----- */
 #contact .heading {
+    margin-bottom: 3.5rem;
     color: white;
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
 }
 #contact {
-    padding: 1rem;
+    padding: 3rem 1rem 3rem 1rem;
     background-image: url("../images/svg/circles.svg");
     background-color: rgb(0, 10, 22);
     background-attachment: fixed;
@@ -302,7 +320,7 @@ nav a:hover {
 #contact .card {
     margin: 1rem;
     width: 300px;
-    height: 200px;
+    height: 250px;
     background: rgba(0, 37, 84, 0.3);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(20px);
@@ -324,10 +342,16 @@ nav a:hover {
     padding: 1rem;
 }
 #contact .content i {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     margin-top: 1rem;
 }
 
+#contact .phone-content .phone a div {
+    margin-bottom: 0.5rem;
+}
+#contact .phone-content .phone {
+    margin-top: 1rem;
+}
 /* -----DESIGNING OF RIBBON FOLDING EFFECT ON CONTACT CARDS----- */
 .ribbon {
     width: 150px;
@@ -392,6 +416,12 @@ nav a:hover {
     margin-top: 2rem;
 }
 
+.email-content a,
+.phone-content a {
+    text-decoration: none;
+    color: #ffff;
+}
+
 .phone-content .phone {
     margin-top: 1rem;
 }
@@ -424,7 +454,7 @@ nav a:hover {
 
 /* -----SPONSORS SECTION DESIGNING----- */
 #sponsors {
-    padding: 1rem;
+    padding: 3rem 2rem 3rem 2rem;
     background-image: linear-gradient(
         to right bottom,
         #030060,
@@ -443,22 +473,28 @@ nav a:hover {
     background-attachment: fixed;
 }
 
-#sponsors .heading {
+#sponsors .heading,
+#faq .heading {
     color: white;
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
 }
 
-#sponsors .spon {
+#sponsors .spon,
+#faq .faq-soon {
     padding: 1rem;
     margin: 1rem;
     background-color: #060539;
     border-radius: 5px;
     transition: 0.3s;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
-#sponsors .spon:hover {
+#sponsors .spon:hover,
+#faq .faq-soon:hover {
     box-shadow: 0 20px 50px -15px black;
     transform: translateY(-2.5px);
     transition: 0.3s;
@@ -479,6 +515,7 @@ nav a:hover {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
 }
 .event-card-container {
     text-align: center;
@@ -562,3 +599,86 @@ hr {
     }
 }
 
+/* -----STYLING FAQ SECTION----- */
+
+#faq {
+    background-image: url("../images/svg/circles.svg");
+    background-color: rgb(0, 10, 22);
+    background-attachment: fixed;
+    color: white;
+    padding: 3rem 2rem 3rem 2rem;
+}
+#faq .faq-container {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.container {
+    width: 40%;
+    background-color: rgb(0, 20, 47);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 10px 0 rgb(0, 0, 0, 0.25);
+    margin: 0.5rem 1rem;
+    transition: 0.25s;
+}
+.container:hover {
+    transform: translateY(-5px);
+    transition: 0.25s;
+}
+.question {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 20px 80px 20px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.question::after {
+    content: "\002B";
+    font-size: 2.2rem;
+    position: absolute;
+    right: 20px;
+    transition: 0.2s;
+}
+
+.question.active::after {
+    transform: rotate(45deg);
+}
+
+.answercont {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.answer {
+    padding: 0 20px 20px;
+    line-height: 1.5rem;
+}
+
+.question.active + .answercont {
+}
+
+@media screen and (max-width: 800px) {
+    .wrapper {
+        width: 95%;
+    }
+    .container {
+        width: 95%;
+    }
+}

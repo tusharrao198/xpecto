@@ -24,13 +24,24 @@ const {
     createNewInviteCode,
     allEventDetails,
     userDetails,
-    regCheck
+    regCheck,
+    allowRegistration,
+    maxteamSize,
+    checkTeamName,
+    saveReferralCode,
+    generateString,
+    homepageInfo,
+    sponsorsInfo,
+    FAQInfo,
+    findIfUserRegistered,
 } = require("./utils");
 var url = require("url");
 
-const { generateString } = require("./utils");
 const code = require("./models/code.js");
 const { name } = require("ejs");
+const { is } = require("express/lib/request");
+const res = require("express/lib/response");
+const { none } = require("./multer.js");
 
 // Load config
 require("dotenv").config({ path: "./config/config.env" });
@@ -87,19 +98,62 @@ app.use(passport.session());
 // Routes
 app.use("/auth", authRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+    const homepageinfo = await homepageInfo();
+    const sponinfo = await sponsorsInfo();
+    const faqinfo = await FAQInfo();
     res.render("index", {
         authenticated: req.isAuthenticated(),
+        homepageInfo:
+            homepageinfo === null || homepageinfo === undefined
+                ? "false"
+                : homepageinfo[0],
+        sponInfo:
+            sponinfo === null || sponinfo === undefined ? "false" : sponinfo,
+        faqInfo: faqinfo === null || faqinfo === undefined ? "false" : faqinfo,
     });
 });
+
+// only admin can access this route.
+app.get("/registrations", async (req, res) => {
+    if (req.session.admin === "1") {
+        const User = require("./models/User");
+        let regdata = await User.find().lean();
+        res.render("admin/regdata", {
+            authenticated: req.isAuthenticated(),
+            totalreg: regdata.length,
+            alluserinfo: regdata,
+        });
+    } else {
+        res.redirect("/adminlogin");
+    }
+});
+
+function isRegistered(user, events) {
+    let checker = [];
+    for (let i = 0; i < events.length; i++) {
+        checker.push(false);
+
+        if (user == null) continue;
+        for (let j = 0; j < events[i].registeredUsers.length; j++) {
+            if (events[i].registeredUsers[j].user_id.toString() == user._id) {
+                checker[i] = true;
+            }
+        }
+    }
+    return checker;
+}
 
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
+    const checker = isRegistered(req.user, allEvents);
+    // console.log(checker);
     res.render("events", {
         events: allEvents,
         authenticated: req.isAuthenticated(),
-        user: req.session.user,
+        user: req.user,
+        checker: checker,
     });
 });
 
@@ -114,11 +168,10 @@ app.get("/profile", authCheck, async (req, res) => {
     });
 
     // console.log(typeof (context))
-
 });
 app.get("/terms", (req, res) => {
     res.render("tnc", {
-        authenticated: req.isAuthenticated()
+        authenticated: req.isAuthenticated(),
     });
 });
 
@@ -129,44 +182,66 @@ app.get("/faq", (req, res) => {
     });
 });
 
-
-// app.get("/register", (req, res) => {
-//     res.render("register", {
-//         user: req.session.user,
-//         authenticated: req.isAuthenticated(),
-//     });
-// });
-
-// app.get("/team", (req, res) => {
-//     res.render("team", {
-//         user: req.session.user,
-//         authenticated: req.isAuthenticated(),
-//     });
-// });
+app.get("/ourteam", async (req, res) => {
+    const coreTeamTable = require("./models/coreTeam");
+    let members = await coreTeamTable.find().lean();
+    res.render("team", {
+        authenticated: req.isAuthenticated(),
+        members: members,
+    });
+});
 
 app.get("/event", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
-    const team = await findUserTeam(req);
 
+    const team = await findUserTeam(req);
     const context = {
         event: event,
+        firstPrizeAmount: event.prices.first,
         team: team,
         authenticated: req.isAuthenticated(),
+        team_created: team != null ? true : false,
     };
     res.render("event", { ...context, user: req.session.user });
 });
 
 app.get("/eventRegister", authCheck, async (req, res) => {
     const event = await findEvent(req);
+
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
     };
-    res.render("register", { ...context, user: req.session.user });
+    res.render("submit", { ...context, user: req.session.user });
 });
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
-    const eventTable = require('./models/Events');
+
+    // saving required info to userDetails
+    const {
+        referralCode,
+        phone_number,
+        fullName,
+        collegeName,
+        degree,
+        branch,
+    } = req.body;
+    const userinfo = await userDetails(req.user._id);
+    const userTable = require("./models/User");
+    await userTable.updateOne(
+        { _id: req.user._id },
+        {
+            phoneNumber: phone_number,
+            fullName: fullName,
+            collegeName: collegeName,
+            degree: degree,
+            branch: branch,
+            referralCode: referralCode,
+        }
+    );
+
+    const eventTable = require("./models/Events");
+
     await eventTable.updateOne(
         { _id: event._id },
         { $push: { registeredUsers: { user_id: req.user._id } } }
@@ -179,23 +254,35 @@ app.get("/createTeam", authCheck, async (req, res) => {
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
+        uniqueTeam: true,
     };
     res.render("createTeam", { ...context, user: req.session.user });
 });
 
 app.post("/createTeam", authCheck, async (req, res) => {
-    await createNewTeam(req);
     const event = await findEvent(req);
-    res.redirect(`/event?event=${event.name}`);
-});
+    const uniqueTeam = await checkTeamName(req);
+    // console.log("checkTeamName = ", uniqueTeam);
+    if (!uniqueTeam) {
+        const context = {
+            event: event,
+            authenticated: req.isAuthenticated(),
+            uniqueTeam: uniqueTeam.toString(),
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("createTeam", {
+            ...context,
+            user: req.session.user,
+        });
+    } else {
+        await createNewTeam(req);
+        const event = await findEvent(req);
+        context = {
+            created: true,
+        };
 
-app.get("/joinTeam", authCheck, async (req, res) => {
-    const event = await findEvent(req);
-    const context = {
-        event: event,
-        authenticated: req.isAuthenticated(),
-    };
-    res.render("joinTeam", { ...context, user: req.session.user });
+        res.redirect(`/event?event=${event.name}`);
+    }
 });
 
 app.get("/deleteTeam", authCheck, async (req, res) => {
@@ -204,23 +291,111 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
     const teamTable = require("./models/Team");
 
     const event = await findEventFromId(params.event);
-
-    let team = await teamTable
-        .findOne({ event: event._id, teamLeader: req.user._id })
-        .lean();
-
-    if (team != null) {
-        await deleteTeam(params.team);
-        res.redirect(`/event?event=${event.name}`);
+    if (event == null) {
+        res.redirect(`/events`);
     } else {
-        console.log("Only Team Leader can delete a team!");
+        let team = await teamTable
+            .findOne({ event: event._id, teamLeader: req.user._id })
+            .lean();
+
+        if (team != null) {
+            await deleteTeam(params.team);
+            res.redirect(`/event?event=${event.name}`);
+        } else {
+            console.log("Only Team Leader can delete a team!");
+            res.redirect(`/userTeam?event=${event.name}`);
+        }
+    }
+});
+
+app.get("/joinTeam", authCheck, async (req, res) => {
+    // const check = await findIfUserRegistered(req);
+    // console.log("check = ", check);
+    // if (!check) {
+    //     // res.redirect("/eventRegister");
+    // }
+    const teamTable = require("./models/Team");
+    let teams = await teamTable.find().lean();
+    const context = {
+        authenticated: req.isAuthenticated(),
+        teams: teams,
+        invalidCode: false,
+        inviteCode: 0,
+        allowedTeamSize: true,
+    };
+    if (teams.length === 0) {
+        // console.log("No teams formed till now!, teams = ", teams);
+        res.render("joinTeam", { ...context, user: req.session.user });
+    } else {
+        res.render("joinTeam", { ...context, user: req.session.user });
     }
 });
 
 app.post("/joinTeam", authCheck, async (req, res) => {
-    await joinTeam(req);
-    const event = await findEvent(req);
-    res.redirect(`/event?event=${event.name}`);
+    const allowedTeamSize = await maxteamSize(req);
+    if (allowedTeamSize === "true") {
+        console.log("allowed11");
+        const inviteCode = await joinTeam(req);
+        if (inviteCode != null) {
+            const team_id = inviteCode.team;
+            const teamTable = require("./models/Team");
+            const team = await teamTable.findOne({ _id: team_id }).lean();
+            const event_id = team.event;
+
+            const event = await findEventFromId(event_id);
+            // const eventTable = require('./models/Events');
+            // await eventTable.updateOne(
+            //     { _id: event._id },
+            //     { $push: { registeredUsers : { user_id : req.user._id } } }
+            // );
+            res.redirect(`/event?event=${event.name}`);
+        } else {
+            console.log("inviteCode is invalid");
+            const teamTable = require("./models/Team");
+            let teams = await teamTable.find().lean();
+            const context = {
+                authenticated: req.isAuthenticated(),
+                teams: teams,
+                invalidCode: true,
+                inviteCode: req.body.invite_code.length,
+                allowedTeamSize: true,
+            };
+            // res.redirect(`/joinTeam`);
+            res.render("joinTeam", { ...context, user: req.session.user });
+        }
+    } else if (allowedTeamSize === "false") {
+        console.log("allowedTeamSize is false");
+        const teamTable = require("./models/Team");
+        let teams = await teamTable.find().lean();
+        const context = {
+            authenticated: req.isAuthenticated(),
+            teams: teams,
+            invalidCode: false,
+            inviteCode: req.body.invite_code.length,
+            allowedTeamSize: false,
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("joinTeam", {
+            ...context,
+            user: req.session.user,
+        });
+    } else {
+        console.log("inviteCode is true");
+        const teamTable = require("./models/Team");
+        let teams = await teamTable.find().lean();
+        const context = {
+            authenticated: req.isAuthenticated(),
+            teams: teams,
+            invalidCode: true,
+            inviteCode: req.body.invite_code.length,
+            allowedTeamSize: true,
+        };
+        // res.redirect(`/joinTeam`);
+        res.render("joinTeam", {
+            ...context,
+            user: req.session.user,
+        });
+    }
 });
 
 app.get("/removeMember", authCheck, async (req, res) => {
@@ -232,55 +407,72 @@ app.get("/removeMember", authCheck, async (req, res) => {
 
 app.get("/userTeam", authCheck, async (req, res) => {
     const team = await findUserTeam(req);
-    const inviteCodeTable = require("./models/InviteCode");
-    let inviteCode = await inviteCodeTable.findOne({ team: team._id }).lean();
-
-    // only team leader can delete a team and generate a invite code.
-    const teamTable = require("./models/Team");
-    let teaminfo = await teamTable
-        .findOne({ event: team.event, teamLeader: req.user._id })
-        .lean();
-    let leader = false;
-    if (teaminfo != null) {
-        leader = true;
-    }
-
-    // event details
-    const event = await findEvent(req);
-
-    // user info
-    let leaderinfo = null;
-    if (leader) {
-        leaderinfo = await userDetails(req.user._id);
+    if (team == null) {
+        res.redirect("/events");
     } else {
-        const teamdata = await teamTable.findOne({ event: team.event }).lean();
-        leaderinfo = await userDetails(teamdata.teamLeader);
-    }
+        const inviteCodeTable = require("./models/InviteCode");
+        let inviteCode = await inviteCodeTable
+            .findOne({ team: team._id })
+            .lean();
 
-    //team member details
-    let members_info = [];
-    for (let index = 0; index < team.members.length; index++) {
-        let mem_id = team.members[index].member_id;
-        let info = await userDetails(mem_id);
-        members_info.push(info);
-    }
-    context = {
-        event: event,
-        team: team,
-        authenticated: req.isAuthenticated(),
-        inviteCode: null,
-        validUpto: null,
-        leader: leader,
-        leaderinfo: leaderinfo,
-        members_info: members_info,
-    };
-    // console.log(team);
-    if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
-        context.inviteCode = inviteCode.code;
-        context.validUpto = inviteCode.validUpto;
-    }
+        const leaderInfo = await userDetails(team.teamLeader);
+        let membersId = team.members;
+        let membersInfo = [];
+        for (let i = 0; i < membersId.length; i++) {
+            const userInfo = await userDetails(membersId[i].member_id);
+            membersInfo.push(userInfo);
+        }
+        // only team leader can delete a team and generate a invite code.
+        // const teamTable = require("./models/Team");
+        // let teaminfo = await teamTable
+        //     .findOne({ event: team.event, teamLeader: req.user._id })
+        //     .lean();
+        // let leader = false;
+        // if (teaminfo != null) {
+        //     leader = true;
+        // }
 
-    res.render("userTeam", { ...context, user: req.session.user });
+        // event details
+        const event = await findEvent(req);
+
+        // user info
+        // let leaderinfo = null;
+        // if (leader) {
+        //     leaderinfo = await userDetails(req.user._id);
+        // } else {
+        //     const teamdata = await teamTable.findOne({ event: team.event }).lean();
+        //     leaderinfo = await userDetails(teamdata.teamLeader);
+        // }
+
+        //team member details
+        // let members_info = [];
+        // for (let index = 0; index < team.members.length; index++) {
+        //     let mem_id = team.members[index].member_id;
+        //     let info = await userDetails(mem_id);
+        //     members_info.push(info);
+        // }
+        context = {
+            event: event,
+            team: team,
+            authenticated: req.isAuthenticated(),
+            inviteCode: null,
+            validUpto: null,
+            isLeader: team.teamLeader.toString() === req.user._id.toString(),
+            // leader: leader,
+            leaderinfo: leaderInfo,
+            membersinfo: membersInfo,
+        };
+        // console.log(team.teamLeader);
+        // console.log(req.user._id.toString());
+        // console.log(team.teamLeader.toString() === req.user._id.toString());
+        // console.log(team);
+        if (inviteCode != null && inviteCode.validUpto >= Date.now()) {
+            context.inviteCode = inviteCode.code;
+            context.validUpto = inviteCode.validUpto;
+        }
+
+        res.render("userTeam", { ...context, user: req.session.user });
+    }
 });
 
 app.get("/generateInviteCode", authCheck, async (req, res) => {
@@ -310,7 +502,8 @@ app.post("/adminauth", (req, res) => {
         req.body.password == process.env.ADMINPASSWORD
     ) {
         req.session.admin = "1";
-        res.render("admin/adminoption.ejs");
+        res.redirect("/registrations");
+        // res.render("admin/adminoption.ejs");
     } else {
         res.redirect("/adminlogin");
     }
@@ -339,7 +532,7 @@ app.post("/addevent", upload.single("image"), async (req, res) => {
                 if (err) {
                     res.send("DATA not saved" + err);
                 } else {
-                    res.render("admin/adminoption.ejs");
+                    res.render("admin/adminoption");
                 }
             });
         } else {
@@ -355,9 +548,50 @@ app.post("/addevent", upload.single("image"), async (req, res) => {
             if (!eventUpdated) {
                 res.send("DATA not updated");
             } else {
-                res.render("admin/adminoption.ejs");
+                res.render("admin/adminoption");
             }
         }
+    }
+});
+
+app.get("/xyzgeneratecodeabc", async (req, res) => {
+    context = {
+        authenticated: req.isAuthenticated(),
+        success: "false",
+        get_call: "true",
+        campus_ambassador_name: "",
+        place: "",
+        code: "",
+    };
+    res.render("admin/couponCode", { ...context, user: req.user });
+});
+
+// onetime coupon generate logic
+app.post("/xyzgeneratecodeabc", async (req, res) => {
+    console.log("req.session.admin = ", req.session.admin);
+    if (req.session.admin === "1") {
+        console.log("req body =", req.body);
+        const referralCode = await generateString(8);
+        const response = await saveReferralCode(req, referralCode);
+        console.log("referralCode = ", referralCode, typeof referralCode);
+        console.log("response = ", response);
+        let final_res = "false";
+        if (response !== null && response !== undefined) {
+            final_res = "true";
+        }
+        context = {
+            authenticated: req.isAuthenticated(),
+            success: final_res,
+            codeinfo: req.body,
+            get_call: "false",
+        };
+        if (final_res) {
+            res.render("admin/couponCode", { ...context, user: req.user });
+        } else {
+            res.render("admin/couponCode", { ...context, user: req.user });
+        }
+    } else {
+        res.redirect("/adminlogin");
     }
 });
 
