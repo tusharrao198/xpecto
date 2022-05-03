@@ -238,7 +238,7 @@
                                                         name="phone_number" required />
 
                                                     <% if(isPerson==="true" ){ %>
-                                                        <label for="inviteCode">Invite Code</label>
+                                                        <label for="inviteCode">Team Join Invite Code</label>
                                                         <input type="text" class="form-control" id="inviteCode"
                                                             placeholder="Enter invite code" name="invite_code"
                                                             required />
@@ -276,7 +276,6 @@
                     .render("<%= allowedTeamSize %>")
                     .toString();
                 const msg = document.querySelector(".msg");
-                console.log("asd = ", invalidCode, allowedTeamSize);
                 if (invalidCode === "false" && allowedTeamSize === "false") {
                     msg.style.color = "yellow";
                     msg.innerHTML = "Team already Full!";

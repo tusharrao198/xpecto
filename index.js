@@ -312,7 +312,7 @@ app.get("/deleteTeam", authCheck, async (req, res) => {
             await deleteTeam(params.team);
             res.redirect(`/event?event=${event.name}`);
         } else {
-            console.log("Only Team Leader can delete a team!");
+            // console.log("Only Team Leader can delete a team!");
             res.redirect(`/userTeam?event=${event.name}`);
         }
     }
@@ -346,8 +346,6 @@ app.get("/joinTeam", authCheck, async (req, res) => {
 app.post("/joinTeam", authCheck, async (req, res) => {
     const allowedTeamSize = await maxteamSize(req);
     if (allowedTeamSize === "true") {
-        console.log("allowed11");
-
         const inviteCode = await joinTeam(req);
         if (inviteCode != null) {
             const team_id = inviteCode.team;
@@ -384,7 +382,7 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             );
             res.redirect(`/event?event=${event.name}`);
         } else {
-            console.log("inviteCode is invalid");
+            // console.log("inviteCode is invalid");
             const teamTable = require("./models/Team");
             let teams = await teamTable.find().lean();
             const context = {
@@ -399,7 +397,7 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             res.render("submit", { ...context, user: req.session.user });
         }
     } else if (allowedTeamSize === "false") {
-        console.log("allowedTeamSize is false");
+        // console.log("allowedTeamSize is false");
         const teamTable = require("./models/Team");
         let teams = await teamTable.find().lean();
         const context = {
@@ -416,7 +414,7 @@ app.post("/joinTeam", authCheck, async (req, res) => {
             user: req.session.user,
         });
     } else {
-        console.log("inviteCode is true");
+        // console.log("inviteCode is true");
         const teamTable = require("./models/Team");
         let teams = await teamTable.find().lean();
         const context = {
@@ -607,13 +605,13 @@ app.get("/xyzgeneratecodeabc", async (req, res) => {
 
 // onetime coupon generate logic
 app.post("/xyzgeneratecodeabc", async (req, res) => {
-    console.log("req.session.admin = ", req.session.admin);
+    // console.log("req.session.admin = ", req.session.admin);
     if (req.session.admin === "1") {
-        console.log("req body =", req.body);
+        // console.log("req body =", req.body);
         const referralCode = await generateString(8);
         const response = await saveReferralCode(req, referralCode);
-        console.log("referralCode = ", referralCode, typeof referralCode);
-        console.log("response = ", response);
+        // console.log("referralCode = ", referralCode, typeof referralCode);
+        // console.log("response = ", response);
         let final_res = "false";
         if (response !== null && response !== undefined) {
             final_res = "true";

@@ -136,7 +136,7 @@ module.exports = {
             }
         });
 
-        console.log(newteam)
+        // console.log(newteam)
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
@@ -270,10 +270,10 @@ module.exports = {
             let codedata = await codeTable
                 .findOne({ code: referralCode })
                 .lean();
-            console.log("f = ", found_data);
+            // console.log("found_data = ", found_data);
 
             if (found_data) {
-                console.log("Already present!");
+                // console.log("Already present!");
                 done(null, codedata);
                 return false;
             } else {
@@ -304,7 +304,7 @@ module.exports = {
                 return err;
             }
         });
-        console.log(newInviteCode)
+        // console.log(newInviteCode);
     },
     userDetails: async function (user_id) {
         const User = require("./models/User");
@@ -409,7 +409,7 @@ module.exports = {
             if (leader_team != null) {
                 teamSizeCount += 1; // counting leader
             }
-            console.log(teamSizeCount)
+            // console.log(teamSizeCount);
             if (teamSizeCount >= teamMaxSize) {
                 // context = {
                 //     teamSizeCount: teamSizeCount,
@@ -505,7 +505,7 @@ module.exports = {
         for (let i = 0; i < referdata.length; i++) {
             totalreg += referdata[i].count;
         }
-        console.log("totalreg = ", totalreg);
+        // console.log("totalreg = ", totalreg);
         return referdata;
     },
 };

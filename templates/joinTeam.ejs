@@ -182,7 +182,6 @@
                 .render("<%= allowedTeamSize %>")
                 .toString();
             const msg = document.querySelector(".msg");
-            console.log("asd = ", invalidCode, allowedTeamSize);
             if (invalidCode === "false" && allowedTeamSize === "false") {
                 msg.style.color = "yellow";
                 msg.innerHTML = "Team already Full!";
