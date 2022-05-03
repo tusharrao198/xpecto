@@ -28,58 +28,27 @@
             <!-- _id,googleId,email,displayName,firstName,image,status,phoneNumber,createdAt,__v,branch,collegeName,degree,fullName,referralCode -->
             <div class="table-responsive">
                 <div class="container text-center row">
-                    <h1>Total Registrations: <%= totalreg %></h1>
-
-                    <div class="col">
-                        <h5>
-                            Number of Registrations Outside College: <%=
-                            not_college_count %>
-                        </h5>
-                    </div>
-                    <div class="col">
-                        <h5>
-                            Number of Registrations From College: <%=
-                            college_count %>
-                        </h5>
-                    </div>
+                    <h1>Number of Registrations per referral Code</h1>
                 </div>
-                <h4 class="text-primary text-center">
-                    Phone Number if shown 0 in the column means user has not
-                    registered for any event till now.
-                    <br />
-                    OR
-                    <br />
-                    Has join a team thorugh invite code!.
-                </h4>
+                <br />
+                <br />
                 <table class="table table-striped table-bordered align-middle">
                     <thead>
                         <tr>
                             <th scope="col">Sr. No.</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">FirstName</th>
-                            <th scope="col">FullName</th>
-                            <th scope="col">PhoneNumber</th>
-                            <th scope="col">CollegeName</th>
-                            <th scope="col">Degree</th>
-                            <th scope="col">Branch</th>
                             <th scope="col">Referral Code</th>
+                            <th scope="col">Registrations</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for( let index = 0; index < alluserinfo.length;
+                        <% for( let index = 0; index < refcode_data.length;
                         index++ ) {%>
                         <tr>
                             <th><%= index+1%></th>
-                            <th><%= alluserinfo[index].displayName%></th>
-                            <th><%= alluserinfo[index].email%></th>
-                            <th><%= alluserinfo[index].firstName%></th>
-                            <th><%= alluserinfo[index].fullName%></th>
-                            <th><%= alluserinfo[index].phoneNumber%></th>
-                            <th><%= alluserinfo[index].collegeName%></th>
-                            <th><%= alluserinfo[index].degree%></th>
-                            <th><%= alluserinfo[index].branch%></th>
-                            <th><%= alluserinfo[index].referralCode%></th>
+                            <th><%= refcode_data[index].name%></th>
+                            <th><%= refcode_data[index].referralCode%></th>
+                            <th><%= refcode_data[index].count%></th>
                         </tr>
                         <%}%>
                     </tbody>

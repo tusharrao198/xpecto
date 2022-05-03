@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const { authCheck } = require("./middleware/auth");
+const { authCheck, adminCheck } = require("./middleware/auth");
 const authRoutes = require("./routes/authroutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
@@ -34,6 +34,8 @@ const {
     sponsorsInfo,
     FAQInfo,
     findIfUserRegistered,
+    registrationdifferentiate,
+    numberofReg_referCode,
 } = require("./utils");
 var url = require("url");
 
@@ -115,18 +117,26 @@ app.get("/", async (req, res) => {
 });
 
 // only admin can access this route.
-app.get("/registrations", async (req, res) => {
-    if (req.session.admin === "1") {
-        const User = require("./models/User");
-        let regdata = await User.find().lean();
-        res.render("admin/regdata", {
-            authenticated: req.isAuthenticated(),
-            totalreg: regdata.length,
-            alluserinfo: regdata,
-        });
-    } else {
-        res.redirect("/adminlogin");
-    }
+app.get("/registrations", adminCheck, async (req, res) => {
+    const User = require("./models/User");
+    let regdata = await User.find().lean();
+    const notCollegeCount = await registrationdifferentiate(regdata);
+    res.render("admin/regdata", {
+        authenticated: req.isAuthenticated(),
+        totalreg: regdata.length,
+        alluserinfo: regdata,
+        not_college_count: notCollegeCount,
+        college_count: regdata.length - notCollegeCount,
+    });
+});
+
+// only admin can access this route.
+app.get("/regcodecount", adminCheck, async (req, res) => {
+    const referdata = await numberofReg_referCode();
+    res.render("admin/refcoderegdata", {
+        authenticated: req.isAuthenticated(),
+        refcode_data: referdata,
+    });
 });
 
 function isRegistered(user, events) {
@@ -502,7 +512,9 @@ app.post("/adminauth", (req, res) => {
         req.body.password == process.env.ADMINPASSWORD
     ) {
         req.session.admin = "1";
-        res.redirect("/registrations");
+        res.redirect(req.session.returnTo || "/");
+        delete req.session.returnTo;
+        // res.redirect("/registrations");
         // res.render("admin/adminoption.ejs");
     } else {
         res.redirect("/adminlogin");

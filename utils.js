@@ -435,7 +435,7 @@ module.exports = {
         for (let i = 0; i < allTeams.length; i++) {
             if (allTeams[i].name === team_name.toString()) {
                 uniqueTeam = false;
-                console.log("team not unique");
+                // console.log("team not unique");
                 break;
             }
         }
@@ -455,5 +455,54 @@ module.exports = {
         const faqInfo = require("./models/Faq");
         let info = await faqInfo.find().lean();
         return info;
+    },
+    registrationdifferentiate: async function (regdata) {
+        let not_college_count = 0;
+        for (let i = 0; i < regdata.length; i++) {
+            if (regdata[i].email.match("@students.iitmandi.ac.in") == null) {
+                not_college_count += 1;
+            }
+        }
+        return not_college_count;
+    },
+    numberofReg_referCode: async function () {
+        const refferalCodes = require("./models/referralcodes");
+        const User = require("./models/User");
+        let regdata = await User.find().lean();
+        let refercodedata = await refferalCodes.find().lean();
+
+        let referdata = [];
+        for (let i = 0; i < refercodedata.length; i++) {
+            let regcnt = 0;
+            for (let j = 0; j < regdata.length; j++) {
+                if (
+                    regdata[j].referralCode === null ||
+                    regdata[j].referralCode === undefined
+                ) {
+                    // console.log("Continue");
+                    continue;
+                } else {
+                    if (
+                        regdata[j].referralCode.toUpperCase() ===
+                        refercodedata[i].code.toUpperCase()
+                    ) {
+                        regcnt += 1;
+                    }
+                }
+            }
+            let addd = {
+                count: regcnt,
+                name: refercodedata[i].name,
+                referralCode: refercodedata[i].code,
+            };
+            referdata.push(addd);
+        }
+
+        let totalreg = 0;
+        for (let i = 0; i < referdata.length; i++) {
+            totalreg += referdata[i].count;
+        }
+        console.log("totalreg = ", totalreg);
+        return referdata;
     },
 };
