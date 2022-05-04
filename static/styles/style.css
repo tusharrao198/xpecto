@@ -515,11 +515,12 @@ nav a:hover {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 .event-card-container {
     text-align: center;
     width: 350px;
+    /* height: 500px; */
     padding: 1rem;
     border-radius: 7.5px;
     margin: 1rem;
@@ -527,6 +528,8 @@ nav a:hover {
     backdrop-filter: blur(5px) saturation(200%);
     -webkit-backdrop-filter: blur(7px) saturation(200%);
     transition: 0.3s;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .event-card-container:hover {
@@ -543,7 +546,7 @@ nav a:hover {
 .event-register,
 .event-problem,
 .info,
-summary {
+.desc-btn {
     font-size: 0.9rem;
     font-weight: bold;
     border: 2px solid rgb(0, 20, 47);
@@ -567,7 +570,7 @@ summary {
 .event-register:hover,
 .event-problem:hover,
 .info:hover,
-summary:hover {
+.desc-btn:hover {
     background-color: rgba(0, 20, 47, 0.75);
     transition: 0.3s;
     cursor: pointer;
@@ -575,10 +578,24 @@ summary:hover {
 .info:hover {
     transform: translateX(5px);
 }
-
+.desc-btn {
+    /* padding: 1rem; */
+    border-radius: 50%;
+    /* width: 20px; */
+    margin-left: auto;
+    margin-right: auto;
+}
 .event-description {
     font-size: 0.9rem;
-    margin: 1rem 0.25rem;
+    margin: 0.5rem 0.25rem;
+}
+
+.event-register,
+.event-problem {
+    position: sticky;
+    bottom: 0;
+    top: 100%;
+    margin-bottom: 0;
 }
 
 hr {
@@ -681,4 +698,46 @@ hr {
     .container {
         width: 95%;
     }
+}
+
+/* Event CARD description expand   */
+.desc-btn {
+    /* padding: 0.1rem; */
+    font-size: 0.9rem;
+    font-weight: bold;
+    /* padding: 20px 80px 20px 20px; */
+    position: relative;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.2rem;
+    border-radius: 50%;
+    width: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.desc-btn::after {
+    content: "\2193";
+    font-size: 0.9rem;
+    /* position: absolute; */
+    /* right: 20px; */
+    transition: 0.2s;
+    /* transform: rotate(180deg); */
+}
+
+.desc-btn.active::after {
+    transform: rotate(180deg);
+}
+
+.desc-cont {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.desc {
+    padding: 0 20px 20px;
+    line-height: 1.5rem;
 }
