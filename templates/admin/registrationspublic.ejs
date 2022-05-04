@@ -12,6 +12,9 @@
             crossorigin="anonymous"
         />
 
+        <link rel="stylesheet" href="styles/registrationspublic.css">
+        
+
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
             integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
@@ -30,17 +33,18 @@
                 <div class="container text-center row">
                     <h1>Total Registrations: <%= totalreg %></h1>
 
-                    <div class="col">
+                    <div class="row">
                         <h5>
                             Number of Registrations Outside College: <%=
                             not_college_count %>
                         </h5>
-                    </div>
-                    <div class="col">
                         <h5>
                             Number of Registrations From College: <%=
                             college_count %>
                         </h5>
+                    </div>
+
+                    <div class="col">
                         <a href="/" class="href">
                             <button class="btn btn-primary">HOME</button>
                         </a>

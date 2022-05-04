@@ -1,0 +1,58 @@
+body{
+    background-image: url("../images/svg/Hexagon.svg");
+}
+
+.container {
+    /* background-color: black; */
+    color: white;
+    position: relative;
+    top: 15px;
+    width: 100%;
+}
+
+table{
+    color: white !important;
+    position: relative;
+    width: 75% !important;
+    margin: auto !important;
+
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    color: white !important;
+}
+
+h1{
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+
+h3{
+    margin-bottom: 20px;
+}
+
+thead{
+    font-weight: 1200;
+    color: blue;
+    font-size: 20px;
+}
+
+th{
+    text-align: center !important;
+    vertical-align: center !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn-primary{
+    margin-left: 10px !important;
+}
+
+.col{
+    margin-top: 10px;
+    margin-bottom: 45px !important;
+}
+
