@@ -41,12 +41,13 @@ module.exports = {
         const teamTable = require("./models/Team");
         const events = require("./models/Events");
 
-        var user_id = String(req.user._id);
-        var created_teams = await teamTable
+        let user_id = String(req.user._id);
+
+        let created_teams = await teamTable
             .find({ teamLeader: req.user._id })
             .lean();
         // console.log("created_teams",created_teams)
-        var joined_teams = await teamTable.find({
+        let joined_teams = await teamTable.find({
             members: {
                 $elemMatch: {
                     member_id: user_id,
@@ -54,9 +55,18 @@ module.exports = {
             },
         });
 
+        let registered_events = await events.find({
+            registeredUsers: {
+                $elemMatch: {
+                    user_id: user_id,
+                },
+            },
+        });
+        // console.log("registered_events = ", registered_events);
+
         // pushing important details in the queried data
 
-        var registeredEvs = [];
+        let registeredEvs = [];
         for (let i = 0; i < created_teams.length; i++) {
             let x = created_teams[i];
             let n = x.name;
@@ -81,6 +91,26 @@ module.exports = {
             registeredEvs.push({ ...event, teamName: n });
         }
 
+        for (let i = 0; i < registered_events.length; i++) {
+            let event_ = registered_events[i];
+            let checkevent = false;
+            for (let j = 0; j < registeredEvs.length; j++) {
+                if (registeredEvs[j].name === event_.name) {
+                    console.log("TTTT");
+                    checkevent = true;
+                    break;
+                }
+            }
+            if (!checkevent) {
+                // console.log("check = ", checkevent);
+                // const event = await events.findOne({ _id: event_._id }).lean();
+                registeredEvs.push({
+                    ...event_._doc,
+                    teamName: "nullvoidnoteampossible",
+                });
+            }
+        }
+        // console.log("registeredEvs = ", registeredEvs);
         return {
             joined_teams: joined_teams,
             created_teams: created_teams,
