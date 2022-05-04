@@ -169,6 +169,20 @@ function isRegistered(user, events) {
     return checker;
 }
 
+function isRegisteredforEvent(user, event) {
+    let checker = false;
+    if (user != null){
+        for (let j = 0; j < event.registeredUsers.length; j++) {
+            if (event.registeredUsers[j].user_id.toString() == user._id) {
+                checker = true;
+            }
+        }
+    }
+    return checker;
+}
+
+
+
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
     const allEvents = await eventTable.find({}).lean();
@@ -215,12 +229,13 @@ app.get("/ourteam", async (req, res) => {
     });
 });
 
-app.get("/event", authCheck, regCheck, async (req, res) => {
+app.get("/event", authCheck, async (req, res) => {
     const event = await findEvent(req);
-
+    const checker = isRegisteredforEvent(req.user, event);
     const team = await findUserTeam(req);
     const context = {
         event: event,
+        checker: checker,
         firstPrizeAmount: event.prices.first,
         team: team,
         authenticated: req.isAuthenticated(),
@@ -274,7 +289,7 @@ app.post("/eventRegister", async (req, res) => {
     res.redirect(`/event?event=${event.name}`);
 });
 
-app.get("/createTeam", authCheck, async (req, res) => {
+app.get("/createTeam", authCheck,regCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
         event: event,

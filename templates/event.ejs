@@ -226,11 +226,19 @@
                                 </button></a
                             >
                             <%} else {%>
-                            <a href="#"
+                                <% if(checker){%>
+                                    <a href="#"
                                 ><button id="rulebook_" class="btn1 rulebook">
                                     Rulebook
                                 </button>
                             </a>
+                                    <%}else{%>
+                            <a href="/eventRegister?event=<%= event.name %>"
+                                ><button id="rulebook_" class="btn1 rulebook">
+                                    Rulebook
+                                </button>
+                            </a>
+                            <%}%>
                             <%}%>
                         </div>
                     </section>
