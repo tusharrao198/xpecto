@@ -121,6 +121,7 @@
                 <!-- registered events  -->
                 <div id="registered-container">
                     <div class="register-heading">Registered Events</div>
+                    <div class="msg"></div>
 
                     <div>
                         <% if(context.registeredevents.length==0){ %>
@@ -128,7 +129,11 @@
                         <% }else {%> <% for(let x of context.registeredevents){
                         %>
 
-                        <div class="card-event">
+                        <%if (x.teamMaxSize === 1){ %>
+                            <div class="card-event" id="checkteamsize">
+                        <%}else {%>
+                            <div class="card-event">
+                            <%}%>
                             <table>
                                 <tr>
                                     <td>Event</td>
@@ -207,5 +212,16 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript">
+            const ele = document.getElementById("checkteamsize");
+            ele.addEventListener("mouseover", checkTeamSize);
+            const msg = document.querySelector(".msg");
+            function checkTeamSize() {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Note: Event Team formation is not allowed due to team size limit to 1."
+                // setTimeout(() => msg.remove(), 10000);
+            }
+        </script>
     </body>
 </html>

@@ -96,7 +96,6 @@ module.exports = {
             let checkevent = false;
             for (let j = 0; j < registeredEvs.length; j++) {
                 if (registeredEvs[j].name === event_.name) {
-                    console.log("TTTT");
                     checkevent = true;
                     break;
                 }
