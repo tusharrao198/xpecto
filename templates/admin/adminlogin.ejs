@@ -192,8 +192,8 @@
         </div>
         <nav>
             <a class="close" id="" href="/">Home</a>
-            
-            
+            <a class="close" id="" href="/registrations">Registrations</a>
+            <a class="close" id="" href="/regcodecount">Registrations Via Code</a>
         </nav>
         <div class="hamburger">
             <img class="toggle" src="images/menu_open.svg" alt="" />
@@ -225,10 +225,11 @@
             
     
     <form action="/adminauth" method="post">
+        <div class="register-heading">ADMIN LOGIN </div>
         <div class="form-group">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                name="email" />
+                name="email", placeholder="Email Address", required />
         </div>
         <!---
         <div >
@@ -238,7 +239,7 @@
         <div class="form-group">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp"
-                name="password" />
+                name="password", placeholder="Passowrd", required />
         </div>
         <button class="btn1" type="submit" >Submit</button>
     </form>
