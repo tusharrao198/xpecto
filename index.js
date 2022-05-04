@@ -131,7 +131,7 @@ app.get("/registrations", adminCheck, async (req, res) => {
 });
 
 // only admin can access this route.
-app.get("/regcodecount", adminCheck, async (req, res) => {
+app.get("/regcodecount", async (req, res) => {
     const referdata = await numberofReg_referCode();
     res.render("admin/refcoderegdata", {
         authenticated: req.isAuthenticated(),
