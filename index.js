@@ -140,6 +140,20 @@ app.get("/regcodecount", adminCheck, async (req, res) => {
     });
 });
 
+// only admin can access this route.
+app.get("/registrationspublic", async (req, res) => {
+    const User = require("./models/User");
+    let regdata = await User.find().lean();
+    const notCollegeCount = await registrationdifferentiate(regdata);
+    res.render("admin/registrationspublic", {
+        authenticated: req.isAuthenticated(),
+        totalreg: regdata.length,
+        alluserinfo: regdata,
+        not_college_count: notCollegeCount,
+        college_count: regdata.length - notCollegeCount,
+    });
+});
+
 function isRegistered(user, events) {
     let checker = [];
     for (let i = 0; i < events.length; i++) {
