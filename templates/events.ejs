@@ -112,15 +112,16 @@
                             <%}%>
 
                             <hr />
+          
                             <div class="event-description">
                                 <%= events[i].oneline_content %>
-                                <%if(events[i].rest_content.length> 0) {%>
-
-                                <details style="cursor: pointer">
-                                    <summary>Click to Know More</summary>
+                                <% if(events[i].rest_content) { %>
+                                <button class="desc-btn"></button>
+                                <div class="desc-cont">
                                     <%= events[i].rest_content %>
-                                </details>
-
+                                    <div class="desc">
+                                    </div>
+                                </div>
                                 <%}%>
                             </div>
                             <hr />

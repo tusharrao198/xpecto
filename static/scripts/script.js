@@ -17,11 +17,12 @@ toggler.addEventListener("click", () => {
         navbar.style.display = "none";
     }
 });
+if (window.innerWidth <= 900){
 for (let i = 0; i < closeTap.length; i++)
     closeTap[i].addEventListener("click", () => {
         toggler.setAttribute("src", "images/menu_open.svg");
         navbar.style.display = "none";
-    });
+    });}
 // **************************************************************
 
 // CODE FOR PARRALAX EFFECT IN HOME SECTION
@@ -52,3 +53,27 @@ window.addEventListener("scroll", () => {
     }
 });
 // ****************************************************************
+
+// CODE FOR AUTO EXPANDING EVENTS CARD ON CLICK
+
+let descBtn = document.querySelectorAll(".desc-btn");
+
+descBtn.forEach((descBtn) => {
+    descBtn.addEventListener("click", (event) => {
+        const active = document.querySelector(".desc-btn.active");
+        if (active && active !== descBtn) {
+            active.classList.toggle("active");
+            active.nextElementSibling.style.maxHeight = 0;
+            descBtn.style.transform = "rotate(0deg)"
+        }
+        descBtn.classList.toggle("active");
+        const answer = descBtn.nextElementSibling;
+        if (descBtn.classList.contains("active")) {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+            descBtn.style.transform = "rotate(180deg)";
+        } else {
+            answer.style.maxHeight = 0;
+            descBtn.style.transform = "rotate(0deg)"
+        }
+    });
+});
