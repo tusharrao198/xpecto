@@ -1,51 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Admin Login</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
-    </head>
 
-    <body>
-        <div class="mb-3 w-50 mx-lg-auto my-5">
-            <form action="/adminauth" method="post">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                        >Email address</label
-                    >
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        name="email"
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"
-                        >Password</label
-                    >
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="exampleInputPassword1"
-                        name="password"
-                    />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url" content="https://xpecto.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Xpecto" />
+    <meta name="description" content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying events, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes." />
+    <meta name="keywords" content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi" />
+    <link rel="icon" type="image/x-icon" href="images/xpecto-logo-header.png" />
+    <script src="https://kit.fontawesome.com/a1542a4884.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
+
+    <title>Admin Login</title>
+</head>
+
+<style>
+    #page .container {
+        padding-top: 2.5rem;
+        width: 250px;
+    }
+
+    #page .heading span {
+        font-size: 2.5rem;
+        padding-right: 2.5rem;
+        transform: skew(0deg);
+    }
+
+    #page .heading {
+        line-height: 1.5;
+        padding-left: 7.5rem;
+        padding-top: 25%;
+        display: flex;
+        align-items: baseline;
+        transform: skewX(-7.5deg);
+    }
+
+    .card {
+        color: white;
+        font-weight: bold;
+        width: 700px;
+        padding: 2rem;
+        backdrop-filter: blur(10px) saturate(200%);
+        -webkit-backdrop-filter: blur(10px) saturate(200%);
+        background-color: rgba(0, 16, 45, 0.781);
+        border-radius: 12px;
+        border: 2px solid rgba(255, 255, 255, 0.125);
+        margin-top: 6rem;
+        /* margin-bottom: 100px; */
+    }
+
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn1 {
+        width: 200px;
+        text-decoration: none;
+        padding: 0.25rem;
+        border-radius: 5px;
+        transition: 0.2s;
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: center;
+        margin: 0.5rem auto;
+        color: white;
+        border: 2px solid rgba(2, 84, 200, 1);
+        background-color: rgba(2, 84, 200, 1);
+        margin-top: 1.5rem;
+    }
+
+    .btn1:hover {
+        background-color: grey;
+        color: white;
+        border-color: grey;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+        .btn1 {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 920px) {
+        .card {
+            width: 500px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card {
+            width: 300px;
+        }
+
+        .btn1 {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .card {
+            width: 275px;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        font-size: 1.2rem;
+        margin: 0.5rem;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        background-color: black;
+        color:white;
+        border: none;
+        padding: 0.5rem 1rem;
+    }
+
+    .text-phone,
+    .text-submit {
+        font-weight: bold;
+        text-align: center;
+        margin: 1rem;
+    }
+
+    .text-submit {
+        font-size: 1.5rem;
+    }
+
+    .text-phone {
+        font: 1.25rem;
+    }
+
+    .event-heading {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    @media (max-width: 550px) {
+        .event-heading {
+            font-size: 2rem;
+        }
+
+        .card {
+            width: 300px;
+        }
+    }
+</style>
+
+<body>
+    <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+
+    <!-- -----HEADER END----- -->
+
+
+
+    <div class="" id="page">
+        <div class="container">
+            <div class="heading" style="color: aqua">
+                <span>&nbsp;A</span>
+                <span>&nbsp;D</span>
+                <span>&nbsp;M</span>
+                <span>&nbsp;I</span>
+                <span>&nbsp;N</span>
+                <!--<span>&nbsp;T</span>--->
+            </div>
         </div>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+        <div class="prof-container">
+            <!-- <div class="content"></div> -->
+            <div class="card">
+
+
+
+            
+    
+    <form action="/adminauth" method="post">
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="email" />
+        </div>
+        <!---
+        <div >
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
+        </div>-->
+        <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp"
+                name="password" />
+        </div>
+        <button class="btn1" type="submit" >Submit</button>
+    </form>
+</div>
+</div>
+    <script src="scripts/script.js"></script>
+
+
+</body>
+
 </html>
