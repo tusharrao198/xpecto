@@ -171,7 +171,7 @@ function isRegistered(user, events) {
 
 function isRegisteredforEvent(user, event) {
     let checker = false;
-    if (user != null){
+    if (user != null) {
         for (let j = 0; j < event.registeredUsers.length; j++) {
             if (event.registeredUsers[j].user_id.toString() == user._id) {
                 checker = true;
@@ -180,8 +180,6 @@ function isRegisteredforEvent(user, event) {
     }
     return checker;
 }
-
-
 
 app.get("/events", async (req, res) => {
     let eventTable = require("./models/Events");
@@ -207,6 +205,7 @@ app.get("/profile", authCheck, async (req, res) => {
 
     // console.log(typeof (context))
 });
+
 app.get("/terms", (req, res) => {
     res.render("tnc", {
         authenticated: req.isAuthenticated(),
@@ -254,6 +253,7 @@ app.get("/eventRegister", authCheck, async (req, res) => {
     };
     res.render("submit", { ...context, user: req.session.user });
 });
+
 app.post("/eventRegister", async (req, res) => {
     const event = await findEvent(req);
 
@@ -289,7 +289,7 @@ app.post("/eventRegister", async (req, res) => {
     res.redirect(`/event?event=${event.name}`);
 });
 
-app.get("/createTeam", authCheck,regCheck, async (req, res) => {
+app.get("/createTeam", authCheck, regCheck, async (req, res) => {
     const event = await findEvent(req);
     const context = {
         event: event,
