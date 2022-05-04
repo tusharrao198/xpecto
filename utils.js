@@ -121,26 +121,26 @@ module.exports = {
         let team1 = await teamTable.find({ teamLeader: req.user._id }).lean();
         return team1;
     },
-    findIfUserRegistered: async function (req) {
-        const eventDetails = await module.exports.allEventDetails(req);
-        const teamDetails = await module.exports.allTeamDetails(req);
-        if (teamDetails === null || teamDetails === undefined) {
-            return false;
-        }
-        // const event = await module.exports.findEvent(req);
-        // console.log("teamDetails = ", teamDetails);
-        // console.log("userid = ", req.user._id, typeof req.user._id);
+    // findIfUserRegistered: async function (req) {
+    //     const eventDetails = await module.exports.allEventDetails(req);
+    //     const teamDetails = await module.exports.allTeamDetails(req);
+    //     if (teamDetails === null || teamDetails === undefined) {
+    //         return false;
+    //     }
+    //     // const event = await module.exports.findEvent(req);
+    //     // console.log("teamDetails = ", teamDetails);
+    //     // console.log("userid = ", req.user._id, typeof req.user._id);
 
-        for (let i = 0; i < teamDetails.length; i++) {
-            if (
-                teamDetails[i].teamLeader.toString() === req.user._id.toString()
-            ) {
-                return true;
-                // if true that means user has created a team and have already filled the details.
-            }
-        }
-        return false;
-    },
+    //     for (let i = 0; i < teamDetails.length; i++) {
+    //         if (
+    //             teamDetails[i].teamLeader.toString() === req.user._id.toString()
+    //         ) {
+    //             return true;
+    //             // if true that means user has created a team and have already filled the details.
+    //         }
+    //     }
+    //     return false;
+    // },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -542,5 +542,34 @@ module.exports = {
         }
         // console.log("totalreg = ", totalreg);
         return [referdata, totalreg];
+    },
+    isRegisteredforEvent: function (user, event) {
+        // isRegisteredforEvent means User has signed in and register for event
+        let checker = false;
+        if (user != null) {
+            for (let j = 0; j < event.registeredUsers.length; j++) {
+                if (event.registeredUsers[j].user_id.toString() == user._id) {
+                    checker = true;
+                }
+            }
+        }
+        return checker;
+    },
+    isRegistered: function (user, events) {
+        // isRegistered means User has signed in.
+        let checker = [];
+        for (let i = 0; i < events.length; i++) {
+            checker.push(false);
+
+            if (user == null) continue;
+            for (let j = 0; j < events[i].registeredUsers.length; j++) {
+                if (
+                    events[i].registeredUsers[j].user_id.toString() == user._id
+                ) {
+                    checker[i] = true;
+                }
+            }
+        }
+        return checker;
     },
 };
