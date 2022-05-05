@@ -233,7 +233,7 @@
                             </a>
 
                             <a href="#"
-                                ><button id="rulebook1_" class="btn1 rulebook">
+                                ><button id="rulebuk" class="btn1 rulebook">
                                     Rulebook
                                 </button>
                             </a>
@@ -335,17 +335,18 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <!-- <script src="scripts/ejs.js"></script> -->
         <script type="text/javascript">
-            const element = document.getElementById("rulebook_");
-            element.addEventListener("click", rulebook);
-
-            const element1 = document.getElementById("rulebook1_");
-            element1.addEventListener("click", rulebook1);
-
             const msg = document.querySelector(".msg");
             const msg1 = document.querySelector(".msg1");
+            const element = document.getElementById("rulebook_");
 
-            function rulebook1() {
+            element.addEventListener("click", rulebook);
+
+            const element1 = document.getElementById("rulebuk");
+            element1.addEventListener("click", roolbook);
+
+            function roolbook() {
                 msg1.style.color = "yellow";
                 msg1.innerHTML = "Register for the Event First!";
                 setTimeout(() => msg1.remove(), 5000);

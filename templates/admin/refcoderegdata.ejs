@@ -13,7 +13,7 @@
         />
 
         <!-- <link rel="stylesheet" href="styles/style.css"> -->
-        <link rel="stylesheet" href="styles/refcoderegdata.css">
+        <link rel="stylesheet" href="styles/refcoderegdata.css" />
 
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -25,11 +25,28 @@
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"
         ></script>
-
     </head>
     <body>
-        <div>
+        <!-- -----HEADER INCLUDING LOGO AND NAVBAR-----
+        <header class="header-glass active">
+            <div>
+                <img src="images/xpecto-logo-header.png" alt="" />
+                <span>XPECTO'22</span>
+            </div>
+            <nav>
+                <a class="close" id="" href="/">Home</a>
+                <a class="close" id="" href="/registrations">Registrations</a>
+                <a class="close" id="" href="/regcodecount"
+                    >Registrations Via Code</a
+                >
+            </nav>
+            <div class="hamburger">
+                <img class="toggle" src="images/menu_open.svg" alt="" />
+            </div>
+        </header> -->
 
+        <!-- -----HEADER END----- -->
+        <div>
             <!-- _id,googleId,email,displayName,firstName,image,status,phoneNumber,createdAt,__v,branch,collegeName,degree,fullName,referralCode -->
             <div class="container1 table-responsive">
                 <div class="container1 text-center row">
@@ -77,5 +94,6 @@
                 </table>
             </div>
         </div>
+        <script src="scripts/ejs.js"></script>
     </body>
 </html>

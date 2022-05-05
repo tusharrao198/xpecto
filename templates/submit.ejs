@@ -221,9 +221,13 @@
                                                     <label for="fullName">Full Name</label>
                                                     <input type="text" id="fullName" placeholder="Enter Full Name"
                                                         name="fullName" required />
+
+                                                    <div class="refcodeused"></div>
                                                     <label for="referralCode">Referral Code</label>
                                                     <input type="text" id="referralCode" placeholder="Optional"
                                                         name="referralCode" />
+                                                    
+
                                                     <label for="collegeName">College</label>
                                                     <input type="text" id="coupon" placeholder="Enter College"
                                                         name="collegeName" required />
@@ -252,6 +256,7 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
         <script>
             function phonenumber(inputtxt) {
                 var phoneno = /^\d{10}$/;
@@ -266,6 +271,29 @@
             document.querySelector(".btn1").addEventListener("submit", (e) => {
                 if (!phonenumber) e.preventDefault();
             });
+                            // nullvoid
+
+            const element1 = document.getElementById("referralCode");
+            element1.addEventListener("click", reffunc);
+            function reffunc(){
+                let code =  ejs.render("<%= refCode %>");
+                let codeused = ejs.render("<%= referralCodeUsed %>");
+                const ele = document.querySelector(".refcodeused");
+                const idd = document.getElementById("referralCode");
+                console.log("code = ", code, codeused);
+                if(codeused === "true") {
+                    ele.style.color = "yellow";
+                    ele.innerHTML = `Referral Code ${code} Already Used!`;
+                    setTimeout(() => msg.remove(), 5000);
+                    idd.disabled=true;
+                    idd.innerHTML = code;
+                }else {
+                    idd.disabled = false;
+                    idd.innerText = " ";
+                    idd.placeholder = code;
+
+                }
+            }
         </script>
 
         <% if(isPerson==="true" ){ %>
@@ -293,6 +321,8 @@
                     msg.innerHTML = "Please Enter a Code to join a Team!";
                     setTimeout(() => msg.remove(), 2000);
                 }
+
+
             </script>
             <% } %>
 </body>

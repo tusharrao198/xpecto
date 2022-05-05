@@ -30,6 +30,7 @@ const {
 var url = require("url");
 const { authCheck, adminCheck } = require("../middleware/auth");
 const upload = require("../multer.js");
+const code = require("../models/code");
 
 router.get("/event", authCheck, async (req, res) => {
     const event = await findEvent(req);
@@ -61,10 +62,19 @@ router.get("/events", async (req, res) => {
 
 router.get("/eventRegister", authCheck, async (req, res) => {
     const event = await findEvent(req);
+    const userinfo = await userDetails(req.user._id);
+    // console.log("userinfo = ", userinfo);
+    let referralCodeAlreadyUsed = false;
+    if (userinfo.referralCode.length > 0) {
+        referralCodeAlreadyUsed = true;
+    }
+
     const context = {
         event: event,
         authenticated: req.isAuthenticated(),
         isPerson: "false",
+        referralCodeUsed: referralCodeAlreadyUsed.toString(),
+        refCode: referralCodeAlreadyUsed ? userinfo.referralCode : "nullvoid",
     };
     res.render("submit", { ...context, user: req.session.user });
 });
@@ -82,17 +92,33 @@ router.post("/eventRegister", async (req, res) => {
     } = req.body;
     const userinfo = await userDetails(req.user._id);
     const userTable = require("../models/User");
-    await userTable.updateOne(
-        { _id: req.user._id },
-        {
-            phoneNumber: phone_number,
-            fullName: fullName,
-            collegeName: collegeName,
-            degree: degree,
-            branch: branch,
-            referralCode: referralCode,
-        }
-    );
+
+    let referralCodeAlreadyUsed = false;
+    if (userinfo.referralCode.length > 0) {
+        referralCodeAlreadyUsed = true;
+        await userTable.updateOne(
+            { _id: req.user._id },
+            {
+                phoneNumber: phone_number,
+                fullName: fullName,
+                collegeName: collegeName,
+                degree: degree,
+                branch: branch,
+            }
+        );
+    } else {
+        await userTable.updateOne(
+            { _id: req.user._id },
+            {
+                phoneNumber: phone_number,
+                fullName: fullName,
+                collegeName: collegeName,
+                degree: degree,
+                branch: branch,
+                referralCode: referralCode,
+            }
+        );
+    }
 
     const eventTable = require("../models/Events");
 

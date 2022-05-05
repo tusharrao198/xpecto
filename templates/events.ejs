@@ -112,15 +112,14 @@
                             <%}%>
 
                             <hr />
-          
+
                             <div class="event-description">
-                                <%= events[i].oneline_content %>
-                                <% if(events[i].rest_content) { %>
+                                <%= events[i].oneline_content %> <%
+                                if(events[i].rest_content) { %>
                                 <button class="desc-btn"></button>
                                 <div class="desc-cont">
                                     <%= events[i].rest_content %>
-                                    <div class="desc">
-                                    </div>
+                                    <div class="desc"></div>
                                 </div>
                                 <%}%>
                             </div>
@@ -185,6 +184,7 @@
         </div>
 
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
         <script type="text/javascript">
             // const msg = document.querySelector(".eventi");
             // function clickme(i) {
