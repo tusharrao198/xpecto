@@ -65,7 +65,12 @@ router.get("/eventRegister", authCheck, async (req, res) => {
     const userinfo = await userDetails(req.user._id);
     // console.log("userinfo = ", userinfo);
     let referralCodeAlreadyUsed = false;
-    if (userinfo.referralCode.length > 0) {
+    if (
+        userinfo.referralCode !== null &&
+        userinfo.referralCode !== undefined &&
+        userinfo.referralCode &&
+        userinfo.referralCode.length > 0
+    ) {
         referralCodeAlreadyUsed = true;
     }
 
@@ -94,7 +99,12 @@ router.post("/eventRegister", async (req, res) => {
     const userTable = require("../models/User");
 
     let referralCodeAlreadyUsed = false;
-    if (userinfo.referralCode.length > 0) {
+    if (
+        userinfo.referralCode !== null &&
+        userinfo.referralCode !== undefined &&
+        userinfo.referralCode &&
+        userinfo.referralCode.length > 0
+    ) {
         referralCodeAlreadyUsed = true;
         await userTable.updateOne(
             { _id: req.user._id },

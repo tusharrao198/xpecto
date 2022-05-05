@@ -212,7 +212,6 @@ router.get("/removeMember", authCheck, async (req, res) => {
 });
 
 router.get("/userTeam", authCheck, async (req, res) => {
-    console.log("AAAA");
     const team = await findUserTeam(req);
     if (team == null) {
         res.redirect("/events");
