@@ -195,13 +195,16 @@ app.post("/details",async (req,res) => {
     const allTeams = require("./models/Team");
     const allEvents = require("./models/Events");
     const userDetails = require("./models/User");
-    const eventID = req.body.event;
+    let eventID = req.body.event;
+    eventID = eventID.slice(0,-1); 
     var records = [];
-    
-    const teams = await allTeams.find({event : eventID}).lean();
-    const event = await allEvents.findOne({event : eventID}).lean();
-    console.log(teams,eventID);
-    const eventName = event.name;
+    console.log(eventID);
+    const query = {event : eventID};
+
+    const teams = await allTeams.find(query).lean();
+    const eventDetails = await allEvents.findOne({event : eventID}).lean();
+
+    const eventName = eventDetails.name;
     if(teams.length===0) return res.json({"status":"no reg yet"});
     for (var i = 0; i < teams.length; i++) {
         var allMembers = [];
@@ -254,7 +257,6 @@ app.post("/details",async (req,res) => {
         res.setHeader("Content-Disposition", "attachment; filename="+eventName+".csv");
         res.status(200).end(csvData);
     }
-    // console.log(participants);
 });
 
 app.listen(port, (err) => {
