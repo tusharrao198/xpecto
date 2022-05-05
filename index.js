@@ -198,12 +198,12 @@ app.post("/details",async (req,res) => {
     let eventID = req.body.event;
     eventID = eventID.slice(0,-1); 
     var records = [];
-    console.log(eventID);
+    // console.log(eventID);
     const query = {event : eventID};
-
+    // console.log(query)
     const teams = await allTeams.find(query).lean();
-    const eventDetails = await allEvents.findOne({event : eventID}).lean();
-
+    const eventDetails = await allEvents.findOne({_id : eventID}).lean();
+    // console.log(eventDetails);
     const eventName = eventDetails.name;
     if(teams.length===0) return res.json({"status":"no reg yet"});
     for (var i = 0; i < teams.length; i++) {
