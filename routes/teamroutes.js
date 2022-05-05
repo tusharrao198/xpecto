@@ -36,6 +36,18 @@ router.get("/joinTeam", authCheck, async (req, res) => {
     // if (!check) {
     //     // res.redirect("/eventRegister");
     // }
+    const userinfo = await userDetails(req.user._id);
+    // console.log("userinfo = ", userinfo);
+    let referralCodeAlreadyUsed = false;
+    if (
+        userinfo.referralCode !== null &&
+        userinfo.referralCode !== undefined &&
+        userinfo.referralCode &&
+        userinfo.referralCode.length > 0
+    ) {
+        referralCodeAlreadyUsed = true;
+    }
+
     const teamTable = require("../models/Team");
     let teams = await teamTable.find().lean();
     const context = {
@@ -45,6 +57,8 @@ router.get("/joinTeam", authCheck, async (req, res) => {
         inviteCode: 0,
         allowedTeamSize: true,
         isPerson: "true",
+        referralCodeUsed: referralCodeAlreadyUsed.toString(),
+        refCode: referralCodeAlreadyUsed ? userinfo.referralCode : "nullvoid",
     };
 
     if (teams.length === 0) {
@@ -56,6 +70,17 @@ router.get("/joinTeam", authCheck, async (req, res) => {
 });
 
 router.post("/joinTeam", authCheck, async (req, res) => {
+    const userinfo = await userDetails(req.user._id);
+    // console.log("userinfo = ", userinfo);
+    let referralCodeAlreadyUsed = false;
+    if (
+        userinfo.referralCode !== null &&
+        userinfo.referralCode !== undefined &&
+        userinfo.referralCode &&
+        userinfo.referralCode.length > 0
+    ) {
+        referralCodeAlreadyUsed = true;
+    }
     const allowedTeamSize = await maxteamSize(req);
     if (allowedTeamSize === "true") {
         const inviteCode = await joinTeam(req);
@@ -79,7 +104,7 @@ router.post("/joinTeam", authCheck, async (req, res) => {
                 degree,
                 branch,
             } = req.body;
-            const userinfo = await userDetails(req.user._id);
+            // const userinfo = await userDetails(req.user._id);
             const userTable = require("../models/User");
             await userTable.updateOne(
                 { _id: req.user._id },
@@ -90,6 +115,10 @@ router.post("/joinTeam", authCheck, async (req, res) => {
                     degree: degree,
                     branch: branch,
                     referralCode: referralCode,
+                    referralCodeUsed: referralCodeAlreadyUsed.toString(),
+                    refCode: referralCodeAlreadyUsed
+                        ? userinfo.referralCode
+                        : "nullvoid",
                 }
             );
             res.redirect(`/event?event=${event.name}`);
@@ -104,6 +133,10 @@ router.post("/joinTeam", authCheck, async (req, res) => {
                 inviteCode: req.body.invite_code.length,
                 allowedTeamSize: true,
                 isPerson: "true",
+                referralCodeUsed: referralCodeAlreadyUsed.toString(),
+                refCode: referralCodeAlreadyUsed
+                    ? userinfo.referralCode
+                    : "nullvoid",
             };
             // res.redirect(`/joinTeam`);
             res.render("submit", { ...context, user: req.session.user });
@@ -119,6 +152,10 @@ router.post("/joinTeam", authCheck, async (req, res) => {
             inviteCode: req.body.invite_code.length,
             allowedTeamSize: false,
             isPerson: "true",
+            referralCodeUsed: referralCodeAlreadyUsed.toString(),
+            refCode: referralCodeAlreadyUsed
+                ? userinfo.referralCode
+                : "nullvoid",
         };
         // res.redirect(`/joinTeam`);
         res.render("submit", {
@@ -136,6 +173,10 @@ router.post("/joinTeam", authCheck, async (req, res) => {
             inviteCode: req.body.invite_code.length,
             allowedTeamSize: true,
             isPerson: "true",
+            referralCodeUsed: referralCodeAlreadyUsed.toString(),
+            refCode: referralCodeAlreadyUsed
+                ? userinfo.referralCode
+                : "nullvoid",
         };
         // res.redirect(`/joinTeam`);
         res.render("submit", {
