@@ -194,20 +194,50 @@
                         <h1><%= event.name.toUpperCase()%></h1>
                         <%}%>
                         <div class="msg"></div>
+                        <div class="msg1"></div>
                         <div class="btn-group">
-                            <% if (!team_created && event.teamMaxSize > 1) {%>
+                            <% if(isRegisteredforEvent==="true"){%> <% if
+                            (team_created==="false" && event.teamMaxSize > 1)
+                            {%>
                             <a href="/createTeam?event=<%= event.name %>"
                                 ><button class="btn1 create-team">
                                     Create Team
                                 </button></a
                             >
-                            <%}%> <% if (team_created && event.teamMaxSize > 1)
-                            {%>
+                            <%}%> <% if ( team_created==="true" &&
+                            event.teamMaxSize > 1) {%>
                             <a href="/userTeam?event=<%= event.name %>"
                                 ><button class="btn1 create-team">
                                     Your Team
                                 </button></a
                             >
+                            <%}%> <% if (event.name==='Reel-o-logy') {%>
+                            <a
+                                target="_blank"
+                                href="assets/<%= event.name %>.pdf"
+                                ><button class="btn1 rulebook">
+                                    Rulebook
+                                </button></a
+                            >
+                            <%} else {%>
+
+                            <a href="#"
+                                ><button id="rulebook_" class="btn1 rulebook">
+                                    Rulebook
+                                </button>
+                            </a>
+
+                            <%}%> <%} else { %>
+                            <a href="/eventRegister?event=<%= event.name %>"
+                                ><button class="btn1 rulebook">Register</button>
+                            </a>
+
+                            <a href="#"
+                                ><button id="rulebook1_" class="btn1 rulebook">
+                                    Rulebook
+                                </button>
+                            </a>
+
                             <%}%>
 
                             <!-- <a
@@ -217,30 +247,6 @@
                                     Rulebook
                                 </button></a
                             > -->
-                            <% if (event.name==='Reel-o-logy') {%>
-                            <a
-                                target="_blank"
-                                href="assets/<%= event.name %>.pdf"
-                                ><button class="btn1 rulebook">
-                                    Rulebook
-                                </button></a
-                            >
-                            <%} else {%> <% if(checker){%>
-                            <a href="#"
-                                ><button id="rulebook_" class="btn1 rulebook">
-                                    Rulebook
-                                </button>
-                            </a>
-                            <%}else{%>
-                            <a href="/eventRegister?event=<%= event.name %>"
-                                ><button class="btn1 rulebook">Register</button>
-                            </a>
-                            <a href="#"
-                                ><button id="rulebook_" class="btn1 rulebook">
-                                    Rulebook
-                                </button>
-                            </a>
-                            <%}%> <%}%>
                         </div>
                     </section>
                     <hr />
@@ -332,7 +338,19 @@
         <script type="text/javascript">
             const element = document.getElementById("rulebook_");
             element.addEventListener("click", rulebook);
+
+            const element1 = document.getElementById("rulebook1_");
+            element1.addEventListener("click", rulebook1);
+
             const msg = document.querySelector(".msg");
+            const msg1 = document.querySelector(".msg1");
+
+            function rulebook1() {
+                msg1.style.color = "yellow";
+                msg1.innerHTML = "Register for the Event First!";
+                setTimeout(() => msg1.remove(), 5000);
+            }
+
             function rulebook() {
                 msg.style.color = "yellow";
                 msg.innerHTML = "Event Has Not Started Yet!";

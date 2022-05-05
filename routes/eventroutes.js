@@ -38,11 +38,11 @@ router.get("/event", authCheck, async (req, res) => {
     // console.log("checke event = ", checker);
     const context = {
         event: event,
-        checker: checker,
+        isRegisteredforEvent: checker.toString(),
         firstPrizeAmount: event.prices.first,
         team: team,
         authenticated: req.isAuthenticated(),
-        team_created: team != null ? true : false,
+        team_created: team != null ? "true" : "false",
     };
     res.render("event", { ...context, user: req.session.user });
 });
