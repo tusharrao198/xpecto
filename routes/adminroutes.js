@@ -28,6 +28,8 @@ const {
 } = require("../utils");
 var url = require("url");
 const { authCheck, adminCheck } = require("../middleware/auth");
+const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const CsvParser = require("json2csv").Parser;
 
 // only admin can access this route.
 router.get("/registrations", adminCheck, async (req, res) => {
@@ -85,4 +87,87 @@ router.post("/adminauth", (req, res) => {
     }
 });
 
+router.get("/eventdetails", adminCheck, async (req, res) => {
+    let eventTable = require("../models/Events");
+    const allEvents = await eventTable.find({}).lean();
+    res.render("admin/eventbasedcsv", {
+        authenticated: false,
+        events: allEvents,
+    });
+});
+
+router.post("/eventdetails", adminCheck, async (req, res) => {
+    const allTeams = require("../models/Team");
+    const allEvents = require("../models/Events");
+    const userDetails = require("../models/User");
+    let eventID = req.body.event;
+    eventID = eventID.slice(0, -1);
+    var records = [];
+    // console.log(eventID);
+    const query = { event: eventID };
+    // console.log(query)
+    const teams = await allTeams.find(query).lean();
+    const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
+    // console.log(eventDetails);
+    const eventName = eventDetails.name;
+    if (teams.length === 0)
+        return res.send(
+            `<h1>No registrations yet for event: ${eventName} </h1>`
+        );
+    for (var i = 0; i < teams.length; i++) {
+        var allMembers = [];
+        const teamName = teams[i].name;
+        var members = teams[i].members;
+        var leaderID = teams[i].teamLeader;
+        for (var j = 0; j < members.length; j++) {
+            const userID = members[j].member_id;
+            var user = await userDetails.findOne({ _id: userID });
+            if (user) {
+                const userData = {
+                    Name: user.displayName,
+                    Email: user.email,
+                    "PhNo.": user.phoneNumber,
+                };
+                allMembers.push(JSON.stringify(userData));
+            }
+        }
+        var leader = await userDetails.findOne({ _id: leaderID });
+        var leaderData;
+        if (leader) {
+            leaderData = {
+                Name: leader.displayName,
+                Email: leader.email,
+                "PhNo.": leader.phoneNumber,
+            };
+            leaderData = JSON.stringify(leaderData);
+        }
+
+        const thisRecord = {
+            eventName: eventName,
+            teamName: teamName,
+            leader: leaderData,
+            teamMembers: allMembers,
+        };
+        records.push(thisRecord);
+    }
+    if (records.length === 0) {
+        // res.json({ status: "No registrations yet" });
+        res.send(`<h1>No registrations yet for event: ${eventName} </h1>`);
+    } else {
+        const csvFields = [
+            "Event Name",
+            "Team Name",
+            "Leader",
+            "Team Memebers",
+        ];
+        const csvParser = new CsvParser({ csvFields });
+        const csvData = csvParser.parse(records);
+        res.setHeader("Content-Type", "text/csv");
+        res.setHeader(
+            "Content-Disposition",
+            "attachment; filename=" + eventName + ".csv"
+        );
+        res.status(200).end(csvData);
+    }
+});
 module.exports = router;
