@@ -107,6 +107,7 @@
                 <!-- registered events  -->
                 <div id="registered-container">
                     <div class="register-heading">Registered Events</div>
+                    <div class="msg"></div>
 
                     <div>
                         <% if(context.registeredevents.length==0){ %>
@@ -114,99 +115,116 @@
                             <% }else {%>
                                 <% for(let x of context.registeredevents){ %>
 
-                                    <div class="card-event">
-                                        <table>
-                                            <tr>
-                                                <td>Event</td>
-                                                <td>
-                                                    <%= x.name %>
-                                                </td>
-                                            </tr>
+                                    <%if (x.teamMaxSize===1){ %>
+                                        <div class="card-event" id="checkteamsize">
+                                            <%}else {%>
+                                                <div class="card-event">
+                                                    <%}%>
+                                                        <table>
+                                                            <tr>
+                                                                <td>Event</td>
+                                                                <td>
+                                                                    <%= x.name %>
+                                                                </td>
+                                                            </tr>
 
-                                            <tr>
-                                                <td>Team</td>
-                                                <td>
-                                                    <%= x.teamName %>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <% } %>
+                                                            <% if (x.teamName!=="nullvoidnoteampossible" ) {%>
+                                                                <tr>
+                                                                    <td>Team</td>
+                                                                    <td>
+                                                                        <%= x.teamName %>
+                                                                    </td>
+                                                                </tr>
+                                                                <%}%>
+                                                        </table>
+                                                </div>
+                                                <% } %>
+                                                    <% } %>
+                                        </div>
+                    </div>
+                    <!-- registered events end -->
+
+                    <hr style="width: 75%" />
+
+                    <!-- created teams  -->
+                    <div id="registered-container">
+                        <div class="register-heading">Created Teams</div>
+                        <div>
+                            <% if(context.created_teams.length==0){ %>
+                                <div class="register-heading">No Created Teams</div>
+                                <% }else {%>
+                                    <% for(let x of context.created_teams) {%>
+
+                                        <div class="card-event">
+                                            <table>
+                                                <tr>
+                                                    <td>Team</td>
+                                                    <td>
+                                                        <%= x.name %>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>Event</td>
+                                                    <td>
+                                                        <%= x.eventName %>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                         <% } %>
+                                            <% }%>
+                        </div>
                     </div>
-                </div>
-                <!-- registered events end -->
+                    <!-- created teams end  -->
 
-                <hr style="width: 75%" />
+                    <hr style="width: 75%" />
 
-                <!-- created teams  -->
-                <div id="registered-container">
-                    <div class="register-heading">Created Teams</div>
-                    <div>
-                        <% if(context.created_teams.length==0){ %>
-                            <div class="register-heading">No Created Teams</div>
-                            <% }else {%>
-                                <% for(let x of context.created_teams) {%>
+                    <!-- joined teams  -->
+                    <div id="registered-container">
+                        <div class="register-heading">Joined Teams</div>
+                        <div>
+                            <% if(context.joined_teams.length==0){ %>
+                                <div class="register-heading">No Joined Teams</div>
+                                <% }else {%>
+                                    <% for(let x of context.joined_teams) {%>
 
-                                    <div class="card-event">
-                                        <table>
-                                            <tr>
-                                                <td>Team</td>
-                                                <td>
-                                                    <%= x.name %>
-                                                </td>
-                                            </tr>
+                                        <div class="card-event">
+                                            <table>
+                                                <tr>
+                                                    <td>Team</td>
+                                                    <td>
+                                                        <%= x.name %>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td>Event</td>
-                                                <td>
-                                                    <%= x.eventName %>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <% } %>
-                                        <% }%>
-                    </div>
-                </div>
-                <!-- created teams end  -->
-
-                <hr style="width: 75%" />
-
-                <!-- joined teams  -->
-                <div id="registered-container">
-                    <div class="register-heading">Joined Teams</div>
-                    <div>
-                        <% if(context.joined_teams.length==0){ %>
-                            <div class="register-heading">No Joined Teams</div>
-                            <% }else {%>
-                                <% for(let x of context.joined_teams) {%>
-
-                                    <div class="card-event">
-                                        <table>
-                                            <tr>
-                                                <td>Team</td>
-                                                <td>
-                                                    <%= x.name %>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>Event</td>
-                                                <td>
-                                                    <%= x.eventName %>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <% } %>
+                                                <tr>
+                                                    <td>Event</td>
+                                                    <td>
+                                                        <%= x.eventName %>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                         <% } %>
+                                            <% } %>
+                        </div>
                     </div>
+                    <!-- joined teams end -->
                 </div>
-                <!-- joined teams end -->
             </div>
-        </div>
-        <script src="scripts/script.js"></script>
+            <script src="scripts/script.js"></script>
+            <script src="scripts/ejs.js"></script>
+            <script type="text/javascript">
+                const ele = document.getElementById("checkteamsize");
+                ele.addEventListener("mouseover", checkTeamSize);
+                const msg = document.querySelector(".msg");
+                function checkTeamSize() {
+                    msg.style.color = "yellow";
+                    msg.innerHTML = "Note: Event Team not shown due to either team size limit to 1 or User has not formed a Team yet!"
+                    // setTimeout(() => msg.remove(), 10000);
+                }
+            </script>
 </body>
 
 </html>

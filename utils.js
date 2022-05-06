@@ -41,12 +41,13 @@ module.exports = {
         const teamTable = require("./models/Team");
         const events = require("./models/Events");
 
-        var user_id = String(req.user._id);
-        var created_teams = await teamTable
+        let user_id = String(req.user._id);
+
+        let created_teams = await teamTable
             .find({ teamLeader: req.user._id })
             .lean();
         // console.log("created_teams",created_teams)
-        var joined_teams = await teamTable.find({
+        let joined_teams = await teamTable.find({
             members: {
                 $elemMatch: {
                     member_id: user_id,
@@ -54,9 +55,18 @@ module.exports = {
             },
         });
 
+        let registered_events = await events.find({
+            registeredUsers: {
+                $elemMatch: {
+                    user_id: user_id,
+                },
+            },
+        });
+        // console.log("registered_events = ", registered_events);
+
         // pushing important details in the queried data
 
-        var registeredEvs = [];
+        let registeredEvs = [];
         for (let i = 0; i < created_teams.length; i++) {
             let x = created_teams[i];
             let n = x.name;
@@ -81,6 +91,25 @@ module.exports = {
             registeredEvs.push({ ...event, teamName: n });
         }
 
+        for (let i = 0; i < registered_events.length; i++) {
+            let event_ = registered_events[i];
+            let checkevent = false;
+            for (let j = 0; j < registeredEvs.length; j++) {
+                if (registeredEvs[j].name === event_.name) {
+                    checkevent = true;
+                    break;
+                }
+            }
+            if (!checkevent) {
+                // console.log("check = ", checkevent);
+                // const event = await events.findOne({ _id: event_._id }).lean();
+                registeredEvs.push({
+                    ...event_._doc,
+                    teamName: "nullvoidnoteampossible",
+                });
+            }
+        }
+        // console.log("registeredEvs = ", registeredEvs);
         return {
             joined_teams: joined_teams,
             created_teams: created_teams,
@@ -92,26 +121,26 @@ module.exports = {
         let team1 = await teamTable.find({ teamLeader: req.user._id }).lean();
         return team1;
     },
-    findIfUserRegistered: async function (req) {
-        const eventDetails = await module.exports.allEventDetails(req);
-        const teamDetails = await module.exports.allTeamDetails(req);
-        if (teamDetails === null || teamDetails === undefined) {
-            return false;
-        }
-        // const event = await module.exports.findEvent(req);
-        // console.log("teamDetails = ", teamDetails);
-        // console.log("userid = ", req.user._id, typeof req.user._id);
+    // findIfUserRegistered: async function (req) {
+    //     const eventDetails = await module.exports.allEventDetails(req);
+    //     const teamDetails = await module.exports.allTeamDetails(req);
+    //     if (teamDetails === null || teamDetails === undefined) {
+    //         return false;
+    //     }
+    //     // const event = await module.exports.findEvent(req);
+    //     // console.log("teamDetails = ", teamDetails);
+    //     // console.log("userid = ", req.user._id, typeof req.user._id);
 
-        for (let i = 0; i < teamDetails.length; i++) {
-            if (
-                teamDetails[i].teamLeader.toString() === req.user._id.toString()
-            ) {
-                return true;
-                // if true that means user has created a team and have already filled the details.
-            }
-        }
-        return false;
-    },
+    //     for (let i = 0; i < teamDetails.length; i++) {
+    //         if (
+    //             teamDetails[i].teamLeader.toString() === req.user._id.toString()
+    //         ) {
+    //             return true;
+    //             // if true that means user has created a team and have already filled the details.
+    //         }
+    //     }
+    //     return false;
+    // },
     findUserTeamFromId: async function (req) {
         const current_url = url.parse(req.url, true);
         const params = current_url.query;
@@ -136,7 +165,7 @@ module.exports = {
             }
         });
 
-        console.log(newteam)
+        // console.log(newteam)
     },
     joinTeam: async function (req) {
         const formDetails = req.body;
@@ -270,10 +299,10 @@ module.exports = {
             let codedata = await codeTable
                 .findOne({ code: referralCode })
                 .lean();
-            console.log("f = ", found_data);
+            // console.log("found_data = ", found_data);
 
             if (found_data) {
-                console.log("Already present!");
+                // console.log("Already present!");
                 done(null, codedata);
                 return false;
             } else {
@@ -304,7 +333,7 @@ module.exports = {
                 return err;
             }
         });
-        console.log(newInviteCode)
+        // console.log(newInviteCode);
     },
     userDetails: async function (user_id) {
         const User = require("./models/User");
@@ -409,7 +438,7 @@ module.exports = {
             if (leader_team != null) {
                 teamSizeCount += 1; // counting leader
             }
-            console.log(teamSizeCount)
+            // console.log(teamSizeCount);
             if (teamSizeCount >= teamMaxSize) {
                 // context = {
                 //     teamSizeCount: teamSizeCount,
@@ -438,7 +467,7 @@ module.exports = {
         for (let i = 0; i < allTeams.length; i++) {
             if (allTeams[i].name === team_name.toString()) {
                 uniqueTeam = false;
-                console.log("team not unique");
+                // console.log("team not unique");
                 break;
             }
         }
@@ -458,5 +487,89 @@ module.exports = {
         const faqInfo = require("./models/Faq");
         let info = await faqInfo.find().lean();
         return info;
+    },
+    registrationdifferentiate: async function (regdata) {
+        let not_college_count = 0;
+        for (let i = 0; i < regdata.length; i++) {
+            if (regdata[i].email.match("@students.iitmandi.ac.in") == null) {
+                not_college_count += 1;
+            }
+        }
+        return not_college_count;
+    },
+    numberofReg_referCode: async function () {
+        const refferalCodes = require("./models/referralcodes");
+        const User = require("./models/User");
+        let regdata = await User.find().lean();
+
+        let refercodedata = await refferalCodes.find().lean();
+
+        let referdata = [];
+        for (let i = 0; i < refercodedata.length; i++) {
+            let regcnt = 0;
+            for (let j = 0; j < regdata.length; j++) {
+                if (
+                    regdata[j].referralCode === null ||
+                    regdata[j].referralCode === undefined
+                ) {
+                    // console.log("Continue");
+                    continue;
+                } else {
+                    if (
+                        regdata[j].referralCode.toUpperCase() ===
+                        refercodedata[i].code.toUpperCase()
+                    ) {
+                        regcnt += 1;
+                    }
+                }
+            }
+            let addd = {
+                count: regcnt,
+                name: refercodedata[i].name,
+                referralCode: refercodedata[i].code,
+            };
+            referdata.push(addd);
+        }
+
+        // sorting data
+        referdata.sort((a, b) => {
+            return b.count - a.count;
+        });
+
+        let totalreg = 0;
+        for (let i = 0; i < referdata.length; i++) {
+            totalreg += referdata[i].count;
+        }
+        // console.log("totalreg = ", totalreg);
+        return [referdata, totalreg];
+    },
+    isRegisteredforEvent: function (user, event) {
+        // isRegisteredforEvent means User has signed in and register for event
+        let checker = false;
+        if (user != null) {
+            for (let j = 0; j < event.registeredUsers.length; j++) {
+                if (event.registeredUsers[j].user_id.toString() == user._id) {
+                    checker = true;
+                }
+            }
+        }
+        return checker;
+    },
+    isRegistered: function (user, events) {
+        // isRegistered means User has signed in.
+        let checker = [];
+        for (let i = 0; i < events.length; i++) {
+            checker.push(false);
+
+            if (user == null) continue;
+            for (let j = 0; j < events[i].registeredUsers.length; j++) {
+                if (
+                    events[i].registeredUsers[j].user_id.toString() == user._id
+                ) {
+                    checker[i] = true;
+                }
+            }
+        }
+        return checker;
     },
 };

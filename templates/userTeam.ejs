@@ -226,7 +226,9 @@
                                         if(isLeader) {%>
                                         <a
                                             href="removeMember?team=<%= team._id %>&member=<%= membersinfo[index]._id %>"
-                                            ><button class="remove">x</button>
+                                            ><button class="remove">
+                                                Remove
+                                            </button>
                                         </a>
                                         <% } %> <% } %>
                                     </td>
@@ -274,5 +276,6 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
     </body>
 </html>

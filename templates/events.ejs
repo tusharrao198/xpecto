@@ -112,15 +112,15 @@
                             <%}%>
 
                             <hr />
+
                             <div class="event-description">
-                                <%= events[i].oneline_content %>
-                                <%if(events[i].rest_content.length> 0) {%>
-
-                                <details style="cursor: pointer">
-                                    <summary>Click to Know More</summary>
+                                <%= events[i].oneline_content %> <%
+                                if(events[i].rest_content) { %>
+                                <button class="desc-btn"></button>
+                                <div class="desc-cont">
                                     <%= events[i].rest_content %>
-                                </details>
-
+                                    <div class="desc"></div>
+                                </div>
                                 <%}%>
                             </div>
                             <hr />
@@ -163,7 +163,7 @@
                             > -->
                             <a href="/event?event=<%=events[i].name %>"
                                 ><button class="event-problem">
-                                    Problem Set
+                                    Know More!
                                 </button></a
                             >
                         </div>
@@ -175,12 +175,12 @@
         </div>
 
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
         <script type="text/javascript">
-            const msg = document.querySelector(".eventi");
-            console.log("MSG = ", msg);
-            function clickme(i) {
-                console.log(" i = ", i);
-            }
+            // const msg = document.querySelector(".eventi");
+            // function clickme(i) {
+            //     console.log(" i = ", i);
+            // }
         </script>
     </body>
 </html>
