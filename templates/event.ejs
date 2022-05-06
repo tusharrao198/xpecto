@@ -303,56 +303,146 @@
                                 </div>
                                 <%}else {%>
                                     <div class="submission-content">
-                                        Submission Links Will be provided Soon!
+                                        <%if(event.name==="Vision Verse" ){%>
+                                            Competition will be hosted on Kaggle, you guys can explore it though. You
+                                            have to submit .csv file on Kaggle.
+                                            Leaderboard will be maintained on the basis of accuracy on the test data
+                                            throughout the event.
+                                            <%}else{ %>
+                                                Submission Links Will be provided Soon!
+                                                <%}%>
+
                                     </div>
                                     <%}%>
                         </div>
                     </section>
                 </main>
                 <hr />
-                <%if (firstPrizeAmount==="" ) {%>
-                    <footer style="
+                <% if(event.name==="Metro in Hills" ) { %>
+                    <footer>
+
+                        <div style="
+                                                text-align: center;
+                                                font-size: 1.5rem;
+                                                font-weight: bold;
+                                            ">
+                            Prize worth : <%= event.pricesworth %>
+                                <div style="
+                                            text-align: center;
+                                            font-size: 1.5rem;
+                                            font-weight: bold;
+                                        ">
+                                    <div class="prizes">
+                                        <div class="prize">
+                                            <div class="prize-heading">Winner</div>
+                                            <div class="prize-name">
+                                                Rs. 5000
+                                            </div>
+                                        </div>
+                                        <div class="prize">
+                                            <div class="prize-heading">Runner</div>
+                                            <div class="prize-name">
+                                                Rs. 3000
+                                            </div>
+                                        </div>
+                                        <div class="prize">
+                                            <div class="prize-heading">Special Mention</div>
+                                            <div class="prize-name">
+                                                Rs. 2 X 1000
+                                            </div>
+                                        </div>
+                                    </div>
+
+                    </footer>
+                    <% } else{%>
+
+                        <%if (firstPrizeAmount==="" ) {%>
+                            <footer style="
                         text-align: center;
                         margin-bottom: 100px;
                         font-size: 1.5rem;
                         font-weight: bold;
                     ">
-                        Prize Pool To be updated Soon!
-                    </footer>
-                    <%}else{%>
+                                Prize Pool To be updated Soon!
+                            </footer>
+                            <%}else{%>
 
-                        <div style="
+                                <div style="
                         text-align: center;
                         font-size: 1.5rem;
                         font-weight: bold;
                     ">
-                            Prize worth : <%= event.pricesworth %>
-                        </div>
+                                    Prize worth : <%= event.pricesworth %>
+                                </div>
 
-                        <footer>
-                            <div class="prizes">
-                                <div class="prize">
-                                    <div class="prize-heading">1st Place</div>
-                                    <div class="prize-name">
-                                        <%= event.prices.first %>
-                                    </div>
-                                </div>
-                                <div class="prize">
-                                    <div class="prize-heading">2nd Place</div>
-                                    <div class="prize-name">
-                                        <%= event.prices.second %>
-                                    </div>
-                                </div>
-                                <div class="prize">
-                                    <div class="prize-heading">3rd Place</div>
-                                    <div class="prize-name">
-                                        <%= event.prices.third %>
-                                    </div>
-                                </div>
-                            </div>
-                        </footer>
+                                <footer>
 
-                        <%}%>
+                                    <% if(event.name==="Foldable Flight" ) {%>
+                                        <p style="text-align: center;">Maximum Distance</p>
+
+                                        <%} %>
+
+                                            <div class="prizes">
+                                                <div class="prize">
+                                                    <div class="prize-heading">1st Place</div>
+                                                    <div class="prize-name">
+                                                        <%= event.prices.first %>
+                                                    </div>
+                                                </div>
+                                                <div class="prize">
+                                                    <div class="prize-heading">2nd Place</div>
+                                                    <div class="prize-name">
+                                                        <%= event.prices.second %>
+                                                    </div>
+                                                </div>
+                                                <div class="prize">
+                                                    <div class="prize-heading">3rd Place</div>
+                                                    <div class="prize-name">
+                                                        <%= event.prices.third %>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <% if(event.name==="FrostHack" ) {%>
+                                                <div class="prizes">
+                                                    <div class="prize">
+                                                        <div class="prize-heading">Best BlockChain App</div>
+                                                        <div class="prize-name">
+                                                            Rs. 56,000
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <%}%>
+
+                                                    <% if(event.name==="Foldable Flight" ) {%>
+                                                        <p style="text-align: center;">Maximum Airtime</p>
+
+                                                        <div class="prizes">
+                                                            <div class="prize">
+                                                                <div class="prize-heading">1st Place</div>
+                                                                <div class="prize-name">
+                                                                    <%= event.prices.first %>
+                                                                </div>
+                                                            </div>
+                                                            <div class="prize">
+                                                                <div class="prize-heading">2nd Place</div>
+                                                                <div class="prize-name">
+                                                                    <%= event.prices.second %>
+                                                                </div>
+                                                            </div>
+                                                            <div class="prize">
+                                                                <div class="prize-heading">3rd Place</div>
+                                                                <div class="prize-name">
+                                                                    <%= event.prices.third %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <%}%>
+                                </footer>
+
+                                <%}%>
+
+                                    <%}%>
             </div>
         </div>
         <script src="scripts/script.js"></script>
