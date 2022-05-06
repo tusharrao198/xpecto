@@ -116,7 +116,6 @@ app.get("/", async (req, res) => {
     const homepageinfo = await homepageInfo();
     const sponinfo = await sponsorsInfo();
     const faqinfo = await FAQInfo();
-    console.log(sponinfo);
     res.render("index", {
         authenticated: req.isAuthenticated(),
         homepageInfo:
