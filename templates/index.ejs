@@ -1,82 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:url" content="https://xpecto.tech/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto" />
-        <meta
-            name="description"
-            content="Xpecto is science and technology festival of Indian
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url" content="https://xpecto.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Xpecto" />
+    <meta name="description" content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes."
-        />
-        <meta
-            name="keywords"
-            content="home Page, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
-        />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="images/xpecto-logo-header.png"
-        />
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="stylesheet" href="styles/home-parallax.css" />
+        grand prizes." />
+    <meta name="keywords" content="home Page, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi" />
+    <link rel="icon" type="image/x-icon" href="images/xpecto-logo-header.png" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/home-parallax.css" />
 
-        <!-- -----FONT AWESOME ICONS----- -->
-        <script
-            src="https://kit.fontawesome.com/a1542a4884.js"
-            crossorigin="anonymous"
-        ></script>
-        <style>
-            @media (max-width: 900px) {
-                nav {
-                    top: 90px;
-                }
+    <!-- -----FONT AWESOME ICONS----- -->
+    <script src="https://kit.fontawesome.com/a1542a4884.js" crossorigin="anonymous"></script>
+    <style>
+        @media (max-width: 900px) {
+            nav {
+                top: 90px;
             }
-            marquee {
-                background-color: rgb(0, 20, 47);
-                margin-top: -1rem;
-                margin-bottom: 0rem;
-                width: 100%;
-                position: relative;
-                display: flex;
-            }
-            .marquee p {
-                background-color: rgb(0, 20, 47);
-                padding: 0.25rem;
-                color: aliceblue;
-                /* margin-bottom:; */
-            }
-            .marquee .inner {
-                position: fixed;
-                top: 5rem;
-                z-index: 105;
-                width: 100%;
-                display: flex;
-                color: aqua;
-                font-size: 8rem;
-            }
-            .marquee .inner > * {
-                white-space: nowrap;
-                padding: 0 3rem;
-            }
-            marquee a {
-                color: cyan;
-            }
-        </style>
+        }
 
-        <title>Xpecto</title>
-    </head>
+        marquee {
+            background-color: rgb(0, 20, 47);
+            margin-top: -1rem;
+            margin-bottom: 0rem;
+            width: 100%;
+            position: relative;
+            display: flex;
+        }
 
-    <body>
-        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('partials/navbar.ejs') %>
+        .marquee p {
+            background-color: rgb(0, 20, 47);
+            padding: 0.25rem;
+            color: aliceblue;
+            /* margin-bottom:; */
+        }
+
+        .marquee .inner {
+            position: fixed;
+            top: 5rem;
+            z-index: 105;
+            width: 100%;
+            display: flex;
+            color: aqua;
+            font-size: 8rem;
+        }
+
+        .marquee .inner>* {
+            white-space: nowrap;
+            padding: 0 3rem;
+        }
+
+        marquee a {
+            color: cyan;
+        }
+    </style>
+
+    <title>Xpecto</title>
+</head>
+
+<body>
+    <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+    <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
         <div class="marquee">
             <div class="inner">
@@ -92,38 +85,12 @@
         <main>
             <!-- -----HOME SECTION WITH PARALLAX EFFECT----- -->
             <section class="hero" id="home">
-                <img
-                    src="images/1.png"
-                    class="translateX"
-                    data-speed="0.25"
-                    id="moon"
-                    alt=""
-                />
-                <img
-                    src="images/2.png"
-                    class="translateY"
-                    data-speed="0.35"
-                    id="clouds"
-                    alt=""
-                />
-                <img
-                    src="images/3.png"
-                    class="translateY"
-                    data-speed="0.5"
-                    id="mount"
-                    alt=""
-                />
+                <img src="images/1.png" class="translateX" data-speed="0.25" id="moon" alt="" />
+                <img src="images/2.png" class="translateY" data-speed="0.35" id="clouds" alt="" />
+                <img src="images/3.png" class="translateY" data-speed="0.5" id="mount" alt="" />
                 <h1 id="text" class="translateX" data-speed="-5">XPECTO'22</h1>
-                <a href="#counter" id="btn"
-                    >Explore <i class="fa-solid fa-arrow-down"></i
-                ></a>
-                <img
-                    src="images/4.png"
-                    class="translateY"
-                    data-speed="0"
-                    id="base"
-                    alt=""
-                />
+                <a href="#counter" id="btn">Explore <i class="fa-solid fa-arrow-down"></i></a>
+                <img src="images/4.png" class="translateY" data-speed="0" id="base" alt="" />
             </section>
             <!-- -----HOME SECTION END----- -->
 
@@ -159,10 +126,11 @@
             <section id="about">
                 <div class="heading">ABOUT US</div>
                 <div class="content">
-                    <%if (homepageInfo !=="false") {%> <%=
-                    homepageInfo.first_para%>
-                    <br />
-                    <%= homepageInfo.second_para%> <%}%>
+                    <%if (homepageInfo !=="false" ) {%>
+                        <%= homepageInfo.first_para%>
+                            <br />
+                            <%= homepageInfo.second_para%>
+                                <%}%>
                 </div>
 
                 <!-- -----BUTTONS FOR T&C AND PRIVACY POLICY-----  -->
@@ -173,11 +141,9 @@
                     <a href="#"
                         ><button class="btn1 priv">Privacy Policy</button></a
                     > -->
-                    <a
-                        target="_blank"
-                        href="https://drive.google.com/file/d/1mc65HcORPpoOoasgCvTP7Im7s7CXZ3Wm/edit"
-                        ><button class="btn1 tnc">Publicity Brochure</button></a
-                    >
+                    <a target="_blank"
+                        href="https://drive.google.com/file/d/1mc65HcORPpoOoasgCvTP7Im7s7CXZ3Wm/edit"><button
+                            class="btn1 tnc">Publicity Brochure</button></a>
                 </div>
                 <!-- -----BUTTONS END----- -->
             </section>
@@ -212,14 +178,14 @@
                         <div class="email-content">
                             <i class="fa-solid fa-envelope fa-2x"></i>
 
-                            <a href="mailto:team@xpecto.tech"
-                                ><div class="email">team@xpecto.tech</div></a
-                            >
-                            <a href="mailto:publicity@xpecto.tech"
-                                ><div class="email">
+                            <a href="mailto:team@xpecto.tech">
+                                <div class="email">team@xpecto.tech</div>
+                            </a>
+                            <a href="mailto:publicity@xpecto.tech">
+                                <div class="email">
                                     publicity@xpecto.tech
-                                </div></a
-                            >
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <!-- -----EMAIL END----- -->
@@ -232,21 +198,21 @@
                         <div class="phone-content">
                             <i class="fa-solid fa-phone fa-2x"></i>
                             <div class="phone">
-                                <a href="tel:7850084013"
-                                    ><div>
+                                <a href="tel:7850084013">
+                                    <div>
                                         Surendra: <span>+91 7850084013</span>
-                                    </div></a
-                                >
-                                <a href="tel:9990991108"
-                                    ><div>
+                                    </div>
+                                </a>
+                                <a href="tel:9990991108">
+                                    <div>
                                         Lalit: <span>+91 9990991108</span>
-                                    </div></a
-                                >
-                                <a href="tel:7860688567"
-                                    ><div>
+                                    </div>
+                                </a>
+                                <a href="tel:7860688567">
+                                    <div>
                                         Paras: <span>+91 7860688567</span>
-                                    </div></a
-                                >
+                                    </div>
+                                </a>
                                 <!-- <a href="tel:9214831344"
                                     ><div>
                                         Kratika: <span>+91 9214831344</span>
@@ -295,20 +261,32 @@
                 <div class="heading">Sponsors</div>
                 <div class="content">
                     <!-- <h1 style="color: white">To be Updated Soon!</h1> -->
-                    <div class="spon card">
-                        <%if (sponInfo.length>0) {%> <% for (let i = 0; i <
-                        sponInfo.length; i++) { %>
-                        <!-- <img
-                            src="images/xpecto-logo-body.png"
-                            alt="xpecto-logo"
-                        /> -->
-                        <img
-                            src="<%=sponInfo[i].spon_imagelink%>"
-                            alt="<%=sponInfo[i].sponsor_name%>-logo"
-                        />
 
-                        <%}%> <%}else {%>To be Updated Soon! <%} %>
+                    <div class="spon card title" style="width: 40%; text-align: center;">
+                        <h3 style="margin: 1rem;">Event Title Sponsors</h3>
+                        <%if (sponInfo.length>0) {%> 
+                            <% for (let i=0; i < sponInfo.length; i++) { %>
+                                <%if(sponInfo[i].spon_type=="Event title sponsors") {%>
+                                    <img src="images/spon/<%=sponInfo[i].spon_imagelink%>.png"
+                                        alt="<%=sponInfo[i].sponsor_name%>-logo" style="margin: 0.5rem;" />
+                                    <%} %>
+                                    <%}%>
+                                        <%}else {%>To be Updated Soon! <%} %>
                     </div>
+
+                    <div class="spon card associate" style="width: 40%; text-align: center;">
+                        <h3 style="margin: 1rem;">Event Associate Sponsors</h3>
+                        <%if (sponInfo.length>0) {%> <% for (let i=0; i < sponInfo.length; i++) { %>
+
+                        <%if(sponInfo[i].spon_type=="Event associate sponsors") {%>
+                            <img src="images/spon/<%=sponInfo[i].spon_imagelink%>.png"
+                                alt="<%=sponInfo[i].sponsor_name%>-logo" style="margin: 0.5rem;" />
+                            <%}%> 
+                            <%}%>
+                                <%}else {%>To be Updated Soon! <%} %>
+                    </div>
+
+
                 </div>
                 <br />
             </section>
@@ -320,22 +298,22 @@
                 <div class="faq-container">
                     <!-- to show faq remove style attribute from below div and comment out above line -->
                     <div class="wrapper">
-                        <%if (faqInfo.length>0) {%> <% for (let i = 0; i <
-                        faqInfo.length; i++) { %>
-                        <div class="container">
-                            <div class="question">
-                                <%= faqInfo[i].question%>
-                            </div>
-                            <div class="answercont">
-                                <div class="answer">
-                                    <%= faqInfo[i].answer%>
+                        <%if (faqInfo.length>0) {%> <% for (let i=0; i < faqInfo.length; i++) { %>
+                                <div class="container">
+                                    <div class="question">
+                                        <%= faqInfo[i].question%>
+                                    </div>
+                                    <div class="answercont">
+                                        <div class="answer">
+                                            <%= faqInfo[i].answer%>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <%}%> <%}else {%>
-                        <div class="faq-soon">To be Updated Soon!</div>
-                        <%} %>
+                                <%}%>
+                                    <%}else {%>
+                                        <div class="faq-soon">To be Updated Soon!</div>
+                                        <%} %>
                     </div>
                 </div>
             </section>
@@ -348,5 +326,6 @@
         <script src="scripts/countdown.js"></script>
         <script src="scripts/faq.js"></script>
         <script src="scripts/ejs.js"></script>
-    </body>
+</body>
+
 </html>
