@@ -8,6 +8,10 @@
     filter: saturate(75%);
     display: flex;
 }
+body {
+    background: url("../images/svg/hexagon.svg");
+    background-attachment: fixed;
+}
 #page .container {
     position: sticky;
     bottom: 0;

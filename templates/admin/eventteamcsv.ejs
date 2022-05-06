@@ -4,22 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:url" content="https://xpecto.tech/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto" />
-        <meta
-            name="description"
-            content="Xpecto is science and technology festival of Indian
-        Institute of Technology, Mandi. It has been ramped up to
-        include the most electrifying events, prompting great
-        discoveries, as well as enthralling brainstorming and
-        grand prizes."
-        />
-        <meta
-            name="keywords"
-            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
-        />
+        <title>Details</title>
         <link
             rel="icon"
             type="image/x-icon"
@@ -32,10 +17,7 @@
         <link rel="stylesheet" href="styles/page.css" />
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/profile.css" />
-
-        <title>Create Team | Xpecto</title>
     </head>
-
     <style>
         .create-container h1 {
             text-align: center;
@@ -131,39 +113,46 @@
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('partials/navbar.ejs') %>
+        <%- include ('../partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">
             <div class="container">
                 <div class="heading" style="color: aqua">
-                    <span>Create</span>
-                    <span>Team</span>
+                    <span>Details</span>
+                    <span>Event</span>
                 </div>
             </div>
             <div class="prof-container">
                 <!-- <div class="content"></div> -->
                 <div class="card">
                     <div class="create-container">
-                        <h1><%= event.name %></h1>
+                        <h1>Select Event</h1>
                         <hr />
-                        <form
-                            action="/createTeam?event=<%= event.name %>"
-                            method="POST"
-                        >
-                            <div class="form-group">
-                                <label for="teamName">Team Name</label>
-                                <div class="msg"></div>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="teamName"
-                                    placeholder="Enter team name"
-                                    name="team_name"
-                                    required
-                                />
-                            </div>
-                            <button type="submit" class="btn1">Create</button>
+                        <form action="/eventteamdetails" method="post">
+                            <select name="event" id="event">
+                                <% for( let index = 0; index < events.length;
+                                index++ ) { %>
+                                <option value="<%= events[index]._id %> ">
+                                    <%= events[index].name %>
+                                </option>
+                                <% } %>
+                            </select>
+                            <button type="submit">Submit</button>
+                        </form>
+                        </br>
+
+                        <h1>For event wise Registrations Lists</h1>
+                        <form action="/eventregistrations" method="post">
+                            <select name="event" id="event">
+                                <% for( let index = 0; index < events.length;
+                                index++ ) { %>
+                                <option value="<%= events[index]._id %> ">
+                                    <%= events[index].name %>
+                                </option>
+                                <% } %>
+                            </select>
+                            <button type="submit">GET event wise Registrations Lists</button>
                         </form>
                     </div>
                 </div>
@@ -171,15 +160,5 @@
         </div>
         <script src="scripts/script.js"></script>
         <script src="scripts/ejs.js"></script>
-        <script type="text/javascript">
-            let uniqueTeam = ejs.render("<%= uniqueTeam %>").toString();
-            const msg = document.querySelector(".msg");
-            console.log("uniqueTeam = ", uniqueTeam);
-            if (uniqueTeam === "false") {
-                msg.style.color = "yellow";
-                msg.innerHTML = "Team Name already taken!";
-                setTimeout(() => msg.remove(), 2000);
-            }
-        </script>
     </body>
 </html>

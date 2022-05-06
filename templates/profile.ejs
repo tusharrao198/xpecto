@@ -1,60 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:url" content="https://xpecto.tech/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:url" content="https://xpecto.tech/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Xpecto" />
+    <meta name="description" content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
         grand prizes." />
-        <meta name="keywords" content="Profile, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="images/xpecto-logo-header.png"
-        />
-        <script
-            src="https://kit.fontawesome.com/a1542a4884.js"
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="styles/page.css" />
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="stylesheet" href="styles/profile.css" />
+    <meta name="keywords" content="Profile, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi" />
+    <link rel="icon" type="image/x-icon" href="images/xpecto-logo-header.png" />
+    <script src="https://kit.fontawesome.com/a1542a4884.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/page.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
 
-        <title>Profile | Xpecto</title>
-    </head>
+    <title>Profile | Xpecto</title>
+</head>
 
-    <style>
-        #page .container {
-            padding-top: 2.5rem;
-            width: 250px;
-        }
+<style>
+    #page .container {
+        padding-top: 2.5rem;
+        width: 250px;
+    }
 
-        #page .heading span {
-            font-size: 2.5rem;
-            padding-right: 2.5rem;
-            transform: skew(0deg);
-        }
+    #page .heading span {
+        font-size: 2.5rem;
+        padding-right: 2.5rem;
+        transform: skew(0deg);
+    }
 
-        #page .heading {
-            line-height: 1.5;
-            padding-left: 7.5rem;
-            padding-top: 25%;
-            display: flex;
-            align-items: baseline;
-            transform: skewX(-7.5deg);
-        }
-    </style>
+    #page .heading {
+        line-height: 1.5;
+        padding-left: 7.5rem;
+        padding-top: 25%;
+        display: flex;
+        align-items: baseline;
+        transform: skewX(-7.5deg);
+    }
+</style>
 
-    <body>
-        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('partials/navbar.ejs') %>
+<body>
+    <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+    <%- include ('partials/navbar.ejs') %>
         <!-- -----HEADER END----- -->
 
         <div class="" id="page">
@@ -78,18 +72,18 @@
                             </div>
                             <hr />
                             <div class="person">
-                                <img
-                                    id="person-image"
-                                    src="<%= user.image %>"
-                                    alt="image of person"
-                                />
+                                <img id="person-image" src="<%= user.image %>" alt="image of person" />
                                 <div class="name">
                                     <i class="fa-solid fa-user"></i>
-                                    <span> <%= user.displayName %> </span>
+                                    <span>
+                                        <%= user.displayName %>
+                                    </span>
                                 </div>
                                 <div class="email">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <span> <%= user.email %> </span>
+                                    <span>
+                                        <%= user.email %>
+                                    </span>
                                 </div>
 
                                 <hr />
@@ -97,13 +91,11 @@
                                     <a href="/">
                                         <button class="btn back-home">
                                             Home
-                                        </button></a
-                                    >
+                                        </button></a>
                                     <a href="/auth/logout">
                                         <button class="btn logout">
                                             Logout
-                                        </button></a
-                                    >
+                                        </button></a>
                                 </div>
                             </div>
                         </div>
@@ -115,88 +107,124 @@
                 <!-- registered events  -->
                 <div id="registered-container">
                     <div class="register-heading">Registered Events</div>
+                    <div class="msg"></div>
 
                     <div>
                         <% if(context.registeredevents.length==0){ %>
-                        <div class="register-heading">No Registered Events</div>
-                        <% }else {%> <% for(let x of context.registeredevents){
-                        %>
+                            <div class="register-heading">No Registered Events</div>
+                            <% }else {%>
+                                <% for(let x of context.registeredevents){ %>
 
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Event</td>
-                                    <td><%= x.name %></td>
-                                </tr>
+                                    <%if (x.teamMaxSize===1){ %>
+                                        <div class="card-event" id="checkteamsize">
+                                            <%}else {%>
+                                                <div class="card-event">
+                                                    <%}%>
+                                                        <table>
+                                                            <tr>
+                                                                <td>Event</td>
+                                                                <td>
+                                                                    <%= x.name %>
+                                                                </td>
+                                                            </tr>
 
-                                <tr>
-                                    <td>Team</td>
-                                    <td><%= x.teamName %></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <% } %> <% } %>
+                                                            <% if (x.teamName!=="nullvoidnoteampossible" ) {%>
+                                                                <tr>
+                                                                    <td>Team</td>
+                                                                    <td>
+                                                                        <%= x.teamName %>
+                                                                    </td>
+                                                                </tr>
+                                                                <%}%>
+                                                        </table>
+                                                </div>
+                                                <% } %>
+                                                    <% } %>
+                                        </div>
                     </div>
-                </div>
-                <!-- registered events end -->
+                    <!-- registered events end -->
 
-                <hr style="width: 75%" />
+                    <hr style="width: 75%" />
 
-                <!-- created teams  -->
-                <div id="registered-container">
-                    <div class="register-heading">Created Teams</div>
-                    <div>
-                        <% if(context.created_teams.length==0){ %>
-                        <div class="register-heading">No Created Teams</div>
-                        <% }else {%> <% for(let x of context.created_teams) {%>
+                    <!-- created teams  -->
+                    <div id="registered-container">
+                        <div class="register-heading">Created Teams</div>
+                        <div>
+                            <% if(context.created_teams.length==0){ %>
+                                <div class="register-heading">No Created Teams</div>
+                                <% }else {%>
+                                    <% for(let x of context.created_teams) {%>
 
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Team</td>
-                                    <td><%= x.name %></td>
-                                </tr>
+                                        <div class="card-event">
+                                            <table>
+                                                <tr>
+                                                    <td>Team</td>
+                                                    <td>
+                                                        <%= x.name %>
+                                                    </td>
+                                                </tr>
 
-                                <tr>
-                                    <td>Event</td>
-                                    <td><%= x.eventName %></td>
-                                </tr>
-                            </table>
+                                                <tr>
+                                                    <td>Event</td>
+                                                    <td>
+                                                        <%= x.eventName %>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <% } %>
+                                            <% }%>
                         </div>
-                        <% } %> <% }%>
                     </div>
-                </div>
-                <!-- created teams end  -->
+                    <!-- created teams end  -->
 
-                <hr style="width: 75%" />
+                    <hr style="width: 75%" />
 
-                <!-- joined teams  -->
-                <div id="registered-container">
-                    <div class="register-heading">Joined Teams</div>
-                    <div>
-                        <% if(context.joined_teams.length==0){ %>
-                        <div class="register-heading">No Joined Teams</div>
-                        <% }else {%> <% for(let x of context.joined_teams) {%>
+                    <!-- joined teams  -->
+                    <div id="registered-container">
+                        <div class="register-heading">Joined Teams</div>
+                        <div>
+                            <% if(context.joined_teams.length==0){ %>
+                                <div class="register-heading">No Joined Teams</div>
+                                <% }else {%>
+                                    <% for(let x of context.joined_teams) {%>
 
-                        <div class="card-event">
-                            <table>
-                                <tr>
-                                    <td>Team</td>
-                                    <td><%= x.name %></td>
-                                </tr>
+                                        <div class="card-event">
+                                            <table>
+                                                <tr>
+                                                    <td>Team</td>
+                                                    <td>
+                                                        <%= x.name %>
+                                                    </td>
+                                                </tr>
 
-                                <tr>
-                                    <td>Event</td>
-                                    <td><%= x.eventName %></td>
-                                </tr>
-                            </table>
+                                                <tr>
+                                                    <td>Event</td>
+                                                    <td>
+                                                        <%= x.eventName %>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
                         </div>
-                        <% } %> <% } %>
                     </div>
+                    <!-- joined teams end -->
                 </div>
-                <!-- joined teams end -->
             </div>
-        </div>
-        <script src="scripts/script.js"></script>
-    </body>
+            <script src="scripts/script.js"></script>
+            <script src="scripts/ejs.js"></script>
+            <script type="text/javascript">
+                const ele = document.getElementById("checkteamsize");
+                ele.addEventListener("mouseover", checkTeamSize);
+                const msg = document.querySelector(".msg");
+                function checkTeamSize() {
+                    msg.style.color = "yellow";
+                    msg.innerHTML = "Note: Event Team not shown due to either team size limit to 1 or User has not formed a Team yet!"
+                    // setTimeout(() => msg.remove(), 10000);
+                }
+            </script>
+</body>
+
 </html>

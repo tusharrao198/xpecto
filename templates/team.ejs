@@ -6,14 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto'22" />
-        <meta name="description" content="Xpecto is science and technology festival of Indian
+        <meta property="og:title" content="Xpecto" />
+        <meta
+            name="description"
+            content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
-        grand prizes." />
-        <meta name="keywords" content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
-        Xpecto 2022, First Technical Festival, Techfest IIT Mandi">
+        grand prizes."
+        />
+        <meta
+            name="keywords"
+            content="Team, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+        />
         <link
             rel="icon"
             type="image/x-icon"
@@ -63,19 +69,22 @@
         .person-card-container {
             margin: 1rem;
             width: 250px;
-            background: rgba(0, 37, 84, 0.3);
-            box-shadow: 0 0 32px 0 rgba(31, 38, 135, 0.37);
+            background: rgba(0, 16, 45, 0.781);
+            box-shadow: 0 0 25px -5px rgba(31, 38, 135, 0.37);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 10px;
             transition: 0.3s;
             padding: 1rem;
+            transition: 0.25s;
         }
         .person-card-container:hover {
-            box-shadow: 0 0 75px 10px rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(0.5px);
-            -webkit-backdrop-filter: blur(0.5px);
+            transition: 0.25s;
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px -5px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(100px);
+            -webkit-backdrop-filter: blur(100px);
         }
 
         .person-img {
@@ -238,5 +247,6 @@
             </div>
         </div>
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
     </body>
 </html>

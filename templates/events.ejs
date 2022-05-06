@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta property="og:url" content="https://xpecto.tech/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto'22" />
+        <meta property="og:title" content="Xpecto" />
         <meta
             name="description"
             content="Xpecto is science and technology festival of Indian
@@ -68,6 +68,10 @@
             justify-content: space-evenly;
             margin: 0.5rem;
         }
+        body {
+            background: url("../images/svg/hexagon.svg");
+            background-attachment: fixed;
+        }
     </style>
     <body>
         <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
@@ -96,16 +100,28 @@
                     <% for (let i = 0; i < events.length; i++) { %>
                     <div class="event-card-container">
                         <div class="event-card">
+                            <%if (events[i].name==='Epidemic') {%>
+                            <div class="event-name" style="color: aqua">
+                                \Epidemic
+                            </div>
+
+                            <%} else {%>
                             <div class="event-name" style="color: aqua">
                                 <%= events[i].name %>
                             </div>
+                            <%}%>
+
                             <hr />
+
                             <div class="event-description">
-                                <%= events[i].oneline_content %>
-                                <details style="cursor: pointer">
-                                    <summary>Click to Know More</summary>
+                                <%= events[i].oneline_content %> <%
+                                if(events[i].rest_content) { %>
+                                <button class="desc-btn"></button>
+                                <div class="desc-cont">
                                     <%= events[i].rest_content %>
-                                </details>
+                                    <div class="desc"></div>
+                                </div>
+                                <%}%>
                             </div>
                             <hr />
                             <div class="team-size">
@@ -147,7 +163,7 @@
                             > -->
                             <a href="/event?event=<%=events[i].name %>"
                                 ><button class="event-problem">
-                                    Problem Set
+                                    Know More!
                                 </button></a
                             >
                         </div>
@@ -159,5 +175,12 @@
         </div>
 
         <script src="scripts/script.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript">
+            // const msg = document.querySelector(".eventi");
+            // function clickme(i) {
+            //     console.log(" i = ", i);
+            // }
+        </script>
     </body>
 </html>
