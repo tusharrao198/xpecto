@@ -87,22 +87,22 @@ router.post("/adminauth", (req, res) => {
     }
 });
 
-router.get("/eventdetails", adminCheck, async (req, res) => {
+router.get("/eventteamdetails", adminCheck, async (req, res) => {
     let eventTable = require("../models/Events");
     const allEvents = await eventTable.find({}).lean();
-    res.render("admin/eventbasedcsv", {
+    res.render("admin/eventteamcsv", {
         authenticated: false,
         events: allEvents,
     });
 });
 
-router.post("/eventdetails", adminCheck, async (req, res) => {
+router.post("/eventteamdetails", adminCheck, async (req, res) => {
     const allTeams = require("../models/Team");
     const allEvents = require("../models/Events");
     const userDetails = require("../models/User");
     let eventID = req.body.event;
     eventID = eventID.slice(0, -1);
-    var records = [];
+    let records = [];
     // console.log(eventID);
     const query = { event: eventID };
     // console.log(query)
@@ -114,14 +114,14 @@ router.post("/eventdetails", adminCheck, async (req, res) => {
         return res.send(
             `<h1>No registrations yet for event: ${eventName} </h1>`
         );
-    for (var i = 0; i < teams.length; i++) {
-        var allMembers = [];
+    for (let i = 0; i < teams.length; i++) {
+        let allMembers = [];
         const teamName = teams[i].name;
-        var members = teams[i].members;
-        var leaderID = teams[i].teamLeader;
-        for (var j = 0; j < members.length; j++) {
+        let members = teams[i].members;
+        let leaderID = teams[i].teamLeader;
+        for (let j = 0; j < members.length; j++) {
             const userID = members[j].member_id;
-            var user = await userDetails.findOne({ _id: userID });
+            let user = await userDetails.findOne({ _id: userID });
             if (user) {
                 const userData = {
                     Name: user.displayName,
@@ -131,8 +131,8 @@ router.post("/eventdetails", adminCheck, async (req, res) => {
                 allMembers.push(JSON.stringify(userData));
             }
         }
-        var leader = await userDetails.findOne({ _id: leaderID });
-        var leaderData;
+        let leader = await userDetails.findOne({ _id: leaderID });
+        let leaderData;
         if (leader) {
             leaderData = {
                 Name: leader.displayName,
@@ -170,4 +170,38 @@ router.post("/eventdetails", adminCheck, async (req, res) => {
         res.status(200).end(csvData);
     }
 });
+
+router.post("/eventregistrations", adminCheck, async (req, res) => {
+    const allTeams = require("../models/Team");
+    const allEvents = require("../models/Events");
+    const userDetails = require("../models/User");
+
+    let eventID = req.body.event;
+    eventID = eventID.slice(0, -1);
+
+    const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
+    const regUsers = eventDetails.registeredUsers;
+    // console.log("A = ", eventDetails);
+
+    let records = [];
+    for (let i = 0; i < regUsers.length; i++) {
+        const userID = regUsers[i].user_id;
+        let user = await userDetails.findOne({ _id: userID });
+        if (user) {
+            const userData = {
+                Name: user.displayName,
+                Email: user.email,
+                Phone: user.phoneNumber,
+                RefCode: user.referralCode,
+            };
+            records.push(userData);
+        }
+    }
+    context = {
+        records: records,
+    };
+    // console.log("rec = ", records);
+    res.render("admin/eventwisereg", { ...context, totalreg: records.length });
+});
+
 module.exports = router;
