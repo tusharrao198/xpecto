@@ -2,10 +2,10 @@
 const toggler = document.querySelector(".toggle");
 const navbar = document.querySelector("nav");
 const closeTap = document.querySelectorAll(".close")
-if (window.innerWidth <= 900) navbar.style.display = "none";
+if (window.innerWidth <= 1300) navbar.style.display = "none";
 
 navbar.addEventListener("resize", () => {
-    if (window.innerWidth <= 900) navbar.style.display = "none";
+    if (window.innerWidth <= 1300) navbar.style.display = "none";
     else navbar.style.display = "flex";
 });
 toggler.addEventListener("click", () => {
@@ -17,7 +17,7 @@ toggler.addEventListener("click", () => {
         navbar.style.display = "none";
     }
 });
-if (window.innerWidth <= 900){
+if (window.innerWidth <= 1300){
 for (let i = 0; i < closeTap.length; i++)
     closeTap[i].addEventListener("click", () => {
         toggler.setAttribute("src", "images/menu_open.svg");

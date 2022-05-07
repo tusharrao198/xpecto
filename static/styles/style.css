@@ -105,13 +105,13 @@ nav a:hover {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
     header div span {
         display: none;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
     .header-glass.active {
         background-color: rgb(0, 20, 47);
     }
