@@ -512,7 +512,11 @@ nav a:hover {
     flex-wrap: wrap;
     justify-content: center;
 }
-
+#sponsors .spon{
+    padding: 1.5rem;
+    margin: 1.5rem;
+    border-radius: 10px;
+}
 /* -----EVENTS PAGE DESIGNING----- */
 .events-list-container {
     display: flex;
