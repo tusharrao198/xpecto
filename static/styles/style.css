@@ -126,20 +126,21 @@ nav a:hover {
         background-color: rgb(0, 20, 47);
         display: none;
         transition: all 0.5s ease;
+        padding-bottom: 1rem;
     }
     nav a {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         box-shadow: none;
         text-align: center;
         width: 100%;
-        padding: 7.5px;
-        margin: 5px;
+        padding: 5px;
+        margin: 3px;
     }
     nav a:hover {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         background-color: rgb(0, 20, 47);
         box-shadow: none;
-        color: rgba(2, 84, 200, 1);
+        color: aqua;
         letter-spacing: 0.5px;
     }
 
@@ -481,6 +482,7 @@ nav a:hover {
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
+    margin-bottom: 2rem;
 }
 
 #sponsors .spon,
@@ -619,8 +621,10 @@ hr {
     background-color: rgb(0, 10, 22);
     background-attachment: fixed;
     color: white;
-    padding: 3rem 2rem 3rem 2rem;
+    padding: 4rem 2rem 3rem 2rem;
 }
+
+
 #faq .faq-container {
     display: flex;
 

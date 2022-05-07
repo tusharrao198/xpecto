@@ -1,7 +1,7 @@
 // CODE FOR RESPONSIVE NAVBAR
 const toggler = document.querySelector(".toggle");
 const navbar = document.querySelector("nav");
-const closeTap = document.querySelectorAll(".close")
+const closeTap = document.querySelectorAll(".close");
 if (window.innerWidth <= 1300) navbar.style.display = "none";
 
 navbar.addEventListener("resize", () => {
@@ -17,12 +17,17 @@ toggler.addEventListener("click", () => {
         navbar.style.display = "none";
     }
 });
-if (window.innerWidth <= 1300){
-for (let i = 0; i < closeTap.length; i++)
-    closeTap[i].addEventListener("click", () => {
-        toggler.setAttribute("src", "images/menu_open.svg");
-        navbar.style.display = "none";
-    });}
+window.addEventListener("scroll", () => {
+    toggler.setAttribute("src", "images/menu_open.svg");
+    navbar.style.display = "none";
+});
+if (window.innerWidth <= 1300) {
+    for (let i = 0; i < closeTap.length; i++)
+        closeTap[i].addEventListener("click", () => {
+            toggler.setAttribute("src", "images/menu_open.svg");
+            navbar.style.display = "none";
+        });
+}
 // **************************************************************
 
 // CODE FOR PARRALAX EFFECT IN HOME SECTION
@@ -64,7 +69,7 @@ descBtn.forEach((descBtn) => {
         if (active && active !== descBtn) {
             active.classList.toggle("active");
             active.nextElementSibling.style.maxHeight = 0;
-            descBtn.style.transform = "rotate(0deg)"
+            descBtn.style.transform = "rotate(0deg)";
         }
         descBtn.classList.toggle("active");
         const answer = descBtn.nextElementSibling;
@@ -73,7 +78,7 @@ descBtn.forEach((descBtn) => {
             descBtn.style.transform = "rotate(180deg)";
         } else {
             answer.style.maxHeight = 0;
-            descBtn.style.transform = "rotate(0deg)"
+            descBtn.style.transform = "rotate(0deg)";
         }
     });
 });
