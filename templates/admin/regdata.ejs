@@ -11,6 +11,8 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
         />
+        <link rel="stylesheet" href="styles/registrationspublic.css" />
+        <link rel="stylesheet" href="styles/style.css" />
 
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -23,32 +25,42 @@
             crossorigin="anonymous"
         ></script>
     </head>
+    <style>
+        .container {
+            padding: 1rem;
+            width: 80%;
+            margin: 1rem auto 2rem auto;
+        }
+   body>div{
+        padding: 1rem;
+    }
+    </style>
     <body>
         <div>
-            <%- include ('../partials/navbar.ejs') %>
-
+           
+            
             <!-- _id,googleId,email,displayName,firstName,image,status,phoneNumber,createdAt,__v,branch,collegeName,degree,fullName,referralCode -->
-            <div class="table-responsive">
+            <div class="table-responsive table-reg">
                 <div class="container text-center row">
                     <h1>Total Registrations: <%= totalreg %></h1>
 
-                    <div class="col">
+                    <div class="row">
                         <h5>
                             Number of Registrations Outside College: <%=
                             not_college_count %>
                         </h5>
                     </div>
-                    <div class="col">
+                    <div class="row">
                         <h5>
                             Number of Registrations From College: <%=
                             college_count %>
                         </h5>
                         <a href="/" class="href">
-                            <button class="btn btn-primary">HOME</button>
+                            <button class="btn btn-primary m-1">HOME</button>
                         </a>
 
                         <a href="/regcodecount" class="href">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary m-1">
                                 Registrations based on Referral Code
                             </button>
                         </a>

@@ -13,7 +13,9 @@
 body {
     padding: 0;
 }
-
+header a{
+    text-decoration: none;
+}
 /* -----HEADER DESIGNING----- */
 header img {
     width: 50px;
