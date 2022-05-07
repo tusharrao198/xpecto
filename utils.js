@@ -11,6 +11,14 @@ module.exports = {
         const event = await eventTable.findOne({ name: params.event }).lean();
         return event;
     },
+    findWorkshop: async function (req) {
+        const current_url = url.parse(req.url, true);
+        const params = current_url.query;
+
+        const workshopTable = require("./models/workshop");
+        const workshop = await workshopTable.findOne({ name: params.workshop }).lean();
+        return workshop;
+    },
     findEventFromId: async function (event_id) {
         const eventTable = require("./models/Events");
         const event = await eventTable.findOne({ _id: event_id }).lean();

@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const {
     findEvent,
+    findWorkshop,
     findEventFromId,
     findUserTeam,
     findUserTeamFromId,
@@ -63,12 +64,22 @@ router.get("/workshops", async (req, res) => {
     let workTable = require("../models/workshop");
     const allWorkshops = await workTable.find({}).lean();
     const checker = isRegistered(req.user, allWorkshops);
-    res.render("events", {
+    res.render("workshops", {
         events: allWorkshops,
         authenticated: req.isAuthenticated(),
         user: req.user,
         checker: checker,
     });
+});
+router.get("/workshopRegister", async (req, res) => {
+    const workshop = await findWorkshop(req);
+    const workshopTable = require("../models/workshop");
+
+    await workshopTable.updateOne(
+        { _id: workshop._id },
+        { $push: { registeredUsers: { user_id: req.user._id } } }
+    );
+    res.redirect(`/workshops`);
 });
 
 router.get("/eventRegister", authCheck, async (req, res) => {
