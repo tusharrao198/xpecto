@@ -13,7 +13,9 @@
 body {
     padding: 0;
 }
-
+header a{
+    text-decoration: none;
+}
 /* -----HEADER DESIGNING----- */
 header img {
     width: 50px;
@@ -103,13 +105,13 @@ nav a:hover {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
     header div span {
         display: none;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1300px) {
     .header-glass.active {
         background-color: rgb(0, 20, 47);
     }
@@ -590,13 +592,7 @@ nav a:hover {
     margin: 0.5rem 0.25rem;
 }
 
-.event-register,
-.event-problem {
-    position: sticky;
-    bottom: 0;
-    top: 100%;
-    margin-bottom: 0;
-}
+
 
 hr {
     border-color: white;

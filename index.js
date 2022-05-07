@@ -14,6 +14,7 @@ const navRoutes = require("./routes/navroutes");
 const adminRoutes = require("./routes/adminroutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
+const workshops = require("./models/workshop");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const CsvParser = require("json2csv").Parser;
 const connectDB = require("./config/db");

@@ -59,6 +59,17 @@ router.get("/events", async (req, res) => {
         checker: checker,
     });
 });
+router.get("/workshops", async (req, res) => {
+    let workTable = require("../models/workshop");
+    const allWorkshops = await workTable.find({}).lean();
+    const checker = isRegistered(req.user, allWorkshops);
+    res.render("events", {
+        events: allWorkshops,
+        authenticated: req.isAuthenticated(),
+        user: req.user,
+        checker: checker,
+    });
+});
 
 router.get("/eventRegister", authCheck, async (req, res) => {
     const event = await findEvent(req);
