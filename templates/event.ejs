@@ -199,6 +199,7 @@
 							<% if(isRegisteredforEvent==="true"){%> <% if
 							(team_created==="false" && event.teamMaxSize > 1)
 							{%>
+
 							<a href="/createTeam?event=<%= event.name %>"
 								><button class="btn1 create-team">
 									Create Team
@@ -213,10 +214,10 @@
 							>
 							<%}%> <% if (event.name==='Reel-o-logy' ||
 							event.name === "Somehow, I Manage" || event.name ===
-							"Air Velo" || event.name === "Vision Verse" || event.name === "Galactic Eye" || event.name === '\\Epidemic') {%>
-							<a
-								target="_blank"
-								href="assets/<%= event.name %>.pdf"
+							"Air Velo" || event.name === "Vision Verse" ||
+							event.name === "Galactic Eye" || event.name ===
+							'\\Epidemic') {%>
+							<a target="_blank" href="<%= event.rulebook_link %>"
 								><button class="btn1 rulebook">
 									Rulebook
 								</button></a
@@ -229,7 +230,10 @@
 								</button>
 							</a>
 
-							<%}%> <%} else { %>
+							<%}%>
+							<!-- outside else condition: if not registered-->
+							<%} else { %>
+
 							<a href="/eventRegister?event=<%= event.name %>"
 								><button class="btn1 rulebook">Register</button>
 							</a>
@@ -241,14 +245,6 @@
 							</a>
 
 							<%}%>
-
-							<!-- <a
-                                target="_blank"
-                                href="assets/<%= event.name %>.pdf"
-                                ><button class="btn1 rulebook">
-                                    Rulebook
-                                </button></a
-                            > -->
 						</div>
 					</section>
 					<hr />
@@ -356,20 +352,25 @@
 			const msg1 = document.querySelector(".msg1");
 			const element = document.getElementById("rulebook_");
 
-			element.addEventListener("click", rulebook);
+			if (element) {
+				element.addEventListener("click", rulebook);
+			}
 
 			const element1 = document.getElementById("rulebuk");
-			element1.addEventListener("click", roolbook);
+			if (element1) {
+				element1.addEventListener("click", roolbook);
+			}
 
 			function roolbook() {
 				msg1.style.color = "yellow";
 				msg1.innerHTML = "Register for the Event First!";
-				setTimeout(() => msg1.remove(), 5000);
+				// setTimeout(() => msg1.remove(), 5000);
 			}
 
 			function rulebook() {
 				msg.style.color = "yellow";
-				msg.innerHTML = "Event Has Not Started Yet!";
+				msg.innerHTML =
+					"Event Has Not Started Yet! Will be released soon.";
 				setTimeout(() => msg.remove(), 5000);
 			}
 		</script>
