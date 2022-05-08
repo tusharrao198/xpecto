@@ -212,18 +212,12 @@
 									Your Team
 								</button></a
 							>
-							<%}%> <% if (event.name==='Reel-o-logy' ||
-							event.name === "Somehow, I Manage" || event.name ===
-							"Air Velo" || event.name === "Vision Verse" ||
-							event.name === "Galactic Eye" || event.name ===
-							'\\Epidemic') {%>
+							<%}%> <%if (isEventLive==="true") {%>
 							<a target="_blank" href="<%= event.rulebook_link %>"
 								><button class="btn1 rulebook">
 									Rulebook
 								</button></a
-							>
-							<%} else {%>
-
+							><%} else {%>
 							<a href="#"
 								><button id="rulebook_" class="btn1 rulebook">
 									Rulebook
@@ -231,6 +225,7 @@
 							</a>
 
 							<%}%>
+
 							<!-- outside else condition: if not registered-->
 							<%} else { %>
 
