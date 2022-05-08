@@ -69,6 +69,9 @@
 			marquee a {
 				color: cyan;
 			}
+			.pfont {
+				font-size: 1rem;
+			}
 		</style>
 
 		<title>Xpecto</title>
@@ -79,9 +82,17 @@
 		<%- include ('partials/navbar.ejs') %>
 		<!-- -----HEADER END----- -->
 		<div class="marquee">
-			<div class="inner">
+			<div class="inner" style="margin-right: 2rem;">
 				<marquee>
 					<p style="font-size: 20px">
+						For any Queries: Please join the 
+						<a href="<%=discordlink%>">Discord Server</a>
+						
+					</p>
+				</marquee>
+				<p class="pfont">Updates:</p>
+				<marquee>
+					<p style=" font-size: 20px;">
 						Reel-o-logy Event is live now!
 						<a href="/event?event=Reel-o-logy">Click Here.</a>
 						||||||
