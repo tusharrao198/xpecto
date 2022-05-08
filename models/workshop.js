@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const WorkshopSchema = new mongoose.Schema({
-    club: {
-        type: String,
-        required: true,
-    },
+    // club: {
+    //     type: String,
+    //     required: true,
+    // },
     info: {
         type: String,
         required: true,
@@ -24,11 +24,15 @@ const WorkshopSchema = new mongoose.Schema({
         type: String,
     },
 
-    event_image: {
+    workshop_image: {
         type: String,
         required: true,
     },
-    rulebook_link: {
+    // rulebook_link: {
+    //     type: String,
+    //     required: true,
+    // },
+    workshop_link: {
         type: String,
         required: true,
     },
@@ -38,10 +42,10 @@ const WorkshopSchema = new mongoose.Schema({
         required: true,
     },
 
-    problemset_link: {
-        type: String,
-        required: true,
-    },
+    // problemset_link: {
+    //     type: String,
+    //     required: true,
+    // },
 
     createdAt: {
         type: Date,
@@ -130,14 +134,14 @@ const WorkshopSchema = new mongoose.Schema({
             },
         },
     ],
-    teamMaxSize: {
-        type: Number,
-        required: true,
-    },
-    teamMinSize: {
-        type: Number,
-        required: true,
-    },
+    // teamMaxSize: {
+    //     type: Number,
+    //     required: true,
+    // },
+    // teamMinSize: {
+    //     type: Number,
+    //     required: true,
+    // },
 });
 
 module.exports = mongoose.model("workshop", WorkshopSchema);
