@@ -264,12 +264,12 @@
 							<div class="timeline-content">
 								<%if (event.name==='Reel-o-logy') {%>
 								Participants must submit their Reels from
-								<%}else {%> Participants must submit from<%}%>
+								<%}else {%> The Event will start on<%}%>
 								<b
 									><%= event.start_time.day %> <%=
 									event.start_time.time %></b
 								>
-								to
+								and submission must be made before
 								<b>
 									<%= event.end_time.day %> <%=
 									event.end_time.time %>
