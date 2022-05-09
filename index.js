@@ -117,6 +117,10 @@ app.get("/", async (req, res) => {
 	const homepageinfo = await homepageInfo();
 	const sponinfo = await sponsorsInfo();
 	const faqinfo = await FAQInfo();
+
+	const discordlinkTable = require("./models/discordserverlinks");
+	const dislink = await discordlinkTable.findOne().lean();
+
 	let assoc_spon = [];
 	let title_spon = [];
 
@@ -128,8 +132,7 @@ app.get("/", async (req, res) => {
 		}
 	}
 
-	res.render("index", {
-		authenticated: req.isAuthenticated(),
+	context = {
 		homepageInfo:
 			homepageinfo === null || homepageinfo === undefined
 				? "false"
@@ -139,6 +142,12 @@ app.get("/", async (req, res) => {
 		faqInfo: faqinfo === null || faqinfo === undefined ? "false" : faqinfo,
 		assoc_sponsors: assoc_spon,
 		title_sponsors: title_spon,
+		discordlink: dislink !== null ? dislink.link : "#",
+	};
+
+	res.render("index", {
+		authenticated: req.isAuthenticated(),
+		...context,
 	});
 });
 
@@ -151,12 +160,12 @@ app.get("/generateInviteCode", authCheck, async (req, res) => {
 	res.redirect(`/userTeam?event=${event.name}`);
 });
 
-app.get("/error", (req, res) =>
-	res.send("error logging in", {
-		authenticated: req.isAuthenticated(),
-		user: req.session.user,
-	})
-);
+// app.get("/error", (req, res) =>
+// 	res.send("error logging in", {
+// 		authenticated: req.isAuthenticated(),
+// 		user: req.session.user,
+// 	})
+// );
 
 app.get("/xyzgeneratecodeabc", async (req, res) => {
 	context = {
