@@ -190,8 +190,6 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 
 	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
 	const regUsers = eventDetails.registeredUsers;
-	// console.log("A = ", eventDetails);
-
 	let records = [];
 	for (let i = 0; i < regUsers.length; i++) {
 		const userID = regUsers[i].user_id;
@@ -206,14 +204,31 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 			records.push(userData);
 		}
 	}
-	context = {
-		records: records,
-	};
-	// console.log("rec = ", records);
-	res.render("admin/eventwisereg", {
-		...context,
-		totalreg: records.length,
-	});
+
+	if (records.length === 0) {
+		// res.json({ status: "No registrations yet" });
+		res.send(
+			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
+		);
+	} else {
+		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvParser = new CsvParser({ csvFields });
+		const csvData = csvParser.parse(records);
+		res.setHeader("Content-Type", "text/csv");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=" + eventDetails.name + "_regs.csv"
+		);
+		res.status(200).end(csvData);
+	}
+	// context = {
+	// 	records: records,
+	// };
+	// // console.log("rec = ", records);
+	// res.render("admin/eventwisereg", {
+	// 	...context,
+	// 	totalreg: records.length,
+	// });
 });
 
 // for event coordis.
