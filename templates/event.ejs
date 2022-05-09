@@ -212,7 +212,7 @@
 									Your Team
 								</button></a
 							>
-							<%}%> 
+							<%}%>
 							<!-- outside else condition: if not registered-->
 							<%} else { %>
 
@@ -220,20 +220,20 @@
 								><button class="btn1 rulebook">Register</button>
 							</a>
 
+							<%}%> <%if (isEventLive==="true" ) {%>
+							<a target="_blank" href="<%= event.rulebook_link %>"
+								><button class="btn1 rulebook">
+									Rulebook
+								</button></a
+							>
+							<%} else {%>
+							<a href="#"
+								><button id="rulebook_" class="btn1 rulebook">
+									Rulebook
+								</button>
+							</a>
+
 							<%}%>
-
-							<%if (isEventLive==="true" ) {%>
-								<a target="_blank" href="<%= event.rulebook_link %>"><button class="btn1 rulebook">
-										Rulebook
-									</button></a>
-								<%} else {%>
-									<a href="#"><button id="rulebook_" class="btn1 rulebook">
-											Rulebook
-										</button>
-									</a>
-							
-									<%}%>
-
 						</div>
 					</section>
 					<hr />
@@ -243,7 +243,19 @@
 								Event Description
 							</div>
 							<div class="event-desc-content">
-								<%= event.description %>
+								<%= event.description %> <% if
+								(event.name==="Vision Verse") {%>
+								<div class="event-desc-content">
+									<h4>
+										Event will be held at
+										<a
+											class="submission-link"
+											href="<%= event.problemset_link %>"
+											>Kaggle.</a
+										>
+									</h4>
+								</div>
+								<%}%>
 							</div>
 						</div>
 						<div class="timeline">
@@ -269,12 +281,17 @@
 							<div class="submission-heading">Submission</div>
 							<% if (event.submission_link.length > 0) {%>
 							<div class="submission-content">
-								You have to submit through this
+								<% if (event.name==="Vision Verse") {%>
+								<div class="event-desc-content">
+									<%=event.submission_desc%>
+								</div>
+								<%} else{%> You have to submit through this
 								<a
 									class="submission-link"
 									href="<%= event.submission_link %>"
 									>Submission link.</a
 								>
+								<%}%>
 							</div>
 							<%}else {%>
 							<div class="submission-content">
