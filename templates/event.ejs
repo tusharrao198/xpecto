@@ -212,20 +212,7 @@
 									Your Team
 								</button></a
 							>
-							<%}%> <%if (isEventLive==="true") {%>
-							<a target="_blank" href="<%= event.rulebook_link %>"
-								><button class="btn1 rulebook">
-									Rulebook
-								</button></a
-							><%} else {%>
-							<a href="#"
-								><button id="rulebook_" class="btn1 rulebook">
-									Rulebook
-								</button>
-							</a>
-
-							<%}%>
-
+							<%}%> 
 							<!-- outside else condition: if not registered-->
 							<%} else { %>
 
@@ -233,13 +220,20 @@
 								><button class="btn1 rulebook">Register</button>
 							</a>
 
-							<a href="#"
-								><button id="rulebuk" class="btn1 rulebook">
-									Rulebook
-								</button>
-							</a>
-
 							<%}%>
+
+							<%if (isEventLive==="true" ) {%>
+								<a target="_blank" href="<%= event.rulebook_link %>"><button class="btn1 rulebook">
+										Rulebook
+									</button></a>
+								<%} else {%>
+									<a href="#"><button id="rulebook_" class="btn1 rulebook">
+											Rulebook
+										</button>
+									</a>
+							
+									<%}%>
+
 						</div>
 					</section>
 					<hr />
