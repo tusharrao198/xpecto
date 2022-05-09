@@ -219,7 +219,7 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 // for event coordis.
 
 router.get("/eventcoordilogin", (req, res) => {
-	req.session.admin == "0";
+	req.session.iseventcoord == "0";
 	res.render("eventcoordi/eventcoordilogin");
 });
 
@@ -237,6 +237,7 @@ router.post("/eventcoordiauth", (req, res) => {
 		res.redirect(req.session.returnTo || "/");
 		delete req.session.returnTo;
 	} else {
+		console.log("BB");
 		res.redirect("/eventcoordilogin");
 	}
 });
@@ -258,12 +259,9 @@ router.post("/eventwiseteam", eventCoordiCheck, async (req, res) => {
 	let eventID = req.body.event;
 	eventID = eventID.slice(0, -1);
 	let records = [];
-	// console.log(eventID);
 	const query = { event: eventID };
-	// console.log(query)
 	const teams = await allTeams.find(query).lean();
 	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
-	// console.log(eventDetails);
 	const eventName = eventDetails.name;
 	if (teams.length === 0)
 		return res.send(
@@ -336,7 +334,6 @@ router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
 
 	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
 	const regUsers = eventDetails.registeredUsers;
-	// console.log("A = ", eventDetails);
 
 	let records = [];
 	for (let i = 0; i < regUsers.length; i++) {
@@ -352,14 +349,31 @@ router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
 			records.push(userData);
 		}
 	}
-	context = {
-		records: records,
-	};
-	// console.log("rec = ", records);
-	res.render("eventcoordi/eventwisereg", {
-		...context,
-		totalreg: records.length,
-	});
+
+	if (records.length === 0) {
+		// res.json({ status: "No registrations yet" });
+		res.send(
+			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
+		);
+	} else {
+		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvParser = new CsvParser({ csvFields });
+		const csvData = csvParser.parse(records);
+		res.setHeader("Content-Type", "text/csv");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=" + eventDetails.name + "_regs.csv"
+		);
+		res.status(200).end(csvData);
+	}
+
+	// context = {
+	// 	records: records,
+	// };
+	// res.render("eventcoordi/eventwisereg", {
+	// 	...context,
+	// 	totalreg: records.length,
+	// });
 });
 
 module.exports = router;

@@ -112,9 +112,22 @@
         }
     </style>
     <body>
-        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('../partials/navbar.ejs') %>
-        <!-- -----HEADER END----- -->
+		<!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+		<header class="header-glass active">
+			<div>
+				<img src="images/xpecto-logo-header.png" alt="" />
+				<span>XPECTO'22</span>
+			</div>
+			<nav>
+				<a class="close" id="" href="/">Home</a>
+				<a class="close" id="" href="/eventwiseteam">Events Data</a>
+			</nav>
+			<div class="hamburger">
+				<img class="toggle" src="images/menu_open.svg" alt="" />
+			</div>
+		</header>
+
+		<!-- -----HEADER END----- -->
 
         <div class="" id="page">
             <div class="container">
@@ -124,11 +137,12 @@
                 </div>
             </div>
             <div class="prof-container">
+                <h1 style="color:aliceblue">Generate CSV</h1>
                 <div class="card">
                     <div class="create-container">
                         <h1>For Event Wise Team Details</h1>
                         <hr />
-                        <form action="/eventteamdetails" method="post">
+                        <form action="/eventwiseteam" method="post">
                             <select name="event" id="event">
                                 <% for( let index = 0; index < events.length;
                                 index++ ) { %>
@@ -139,10 +153,14 @@
                             </select>
                             <button type="submit">Submit</button>
                         </form>
-                        </br>
-
+                    </div>
+                    </br>
+                </div>
+                <div class="card">
+                    <div class="create-container">
                         <h1>For event wise Registrations Lists</h1>
-                        <form action="/eventregistrations" method="post">
+                        <hr />
+                        <form action="/eventwiseregs" method="post">
                             <select name="event" id="event">
                                 <% for( let index = 0; index < events.length;
                                 index++ ) { %>
@@ -151,7 +169,7 @@
                                 </option>
                                 <% } %>
                             </select>
-                            <button type="submit">GET event wise Registrations Lists</button>
+                            <button type="submit">Get List</button>
                         </form>
                     </div>
                 </div>

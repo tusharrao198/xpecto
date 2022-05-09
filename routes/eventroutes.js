@@ -61,6 +61,7 @@ router.get("/events", async (req, res) => {
 		checker: checker,
 	});
 });
+
 router.get("/workshops", async (req, res) => {
 	let workTable = require("../models/workshop");
 	const allWorkshops = await workTable.find({}).lean();
@@ -72,6 +73,7 @@ router.get("/workshops", async (req, res) => {
 		checker: checker,
 	});
 });
+
 router.get("/workshopRegister", authCheck, async (req, res) => {
 	const workshop = await findWorkshop(req);
 	const workshopTable = require("../models/workshop");

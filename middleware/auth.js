@@ -21,14 +21,13 @@ module.exports = {
 		}
 	},
 	eventCoordiCheck: function (req, res, next) {
-		console.log("inside eventCoordiCheck", req.session.iseventcoord);
-		if (req.session.iseventcoord == "1") {
-			// req.session.admin = "1";
+		// console.log("inside eventCoordiCheck", req.session.iseventcoord);
+		if (req.session.iseventcoord && req.session.iseventcoord == "1") {
 			req.session.returnTo = req.originalUrl;
 			return next();
 		} else {
 			req.session.returnTo = req.originalUrl;
-			res.redirect("/adminlogin");
+			res.redirect("/eventcoordilogin");
 		}
 	},
 };
