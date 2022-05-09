@@ -211,37 +211,26 @@
 									Your Team
 								</button></a
 							>
-							<%}%> <% if (event.name==='Reel-o-logy' ||
-							event.name === "Somehow, I Manage" || event.name ===
-							"Air Velo" || event.name === "Vision Verse" || event.name === "Galactic Eye" || event.name === '\\Epidemic' || event.name === "Metro in Hills") {%>
-							<a
-								target="_blank"
-								href="assets/<%= event.name %>.pdf"
-								><button class="btn1 rulebook">
-									Rulebook
-								</button></a
-							>
-							<%} else {%>
-
-							<a href="#"
-								><button id="rulebook_" class="btn1 rulebook">
-									Rulebook
-								</button>
-							</a>
-
 							<%}%> <%} else { %>
 							<a href="/eventRegister?event=<%= event.name %>"
 								><button class="btn1 rulebook">Register</button>
 							</a>
 
-							<a href="#"
-								><button id="rulebuk" class="btn1 rulebook">
-									Rulebook
-								</button>
-							</a>
-
 							<%}%>
-
+							<% if (event.name==='Reel-o-logy' || event.name==="Somehow, I Manage" || event.name==="Air Velo" ||
+								event.name==="Vision Verse" || event.name==="Galactic Eye" || event.name==='\\Epidemic' ||
+								event.name==="Metro in Hills" ) {%>
+								<a target="_blank" href="assets/<%= event.name %>.pdf"><button class="btn1 rulebook">
+										Rulebook
+									</button></a>
+								<%} else {%>
+							
+									<a href="#"><button id="rulebook_" class="btn1 rulebook">
+											Rulebook
+										</button>
+									</a>
+							
+									<%}%>
 							<!-- <a
                                 target="_blank"
                                 href="assets/<%= event.name %>.pdf"
@@ -258,24 +247,7 @@
 								Event Description
 							</div>
 							<div class="event-desc-content">
-								<%if(event.name === "Metro in Hills" ){ %>
-						Transportation, one of the crucial tasks in the present world. After many
-						innovations and advancements we have evolved a wide range of
-						transportation systems as per the requirement. But, what about the
-						transportation in Hilly terrains? Though there are many advancements in the
-						plains like metro networks, Electric Vehicles and others, the scenario in these
-						hilly terrains remained at the roads. It might be a bit easy for local people to
-						reach the far places in these hills and valleys, but for visitors, the connectivity
-						is again a big challenge. The time required for reaching the destination too is
-						quite a challenge due to the structure of the road.
-						<br>
-						Let the inner engineer in you handle this by creating an efficient solution
-						which saves a lot of transportation time, increases connectivity and puts a
-						smile on a lot of faces.
-									<% }else { %>
 								<%= event.description %>
-
-								<%}%>
 							</div>
 						</div>
 						<div class="timeline">
