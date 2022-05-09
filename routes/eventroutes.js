@@ -66,13 +66,13 @@ router.get("/workshops", async (req, res) => {
 	const allWorkshops = await workTable.find({}).lean();
 	const checker = isRegistered(req.user, allWorkshops);
 	res.render("workshops", {
-		events: allWorkshops,
+		workshops: allWorkshops,
 		authenticated: req.isAuthenticated(),
 		user: req.user,
 		checker: checker,
 	});
 });
-router.get("/workshopRegister", async (req, res) => {
+router.get("/workshopRegister", authCheck, async (req, res) => {
 	const workshop = await findWorkshop(req);
 	const workshopTable = require("../models/workshop");
 
