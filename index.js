@@ -121,6 +121,9 @@ app.get("/", async (req, res) => {
 	const discordlinkTable = require("./models/discordserverlinks");
 	const dislink = await discordlinkTable.findOne().lean();
 
+	const alumniTable = require("./models/alumnis");
+	const alumnis_data = await alumniTable.find().lean();
+
 	let assoc_spon = [];
 	let title_spon = [];
 
@@ -143,6 +146,7 @@ app.get("/", async (req, res) => {
 		assoc_sponsors: assoc_spon,
 		title_sponsors: title_spon,
 		discordlink: dislink !== null ? dislink.link : "#",
+		alumnis: alumnis_data,
 	};
 
 	res.render("index", {

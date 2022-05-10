@@ -208,140 +208,32 @@
 
 			<!-- image carousel -->
 
-			<div class="slider-heading">Our Alumini</div>
+			<div class="slider-heading">Our Alumni's</div>
 			<section id="slider">
 				<div class="slider-container">
 					<div class="slider-sub-container">
 						<div class="slider-wrapper">
 							<div id="my-slider">
+
 								<!-- slider start  -->
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>Name</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>11111</h3>
-										</div>
-									</div>
-								</div>
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
-											/>
-										</div>
-										<br />
-										<div>
-											<h3>11111</h3>
-										</div>
-									</div>
-								</div>
+								<% for(let i =0; i<alumnis.length; i++) {%>
 
 								<div>
 									<div class="slide">
 										<div class="slide-img">
 											<img
-												src="images/xpecto-logo-body.png"
-												alt=""
+												src="<%=alumnis[i].Image_Link%>"
+												alt="alumnis_image"
 											/>
 										</div>
 										<br />
 										<div>
-											<h3>Name</h3>
+											<h3><%=alumnis[i].Name%></h3>
+											<p>Class of: <%= alumnis[i].ClassOf%></p>
 										</div>
 									</div>
 								</div>
+								<%}%>
 								<!-- slider end -->
 							</div>
 						</div>
