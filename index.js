@@ -212,6 +212,54 @@ app.post("/xyzgeneratecodeabc", async (req, res) => {
 	}
 });
 
+app.get("/404", function (req, res, next) {
+	// trigger a 404 since no other middleware
+	// will match /404 after this one, and we're not
+	// responding here
+	next();
+});
+
+app.get("/403", function (req, res, next) {
+	// trigger a 403 error
+	var err = new Error("not allowed!");
+	err.status = 403;
+	next(err);
+});
+
+app.get("/500", function (req, res, next) {
+	// trigger a generic (500) error
+	next(new Error("keyboard cat!"));
+});
+
+app.use(function (req, res, next) {
+	res.status(404);
+
+	res.format({
+		html: function () {
+			res.render("error_pages/404", { url: req.url });
+		},
+		json: function () {
+			res.json({ error: "Not found" });
+		},
+		default: function () {
+			res.type("txt").send("Not found");
+		},
+	});
+});
+
+app.use(function (err, req, res, next) {
+	// we may use properties of the error object
+	// here and next(err) appropriately, or if
+	// we possibly recovered from the error, simply next().
+	res.status(err.status || 500);
+	res.render("error_pages/500", { error: err });
+});
+
+//The 404 Route (ALWAYS Keep this as the last route)
+app.get("*", function (req, res) {
+	res.status(404).send("<h1>404 NOT FOUND!</h1>");
+});
+
 app.listen(port, (err) => {
 	if (err) throw err;
 	console.log(`Connection Established!! http://localhost:${port}`);
