@@ -47,11 +47,17 @@ router.get("/ourteam", async (req, res) => {
 	});
 });
 
-// router.get("/terms", (req, res) => {
-//     res.render("tnc", {
-//         authenticated: req.isAuthenticated(),
-//     });
-// });
+router.get("/terms", (req, res) => {
+	res.render("terms", {
+		authenticated: req.isAuthenticated(),
+	});
+});
+
+router.get("/privacy", (req, res) => {
+	res.render("privacy", {
+		authenticated: req.isAuthenticated(),
+	});
+});
 
 // router.get("/faq", (req, res) => {
 // 	res.render("faq", {
