@@ -40,12 +40,12 @@ router.get("/event", authCheck, async (req, res) => {
 	// console.log("checke event = ", checker);
 	const context = {
 		event: event,
-		isRegisteredforEvent: checker.toString(),
+		isRegisteredforEvent: checker ? checker.toString() : "false",
 		firstPrizeAmount: event.prices.first,
 		team: team,
 		authenticated: req.isAuthenticated(),
 		team_created: team != null ? "true" : "false",
-		isEventLive: event ? event.live.toString() : "false",
+		isEventLive: event && event.live ? event.live.toString() : "false",
 	};
 	res.render("event", { ...context, user: req.session.user });
 });
@@ -61,6 +61,7 @@ router.get("/events", async (req, res) => {
 		checker: checker,
 	});
 });
+
 router.get("/workshops", async (req, res) => {
 	let workTable = require("../models/workshop");
 	const allWorkshops = await workTable.find({}).lean();
@@ -72,6 +73,7 @@ router.get("/workshops", async (req, res) => {
 		checker: checker,
 	});
 });
+
 router.get("/workshopRegister", authCheck, async (req, res) => {
 	const workshop = await findWorkshop(req);
 	const workshopTable = require("../models/workshop");

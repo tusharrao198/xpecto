@@ -27,7 +27,11 @@ const {
 	isRegisteredforEvent,
 } = require("../utils");
 var url = require("url");
-const { authCheck, adminCheck } = require("../middleware/auth");
+const {
+	authCheck,
+	adminCheck,
+	eventCoordiCheck,
+} = require("../middleware/auth");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const CsvParser = require("json2csv").Parser;
 
@@ -74,6 +78,10 @@ router.get("/adminlogin", (req, res) => {
 });
 
 router.post("/adminauth", (req, res) => {
+	console.log(
+		"process.env.EVENTCOORDIEMAIL = ",
+		process.env.EVENTCOORDIEMAIL
+	);
 	if (
 		req.body.email == process.env.ADMINEMAIL &&
 		req.body.password == process.env.ADMINPASSWORD
@@ -182,7 +190,165 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 
 	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
 	const regUsers = eventDetails.registeredUsers;
-	// console.log("A = ", eventDetails);
+	let records = [];
+	for (let i = 0; i < regUsers.length; i++) {
+		const userID = regUsers[i].user_id;
+		let user = await userDetails.findOne({ _id: userID });
+		if (user) {
+			const userData = {
+				Name: user.displayName,
+				Email: user.email,
+				Phone: user.phoneNumber,
+				RefCode: user.referralCode,
+			};
+			records.push(userData);
+		}
+	}
+
+	if (records.length === 0) {
+		// res.json({ status: "No registrations yet" });
+		res.send(
+			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
+		);
+	} else {
+		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvParser = new CsvParser({ csvFields });
+		const csvData = csvParser.parse(records);
+		res.setHeader("Content-Type", "text/csv");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=" + eventDetails.name + "_regs.csv"
+		);
+		res.status(200).end(csvData);
+	}
+	// context = {
+	// 	records: records,
+	// };
+	// // console.log("rec = ", records);
+	// res.render("admin/eventwisereg", {
+	// 	...context,
+	// 	totalreg: records.length,
+	// });
+});
+
+// for event coordis.
+
+router.get("/eventcoordilogin", (req, res) => {
+	req.session.iseventcoord == "0";
+	res.render("eventcoordi/eventcoordilogin");
+});
+
+router.post("/eventcoordiauth", (req, res) => {
+	console.log(
+		"process.env.EVENTCOORDIEMAIL = ",
+		process.env.EVENTCOORDIEMAIL
+	);
+	if (
+		req.body.email == process.env.EVENTCOORDIEMAIL &&
+		req.body.password == process.env.EVENTCOORDIPASS
+	) {
+		console.log("AS");
+		req.session.iseventcoord = "1";
+		res.redirect(req.session.returnTo || "/");
+		delete req.session.returnTo;
+	} else {
+		console.log("BB");
+		res.redirect("/eventcoordilogin");
+	}
+});
+
+router.get("/eventwiseteam", eventCoordiCheck, async (req, res) => {
+	let eventTable = require("../models/Events");
+	const allEvents = await eventTable.find({}).lean();
+	res.render("eventcoordi/eventteamcsv", {
+		authenticated: false,
+		events: allEvents,
+	});
+});
+
+// generates csv
+router.post("/eventwiseteam", eventCoordiCheck, async (req, res) => {
+	const allTeams = require("../models/Team");
+	const allEvents = require("../models/Events");
+	const userDetails = require("../models/User");
+	let eventID = req.body.event;
+	eventID = eventID.slice(0, -1);
+	let records = [];
+	const query = { event: eventID };
+	const teams = await allTeams.find(query).lean();
+	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
+	const eventName = eventDetails.name;
+	if (teams.length === 0)
+		return res.send(
+			`<h1>No registrations yet for event: ${eventName} </h1>`
+		);
+	for (let i = 0; i < teams.length; i++) {
+		let allMembers = [];
+		const teamName = teams[i].name;
+		let members = teams[i].members;
+		let leaderID = teams[i].teamLeader;
+		for (let j = 0; j < members.length; j++) {
+			const userID = members[j].member_id;
+			let user = await userDetails.findOne({ _id: userID });
+			if (user) {
+				const userData = {
+					Name: user.displayName,
+					Email: user.email,
+					"PhNo.": user.phoneNumber,
+				};
+				allMembers.push(JSON.stringify(userData));
+			}
+		}
+		let leader = await userDetails.findOne({ _id: leaderID });
+		let leaderData;
+		if (leader) {
+			leaderData = {
+				Name: leader.displayName,
+				Email: leader.email,
+				"PhNo.": leader.phoneNumber,
+			};
+			leaderData = JSON.stringify(leaderData);
+		}
+
+		const thisRecord = {
+			eventName: eventName,
+			teamName: teamName,
+			leader: leaderData,
+			teamMembers: allMembers,
+		};
+		records.push(thisRecord);
+	}
+	if (records.length === 0) {
+		// res.json({ status: "No registrations yet" });
+		res.send(`<h1>No registrations yet for event: ${eventName} </h1>`);
+	} else {
+		const csvFields = [
+			"Event Name",
+			"Team Name",
+			"Leader",
+			"Team Memebers",
+		];
+		const csvParser = new CsvParser({ csvFields });
+		const csvData = csvParser.parse(records);
+		res.setHeader("Content-Type", "text/csv");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=" + eventName + ".csv"
+		);
+		res.status(200).end(csvData);
+	}
+});
+
+router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
+	const allTeams = require("../models/Team");
+	const allEvents = require("../models/Events");
+	const userDetails = require("../models/User");
+
+	let eventID = req.body.event;
+	eventID = eventID.slice(0, -1);
+
+	const eventDetails = await allEvents.findOne({ _id: eventID }).lean();
+	const regUsers = eventDetails.registeredUsers;
 
 	let records = [];
 	for (let i = 0; i < regUsers.length; i++) {
@@ -198,11 +364,31 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 			records.push(userData);
 		}
 	}
-	context = {
-		records: records,
-	};
-	// console.log("rec = ", records);
-	res.render("admin/eventwisereg", { ...context, totalreg: records.length });
+
+	if (records.length === 0) {
+		// res.json({ status: "No registrations yet" });
+		res.send(
+			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
+		);
+	} else {
+		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvParser = new CsvParser({ csvFields });
+		const csvData = csvParser.parse(records);
+		res.setHeader("Content-Type", "text/csv");
+		res.setHeader(
+			"Content-Disposition",
+			"attachment; filename=" + eventDetails.name + "_regs.csv"
+		);
+		res.status(200).end(csvData);
+	}
+
+	// context = {
+	// 	records: records,
+	// };
+	// res.render("eventcoordi/eventwisereg", {
+	// 	...context,
+	// 	totalreg: records.length,
+	// });
 });
 
 module.exports = router;
