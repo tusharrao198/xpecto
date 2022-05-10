@@ -299,6 +299,82 @@
 							</div>
 							<%}%>
 						</div>
+
+						<div class="submission">
+							<div class="submission-heading">
+								Event Coordinators
+							</div>
+							<div class="submission-content">
+								<% if (event.coordinators.first &&
+								event.coordinators.first.name !== "") {%>
+								<div>
+									<b
+										>Name: <%= event.coordinators.first.name
+										%> Contact:
+
+										<a
+											href="tel:<%=event.coordinators.first.contact%>"
+											style="
+												color: white;
+												text-decoration: none;
+											"
+										>
+											<span
+												><%=
+												event.coordinators.first.contact
+												%></span
+											>
+										</a>
+									</b>
+								</div>
+								<%}%> <% if (event.coordinators.second &&
+								event.coordinators.second.name !== "") {%>
+								<div>
+									<b
+										>Name: <%=
+										event.coordinators.second.name %>
+										Contact:
+
+										<a
+											href="tel:<%=event.coordinators.second.contact%>"
+											style="
+												color: white;
+												text-decoration: none;
+											"
+										>
+											<span
+												><%=
+												event.coordinators.second.contact
+												%></span
+											>
+										</a>
+									</b>
+								</div>
+								<%}%> <% if (event.coordinators.third &&
+								event.coordinators.third.name !== "") {%>
+								<div>
+									<b
+										>Name: <%= event.coordinators.third.name
+										%> Contact:
+
+										<a
+											href="tel:<%=event.coordinators.third.contact%>"
+											style="
+												color: white;
+												text-decoration: none;
+											"
+										>
+											<span
+												><%=
+												event.coordinators.third.contact
+												%></span
+											>
+										</a>
+									</b>
+								</div>
+								<%}%>
+							</div>
+						</div>
 					</section>
 				</main>
 				<hr />

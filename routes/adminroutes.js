@@ -247,12 +247,11 @@ router.post("/eventcoordiauth", (req, res) => {
 		req.body.email == process.env.EVENTCOORDIEMAIL &&
 		req.body.password == process.env.EVENTCOORDIPASS
 	) {
-		console.log("AS");
 		req.session.iseventcoord = "1";
-		res.redirect(req.session.returnTo || "/");
+		// res.redirect(req.session.returnTo || "/");
+		res.redirect("/eventwiseteam");
 		delete req.session.returnTo;
 	} else {
-		console.log("BB");
 		res.redirect("/eventcoordilogin");
 	}
 });
