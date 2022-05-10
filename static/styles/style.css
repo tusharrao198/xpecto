@@ -13,7 +13,7 @@
 body {
     padding: 0;
 }
-header a{
+header a {
     text-decoration: none;
 }
 /* -----HEADER DESIGNING----- */
@@ -65,14 +65,17 @@ nav {
 
 nav a {
     box-shadow: 0 0 50px -15px #8b9ad9;
-    padding: 7.5px;
+    padding: 5px;
     border-radius: 5px;
     font-weight: 500;
     color: white;
-    margin: 10px;
+    margin: 7.5px;
     text-decoration: none;
     transition: 0.25s;
     letter-spacing: 0.001px;
+}
+nav a:nth-child(1) {
+    margin-top: 1.25rem;
 }
 
 nav a:hover {
@@ -132,11 +135,11 @@ nav a:hover {
         box-shadow: none;
         text-align: center;
         width: 100%;
-        padding: 7.5px;
-        margin: 5px;
+        padding: 5px;
+        margin: 2px;
     }
     nav a:hover {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         background-color: rgb(0, 20, 47);
         box-shadow: none;
         color: rgba(2, 84, 200, 1);
@@ -153,7 +156,8 @@ nav a:hover {
 }
 
 /* -----DESIGNING OF COUNTER SECTION-----  */
-#counter {
+#counter,
+#slider {
     background-image: linear-gradient(
         to right bottom,
         #010022,
@@ -170,9 +174,10 @@ nav a:hover {
         #020111
     );
     background-attachment: fixed;
+}
+#counter {
     padding: 5rem 2rem 2rem 2rem;
 }
-
 #counter .floating-logo img {
     width: 300px;
     animation: float 1.5s infinite;
@@ -592,8 +597,6 @@ nav a:hover {
     margin: 0.5rem 0.25rem;
 }
 
-
-
 hr {
     border-color: white;
     border-bottom: none;
@@ -736,4 +739,72 @@ hr {
 .desc {
     padding: 0 20px 20px;
     line-height: 1.5rem;
+}
+
+#slider {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.slider-container {
+    width: 95%;
+    padding: 1rem;
+    margin: auto;
+}
+
+.slider-sub-container {
+    width: 95%;
+    margin: auto;
+}
+.slide-img {
+    width: 150px;
+    border-radius: 10px;
+    height: 150px;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+    background-color: #060539;
+    padding: 1rem;
+    box-shadow: 0 0 20px -20px black;
+    transition: 0.3s;
+}
+.slide-img img {
+    width: 100%;
+}
+.slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+}
+#my-slider {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+.slide-img:hover {
+    transform: translateY(-2.5px);
+    box-shadow: 0 20px 50px -10px black;
+    transition: 0.3s;
+}
+
+.slider-heading {
+    background-color: #060539;
+    padding: 0.5rem;
+    padding-top: 1.5rem;
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
