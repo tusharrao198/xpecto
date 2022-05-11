@@ -21,6 +21,16 @@ module.exports = {
 			.lean();
 		return workshop;
 	},
+	findWebinar: async function (req) {
+		const current_url = url.parse(req.url, true);
+		const params = current_url.query;
+
+		const webinarTable = require("./models/webinar");
+		const webinar = await webinarTable
+			.findOne({ name: params.webinar })
+			.lean();
+		return webinar;
+	},
 	findEventFromId: async function (event_id) {
 		const eventTable = require("./models/Events");
 		const event = await eventTable.findOne({ _id: event_id }).lean();
@@ -558,7 +568,7 @@ module.exports = {
 		return [referdata, totalreg];
 	},
 	isRegisteredforEvent: function (user, event) {
-		// isRegisteredforEvent means User has signed in and register for event
+		// isRegisteredforEvent = checks for a specific event
 		let checker = false;
 		if (user != null) {
 			for (let j = 0; j < event.registeredUsers.length; j++) {
@@ -570,7 +580,7 @@ module.exports = {
 		return checker;
 	},
 	isRegistered: function (user, events) {
-		// isRegistered means User has signed in.
+		// isRegistered = checks inside all events
 		let checker = [];
 		for (let i = 0; i < events.length; i++) {
 			checker.push(false);

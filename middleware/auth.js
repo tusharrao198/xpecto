@@ -10,7 +10,7 @@ module.exports = {
 		}
 	},
 	adminCheck: function (req, res, next) {
-		console.log("inside adminCheck", req.session.admin);
+		// console.log("inside adminCheck", req.session.admin);
 		if (req.session.admin == "1") {
 			// req.session.admin = "1";
 			req.session.returnTo = req.originalUrl;

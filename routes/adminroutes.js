@@ -49,6 +49,47 @@ router.get("/registrations", adminCheck, async (req, res) => {
 	});
 });
 
+// get registrations list csv
+router.post("/registrations", adminCheck, async (req, res) => {
+	const User = require("../models/User");
+	let regdata = await User.find().lean();
+	let records = [];
+	for (let i = 0; i < regdata.length; i++) {
+		const userData = {
+			Name: regdata[i].displayName,
+			FullName: regdata[i].fullName,
+			FirstName: regdata[i].firstName,
+			Email: regdata[i].email,
+			Phone: regdata[i].phoneNumber,
+			RefCode: regdata[i].referralCode,
+			College: regdata[i].collegeName,
+			Degree: regdata[i].degree,
+			Branch: regdata[i].branch,
+		};
+		records.push(userData);
+	}
+
+	const csvFields = [
+		"Name",
+		"FullName",
+		"FirstName",
+		"Email",
+		"Phone",
+		"RefCodeUsed",
+		"College",
+		"Degree",
+		"Branch",
+	];
+	const csvParser = new CsvParser({ csvFields });
+	const csvData = csvParser.parse(records);
+	res.setHeader("Content-Type", "text/csv");
+	res.setHeader(
+		"Content-Disposition",
+		"attachment; filename=" + "Xpecto_Registrations.csv"
+	);
+	res.status(200).end(csvData);
+});
+
 router.get("/regcodecount", async (req, res) => {
 	const referdata = await numberofReg_referCode();
 	// console.log("referdata = ", referdata);
@@ -78,10 +119,6 @@ router.get("/adminlogin", (req, res) => {
 });
 
 router.post("/adminauth", (req, res) => {
-	console.log(
-		"process.env.EVENTCOORDIEMAIL = ",
-		process.env.EVENTCOORDIEMAIL
-	);
 	if (
 		req.body.email == process.env.ADMINEMAIL &&
 		req.body.password == process.env.ADMINPASSWORD

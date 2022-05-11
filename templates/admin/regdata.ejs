@@ -1,117 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Registrations</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="styles/registrationspublic.css" />
-        <link rel="stylesheet" href="styles/style.css" />
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Registrations</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="styles/registrationspublic.css" />
+		<link rel="stylesheet" href="styles/style.css" />
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-            crossorigin="anonymous"
-        ></script>
-    </head>
-    <style>
-        .container {
-            padding: 1rem;
-            width: 80%;
-            margin: 1rem auto 2rem auto;
-        }
-   body>div{
-        padding: 1rem;
-    }
-    </style>
-    <body>
-        <div>
-           
-            
-            <!-- _id,googleId,email,displayName,firstName,image,status,phoneNumber,createdAt,__v,branch,collegeName,degree,fullName,referralCode -->
-            <div class="table-responsive table-reg">
-                <div class="container text-center row">
-                    <h1>Total Registrations: <%= totalreg %></h1>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+			integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+			integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<style>
+		.container {
+			padding: 1rem;
+			width: 80%;
+			margin: 1rem auto 2rem auto;
+		}
+		body > div {
+			padding: 1rem;
+		}
+	</style>
+	<body>
+		<div>
+			<!-- _id,googleId,email,displayName,firstName,image,status,phoneNumber,createdAt,__v,branch,collegeName,degree,fullName,referralCode -->
+			<div class="table-responsive table-reg">
+				<div class="container text-center row">
+					<h1>Total Registrations: <%= totalreg %></h1>
 
-                    <div class="row">
-                        <h5>
-                            Number of Registrations Outside College: <%=
-                            not_college_count %>
-                        </h5>
-                    </div>
-                    <div class="row">
-                        <h5>
-                            Number of Registrations From College: <%=
-                            college_count %>
-                        </h5>
-                        <a href="/" class="href">
-                            <button class="btn btn-primary m-1">HOME</button>
-                        </a>
+					<div class="row">
+						<h5>
+							Number of Registrations Outside College: <%=
+							not_college_count %>
+						</h5>
+					</div>
+					<div class="row">
+						<h5>
+							Number of Registrations From College: <%=
+							college_count %>
+						</h5>
+						<a href="/" class="href">
+							<button class="btn btn-primary m-1">HOME</button>
+						</a>
 
-                        <a href="/regcodecount" class="href">
-                            <button class="btn btn-primary m-1">
-                                Registrations based on Referral Code
-                            </button>
-                        </a>
+						<a href="/regcodecount" class="href">
+							<button class="btn btn-primary m-1">
+								Registrations based on Referral Code
+							</button>
+						</a>
+						<!-- CSV Generate-->
+						<form action="/registrations" method="post">
+							<button class="btn btn-primary m-1" value="csv">
+								Get CSV
+							</button>
+						</form>
 
-                        <!--  -->
-                    </div>
-                </div>
-                <h4 class="text-primary text-center">
-                    Phone Number if shown 0 in the column means user has not
-                    registered for any event till now.
-                    <br />
-                    OR
-                    <br />
-                    Has join a team thorugh invite code!. (Bug has been fixed
-                    now.)
-                </h4>
-                <table class="table table-striped table-bordered align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">Sr. No.</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">FirstName</th>
-                            <th scope="col">FullName</th>
-                            <th scope="col">PhoneNumber</th>
-                            <th scope="col">CollegeName</th>
-                            <th scope="col">Degree</th>
-                            <th scope="col">Branch</th>
-                            <th scope="col">Referral Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for( let index = 0; index < alluserinfo.length;
-                        index++ ) {%>
-                        <tr>
-                            <th><%= index+1%></th>
-                            <th><%= alluserinfo[index].displayName%></th>
-                            <th><%= alluserinfo[index].email%></th>
-                            <th><%= alluserinfo[index].firstName%></th>
-                            <th><%= alluserinfo[index].fullName%></th>
-                            <th><%= alluserinfo[index].phoneNumber%></th>
-                            <th><%= alluserinfo[index].collegeName%></th>
-                            <th><%= alluserinfo[index].degree%></th>
-                            <th><%= alluserinfo[index].branch%></th>
-                            <th><%= alluserinfo[index].referralCode%></th>
-                        </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <script src="scripts/ejs.js"></script>
-    </body>
+						<!--  -->
+					</div>
+				</div>
+				<h4 class="text-primary text-center">
+					Phone Number if shown 0 in the column means user has not
+					registered for any event till now.
+					<br />
+					OR
+					<br />
+					Has join a team thorugh invite code!. (Bug has been fixed
+					now.)
+				</h4>
+				<table class="table table-striped table-bordered align-middle">
+					<thead>
+						<tr>
+							<th scope="col">Sr. No.</th>
+							<th scope="col">Name</th>
+							<th scope="col">Email</th>
+							<th scope="col">FirstName</th>
+							<th scope="col">FullName</th>
+							<th scope="col">PhoneNumber</th>
+							<th scope="col">CollegeName</th>
+							<th scope="col">Degree</th>
+							<th scope="col">Branch</th>
+							<th scope="col">Referral Code</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for( let index = 0; index < alluserinfo.length;
+						index++ ) {%>
+						<tr>
+							<th><%= index+1%></th>
+							<th><%= alluserinfo[index].displayName%></th>
+							<th><%= alluserinfo[index].email%></th>
+							<th><%= alluserinfo[index].firstName%></th>
+							<th><%= alluserinfo[index].fullName%></th>
+							<th><%= alluserinfo[index].phoneNumber%></th>
+							<th><%= alluserinfo[index].collegeName%></th>
+							<th><%= alluserinfo[index].degree%></th>
+							<th><%= alluserinfo[index].branch%></th>
+							<th><%= alluserinfo[index].referralCode%></th>
+						</tr>
+						<%}%>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script src="scripts/ejs.js"></script>
+	</body>
 </html>
