@@ -808,3 +808,30 @@ hr {
     font-size: 2.5rem;
     font-weight: bold;
 }
+
+#updates {
+    width: 100%;
+    height: 300px;
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: #060539;
+    background-attachment: fixed;
+}
+
+#updates .heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 1rem;
+}
+
+#updates .update-marq {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#updates .update-marq div {
+    margin: 0.5rem;
+}
