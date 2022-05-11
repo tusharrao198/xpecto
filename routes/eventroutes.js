@@ -78,10 +78,21 @@ router.get("/workshopRegister", authCheck, async (req, res) => {
 	const workshop = await findWorkshop(req);
 	const workshopTable = require("../models/workshop");
 
-	await workshopTable.updateOne(
-		{ _id: workshop._id },
-		{ $push: { registeredUsers: { user_id: req.user._id } } }
-	);
+	if (workshop) {
+		const workshop1 = await workshopTable
+			.findOne({ _id: workshop._id })
+			.lean();
+		const checker = isRegisteredforEvent(req.user, workshop1);
+		if (!checker) {
+			await workshopTable.updateOne(
+				{ _id: workshop._id },
+				{ $push: { registeredUsers: { user_id: req.user._id } } }
+			);
+		}
+		// else {
+		// 	console.log("Can register only once");
+		// }
+	}
 	res.redirect(`/workshops`);
 });
 
@@ -164,9 +175,8 @@ router.post("/eventRegister", async (req, res) => {
 			{ _id: event._id },
 			{ $push: { registeredUsers: { user_id: req.user._id } } }
 		);
-	}
-	else {
-		console.log("Sorry, you were already registered")
+	} else {
+		console.log("Sorry, you were already registered");
 	}
 	res.redirect(`/event?event=${event.name}`);
 });
