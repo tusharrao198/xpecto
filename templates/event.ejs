@@ -218,8 +218,7 @@
 
 							<%}%>
 							<!-- For Rulebook-->
-							<%if (isEventLive==="true" ||
-							event.rulebook_link.length>0) {%>
+							<%if (event.rulebook_link.length>0) {%>
 							<a target="_blank" href="<%= event.rulebook_link %>"
 								><button class="btn1 rulebook">
 									Rulebook
@@ -235,6 +234,25 @@
 
 							<%}%>
 						</div>
+						<% if(isRegisteredforEvent==="true") {%>
+							<div class="btn-group">
+							<!-- For PS-->
+							<%if (isEventLive==="true" && event.problemset_link.length>0) {%>
+							<a target="_blank" href="<%= event.problemset_link %>"
+								><button class="btn1 rulebook">
+									Problem Statement
+								</button></a
+							>
+
+							<%} else {%>
+							<a href="#"
+								><button id="problemset" class="btn1 rulebook">
+									Problem Statement
+								</button>
+							</a>
+
+							<%}%></div>
+							<%}%>
 					</section>
 					<hr />
 					<section class="second">
@@ -461,6 +479,17 @@
 			const element1 = document.getElementById("rulebuk");
 			if (element1) {
 				element1.addEventListener("click", roolbook);
+			}
+
+			const element2 = document.getElementById("problemset");
+			if (element2) {
+				element2.addEventListener("click", problemset);
+			}
+
+			function problemset() {
+				msg1.style.color = "yellow";
+				msg1.innerHTML = "Problem Statement to be released soon!";
+				setTimeout(() => msg1.remove(), 10000);
 			}
 
 			function roolbook() {
