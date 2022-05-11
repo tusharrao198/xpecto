@@ -277,7 +277,7 @@
 											<% for(let j=0; j<webinars[i].speakers.length; j++) {%>
 												<div class="speaker-container">
 													<div class="speaker-name-img">
-													<img src="" alt="">
+													<img src="<%= webinars[i].speakers[j].image %>" alt="">
 													<h5><%= j+1 %>. <%= webinars[i].speakers[j].name %></h5>
 												    </div>
 													<div class="speaker-dur-qual">
