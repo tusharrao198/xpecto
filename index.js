@@ -13,6 +13,7 @@ const teamRoutes = require("./routes/teamroutes");
 const navRoutes = require("./routes/navroutes");
 const adminRoutes = require("./routes/adminroutes");
 const webinarRoutes = require("./routes/webinarroutes");
+const workshopRoutes = require("./routes/workshoproutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
 const workshops = require("./models/workshop");
@@ -49,9 +50,6 @@ const {
 var url = require("url");
 
 const code = require("./models/code.js");
-const { name } = require("ejs");
-const { is } = require("express/lib/request");
-const res = require("express/lib/response");
 const { none } = require("./multer.js");
 
 // Load config
@@ -114,6 +112,7 @@ app.use("/", teamRoutes);
 app.use("/", navRoutes);
 app.use("/", adminRoutes);
 app.use("/", webinarRoutes);
+app.use("/", workshopRoutes);
 
 app.get("/", async (req, res) => {
 	const homepageinfo = await homepageInfo();

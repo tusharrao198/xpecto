@@ -62,36 +62,6 @@ router.get("/events", async (req, res) => {
 	});
 });
 
-router.get("/workshops", async (req, res) => {
-	let workTable = require("../models/workshop");
-	const allWorkshops = await workTable.find({}).lean();
-	const checker = isRegistered(req.user, allWorkshops);
-	res.render("workshops", {
-		workshops: allWorkshops,
-		authenticated: req.isAuthenticated(),
-		user: req.user,
-		checker: checker,
-	});
-});
-
-router.get("/workshopRegister", authCheck, async (req, res) => {
-	const workshop = await findWorkshop(req);
-	const workshopTable = require("../models/workshop");
-
-	if (workshop) {
-		const checker = isRegisteredforEvent(req.user, workshop);
-		if (!checker) {
-			await workshopTable.updateOne(
-				{ _id: workshop._id },
-				{ $push: { registeredUsers: { user_id: req.user._id } } }
-			);
-		} else {
-			console.log("Can register only once");
-		}
-	}
-	res.redirect(`/workshops`);
-});
-
 router.get("/eventRegister", authCheck, async (req, res) => {
 	const event = await findEvent(req);
 	const userinfo = await userDetails(req.user._id);

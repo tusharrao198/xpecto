@@ -163,7 +163,15 @@
 									Register
 								</button></a
 							>
+							<%} else {%>
+							<div
+								class="msg"
+								style="color: yellow; font-size: 1.5rem"
+							>
+								Already Registered for the Webinar!
+							</div>
 							<%}%>
+
 							<a
 								target="_blank"
 								href="<%=workshops[i].workshop_link %>"
