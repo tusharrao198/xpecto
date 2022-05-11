@@ -91,22 +91,12 @@
 			<div class="inner" style="margin-right: 2rem">
 				<marquee>
 					<p style="font-size: 20px">
-						For any Queries: Please join the
-						<a href="<%=discordlink%>">Discord Server</a>
-					</p>
-				</marquee>
-				<p class="pfont">Updates:</p>
-				<marquee>
-					<p style="font-size: 20px">
-						Reel-o-logy Event is live now!
-						<a href="/event?event=Reel-o-logy">Click Here.</a>
-						||||||
-						<a href="/event?event=Vision%20Verse">Vision Verse</a>
-						<a href="/event?event=Air%20Velo">Air Velo</a>
-						<a href="/event?event=Somehow,%20I%20Manage"
-							>Somehow I Manage</a
-						>
-						Event Rulebooks are released!
+						Updates:  
+						<%for (let i=0; i<updatesdata.length; i++) {%>
+							<%= updatesdata[i].first%>
+							<a href="<%= updatesdata[i].link%>"><%= updatesdata[i].link_text%></a>
+							<%= updatesdata[i].third%> ||||
+						<%}%>
 					</p>
 				</marquee>
 			</div>
@@ -205,43 +195,6 @@
 				<!-- -----BUTTONS END----- -->
 			</section>
 			<!-- -----ABOUT SECTION END----- -->
-
-			<!-- image carousel -->
-
-			<div class="slider-heading">Our Alumni's</div>
-			<section id="slider">
-				<div class="slider-container">
-					<div class="slider-sub-container">
-						<div class="slider-wrapper">
-							<div id="my-slider">
-
-								<!-- slider start  -->
-								<% for(let i =0; i<alumnis.length; i++) {%>
-
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="<%=alumnis[i].Image_Link%>"
-												alt="alumnis_image"
-											/>
-										</div>
-										<br />
-										<div>
-											<h3><%=alumnis[i].Name%></h3>
-											<p>Class of: <%= alumnis[i].ClassOf%></p>
-										</div>
-									</div>
-								</div>
-								<%}%>
-								<!-- slider end -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<!-- image carousel end  -->
 
 			<!-- CONTACT SECTION START  -->
 			<section id="contact">
@@ -393,6 +346,43 @@
 				<br />
 			</section>
 			<!-- -----SPONSORS SECTION END----- -->
+
+			<!-- image carousel -->
+
+			<div class="slider-heading">Individual Sponsor</div>
+			<section id="slider">
+				<div class="slider-container">
+					<div class="slider-sub-container">
+						<div class="slider-wrapper">
+							<div id="my-slider">
+
+								<!-- slider start  -->
+								<% for(let i =0; i<alumnis.length; i++) {%>
+
+								<div>
+									<div class="slide">
+										<div class="slide-img">
+											<img
+												src="<%=alumnis[i].Image_Link%>"
+												alt="alumnis_image"
+											/>
+										</div>
+										<br />
+										<div>
+											<h3><%=alumnis[i].Name%></h3>
+											<p>Class of: <%= alumnis[i].ClassOf%></p>
+										</div>
+									</div>
+								</div>
+								<%}%>
+								<!-- slider end -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- image carousel end  -->
 
 			<!-- -----FAQ Section-----  -->
 			<section id="faq">

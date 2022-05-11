@@ -124,13 +124,16 @@ app.get("/", async (req, res) => {
 	const alumniTable = require("./models/alumnis");
 	const alumnis_data = await alumniTable.find().lean();
 
+	const updateTable = require("./models/updates");
+	const update_data = await updateTable.find().lean();
+
 	let assoc_spon = [];
 	let title_spon = [];
 
 	for (let i = 0; i < sponinfo.length; i++) {
-		if (sponinfo[i].spon_type === "Associate Sponsors") {
+		if (sponinfo[i].spon_type === "Event Associate Sponsors") {
 			assoc_spon.push(sponinfo[i]);
-		} else if (sponinfo[i].spon_type === "Title Sponsors") {
+		} else if (sponinfo[i].spon_type === "Event Title Sponsors") {
 			title_spon.push(sponinfo[i]);
 		}
 	}
@@ -147,6 +150,7 @@ app.get("/", async (req, res) => {
 		title_sponsors: title_spon,
 		discordlink: dislink !== null ? dislink.link : "#",
 		alumnis: alumnis_data,
+		updatesdata: update_data,
 	};
 
 	res.render("index", {
