@@ -155,12 +155,19 @@ router.post("/eventRegister", async (req, res) => {
 		);
 	}
 
-	const eventTable = require("../models/Events");
+	let checker = isRegisteredforEvent(req.user, event);
 
-	await eventTable.updateOne(
-		{ _id: event._id },
-		{ $push: { registeredUsers: { user_id: req.user._id } } }
-	);
+	if (!checker) {
+		const eventTable = require("../models/Events");
+
+		await eventTable.updateOne(
+			{ _id: event._id },
+			{ $push: { registeredUsers: { user_id: req.user._id } } }
+		);
+	}
+	else {
+		console.log("Sorry, you were already registered")
+	}
 	res.redirect(`/event?event=${event.name}`);
 });
 
