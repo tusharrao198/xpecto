@@ -31,7 +31,7 @@
 		></script>
 		<link rel="stylesheet" href="styles/page.css" />
 		<link rel="stylesheet" href="styles/style.css" />
-		<title>Webinar | Xpecto</title>
+		<title>Webinars | Xpecto</title>
 	</head>
 	<style>
 		#more {
@@ -254,7 +254,7 @@
 					<!-- <span>&nbsp;P</span> -->
 				</div>
 			</div>
-			<div class="content">
+			<div class="content">				
 				<h1 class="webinarhead">WEBINARS</h1>
 				<div class="events-list-container">
 					<!-- card start -->
@@ -291,7 +291,6 @@
 												<hr>
 											<%}%>
 										</div>
-
 								<%}%> 
 							</div>
 								<%if (webinars[i].webinar_benefits.length !==
@@ -307,14 +306,29 @@
 								<!-- <hr /> -->
 								<br />
 								<% if(checker[i]==false) {%>
-								<a
-									href="/webinarRegister?webinar=<%=webinars[i].name %>"
-									><button class="event-register">
-										Register
-									</button></a
-								>
-								<%}%>
-
+											<a
+												href="/webinarRegister?webinar=<%=webinars[i].name %>"
+												><button class="event-register">
+													Register
+												</button></a
+											>	
+								<%} else {%>
+									<div class="msg" style="color:yellow; font-size: 1.5rem;"> Already Registered for the Webinar!</div>
+								<%}%>		
+									<a href="/webinar?webinar=<%=webinars[i].name %>"
+										><button class="event-register">
+										Webinar Info
+										</button></a
+									>					
+									<!--
+									<a
+										target="_blank"
+										href="<%=webinars[i].webinar_link %>"
+										><button class="event-register">
+											Webinar Info
+										</button></a
+									>-->
+						
 							</div>
 					</div>
 					<%}%>

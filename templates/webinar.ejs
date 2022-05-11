@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:url" content="https://xpecto.tech/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Xpecto" />
+		<meta
+			name="description"
+			content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying webinars, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+		/>
+		<meta
+			name="keywords"
+			content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="images/xpecto-logo-header.png"
+		/>
+		<script
+			src="https://kit.fontawesome.com/a1542a4884.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="styles/page.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<title>Webinar | Xpecto</title>
+	</head>
+	<style>
+		#more {
+			display: none;
+		}
+
+		#page .container {
+			padding-top: 2.25rem;
+			width: 250px;
+		}
+
+		#page .heading span {
+			font-size: 2.25rem;
+			padding-right: 2.5rem;
+			transform: skew(0deg);
+		}
+
+		#page .heading {
+			line-height: 1.5;
+			padding-left: 7.5rem;
+			padding-top: 25%;
+			display: flex;
+			align-items: baseline;
+			transform: skewX(-7.5deg);
+		}
+
+		@media (max-width: 480px) {
+			#page .content {
+				padding: 2rem 0.25rem;
+			}
+		}
+
+		.team-size {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 0.5rem;
+		}
+
+		body {
+			background: url("../images/svg/hexagon.svg");
+			background-attachment: fixed;
+		}
+
+		.event-list-container {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.event-card-container {
+			width: 95%;
+			margin: 1.75rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.event-name {
+			font-size: 2.25rem;
+		}
+
+		.event-register {
+			margin: 1.5rem;
+			font-size: 1.5rem;
+			width: 200px !important;
+		}
+
+		@media (max-width: 600px) {
+			.event-register {
+				margin: 1rem;
+				font-size: 1.25rem;
+				width: 150px !important;
+			}
+
+			.event-card-container {
+				margin: 1.5rem;
+			}
+			.webinarhead {
+				font-size: 1.5rem;
+				text-align: center;
+			}
+		}
+
+		.event-description {
+			margin-top: 1rem;
+			font-size: 1.5rem;
+		}
+		.webinarhead {
+			font-size: 4rem;
+			text-align: center;
+		}
+	</style>
+
+	<body>
+		<!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+		<%- include ('partials/navbar.ejs') %>
+		<!-- -----HEADER END----- -->
+		<div class="" id="page">
+			<div class="container">
+				<div class="heading" style="color: aqua">
+					<span>&nbsp;W</span>
+					<span>&nbsp;E</span>
+					<span>&nbsp;B</span>
+					<span>&nbsp;I</span>
+					<span>&nbsp;N</span>
+					<span>&nbsp;A</span>
+					<span>&nbsp;R</span>
+					<!-- <span>&nbsp;P</span> -->
+				</div>
+			</div>
+			<div class="content">
+				<h1 class="webinarhead">Webinar</h1>
+				<div class="events-list-container">
+					<!-- card start -->
+										<div class="event-card-container">
+							<div class="event-card">
+								<div class="event-name" style="color: aqua">
+									<%= webinar.name %>
+								</div>
+								<div class="">
+									<%= webinar.description %>
+								</div>
+
+								<%if (webinar.speakers.length !==0) {%>
+										<div class="">
+											<h3>Speakers</h3>
+											<% for(let j=0; j<webinar.speakers.length; j++) {%>
+												<h5><%= j+1 %>. <%= webinar.speakers[j].name %></h5>
+												<p>Qualifications: <%= webinar.speakers[j].desc %></p>
+												<ul></ul>
+												<!-- <%if (webinar.speakers[j].rest_desc.length !==0) {%>
+													<ul><%= webinar.speakers[j].rest_desc %></ul>
+												<%}%> -->
+												<ul>Duration: <%= webinar.speakers[j].duration%> (Max)</ul>
+													
+												
+											<%}%>
+										</div>
+
+								<%}%> 
+								
+								<%if (webinar.webinar_benefits.length !==
+								0) {%>
+								<div class="">
+									<h4>Webinar Benefits</h4>
+									<%= webinar.webinar_benefits %>
+								</div>
+
+								<%}%>
+								<hr />
+								<br />
+								<div class="msg" style="color:yellow; font-size: 1.5rem;"></div>
+								<% if(checker==false) {%>
+								<a
+									href="/webinarRegister?webinar=<%=webinar.name %>"
+									><button id="webreg" class="event-register">
+										Register
+									</button></a
+								>
+								<%}%>
+								<!--
+								<a
+									target="_blank"
+									href="<%=webinar.webinar_link %>"
+									><button class="event-register">
+										Webinar Info
+									</button></a
+								>-->
+							</div>
+					</div>
+
+					<!-- card end -->
+				</div>
+			</div>
+		</div>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/ejs.js"></script>
+		<script type="text/javascript">
+            let isRegisteredForWebinar= ejs.render("<%= checker %>").toString();
+			const msg = document.querySelector(".msg");
+			const webreg = document.querySelector(".webreg");
+			if (isRegisteredForWebinar ==="true") {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Already Registered for the Webinar!";
+                // setTimeout(() => msg.remove(), 2000);
+				webreg.disabled = true;
+			}else {
+				webreg.disabled = false;
+			}
+						
+		</script>
+	</body>
+</html>
