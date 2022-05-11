@@ -50,21 +50,31 @@ router.get("/webinarRegister", authCheck, async (req, res) => {
 	const webinarTable = require("../models/webinar");
 
 	if (webinar) {
-		const webinar1 = await webinarTable
-			.findOne({ _id: webinar._id })
-			.lean();
-		const checker = isRegisteredforEvent(req.user, webinar1);
+		const checker = isRegisteredforEvent(req.user, webinar);
 		if (!checker) {
 			await webinarTable.updateOne(
 				{ _id: webinar._id },
 				{ $push: { registeredUsers: { user_id: req.user._id } } }
 			);
+		} else {
+			console.log("Can register only once");
 		}
-		// else {
-		// 	console.log("Can register only once");
-		// }
 	}
-	res.redirect(`/webinars`);
+	res.redirect(`/webinar?webinar=${webinar.name}`);
+});
+
+router.get("/webinar", authCheck, async (req, res) => {
+	const webinar = await findWebinar(req);
+	const checker = isRegisteredforEvent(req.user, webinar);
+	// console.log("checke webinar = ", checker, "\n", webinar);
+
+	const context = {
+		webinar: webinar,
+		authenticated: req.isAuthenticated(),
+		user: req.session.user,
+		checker: checker,
+	};
+	res.render("webinar", context);
 });
 
 module.exports = router;

@@ -79,19 +79,15 @@ router.get("/workshopRegister", authCheck, async (req, res) => {
 	const workshopTable = require("../models/workshop");
 
 	if (workshop) {
-		const workshop1 = await workshopTable
-			.findOne({ _id: workshop._id })
-			.lean();
-		const checker = isRegisteredforEvent(req.user, workshop1);
+		const checker = isRegisteredforEvent(req.user, workshop);
 		if (!checker) {
 			await workshopTable.updateOne(
 				{ _id: workshop._id },
 				{ $push: { registeredUsers: { user_id: req.user._id } } }
 			);
+		} else {
+			console.log("Can register only once");
 		}
-		// else {
-		// 	console.log("Can register only once");
-		// }
 	}
 	res.redirect(`/workshops`);
 });

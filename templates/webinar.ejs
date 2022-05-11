@@ -31,7 +31,7 @@
 		></script>
 		<link rel="stylesheet" href="styles/page.css" />
 		<link rel="stylesheet" href="styles/style.css" />
-		<title>Webinars | Xpecto</title>
+		<title>Webinar | Xpecto</title>
 	</head>
 	<style>
 		#more {
@@ -141,78 +141,86 @@
 					<!-- <span>&nbsp;P</span> -->
 				</div>
 			</div>
-			<div class="content">				
-				<h1 class="webinarhead">WEBINARS</h1>
+			<div class="content">
+				<h1 class="webinarhead">Webinar</h1>
 				<div class="events-list-container">
 					<!-- card start -->
-					<% for (let i=0; i < webinars.length; i++) { %>
-					<div class="event-card-container">
+										<div class="event-card-container">
 							<div class="event-card">
 								<div class="event-name" style="color: aqua">
-									<%= webinars[i].name %>
+									<%= webinar.name %>
 								</div>
 								<div class="">
-									<%= webinars[i].description %>
+									<%= webinar.description %>
 								</div>
 
-								<%if (webinars[i].speakers.length !==0) {%>
+								<%if (webinar.speakers.length !==0) {%>
 										<div class="">
 											<h3>Speakers</h3>
-											<% for(let j=0; j<webinars[i].speakers.length; j++) {%>
-												<h5><%= j+1 %>. <%= webinars[i].speakers[j].name %></h5>
-												<p>Qualifications: <%= webinars[i].speakers[j].desc %></p>
+											<% for(let j=0; j<webinar.speakers.length; j++) {%>
+												<h5><%= j+1 %>. <%= webinar.speakers[j].name %></h5>
+												<p>Qualifications: <%= webinar.speakers[j].desc %></p>
 												<ul></ul>
-												<!-- <%if (webinars[i].speakers[j].rest_desc.length !==0) {%>
-													<ul><%= webinars[i].speakers[j].rest_desc %></ul>
+												<!-- <%if (webinar.speakers[j].rest_desc.length !==0) {%>
+													<ul><%= webinar.speakers[j].rest_desc %></ul>
 												<%}%> -->
-												<ul>Duration: <%= webinars[i].speakers[j].duration%> (Max)</ul>
+												<ul>Duration: <%= webinar.speakers[j].duration%> (Max)</ul>
 													
 												
 											<%}%>
 										</div>
+
 								<%}%> 
 								
-								<%if (webinars[i].webinar_benefits.length !==
+								<%if (webinar.webinar_benefits.length !==
 								0) {%>
-									<div class="">
-										<h4>Webinar Benefits</h4>
-										<%= webinars[i].webinar_benefits %>
-									</div>
+								<div class="">
+									<h4>Webinar Benefits</h4>
+									<%= webinar.webinar_benefits %>
+								</div>
+
 								<%}%>
 								<hr />
 								<br />
-								<% if(checker[i]==false) {%>
-											<a
-												href="/webinarRegister?webinar=<%=webinars[i].name %>"
-												><button class="event-register">
-													Register
-												</button></a
-											>	
-								<%} else {%>
-									<div class="msg" style="color:yellow; font-size: 1.5rem;"> Already Registered for the Webinar!</div>
-								<%}%>		
-									<a href="/webinar?webinar=<%=webinars[i].name %>"
-										><button class="event-register">
+								<div class="msg" style="color:yellow; font-size: 1.5rem;"></div>
+								<% if(checker==false) {%>
+								<a
+									href="/webinarRegister?webinar=<%=webinar.name %>"
+									><button id="webreg" class="event-register">
+										Register
+									</button></a
+								>
+								<%}%>
+								<!--
+								<a
+									target="_blank"
+									href="<%=webinar.webinar_link %>"
+									><button class="event-register">
 										Webinar Info
-										</button></a
-									>					
-									<!--
-									<a
-										target="_blank"
-										href="<%=webinars[i].webinar_link %>"
-										><button class="event-register">
-											Webinar Info
-										</button></a
-									>-->
-						
+									</button></a
+								>-->
 							</div>
 					</div>
-					<%}%>
+
 					<!-- card end -->
 				</div>
 			</div>
 		</div>
 		<script src="scripts/script.js"></script>
 		<script src="scripts/ejs.js"></script>
+		<script type="text/javascript">
+            let isRegisteredForWebinar= ejs.render("<%= checker %>").toString();
+			const msg = document.querySelector(".msg");
+			const webreg = document.querySelector(".webreg");
+			if (isRegisteredForWebinar ==="true") {
+                msg.style.color = "yellow";
+                msg.innerHTML = "Already Registered for the Webinar!";
+                // setTimeout(() => msg.remove(), 2000);
+				webreg.disabled = true;
+			}else {
+				webreg.disabled = false;
+			}
+						
+		</script>
 	</body>
 </html>
