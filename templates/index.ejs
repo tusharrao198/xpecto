@@ -171,16 +171,14 @@
 
             <!-- -----UPDATES SECTION START----- -->
             <section id="updates">
-                <div class="heading">Updates</div>
+                <div class="heading">Updates: </div>
                 <marquee class="update-marq" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
-					<div> This text will scroll from bottom to top</div>
-					<div> This text will scroll from bottom to top</div>
-					<div> This text will scroll from bottom to top</div>
-					<div> This text will scroll from bottom to top</div>
-					<div> This text will scroll from bottom to top</div>
-
+					<%for (let i=0; i<updatesdata.length; i++) {%>
+						<div>
+							<%= updatesdata[i].first%> <a href="<%= updatesdata[i].link%>"><%= updatesdata[i].link_text%></a> <%= updatesdata[i].third%>
+						</div>
+					<%}%>
 				</marquee>
-                </marquee>
             </section>
 
             <!-- -----UPDATES SECTION END----- -->
@@ -474,10 +472,10 @@
 				controls: false,
 				// gutter:20,
 				// items: 3,
-				speed: 750,
+				speed: 3000,
 				autoplay: true,
 				autoplayHoverPause: true,
-				autoplayTimeout: 1500,
+				autoplayTimeout: 2000,
 				// autoplayText: ["▶", "❚❚"],
 				swipeAngle: false,
 				autoplayButtonOutput: false,
