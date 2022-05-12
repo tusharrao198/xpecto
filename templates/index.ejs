@@ -317,7 +317,8 @@
 						< assoc_sponsors.length; i++) { %>
 						<div class="spon card">
 							<img
-								src="images/spon/<%=assoc_sponsors[i].spon_imagelink%>.png"
+								src="<%=assoc_sponsors[i].spon_imagelink%>"
+
 								alt="<%=assoc_sponsors[i].sponsor_name%>-logo"
 							/>
 						</div>
@@ -335,7 +336,7 @@
 							<%if (title_sponsors.length>0) {%> <% for (let i =
 							0; i < title_sponsors.length; i++) { %>
 							<img
-								src="images/spon/<%=title_sponsors[i].spon_imagelink%>.png"
+								src="<%=title_sponsors[i].spon_imagelink%>"
 								alt="<%=title_sponsors[i].sponsor_name%>-logo"
 							/>
 

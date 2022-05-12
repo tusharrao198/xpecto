@@ -235,10 +235,13 @@
 							<%}%>
 						</div>
 						<% if(isRegisteredforEvent==="true") {%>
-							<div class="btn-group">
+						<div class="btn-group">
 							<!-- For PS-->
-							<%if (isEventLive==="true" && event.problemset_link.length>0) {%>
-							<a target="_blank" href="<%= event.problemset_link %>"
+							<%if (isEventLive==="true" &&
+							event.problemset_link.length>0) {%>
+							<a
+								target="_blank"
+								href="<%= event.problemset_link %>"
 								><button class="btn1 rulebook">
 									Problem Statement
 								</button></a
@@ -251,8 +254,9 @@
 								</button>
 							</a>
 
-							<%}%></div>
 							<%}%>
+						</div>
+						<%}%>
 					</section>
 					<hr />
 					<section class="second">
@@ -279,40 +283,24 @@
 						<div class="timeline">
 							<div class="timeline-heading">Timeline</div>
 							<%if (event.start_time.day != 0) {%>
-								<div class="timeline-content">
-									<%if (event.name==='Reel-o-logy') {%>
-										Participants must submit their Reels from
-									
-									<%}else {%> 	
-										<!--event.name==="Somehow, I Manage"-->							
-										<%if (event.name==="Somehow, I Manage") {%>
-											Pre-Event starts on											<b
-												><%= event.pre_event.start_time.day %> <%=
-												event.pre_event.start_time.time %></b
-											>
-											and submission must be made before
-											<b>
-												<%= event.pre_event.end_time.day %> <%=
-												event.pre_event.end_time.time %>
-											</b>
+							<div class="timeline-content">
+								<%if (event.name==='Reel-o-logy') {%>
+								Participants must submit their Reels from
+								<%}else {%>
+								<li>
+									The Event will start on<%}%>
+									<b
+										><%= event.start_time.day %> <%=
+										event.start_time.time %></b
+									>
+									and submission must be made before
+									<b>
+										<%= event.end_time.day %> <%=
+										event.end_time.time %>
+									</b>
+								</li>
+							</div>
 
-										<%}%>
-										<!--event.name==="Somehow, I Manage"-->		
-
-										<!--else not event.name==="Somehow, I Manage"-->
-										</br>
-										The Event will start on<%}%>
-											<b
-												><%= event.start_time.day %> <%=
-												event.start_time.time %></b
-											>
-											and submission must be made before
-											<b>
-												<%= event.end_time.day %> <%=
-												event.end_time.time %>
-											</b>
-											<!--else not event.name==="Somehow, I Manage"-->
-									</div>
 							<%} else {%> To be Updated Soon! <%}%>
 						</div>
 						<div class="submission">
@@ -459,6 +447,14 @@
 								<%= event.prices.third %>
 							</div>
 						</div>
+						<% if (event.name === "Dementia") {%>
+						<div class="prize">
+							<div class="prize-heading">College Best</div>
+							<div class="prize-name">
+								<%= event.prices.collegeBest %>
+							</div>
+						</div>
+						<%}%>
 					</div>
 				</footer>
 
