@@ -1,0 +1,170 @@
+[
+  {
+    "info": "Opening Ceremony",
+    "name": "Keytalk 1 - (Opening Ceremony)",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+      "day": "13th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+      "day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+      {
+        "name": "Sri Hari Babu Srivastava",
+        "desc": "Dr. HB Srivastava, who recently took over as Director General (Technology Management) on OS & SC-H, is our Chief guest.",
+        "rest_desc": "He was also the Director of LASTEC, Electronics and Computer Science at DRDO Headquarters. Dr. Srivastava is an IIT Roorkee and IIT Kanpur alumnus, as well as a life member of the Optical Society of India (OSI) the Instrument Society of India (ISOI), and a former Joint Secretary of the ISOI national executive.",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  },
+	{
+    "info": "Closing Ceremony",
+    "name": "Keytalk 2 - (Closing Ceremony)",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+      "day": "16th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+      "day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+      {
+        "name": "Aloknath De ",
+        "desc": "Dr. De is the CTO of Samsung R&D Institute India recognized as one of the 'Most Influential CIO/CTOs of India' and also named in Top50 Global CTOs.",
+        "rest_desc": "He received Graham Bell Prize (Canada), IETE Memorial Award, IDC Insights Award, Vanguard Intrapreneurship Award, Nasscom AI GameChanger Award; and also from IESA for 'Innovative Product', Zinnov for 'Intrapreneur of the Year', Assocham for 'Tech Leader of the Year' and TechCircle for 'Business Transformation'.",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  },
+	{
+    "info": "",
+    "name": "Talk on 'Towards Holistic Science and Technology'",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+      "day": "16th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+      "day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+      {
+        "name": "Dr Laxmidhar Behera",
+        "desc": "",
+        "rest_desc": "",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  },
+	{
+    "info": "",
+    "name": "Talk on “Getting Started with AI Research”",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+      "day": "16th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+      "day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+      {
+        "name": "Ramit Sawhney",
+        "desc": "Mr Ramit Sawhney is an Engineering Manager at Tower Research Capital working on Quantitative Risk Analytics and Market Manipulation Detection. Mr. Sawhney is also a researcher at IIIT Delhi, USC’s AI Institute, and the University of Marburg.",
+        "rest_desc": "His experience lies in Distributed Systems (Building low-latency large-scale applications across varying data schemas and client requirements), Quantitative Analytics, and AI (NLP, Recsys, GNNs, sequence/temporal models). His research interests are broadly focused on Natural Language Processing, Computational Social Science and Quantitative Finance. His work in Natural Language Processing, Computational Social Science, and Quantitative Finance has been presented at several prestigious NLP and AI Conferences including ACL, EMNLP, NAACL, AAAI, WSDM, ACM Multimedia, and more.",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  },
+	{
+		"info": "",
+    "name": "Talk on “Decluttering the Electric Vehicle boom”",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+			"day": "16th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+			"day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+			{
+				"name": "Pratik Gupta",
+        "desc": "Mr. Pratik Gupta is an Electric Automobile enthusiast, and experienced Entrepreneur specializing in RnD, rapid development, and deployment mainly in Automotive, Embedded Control Systems, RF, and Robotics. ",
+				"rest_desc": "He is also an Advisory Board Member – R & D Cell at K J Somaiya Institute of Engineering and Information Technology, and at V.E.S. Polytechnic. Mr. Gupta completed his post-graduation in Telecommunications Engineering from the University of Maryland College Park. Besides this, he has also been the Managing Director at E14 Technologies Pvt. Ltd., co-founder of AdSkr App, Principal Engineer at Techno-Sciences, Inc., and Research Assistant at the University of Maryland.",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  },
+	{
+		"info": "",
+    "name": "Talk on “Founder Story and open discussion on Entrepreneurship”",
+    "keytalk_image": "",
+    "keytalk_link": "",
+    "start_time": {
+			"day": "16th May",
+      "time": "6 PM"
+    },
+    "end_time": {
+			"day": "",
+      "time": ""
+    },
+    "description": [],
+    "keytalk_benefits": [],
+    "createdAt": "",
+    "speakers": [
+			{
+				"name": "Atanu Row Chowdhury",
+        "desc": "Mr. Chowdhury, an IIT Guwahati and Harvard alumnus, is the founder of Capsule Labs. Capsule Labs is an education company in the field of IoT and sensor technology. Currently, Mr. Chowdhury is also a teacher at Calcutta University.",
+				"rest_desc": "Before Capsule Labs, Mr. Chowdhury has worked at Altiux, Infosys, the Harvard Sensor Networking Lab, Ericsson and Blue Highway.",
+        "duration": "45 Min",
+        "image": ""
+      }
+    ],
+    "registeredUsers": [
+    ]
+  }
+]

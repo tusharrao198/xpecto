@@ -31,6 +31,16 @@ module.exports = {
 			.lean();
 		return webinar;
 	},
+	findKeyTalk: async function (req) {
+		const current_url = url.parse(req.url, true);
+		const params = current_url.query;
+
+		const keytalkTable = require("./models/keytalks");
+		const keytalk = await keytalkTable
+			.findOne({ name: params.keytalk })
+			.lean();
+		return keytalk;
+	},
 	findEventFromId: async function (event_id) {
 		const eventTable = require("./models/Events");
 		const event = await eventTable.findOne({ _id: event_id }).lean();

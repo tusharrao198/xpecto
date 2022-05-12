@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:url" content="https://xpecto.tech/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Xpecto" />
+		<meta
+			name="description"
+			content="Xpecto is science and technology festival of Indian
+        Institute of Technology, Mandi. It has been ramped up to
+        include the most electrifying keytalks, prompting great
+        discoveries, as well as enthralling brainstorming and
+        grand prizes."
+		/>
+		<meta
+			name="keywords"
+			content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+        Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="images/xpecto-logo-header.png"
+		/>
+		<script
+			src="https://kit.fontawesome.com/a1542a4884.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="styles/page.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<title>keytalks | Xpecto</title>
+	</head>
+	<style>
+		#more {
+			display: none;
+		}
+
+		#page .container {
+			padding-top: 2.25rem;
+			width: 250px;
+		}
+
+		#page .heading span {
+			font-size: 2.25rem;
+			padding-right: 2.5rem;
+			transform: skew(0deg);
+		}
+
+		#page .heading {
+			line-height: 1.5;
+			padding-left: 7.5rem;
+			padding-top: 25%;
+			display: flex;
+			align-items: baseline;
+			transform: skewX(-7.5deg);
+		}
+
+		@media (max-width: 480px) {
+			#page .content {
+				padding: 2rem 0.25rem;
+			}
+		}
+
+		.team-size {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 0.5rem;
+		}
+
+		body {
+			background: url("../images/svg/hexagon.svg");
+			background-attachment: fixed;
+		}
+
+		.event-list-container {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.event-card-container {
+			width: 95%;
+			margin: 1.75rem;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.event-name {
+			font-size: 2.25rem;
+		}
+
+		.event-register {
+			margin: 1.5rem;
+			font-size: 1.25rem;
+			width: 200px !important;
+		}
+
+		@media (max-width: 600px) {
+			.event-register {
+				margin: 1rem;
+				font-size: 1.25rem;
+				width: 150px !important;
+			}
+
+			.event-card-container {
+				margin: 1.5rem;
+			}
+			.keytalkhead {
+				font-size: 1.5rem;
+				text-align: center;
+			}
+		}
+
+		.event-description {
+			margin-top: 1rem;
+			font-size: 1.5rem;
+		}
+		.keytalkhead {
+			font-size: 3rem;
+			text-align: center;
+		}
+		.keytalk-name{
+			font-size: 1.9rem;
+		}
+		.speaker-dur-qual{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 60%;
+		}
+
+		.speaker-container{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 2rem;
+		}
+		.speakers-list-container{
+			display:flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			
+		}
+		.speaker-name-img{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-end;
+			width:250px ;
+		}
+		.speaker-name-img:first-child{
+			margin-bottom: 1rem;
+		}
+		.speaker-name-img img{
+			width: 125px;
+			height: 125px;
+			margin-bottom: 1.5rem;
+			margin-top: 1.5rem;
+		}
+		.speaker-name-img h5{
+			font-size: 1.25rem;
+		}
+		.speakers-list-container h3{
+			margin-top: 1rem;
+			font-size: 1.75rem;
+		}
+		hr{
+			width: 80%;
+			margin: 1rem auto;
+		}
+		.speaker-dur-qual h4:last-child{
+			margin-top: 2rem;
+		}
+		.speaker-dur-qual p{
+			font-size: 0.9rem;
+		}
+		@media(max-width:1100px)
+		{
+			.speaker-dur-qual p{
+				font-size: 0.75rem;
+			}
+			.keytalk-name{
+				font-size: 1.75rem;
+			}
+			.keytalkhead{
+				font-size: 2.75rem;
+			}
+			.speakers-list-container h3{
+				font-size: 1.5rem;
+			}
+			.speaker-name-img h5{
+			font-size: 1.1rem;
+		}
+		.speaker-dur-qual h4{
+			font-size: 1.1rem !important;
+		}
+		.keytalk-benefit-content{
+		font-size: 0.85rem;
+		}
+		.keytalk-description{
+			font-size: 1rem !important;
+		}
+		}
+		@media (max-width: 1000px) {
+    #page .container {
+        display: none;
+    }
+	@media(max-width:700px)
+	{
+		.speaker-container{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			/* margin: 2rem; */
+		}
+		.speaker-dur-qual{
+			width: 90%;
+		}
+		
+		.speaker-dur-qual p{
+				font-size: 0.75rem;
+			}
+			.keytalk-name{
+				font-size: 1.5rem;
+			}
+			.keytalkhead{
+				font-size: 2.25rem;
+			}
+		
+	}
+}
+	</style>
+
+	<body>
+		<!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+		<%- include ('partials/navbar.ejs') %>
+		<!-- -----HEADER END----- -->
+		<div class="" id="page">
+			<div class="container">
+				<div class="heading" style="color: aqua">
+					<span>&nbsp;K</span>
+					<span>&nbsp;E</span>
+					<span>&nbsp;Y</span>
+					<span>&nbsp;T</span>
+					<span>&nbsp;A</span>
+					<span>&nbsp;L</span>
+					<span>&nbsp;K</span>
+					<span>&nbsp;S</span>
+					<!-- <span>&nbsp;P</span> -->
+				</div>
+			</div>
+			<div class="content">				
+				<h1 class="keytalkhead">KEYTALKS</h1>
+				<div class="events-list-container">
+					<!-- card start -->
+					<% for (let i=0; i < keytalks.length; i++) { %>
+					<div class="event-card-container">
+							<div class="event-card">
+								<div class="event-name keytalk-name" style="color: aqua">
+									<%= keytalks[i].name %>
+								</div>
+								<div class="keytalk-description">
+									<%= keytalks[i].description %>
+									<%if (keytalks[i].description.length !==0) {%>
+										<hr>
+										<%}%>
+								</div>
+								<div class="speakers-list-container">
+								<%if (keytalks[i].speakers.length !==0) {%>
+										<div class="">
+											<h3>Speakers</h3>
+											<% for(let j=0; j<keytalks[i].speakers.length; j++) {%>
+												<div class="speaker-container">
+													<div class="speaker-name-img">
+													<img src="<%= keytalks[i].speakers[j].image %>" alt="">
+													<h5><%= j+1 %>. <%= keytalks[i].speakers[j].name %></h5>
+												    </div>
+													<div class="speaker-dur-qual">
+														<h4>Qualifications</h4>
+														<p><%= keytalks[i].speakers[j].desc %></p>
+														<h4>Duration</h4>
+														<ul><%= keytalks[i].speakers[j].duration%> (Max)</ul>
+														
+													</div>
+												</div>
+												<hr>
+											<%}%>
+										</div>
+								<%}%> 
+							</div>
+								<%if (keytalks[i].keytalk_benefits.length !==
+								0) {%>
+								<div class="keytalk-benefit">
+									<h4 class="keytalk-benefit-head">keytalk Benefits</h4>
+									<div class="keytalk-benefit-content">
+									<%= keytalks[i].keytalk_benefits %>
+								</div>
+								</div>
+
+								<%}%>
+								<!-- <hr /> -->
+								<br />
+								<% if(checker[i]==false) {%>
+											<a
+												href="/keytalkRegister?keytalk=<%=keytalks[i].name %>"
+												><button class="event-register">
+													Register
+												</button></a
+											>	
+								<%} else {%>
+									<div class="msg" style="color:yellow; font-size: 1.5rem;"> You are registered for the keytalk!</div>
+								<%}%>		
+									<a href="/keytalk?keytalk=<%=keytalks[i].name %>"
+										><button class="event-register">
+										keytalk Info
+										</button></a
+									>					
+									<!--
+									<a
+										target="_blank"
+										href="<%=keytalks[i].keytalk_link %>"
+										><button class="event-register">
+											keytalk Info
+										</button></a
+									>-->
+						
+							</div>
+					</div>
+					<%}%>
+					<!-- card end -->
+				</div>
+			</div>
+
+		<script src="scripts/script.js"></script>
+		<script src="scripts/ejs.js"></script>
+	</body>
+</html>

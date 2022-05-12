@@ -14,6 +14,7 @@ const navRoutes = require("./routes/navroutes");
 const adminRoutes = require("./routes/adminroutes");
 const webinarRoutes = require("./routes/webinarroutes");
 const workshopRoutes = require("./routes/workshoproutes");
+const keytalksRoutes = require("./routes/keytalksroutes");
 const upload = require("./multer.js");
 const events = require("./models/Events.js");
 const workshops = require("./models/workshop");
@@ -113,6 +114,7 @@ app.use("/", navRoutes);
 app.use("/", adminRoutes);
 app.use("/", webinarRoutes);
 app.use("/", workshopRoutes);
+app.use("/", keytalksRoutes);
 
 app.get("/", async (req, res) => {
 	const homepageinfo = await homepageInfo();
