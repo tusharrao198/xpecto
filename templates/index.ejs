@@ -172,7 +172,7 @@
             <!-- -----UPDATES SECTION START----- -->
             <section id="updates">
                 <div class="heading">Updates: </div>
-                <marquee class="update-marq" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
+                <marquee height=300px; class="update-marq" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
 					<%for (let i=0; i<updatesdata.length; i++) {%>
 						<div>
 							<%= updatesdata[i].first%> <a href="<%= updatesdata[i].link%>"><%= updatesdata[i].link_text%></a> <%= updatesdata[i].third%>
