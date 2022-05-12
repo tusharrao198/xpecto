@@ -172,7 +172,7 @@
             <!-- -----UPDATES SECTION START----- -->
             <section id="updates">
                 <div class="heading">Updates: </div>
-                <marquee class="update-marq" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
+                <marquee height="300px" class="update-marq" direction="up" onMouseOver="this.stop();" onMouseOut="this.start();">
 					<%for (let i=0; i<updatesdata.length; i++) {%>
 						<div>
 							<%= updatesdata[i].first%> <a href="<%= updatesdata[i].link%>"><%= updatesdata[i].link_text%></a> <%= updatesdata[i].third%>
@@ -197,17 +197,18 @@
 
 				<!-- -----BUTTONS FOR T&C AND PRIVACY POLICY-----  -->
 				<div class="pages-btn">
-					<!-- <a href="/terms"
-                        ><button class="btn1 tnc">Terms & Conditions</button></a
-                    >
-                    <a href="#"
-                        ><button class="btn1 priv">Privacy Policy</button></a
-                    > -->
 					<a
 						target="_blank"
 						href="https://drive.google.com/file/d/1mc65HcORPpoOoasgCvTP7Im7s7CXZ3Wm/edit"
 						><button class="btn1 tnc">Publicity Brochure</button></a
 					>
+					<a href="/terms"
+                        ><button class="btn1 tnc">Terms & Conditions</button></a
+                    >
+                    <a href="/privacy"
+                        ><button class="btn1 priv">Privacy Policy</button></a
+                    >
+				
 				</div>
 				<!-- -----BUTTONS END----- -->
 			</section>
@@ -333,11 +334,9 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (assoc_sponsors.length>0 ) {%> <% for (let i=0; i < assoc_sponsors.length; i++) { %>
-							<a href="<%= assoc_sponsors[i].spon_sitelink %> ">
 								<div class="spon card">
-										<img src="<%=assoc_sponsors[i].spon_imagelink%>" alt="<%=assoc_sponsors[i].sponsor_name%>-logo" />
-									</div>
-								</a>
+									<img src="<%=assoc_sponsors[i].spon_imagelink%>" alt="<%=assoc_sponsors[i].sponsor_name%>-logo" />
+								</div>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -352,11 +351,9 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (gold_sponsors.length>0 ) {%> <% for (let i=0; i < gold_sponsors.length; i++) { %>
-							<a href="<%= gold_sponsors[i].spon_sitelink %> ">
 								<div class="spon card">
-										<img src="<%=gold_sponsors[i].spon_imagelink%>" alt="<%=gold_sponsors[i].sponsor_name%>-logo" />
-									</div>
-								</a>
+									<img src="<%=gold_sponsors[i].spon_imagelink%>" alt="<%=gold_sponsors[i].sponsor_name%>-logo" />
+								</div>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -371,11 +368,9 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (bronze_sponsors.length>0 ) {%> <% for (let i=0; i < bronze_sponsors.length; i++) { %>
-							<a href="<%= bronze_sponsors[i].spon_sitelink %> ">
 								<div class="spon card">
-										<img src="<%=bronze_sponsors[i].spon_imagelink%>" alt="<%=bronze_sponsors[i].sponsor_name%>-logo" />
-									</div>
-							</a>
+									<img src="<%=bronze_sponsors[i].spon_imagelink%>" alt="<%=bronze_sponsors[i].sponsor_name%>-logo" />
+								</div>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -390,11 +385,9 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (event_sponsors.length>0 ) {%> <% for (let i=0; i < event_sponsors.length; i++) { %>
-							<a href="<%= event_sponsors[i].spon_sitelink %> ">
 								<div class="spon card">
-										<img src="<%=event_sponsors[i].spon_imagelink%>" alt="<%=event_sponsors[i].sponsor_name%>-logo" />
-									</div>
-								</a>
+									<img src="<%=event_sponsors[i].spon_imagelink%>" alt="<%=event_sponsors[i].sponsor_name%>-logo" />
+								</div>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -409,11 +402,9 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (partners.length>0 ) {%> <% for (let i=0; i < partners.length; i++) { %>
-							<a href="<%= partners[i].spon_sitelink %> ">
 								<div class="spon card">
-										<img src="<%=partners[i].spon_imagelink%>" alt="<%=partners[i].sponsor_name%>-logo" />
-									</div>
-								</a>
+									<img src="<%=partners[i].spon_imagelink%>" alt="<%=partners[i].sponsor_name%>-logo" />
+								</div>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -531,10 +522,10 @@
 				controls: false,
 				// gutter:20,
 				// items: 3,
-				speed: 3000,
+				speed: 1250,
 				autoplay: true,
 				autoplayHoverPause: true,
-				autoplayTimeout: 2000,
+				autoplayTimeout: 1500,
 				// autoplayText: ["▶", "❚❚"],
 				swipeAngle: false,
 				autoplayButtonOutput: false,

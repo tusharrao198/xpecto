@@ -1,36 +1,33 @@
 <header class="header-glass active">
-	<div>
-		<a href="/"> <img src="images/xpecto-logo-header.png" alt="" /></a>
-		<a href="/"> <span>XPECTO'22</span> </a>
-	</div>
-	<nav>
-		<a class="close" id="" href="/">Home</a>
-		<a class="close" id="" href="/#about">About Us</a>
-		<a class="close" id="" href="/#sponsors">Sponsors</a>
-		<a id="" href="/events">Events</a>
-		<a id="" href="/workshops">Workshops</a>
-		<a id="" href="/keytalks">Keytalks</a>
-		<a id="" href="/webinars">Webinars</a>
-		<a class="close" id="" href="/#faq">FAQ</a>
-		<a id="ourteam" href="/ourteam">Our Team</a>
-		<% if(!authenticated){ %>
-		<a id="sign" href="/auth/google"
-			><i class="fa-brands fa-google"></i> SignIn</a
-		>
-		<a class="close" id="" href="/#contact">Contact Us</a>
+    <div>
+        <a href="/"> <img src="images/xpecto-logo-header.png" alt="" /></a>
+        <a href="/"> <span>XPECTO'22</span> </a>
+    </div>
+    <nav>
+        <a class="close" id="" href="/">Home</a>
+        <a class="close" id="" href="/#about">About Us</a>
+        <a class="close" id="" href="/#sponsors">Sponsors</a>
+        <a id="" href="/events">Events</a>
+        <a id="" href="/workshops">Workshops</a>
+        <a id="" href="/keytalks">Keytalks</a>
+        <a id="" href="/webinars">Webinars</a>
+        <a class="close" id="" href="/#faq">FAQ</a>
+        <a id="ourteam" href="/ourteam">Our Team</a>
+        <% if(!authenticated){ %>
+        <a id="sign" href="/auth/google"
+            ><i class="fa-brands fa-google"></i> SignIn</a
+        >
+        <a class="close" id="" href="/#contact">Contact Us</a>
 
-		<% }else{ %>
-		<a id="sign" href="/profile"><i class=""></i> Profile</a>
-		<a id="sign" href="/auth/logout"
-			><i class="fa-brands fa-google"></i> Logout</a
-		>
-		<a class="close" id="" href="/#contact">Contact Us</a>
-		<% } %>
-
-		<a class="close" id="" href="/terms">Terms</a>
-		<a class="close" id="" href="/privacy">Privacy</a>
-	</nav>
-	<div class="hamburger">
-		<img class="toggle" src="images/menu_open.svg" alt="" />
-	</div>
+        <% }else{ %>
+        <a id="sign" href="/profile"><i class=""></i> Profile</a>
+        <a id="sign" href="/auth/logout"
+            ><i class="fa-brands fa-google"></i> Logout</a
+        >
+        <a class="close" id="" href="/#contact">Contact Us</a>
+        <% } %>
+    </nav>
+    <div class="hamburger">
+        <img class="toggle" src="images/menu_open.svg" alt="" />
+    </div>
 </header>
