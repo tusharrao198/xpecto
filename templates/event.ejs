@@ -299,13 +299,31 @@
 										event.end_time.time %>
 									</b>
 								</li>
+								<%for (let i=0; i< event.timeline_desc.length;
+								i++) {%>
+								<li><%= event.timeline_desc[i]%></li>
+
+								<%}%>
 							</div>
 
 							<%} else {%> To be Updated Soon! <%}%>
 						</div>
 						<div class="submission">
 							<div class="submission-heading">Submission</div>
-							<% if (event.submission_link.length > 0) {%>
+							<% if (event.submission_desc.desc !== "" &&
+							event.submission_link.length > 0) {%>
+
+							<div class="submission-content">
+								<li>
+									<%= event.submission_desc.desc%>
+									<a
+										class="submission-link"
+										href="<%= event.submission_desc.link%>"
+										>Link</a
+									>
+								</li>
+							</div>
+							<!--
 							<div class="submission-content">
 								<% if (event.name==="Vision Verse") {%>
 								<div class="event-desc-content">
@@ -318,7 +336,7 @@
 									>Submission link.</a
 								>
 								<%}%>
-							</div>
+							</div>-->
 							<%}else {%>
 							<div class="submission-content">
 								Submission Links Will be provided Soon!
