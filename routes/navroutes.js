@@ -59,11 +59,11 @@ router.get("/privacy", (req, res) => {
 	});
 });
 
-// router.get("/faq", (req, res) => {
-// 	res.render("faq", {
-// 		authenticated: req.isAuthenticated(),
-// 		user: req.session.user,
-// 	});
-// });
+router.get("/timeline", (req, res) => {
+	res.render("timeline", {
+		authenticated: req.isAuthenticated(),
+		user: req.session.user,
+	});
+});
 
 module.exports = router;
