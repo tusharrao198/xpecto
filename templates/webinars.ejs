@@ -48,6 +48,10 @@
 			padding-right: 2.5rem;
 			transform: skew(0deg);
 		}
+		#page .content{
+			margin-left: 0;
+			margin-right: 0;
+		}
 
 		#page .heading {
 			line-height: 1.5;
@@ -83,7 +87,7 @@
 
 		.event-card-container {
 			width: 95%;
-			margin: 1.75rem;
+			margin: 1.75rem 0.25rem;
 			display: flex;
 			flex-direction: column;
 		}
@@ -101,12 +105,12 @@
 		@media (max-width: 600px) {
 			.event-register {
 				margin: 1rem;
-				font-size: 1.25rem;
+				font-size: 1.1rem;
 				width: 150px !important;
 			}
 
 			.event-card-container {
-				margin: 1.5rem;
+				margin: 1.5rem 0;
 			}
 			.webinarhead {
 				font-size: 1.5rem;
@@ -118,10 +122,7 @@
 			margin-top: 1rem;
 			font-size: 1.5rem;
 		}
-		.webinarhead {
-			font-size: 3rem;
-			text-align: center;
-		}
+
 		.webinar-name{
 			font-size: 1.9rem;
 		}
