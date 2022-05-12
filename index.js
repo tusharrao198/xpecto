@@ -129,13 +129,30 @@ app.get("/", async (req, res) => {
 	const update_data = await updateTable.find().lean();
 
 	let assoc_spon = [];
-	let title_spon = [];
+	let gold_spon = [];
+	let bronze_spon = [];
+	let event_spon = [];
+	let partner = [];
 
 	for (let i = 0; i < sponinfo.length; i++) {
-		if (sponinfo[i].spon_type === "Event Associate Sponsors") {
+		if (sponinfo[i].spon_type === "Associate Sponsors") 
+		{
 			assoc_spon.push(sponinfo[i]);
-		} else if (sponinfo[i].spon_type === "Event Title Sponsors") {
-			title_spon.push(sponinfo[i]);
+		} else if (sponinfo[i].spon_type === "Gold Sponsors") 
+		{
+			gold_spon.push(sponinfo[i]);
+		}
+		else if (sponinfo[i].spon_type === "Bronze Sponsors")
+		{
+			bronze_spon.push(sponinfo[i]);
+		}
+		else if (sponinfo[i].spon_type === "Event Sponsors")
+		{
+			event_spon.push(sponinfo[i]);
+		}
+		else if (sponinfo[i].spon_type === "Partner")
+		{
+			partner.push(sponinfo[i]);
 		}
 	}
 
@@ -148,7 +165,10 @@ app.get("/", async (req, res) => {
 			sponinfo === null || sponinfo === undefined ? "false" : sponinfo,
 		faqInfo: faqinfo === null || faqinfo === undefined ? "false" : faqinfo,
 		assoc_sponsors: assoc_spon,
-		title_sponsors: title_spon,
+		gold_sponsors: gold_spon,
+		bronze_sponsors: bronze_spon,
+		event_sponsors: event_spon,
+		partners: partner,
 		discordlink: dislink !== null ? dislink.link : "#",
 		alumnis: alumnis_data,
 		updatesdata: update_data,
