@@ -6,12 +6,16 @@
 	box-sizing: border-box;
 	font-family: "JetBrains Mono", monospace;
 }
-
+html{
+	/* height: 100% !important; */
+	/* width: 100%; */
+}
 .hidden {
 	display: none;
 }
 body {
 	padding: 0;
+	padding-bottom: 2rem;
 }
 header a {
 	text-decoration: none;
@@ -128,12 +132,12 @@ nav a:hover {
 		transition: all 0.5s ease;
 	}
 	nav a {
-		font-size: 1.25rem;
+		font-size: 1.2rem;
 		box-shadow: none;
 		text-align: center;
 		width: 100%;
-		padding: 5px;
-		margin: 2px;
+		padding: 2.5px;
+		margin: 1.75px;
 	}
 	nav a:hover {
 		font-size: 1.25rem;

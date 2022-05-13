@@ -1,16 +1,16 @@
 #page {
-    background-image: url("../images/svg/Hexagon.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-image: url("../images/svg/Hexagon.svg"); */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
     width: 100%;
     height: 100%;
-    filter: saturate(75%);
     display: flex;
 }
 body {
-    background: url("../images/svg/hexagon.svg");
+    background: url("../images/svg/Hexagon.svg"), rgb(0, 20, 47);
     background-attachment: fixed;
+    background-size: cover;
 }
 #page .container {
     position: sticky;
@@ -40,6 +40,7 @@ body {
     transform: skew(-7.5deg);
 }
 #page .content {
+    height: 100%;
     color: white;
     padding: 2rem;
     margin: 5rem 2rem 2rem 2rem;
