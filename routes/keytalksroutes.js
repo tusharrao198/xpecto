@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const {
 	findEvent,
-    findKeyTalk,
+	findKeyTalk,
 	findEventFromId,
 	findUserTeam,
 	findUserTeamFromId,
@@ -67,14 +67,17 @@ router.get("/keytalk", authCheck, async (req, res) => {
 	const keytalk = await findKeyTalk(req);
 	const checker = isRegisteredforEvent(req.user, keytalk);
 	// console.log("checke keytalk = ", checker, "\n", keytalk);
-
-	const context = {
-		keytalk: keytalk,
-		authenticated: req.isAuthenticated(),
-		user: req.session.user,
-		checker: checker,
-	};
-	res.render("keytalk", context);
+	if (keytalk) {
+		const context = {
+			keytalk: keytalk,
+			authenticated: req.isAuthenticated(),
+			user: req.session.user,
+			checker: checker,
+		};
+		res.render("keytalk", context);
+	} else {
+		res.redirect("/keytalks");
+	}
 });
 
 module.exports = router;

@@ -27,7 +27,7 @@ module.exports = {
 
 		const webinarTable = require("./models/webinar");
 		const webinar = await webinarTable
-			.findOne({ name: params.webinar })
+			.findOne({ info: params.webinar })
 			.lean();
 		return webinar;
 	},
@@ -579,8 +579,10 @@ module.exports = {
 	},
 	isRegisteredforEvent: function (user, event) {
 		// isRegisteredforEvent = checks for a specific event
+
 		let checker = false;
-		if (user != null) {
+		if (event && user) {
+			// console.log("eventcheck= ", event);
 			for (let j = 0; j < event.registeredUsers.length; j++) {
 				if (event.registeredUsers[j].user_id.toString() == user._id) {
 					checker = true;

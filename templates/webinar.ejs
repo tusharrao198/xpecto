@@ -307,7 +307,7 @@
 								<br />
 								<% if(checker==false) {%>
 											<a
-												href="/webinarRegister?webinar=<%=webinar.name %>"
+												href="/webinarRegister?webinar=<%=webinar.info %>"
 												><button class="event-register">
 													Register
 												</button></a
@@ -315,7 +315,7 @@
 								<%} else {%>
 									<div class="msg" style="color:yellow; font-size: 1.5rem;"> Already Registered for the Webinar!</div>
 								<%}%>		
-									<a href="/webinar?webinar=<%=webinar.name %>"
+									<a href="/webinar?webinar=<%=webinar.info %>"
 										><button class="event-register">
 										Webinar Info
 										</button></a

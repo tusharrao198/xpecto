@@ -48,7 +48,7 @@ router.get("/webinars", async (req, res) => {
 router.get("/webinarRegister", authCheck, async (req, res) => {
 	const webinar = await findWebinar(req);
 	const webinarTable = require("../models/webinar");
-
+	// console.log("webinar = ", Object.keys(webinar));
 	if (webinar) {
 		const checker = isRegisteredforEvent(req.user, webinar);
 		if (!checker) {
@@ -60,21 +60,24 @@ router.get("/webinarRegister", authCheck, async (req, res) => {
 			console.log("Can register only once");
 		}
 	}
-	res.redirect(`/webinar?webinar=${webinar.name}`);
+	res.redirect(`/webinar?webinar=${webinar._id}`);
 });
 
 router.get("/webinar", authCheck, async (req, res) => {
 	const webinar = await findWebinar(req);
 	const checker = isRegisteredforEvent(req.user, webinar);
 	// console.log("checke webinar = ", checker, "\n", webinar);
-
-	const context = {
-		webinar: webinar,
-		authenticated: req.isAuthenticated(),
-		user: req.session.user,
-		checker: checker,
-	};
-	res.render("webinar", context);
+	if (webinar) {
+		const context = {
+			webinar: webinar,
+			authenticated: req.isAuthenticated(),
+			user: req.session.user,
+			checker: checker,
+		};
+		res.render("webinar", context);
+	} else {
+		res.redirect("/webinars");
+	}
 });
 
 module.exports = router;
