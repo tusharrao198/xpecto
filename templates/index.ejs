@@ -329,9 +329,11 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (assoc_sponsors.length>0 ) {%> <% for (let i=0; i < assoc_sponsors.length; i++) { %>
-								<div class="spon card">
+								<a target="_blank" href="<%=assoc_sponsors[i].spon_sitelink%>" class="href">
+									<div class="spon card">
 									<img src="<%=assoc_sponsors[i].spon_imagelink%>" alt="<%=assoc_sponsors[i].sponsor_name%>-logo" />
 								</div>
+								</a>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -346,9 +348,11 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (gold_sponsors.length>0 ) {%> <% for (let i=0; i < gold_sponsors.length; i++) { %>
-								<div class="spon card">
+								<a target="_blank" href="<%=gold_sponsors[i].spon_sitelink%>" class="href">
+									<div class="spon card">
 									<img src="<%=gold_sponsors[i].spon_imagelink%>" alt="<%=gold_sponsors[i].sponsor_name%>-logo" />
 								</div>
+								</a>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -363,9 +367,11 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (bronze_sponsors.length>0 ) {%> <% for (let i=0; i < bronze_sponsors.length; i++) { %>
-								<div class="spon card">
-									<img src="<%=bronze_sponsors[i].spon_imagelink%>" alt="<%=bronze_sponsors[i].sponsor_name%>-logo" />
-								</div>
+								<a target="_blank" href="<%=bronze_sponsors[i].spon_sitelink%>" class="">
+									<div class="spon card">
+										<img src="<%=bronze_sponsors[i].spon_imagelink%>" alt="<%=bronze_sponsors[i].sponsor_name%>-logo" />
+									</div>
+								</a>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -380,9 +386,11 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (event_sponsors.length>0 ) {%> <% for (let i=0; i < event_sponsors.length; i++) { %>
-								<div class="spon card">
+								<a target="_blank" href="<%=event_sponsors[i].spon_sitelink%>" class="href">
+									<div class="spon card">
 									<img src="<%=event_sponsors[i].spon_imagelink%>" alt="<%=event_sponsors[i].sponsor_name%>-logo" />
 								</div>
+								</a>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -397,9 +405,11 @@
 					<div class="content">
 						<!-- <h1 style="color: white">To be Updated Soon!</h1> -->
 						<%if (partners.length>0 ) {%> <% for (let i=0; i < partners.length; i++) { %>
-								<div class="spon card">
+								<a target="_blank" href="<%=partners[i].spon_sitelink%>" class="href">
+									<div class="spon card">
 									<img src="<%=partners[i].spon_imagelink%>" alt="<%=partners[i].sponsor_name%>-logo" />
 								</div>
+								</a>
 								<%}%>
 									<%}else {%>To be Updated Soon! <%} %>
 					</div>
@@ -422,21 +432,23 @@
 								<!-- slider start  -->
 								<% for(let i =0; i<alumnis.length; i++) {%>
 
-								<div>
-									<div class="slide">
-										<div class="slide-img">
-											<img
-												src="<%=alumnis[i].Image_Link%>"
-												alt="alumnis_image"
-											/>
-										</div>
-										<br />
-										<div>
-											<h3><%=alumnis[i].Name%></h3>
-											<p>Class of: <%= alumnis[i].ClassOf%></p>
+								<a target="_blank" href="<%=alumnis[i].Linkedin%>" class="" style="text-decoration: none; color:white">
+									<div>
+										<div class="slide">
+											<div class="slide-img">
+												<img
+													src="<%=alumnis[i].Image_Link%>"
+													alt="alumnis_image"
+												/>
+											</div>
+											<br />
+											<div>
+												<h3 style="text-align: center"><%=alumnis[i].Name%></h3>
+												<p style="color: white">Class of: <%= alumnis[i].ClassOf%></p>
+											</div>
 										</div>
 									</div>
-								</div>
+								</a>
 								<%}%>
 								<!-- slider end -->
 							</div>

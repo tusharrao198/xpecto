@@ -59,10 +59,14 @@ router.get("/privacy", (req, res) => {
 	});
 });
 
-router.get("/timeline", (req, res) => {
+router.get("/timeline", async (req, res) => {
+	const timeline = require("../models/timeline");
+	let schedule = await timeline.find().lean();
 	res.render("timeline", {
 		authenticated: req.isAuthenticated(),
 		user: req.session.user,
+		schedule: schedule,
+		dates: ["13th May", "14th May", "15th May", "16th May"],
 	});
 });
 
