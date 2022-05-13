@@ -450,11 +450,63 @@
 						text-align: center;
 						font-size: 1rem;
 						font-weight: bold;
+						color: yellow;
 					"
 				>
-					Maximum Air Distance & Maximum Air Time
+					Note: There are 2 categories. Prizes to be awarded in both
+					categories separately.
 				</div>
 				<%}%>
+				<div
+					style="
+						text-align: center;
+						font-size: 1rem;
+						font-weight: bold;
+						color: yellow;
+					"
+				>
+					Category 1: Maximum Air Time
+				</div>
+				<footer>
+					<div class="prizes">
+						<div class="prize">
+							<div class="prize-heading">1st Place</div>
+							<div class="prize-name">
+								<%= event.prices.first %>
+							</div>
+						</div>
+						<div class="prize">
+							<div class="prize-heading">2nd Place</div>
+							<div class="prize-name">
+								<%= event.prices.second %>
+							</div>
+						</div>
+						<div class="prize">
+							<div class="prize-heading">3rd Place</div>
+							<div class="prize-name">
+								<%= event.prices.third %>
+							</div>
+						</div>
+						<% if (event.name === "Dementia") {%>
+						<div class="prize">
+							<div class="prize-heading">College Best</div>
+							<div class="prize-name">
+								<%= event.prices.collegeBest %>
+							</div>
+						</div>
+						<%}%>
+					</div>
+				</footer>
+				<div
+					style="
+						text-align: center;
+						font-size: 1rem;
+						font-weight: bold;
+						color: yellow;
+					"
+				>
+					Category 2: Maximum Air Distance
+				</div>
 				<footer>
 					<div class="prizes">
 						<div class="prize">
