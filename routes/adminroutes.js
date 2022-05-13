@@ -35,6 +35,37 @@ const {
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const CsvParser = require("json2csv").Parser;
 
+//////////////////// Event Updation API /////////////////////////////
+
+router.get("/makeeventLive", adminCheck, async (req, res) => {
+	let eventTable = require("../models/Events");
+	const allEvents = await eventTable.find({}).lean();
+	res.render("admin/makeEventLive", {
+		authenticated: false,
+		events: allEvents,
+	});
+});
+
+router.get("/makeeventLive", adminCheck, async (req, res) => {
+	let eventTable = require("../models/Events");
+	const allEvents = await eventTable.find({}).lean();
+	const event = await findEventFromId(eventID);
+	res, send(`<p>Event = ${event.name} made live \n ${event}</p>`);
+});
+
+router.post("/makeeventLive", adminCheck, async (req, res) => {
+	let eventTable = require("../models/Events");
+	const allEvents = await eventTable.find({}).lean();
+	const event = await findEventFromId(eventID);
+	res, send(`<p>Event = ${event.name} made live \n ${event}</p>`);
+});
+
+//////////////////// Event Updation API /////////////////////////////
+
+/////////////////////// Event Data ////////////////////////////////
+
+//////////////////// API for ADMINS. /////////////////////////////
+
 // only admin can access this route.
 router.get("/registrations", adminCheck, async (req, res) => {
 	const User = require("../models/User");
@@ -267,8 +298,9 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 	// 	totalreg: records.length,
 	// });
 });
+//////////////////// API for ADMINS. /////////////////////////////
 
-// for event coordis.
+//////////////////// for event coordis. /////////////////////////////
 
 router.get("/eventcoordilogin", (req, res) => {
 	req.session.iseventcoord == "0";
@@ -302,7 +334,7 @@ router.get("/eventwiseteam", eventCoordiCheck, async (req, res) => {
 	});
 });
 
-// generates csv
+// generates csv for teams registered for an event
 router.post("/eventwiseteam", eventCoordiCheck, async (req, res) => {
 	const allTeams = require("../models/Team");
 	const allEvents = require("../models/Events");
@@ -426,5 +458,7 @@ router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
 	// 	totalreg: records.length,
 	// });
 });
+//////////////////// for event coordis. /////////////////////////////
 
+/////////////////////// Event Data ////////////////////////////////////////////////
 module.exports = router;

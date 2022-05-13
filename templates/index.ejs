@@ -407,11 +407,13 @@
 						<%if (partners.length>0 ) {%> <% for (let i=0; i < partners.length; i++) { %>
 								<a target="_blank" href="<%=partners[i].spon_sitelink%>" class="href">
 									<div class="spon card">
-									<img src="<%=partners[i].spon_imagelink%>" alt="<%=partners[i].sponsor_name%>-logo" />
-								</div>
+										<img src="<%=partners[i].spon_imagelink%>" alt="<%=partners[i].sponsor_name%>-logo" />
+										<h6 style="text-decoration: none; text-align: center; color: cyan"><%=partners[i].spon_additionalinfo%></h6>
+									</div>
+									
 								</a>
 								<%}%>
-									<%}else {%>To be Updated Soon! <%} %>
+						<%}else {%>To be Updated Soon! <%} %>
 					</div>
 				</div>
 
