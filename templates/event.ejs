@@ -444,7 +444,17 @@
 				>
 					Prize worth : <%= event.pricesworth %>
 				</div>
-
+				<%if (event.name==="Foldable Flight") {%>
+				<div
+					style="
+						text-align: center;
+						font-size: 1rem;
+						font-weight: bold;
+					"
+				>
+					Maximum Air Distance & Maximum Air Time
+				</div>
+				<%}%>
 				<footer>
 					<div class="prizes">
 						<div class="prize">

@@ -46,18 +46,32 @@ router.get("/makeeventLive", adminCheck, async (req, res) => {
 	});
 });
 
-router.get("/makeeventLive", adminCheck, async (req, res) => {
-	let eventTable = require("../models/Events");
-	const allEvents = await eventTable.find({}).lean();
-	const event = await findEventFromId(eventID);
-	res, send(`<p>Event = ${event.name} made live \n ${event}</p>`);
-});
-
 router.post("/makeeventLive", adminCheck, async (req, res) => {
-	let eventTable = require("../models/Events");
-	const allEvents = await eventTable.find({}).lean();
-	const event = await findEventFromId(eventID);
-	res, send(`<p>Event = ${event.name} made live \n ${event}</p>`);
+	const eventTable = require("../models/Events");
+	if (req.body.event) {
+		let eventID = req.body.event;
+		eventID = eventID.slice(0, -1);
+		const eventDetails = await eventTable.findOne({ _id: eventID }).lean();
+		console.log("event = \n", eventDetails);
+		if (!eventDetails.live) {
+			const response = await eventTable.updateOne(
+				{ _id: eventID },
+				{ live: true }
+			);
+			console.log("response = ", response);
+			res.redirect("/makeeventLive");
+			// res.send(
+			// 	`<p>Event = ${eventDetails.name} made live \n ${eventDetails.live}</p>`
+			// );
+		} else {
+			res.send(
+				`<p>Event = ${eventDetails.name} already live \n ${eventDetails.live}</p>`
+			);
+		}
+	} else {
+		res.send(`<p>No event found!</p>`);
+		console.log("No event found!");
+	}
 });
 
 //////////////////// Event Updation API /////////////////////////////
