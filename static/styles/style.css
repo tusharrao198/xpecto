@@ -180,18 +180,18 @@ nav a:hover {
 	background-attachment: fixed;
 }
 #counter {
-	padding: 5rem 2rem 2rem 2rem;
+	padding: 0.5rem 2rem 1rem 2rem;
 }
 #counter .floating-logo img {
-	width: 300px;
-	animation: float 1.5s infinite;
+	width: 225px;
+	animation: float 1.75s infinite;
 }
 @keyframes float {
 	0% {
 		transform: translateY(0);
 	}
 	50% {
-		transform: translateY(-25px);
+		transform: translateY(-30px);
 	}
 	100% {
 		transform: translateY(0);
@@ -200,42 +200,12 @@ nav a:hover {
 
 #counter .content {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 
-#counter .countdown {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	text-align: center;
-}
-.countdown .heading {
-	font-size: 1.5rem;
-	color: white;
-}
-.countdown div {
-	margin: 1rem;
-}
-#counter p {
-	margin-top: 0.5rem;
-	color: white;
-	font-size: 4rem;
-	font-weight: bold;
-	width: 125px;
-	height: 125px;
-	text-align: center;
-	border-radius: 10px;
-	background-color: #060539;
-	padding: 1rem;
-	box-shadow: 0 0 20px -20px black;
-	transition: 0.3s;
-}
-#counter p:hover {
-	transform: translateY(-2.5px);
-	box-shadow: 0 20px 50px -10px black;
-	transition: 0.3s;
-}
 
 /* -----ABOUT US SECTION DESIGNING----- */
 #about {
@@ -518,6 +488,7 @@ nav a:hover {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	align-items: center;
 }
 
 /* -----EVENTS PAGE DESIGNING----- */
@@ -851,7 +822,7 @@ hr {
 	width: 75%;
 	justify-content: space-evenly;
 	margin-left: auto;
-	margin: 2rem auto;
+	margin:auto;
 	flex-wrap: wrap;
 }
 
@@ -914,6 +885,11 @@ hr {
 .schedule .schedule-event {
 	font-size: 1.3rem;
 	font-weight: bold;
+}
+.active-timeline {
+	transform: translateY(-15px);
+	color: cyan;
+	box-shadow: 0 0 75px -15px cyan;
 }
 hr {
 	width: 90% !important;

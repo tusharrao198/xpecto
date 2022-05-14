@@ -137,26 +137,21 @@ app.get("/", async (req, res) => {
 	let partner = [];
 
 	for (let i = 0; i < sponinfo.length; i++) {
-		if (sponinfo[i].spon_type === "Associate Sponsors") 
-		{
+		if (sponinfo[i].spon_type === "Associate Sponsors") {
 			assoc_spon.push(sponinfo[i]);
-		} else if (sponinfo[i].spon_type === "Gold Sponsors") 
-		{
+		} else if (sponinfo[i].spon_type === "Gold Sponsors") {
 			gold_spon.push(sponinfo[i]);
-		}
-		else if (sponinfo[i].spon_type === "Bronze Sponsors")
-		{
+		} else if (sponinfo[i].spon_type === "Bronze Sponsors") {
 			bronze_spon.push(sponinfo[i]);
-		}
-		else if (sponinfo[i].spon_type === "Event Sponsors")
-		{
+		} else if (sponinfo[i].spon_type === "Event Sponsors") {
 			event_spon.push(sponinfo[i]);
-		}
-		else if (sponinfo[i].spon_type === "Partner")
-		{
+		} else if (sponinfo[i].spon_type === "Partner") {
 			partner.push(sponinfo[i]);
 		}
 	}
+
+	const timeline = require("./models/timeline");
+	let schedule = await timeline.find().lean();
 
 	context = {
 		homepageInfo:
@@ -174,6 +169,8 @@ app.get("/", async (req, res) => {
 		discordlink: dislink !== null ? dislink.link : "#",
 		alumnis: alumnis_data,
 		updatesdata: update_data,
+		schedule: schedule,
+		dates: ["13th May", "14th May", "15th May", "16th May"],
 	};
 
 	res.render("index", {
