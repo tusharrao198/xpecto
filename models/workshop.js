@@ -70,6 +70,15 @@ const WorkshopSchema = new mongoose.Schema({
 			required: true,
 		},
 	},
+	speakers: [
+		{
+			name: { type: String },
+			desc: { type: String },
+			rest_desc: { type: String },
+			duration: { type: String },
+			image: { type: String },
+		},
+	],
 	coordinators: {
 		first: {
 			name: {

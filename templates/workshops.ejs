@@ -122,6 +122,117 @@
 			font-size: 4rem;
 			text-align: center;
 		}
+		
+		.speaker-dur-qual{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 60%;
+		}
+
+		.speaker-container{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 2rem;
+		}
+		.speakers-list-container{
+			display:flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			
+		}
+		.speaker-name-img{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-end;
+			width:250px ;
+		}
+		.speaker-name-img:first-child{
+			margin-bottom: 1rem;
+		}
+		.speaker-name-img img{
+			width: 125px;
+			height: 125px;
+			margin-bottom: 1.5rem;
+			margin-top: 1.5rem;
+		}
+		.speaker-name-img h5{
+			font-size: 1.25rem;
+		}
+		.speakers-list-container h3{
+			margin-top: 1rem;
+			font-size: 1.75rem;
+		}
+		hr{
+			width: 80%;
+			margin: 1rem auto;
+		}
+		.speaker-dur-qual h4:last-child{
+			margin-top: 2rem;
+		}
+		.speaker-dur-qual p{
+			font-size: 0.9rem;
+		}
+		@media(max-width:1100px)
+		{
+			.speaker-dur-qual p{
+				font-size: 0.75rem;
+			}
+			.webinar-name{
+				font-size: 1.75rem;
+			}
+			.webinarhead{
+				font-size: 2.75rem;
+			}
+			.speakers-list-container h3{
+				font-size: 1.5rem;
+			}
+			.speaker-name-img h5{
+			font-size: 1.1rem;
+		}
+		.speaker-dur-qual h4{
+			font-size: 1.1rem !important;
+		}
+		.webinar-benefit-content{
+		font-size: 0.85rem;
+		}
+		.webinar-description{
+			font-size: 1rem !important;
+		}
+		}
+		@media (max-width: 1000px) {
+    #page .container {
+        display: none;
+    }
+	@media(max-width:700px)
+	{
+		.speaker-container{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-evenly;
+			/* margin: 2rem; */
+		}
+		.speaker-dur-qual{
+			width: 90%;
+		}
+		
+		.speaker-dur-qual p{
+				font-size: 0.75rem;
+			}
+			.webinar-name{
+				font-size: 1.5rem;
+			}
+			.webinarhead{
+				font-size: 2.25rem;
+			}
+		
+		}
+	}
 	</style>
 
 	<body>
@@ -155,6 +266,36 @@
 								<%= workshops[i].description %>
 							</div>
 							<hr />
+							<div class="speakers-list-container">
+								<%if (workshops[i].speakers.length !==0) {%>
+									<div class="">
+										<h3>Speakers</h3>
+										<% for(let j=0; j<workshops[i].speakers.length; j++) {%>
+											<div class="speaker-container">
+												<div class="speaker-name-img">
+													<img src="<%= workshops[i].speakers[j].image %>" alt="">
+													<h5>
+														<%= j+1 %>. <%= workshops[i].speakers[j].name %>
+													</h5>
+												</div>
+												<div class="speaker-dur-qual">
+													<p>
+														<%= workshops[i].speakers[j].desc %>
+													</p>
+													<hr>
+													<br>
+													<h4>About <%= workshops[i].speakers[j].name %>
+													</h4>
+													<p>
+														<%= workshops[i].speakers[j].rest_desc %>
+													</p>
+												</div>
+											</div>
+											<hr>
+											<%}%>
+									</div>
+									<%}%>
+							</div>
 							<br />
 							<% if(checker[i]==false) {%>
 							<a
