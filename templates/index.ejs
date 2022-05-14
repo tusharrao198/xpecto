@@ -32,6 +32,7 @@
 			href="images/xpecto-logo-header.png"
 		/>
 		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="stylesheet" href="styles/timeline.css" />
 		<link rel="stylesheet" href="styles/home-parallax.css" />
 
 		<!-- -----FONT AWESOME ICONS----- -->
@@ -40,6 +41,9 @@
 			crossorigin="anonymous"
 		></script>
 		<style>
+			body{
+				background-color: rgb(0, 20, 47);
+			}
 			@media (max-width: 1300px) {
 				nav {
 					top: 90px;
@@ -143,28 +147,48 @@
 			<!-- -----COUNTER SECTION START----- -->
 			<section id="counter">
 				<div class="content">
-					<!-- <div class="countdown">
-						<div>
-							<span class="heading">Days</span>
-							<p id="days" class="time">00</p>
-						</div>
-						<div>
-							<span class="heading">Hours</span>
-							<p id="hours" class="time">00</p>
-						</div>
-						<div>
-							<span class="heading">Minutes</span>
-							<p id="minutes" class="time">00</p>
-						</div>
-						<div>
-							<span class="heading">Seconds</span>
-							<p id="seconds" class="time">00</p>
-						</div>
-					</div> -->
-					<div style="color:white;font-size:2rem;font-weight:bold;">Fest is Live</div>
 					<div class="floating-logo">
 						<img src="images/xpecto-logo-body.png" alt="" />
 					</div>
+			<div class="timeline">
+						<div class="dates-dot">
+							<div class="dot dot-1 active-timeline">
+								<div class="date_">13<br />May</div>
+								<!-- <span class="circle"></span> -->
+							</div>
+							<div class="dot dot-2">
+								<div class="date_">14<br />May</div>
+								<!-- <span class="circle"></span> -->
+							</div>
+							<div class="dot dot-3">
+								<div class="date_">15<br />May</div>
+								<!-- <span class="circle"></span> -->
+							</div>
+							<div class="dot dot-4">
+								<div class="date_">16<br />May</div>
+								<!-- <span class="circle"></span> -->
+							</div>
+						</div>
+	
+						<% for(let i =0; i<schedule.length; i++) {%> 	
+						<div class="block block-<%= i+1 %>">
+							<h3><%= schedule[i].schedule_day %></h3>
+							<div class="schedule-container">
+								<% for(let j =0; j<schedule[i].info.length; j++) {%>
+									<div class="schedule">
+										<div class="schedule-event">
+											<%= schedule[i].info[j].schedule_event %> 
+										</div>
+										<div class="schedule-time"><%= schedule[i].info[j].schedule_time %></div>
+									</div>
+									<hr />
+								<%}%>
+							</div>
+						</div>
+						<%}%>
+					</div>
+					<!-- </div> -->
+					<!-- <div style="color:white;font-size:2rem;font-weight:bold;">Fest is Live</div> -->
 				</div>
 			</section>
 			<!-- -----COUNTER SECTION END----- -->
@@ -496,6 +520,8 @@
 		<script src="scripts/countdown.js"></script>
 		<script src="scripts/faq.js"></script>
 		<script src="scripts/ejs.js"></script>
+		<script src="scripts/timeline.js"></script>
+
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"
 			integrity="sha512-j+F4W//4Pu39at5I8HC8q2l1BNz4OF3ju39HyWeqKQagW6ww3ZF9gFcu8rzUbyTDY7gEo/vqqzGte0UPpo65QQ=="
