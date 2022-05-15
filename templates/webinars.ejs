@@ -76,7 +76,7 @@
 		}
 
 		body {
-			background: url("../images/svg/hexagon.svg");
+			background: url("../images/svg/Hexagon.svg");
 			background-attachment: fixed;
 		}
 
@@ -315,6 +315,15 @@
 											>	
 								<%} else {%>
 									<div class="msg" style="color:yellow; font-size: 1.5rem;"> You have registered for the Webinar!</div>
+									<% if (webinars[i].webinar_link.length >0) {%>
+										<a
+											target="_blank"
+											href="<%=webinars[i].webinar_link %>"
+											><button class="event-register">
+												Link
+											</button></a
+										>
+									<%}%>
 								<%}%>		
 									<a href="/webinar?webinar=<%=webinars[i].info %>"
 										><button class="event-register">

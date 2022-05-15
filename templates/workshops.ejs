@@ -72,7 +72,7 @@
 		}
 
 		body {
-			background: url("../images/svg/hexagon.svg");
+			background: url("../images/svg/Hexagon.svg");
 			background-attachment: fixed;
 		}
 
@@ -311,13 +311,17 @@
 							>
 								You have registered for the Workshop!
 							</div>
-							<%}%>
-
-							<a
+							<% if (workshops[i].workshop_link.length >0) {%>
+																						<a
 								target="_blank"
 								href="<%=workshops[i].workshop_link %>"
-								><button class="event-register">Info</button></a
+								><button class="event-register">Link</button></a
 							>
+
+								<%}%>
+							<%}%>
+
+
 						</div>
 					</div>
 					<%}%>

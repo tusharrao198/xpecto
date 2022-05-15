@@ -72,7 +72,7 @@
 		}
 
 		body {
-			background: url("../images/svg/hexagon.svg");
+			background: url("/images/svg/Hexagon.svg");
 			background-attachment: fixed;
 		}
 
@@ -313,21 +313,21 @@
 											>	
 								<%} else {%>
 									<div class="msg" style="color:yellow; font-size: 1.5rem;"> Already Registered for the keytalk!</div>
+									<% if (keytalk.keytalk_link.length !==0) {%>
+																			<a
+										target="_blank"
+										href="<%=keytalk.keytalk_link %>"
+										><button class="event-register">
+											Link
+										</button></a
+									>
+									<%}%>
 								<%}%>		
 									<a href="/keytalk?keytalk=<%=keytalk.name %>"
 										><button class="event-register">
 										keytalk Info
 										</button></a
-									>					
-									<!--
-									<a
-										target="_blank"
-										href="<%=keytalk.keytalk_link %>"
-										><button class="event-register">
-											keytalk Info
-										</button></a
-									>-->
-						
+									>						
 							</div>
 					</div>
 					<!-- card end -->
