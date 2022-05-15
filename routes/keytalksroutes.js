@@ -103,7 +103,7 @@ router.post("/keytalkregistrations", adminCheck, async (req, res) => {
 		let records = [];
 		for (let i = 0; i < regUsers.length; i++) {
 			const userID = regUsers[i].user_id;
-			let user = await userDetails.findOne({ _id: userID });
+			let user = await userDetails.findOne({ _id: userID }).lean();
 			if (user) {
 				const userData = {
 					Name: user.displayName,

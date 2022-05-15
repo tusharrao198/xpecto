@@ -212,7 +212,7 @@ router.post("/eventteamdetails", adminCheck, async (req, res) => {
 		let leaderID = teams[i].teamLeader;
 		for (let j = 0; j < members.length; j++) {
 			const userID = members[j].member_id;
-			let user = await userDetails.findOne({ _id: userID });
+			let user = await userDetails.findOne({ _id: userID }).lean();
 			if (user) {
 				const userData = {
 					Name: user.displayName,
@@ -222,7 +222,7 @@ router.post("/eventteamdetails", adminCheck, async (req, res) => {
 				allMembers.push(JSON.stringify(userData));
 			}
 		}
-		let leader = await userDetails.findOne({ _id: leaderID });
+		let leader = await userDetails.findOne({ _id: leaderID }).lean();
 		let leaderData;
 		if (leader) {
 			leaderData = {
@@ -275,7 +275,7 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 	let records = [];
 	for (let i = 0; i < regUsers.length; i++) {
 		const userID = regUsers[i].user_id;
-		let user = await userDetails.findOne({ _id: userID });
+		let user = await userDetails.findOne({ _id: userID }).lean();
 		if (user) {
 			const userData = {
 				Name: user.displayName,
@@ -371,7 +371,7 @@ router.post("/eventwiseteam", eventCoordiCheck, async (req, res) => {
 		let leaderID = teams[i].teamLeader;
 		for (let j = 0; j < members.length; j++) {
 			const userID = members[j].member_id;
-			let user = await userDetails.findOne({ _id: userID });
+			let user = await userDetails.findOne({ _id: userID }).lean();
 			if (user) {
 				const userData = {
 					Name: user.displayName,
@@ -381,7 +381,7 @@ router.post("/eventwiseteam", eventCoordiCheck, async (req, res) => {
 				allMembers.push(JSON.stringify(userData));
 			}
 		}
-		let leader = await userDetails.findOne({ _id: leaderID });
+		let leader = await userDetails.findOne({ _id: leaderID }).lean();
 		let leaderData;
 		if (leader) {
 			leaderData = {
