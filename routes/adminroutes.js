@@ -282,6 +282,9 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 				Email: user.email,
 				Phone: user.phoneNumber,
 				RefCode: user.referralCode,
+				College: user.collegeName,
+				Branch: user.branch,
+				Degree: user.degree,
 			};
 			records.push(userData);
 		}
@@ -293,7 +296,15 @@ router.post("/eventregistrations", adminCheck, async (req, res) => {
 			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
 		);
 	} else {
-		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvFields = [
+			"Name",
+			"Email",
+			"Phone",
+			"RefCodeUsed",
+			"College",
+			"Branch",
+			"Degree",
+		];
 		const csvParser = new CsvParser({ csvFields });
 		const csvData = csvParser.parse(records);
 		res.setHeader("Content-Type", "text/csv");
@@ -322,10 +333,10 @@ router.get("/eventcoordilogin", (req, res) => {
 });
 
 router.post("/eventcoordiauth", (req, res) => {
-	console.log(
-		"process.env.EVENTCOORDIEMAIL = ",
-		process.env.EVENTCOORDIEMAIL
-	);
+	// console.log(
+	// 	"process.env.EVENTCOORDIEMAIL = ",
+	// 	process.env.EVENTCOORDIEMAIL
+	// );
 	if (
 		req.body.email == process.env.EVENTCOORDIEMAIL &&
 		req.body.password == process.env.EVENTCOORDIPASS
@@ -442,6 +453,9 @@ router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
 				Email: user.email,
 				Phone: user.phoneNumber,
 				RefCode: user.referralCode,
+				College: user.collegeName,
+				Branch: user.branch,
+				Degree: user.degree,
 			};
 			records.push(userData);
 		}
@@ -453,7 +467,15 @@ router.post("/eventwiseregs", eventCoordiCheck, async (req, res) => {
 			`<h1>No registrations yet for event: ${eventDetails.name} </h1>`
 		);
 	} else {
-		const csvFields = ["Name", "Email", "Phone", "RefCodeUsed"];
+		const csvFields = [
+			"Name",
+			"Email",
+			"Phone",
+			"RefCodeUsed",
+			"College",
+			"Branch",
+			"Degree",
+		];
 		const csvParser = new CsvParser({ csvFields });
 		const csvData = csvParser.parse(records);
 		res.setHeader("Content-Type", "text/csv");
