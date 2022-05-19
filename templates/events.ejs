@@ -1,187 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:url" content="https://xpecto.tech/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Xpecto" />
-        <meta
-            name="description"
-            content="Xpecto is science and technology festival of Indian
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:url" content="https://xpecto.tech/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Xpecto" />
+		<meta
+			name="description"
+			content="Xpecto is science and technology festival of Indian
         Institute of Technology, Mandi. It has been ramped up to
         include the most electrifying events, prompting great
         discoveries, as well as enthralling brainstorming and
         grand prizes."
-        />
-        <meta
-            name="keywords"
-            content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
+		/>
+		<meta
+			name="keywords"
+			content="Event, Expect, Innovate, Achieve, IIT Mandi, TechFest 2022, Xpecto, Technical festival, Techfest IIT Mandi,
         Xpecto 2022, First Technical Festival, Techfest IIT Mandi"
-        />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="images/xpecto-logo-header.png"
-        />
-        <script
-            src="https://kit.fontawesome.com/a1542a4884.js"
-            crossorigin="anonymous"
-        ></script>
-        <link rel="stylesheet" href="styles/page.css" />
-        <link rel="stylesheet" href="styles/style.css" />
+		/>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="images/xpecto-logo-header.png"
+		/>
+		<script
+			src="https://kit.fontawesome.com/a1542a4884.js"
+			crossorigin="anonymous"
+		></script>
+		<link rel="stylesheet" href="styles/page.css" />
+		<link rel="stylesheet" href="styles/style.css" />
 
-        <title>Events | Xpecto</title>
-    </head>
+		<title>Events | Xpecto</title>
+	</head>
 
-    <style>
-        #more {
-            display: none;
-        }
-        #page .container {
-            padding-top: 2.5rem;
-            width: 250px;
-        }
-        #page .heading span {
-            font-size: 2.5rem;
-            padding-right: 2.5rem;
-            transform: skew(0deg);
-        }
+	<style>
+		#more {
+			display: none;
+		}
+		#page .container {
+			padding-top: 2.5rem;
+			width: 250px;
+		}
+		#page .heading span {
+			font-size: 2.5rem;
+			padding-right: 2.5rem;
+			transform: skew(0deg);
+		}
 
-        #page .heading {
-            line-height: 1.5;
-            padding-left: 7.5rem;
-            padding-top: 25%;
-            display: flex;
-            align-items: baseline;
-            transform: skewX(-7.5deg);
-        }
-        @media (max-width: 480px) {
-            #page .content {
-                padding: 2rem 0.25rem;
-            }
-        }
-        .team-size {
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            margin: 0.5rem;
-        }
-        body {
-            background: url("../images/svg/Hexagon.svg");
-            background-attachment: fixed;
-            background-size: cover;
-        }
-    </style>
-    <body>
-        <!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
-        <%- include ('partials/navbar.ejs') %>
-        <!-- -----HEADER END----- -->
+		#page .heading {
+			line-height: 1.5;
+			padding-left: 7.5rem;
+			padding-top: 25%;
+			display: flex;
+			align-items: baseline;
+			transform: skewX(-7.5deg);
+		}
+		@media (max-width: 480px) {
+			#page .content {
+				padding: 2rem 0.25rem;
+			}
+		}
+		.team-size {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 0.5rem;
+		}
+		body {
+			background: url("../images/svg/Hexagon.svg");
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	</style>
+	<body>
+		<!-- -----HEADER INCLUDING LOGO AND NAVBAR----- -->
+		<%- include ('partials/navbar.ejs') %>
+		<!-- -----HEADER END----- -->
 
-        <div class="" id="page">
-            <div class="container">
-                <div class="heading" style="color: aqua">
-                    <span>&nbsp;E</span>
-                    <span>&nbsp;V</span>
-                    <span>&nbsp;E</span>
-                    <span>&nbsp;N</span>
-                    <span>&nbsp;T</span>
-                    <span>&nbsp;S</span>
-                </div>
-            </div>
-            <div class="content">
-                <div class="event-join-link">
-                    <a href="/joinTeam %>"
-                        ><button class="btn1-event-join">Join a Team</button></a
-                    >
-                </div>
-                <div class="events-list-container">
-                    <!-- card start -->
-                    <% for (let i = 0; i < events.length; i++) { %>
-                    <div class="event-card-container">
-                        <div class="event-card">
-                            <%if (events[i].name==='Epidemic') {%>
-                            <div class="event-name" style="color: aqua">
-                                \Epidemic
-                            </div>
+		<div class="" id="page">
+			<div class="container">
+				<div class="heading" style="color: aqua">
+					<span>&nbsp;E</span>
+					<span>&nbsp;V</span>
+					<span>&nbsp;E</span>
+					<span>&nbsp;N</span>
+					<span>&nbsp;T</span>
+					<span>&nbsp;S</span>
+				</div>
+			</div>
+			<div class="content">
+				<div class="event-join-link">
+					<a href="/joinTeam %>"
+						><button class="btn1-event-join">Join a Team</button></a
+					>
+				</div>
+				<div class="events-list-container">
+					<!-- card start -->
+					<% for (let i = 0; i < events.length; i++) { %>
+					<div class="event-card-container">
+						<div class="event-card">
+							<%if (events[i].name==='Epidemic') {%>
+							<div class="event-name" style="color: aqua">
+								\Epidemic
+							</div>
 
-                            <%} else {%>
-                            <div class="event-name" style="color: aqua">
-                                <%= events[i].name %>
-                            </div>
-                            <%}%>
+							<%} else {%>
+							<div class="event-name" style="color: aqua">
+								<%= events[i].name %>
+							</div>
+							<%}%>
 
-                            <hr />
+							<hr />
 
-                            <div class="event-description">
-                                <%= events[i].oneline_content %> <%
-                                if(events[i].rest_content) { %>
-                                <button class="desc-btn"></button>
-                                <div class="desc-cont">
-                                    <%= events[i].rest_content %>
-                                    <div class="desc"></div>
-                                </div>
-                                <%}%>
-                            </div>
-                            <hr />
-                            <div class="team-size">
-                                <div class="team-size-heading">Team Size</div>
-                                <div>:</div>
-                                <% if(events[i].teamMinSize ===
-                                events[i].teamMaxSize) { %>
-                                <div class="team-size-value">
-                                    <%= events[i].teamMinSize %>
-                                </div>
-                                <%}else {%>
-                                <div class="team-size-value">
-                                    <%= events[i].teamMinSize %>-<%=
-                                    events[i].teamMaxSize %>
-                                </div>
-                                <%}%>
-                            </div>
-                            <hr />
-                            <a href="/event?event=<%=events[i].name %>"
-                                ><button class="info">
-                                    <i
-                                        class="fa-solid fa-arrow-right fa-2x"
-                                    ></i></button
-                            ></a>
-                            <br />
+							<div class="event-description">
+								<%= events[i].oneline_content %> <%
+								if(events[i].rest_content) { %>
+								<button class="desc-btn"></button>
+								<div class="desc-cont">
+									<%= events[i].rest_content %>
+									<div class="desc"></div>
+								</div>
+								<%}%>
+							</div>
+							<hr />
+							<div class="team-size">
+								<div class="team-size-heading">Team Size</div>
+								<div>:</div>
+								<% if(events[i].teamMinSize ===
+								events[i].teamMaxSize) { %>
+								<div class="team-size-value">
+									<%= events[i].teamMinSize %>
+								</div>
+								<%}else {%>
+								<div class="team-size-value">
+									<%= events[i].teamMinSize %>-<%=
+									events[i].teamMaxSize %>
+								</div>
+								<%}%>
+							</div>
+							<hr />
+							<a href="/event?event=<%=events[i].name %>"
+								><button class="info">
+									<i
+										class="fa-solid fa-arrow-right fa-2x"
+									></i></button
+							></a>
+							<br />
 
-                            <% if(checker[i]==false) {%>
-                            <a href="/eventRegister?event=<%=events[i].name %>"
-                                ><button class="event-register">
-                                    Register
-                                </button></a
-                            >
-                            <%}%>
+							<% if(checker[i]==false) {%>
+							<!--
+                                <a href="/eventRegister?event=<%=events[i].name %>"
+								><button class="event-register">
+									Register
+								</button></a
+							>
+                            -->
+							<div class="msg3" style="color: yellow">
+								Registrations are Closed!
+							</div>
 
-                            <!-- <a href="<%=events[i].problemset_link %>"
+							<%}%>
+
+							<!-- <a href="<%=events[i].problemset_link %>"
                                 ><button class="event-problem">
                                     Problem Set
                                 </button></a
                             > -->
-                            <a href="/event?event=<%=events[i].name %>"
-                                ><button class="event-problem">
-                                    Know More!
-                                </button></a
-                            >
-                        </div>
-                    </div>
-                    <% } %>
-                    <!-- card end -->
-                </div>
-            </div>
-        </div>
+							<a href="/event?event=<%=events[i].name %>"
+								><button class="event-problem">
+									Know More!
+								</button></a
+							>
+						</div>
+					</div>
+					<% } %>
+					<!-- card end -->
+				</div>
+			</div>
+		</div>
 
-        <script src="scripts/script.js"></script>
-        <script src="scripts/ejs.js"></script>
-        <script type="text/javascript">
-            // const msg = document.querySelector(".eventi");
-            // function clickme(i) {
-            //     console.log(" i = ", i);
-            // }
-        </script>
-    </body>
+		<script src="scripts/script.js"></script>
+		<script src="scripts/ejs.js"></script>
+		<script type="text/javascript">
+			// const msg = document.querySelector(".eventi");
+			// function clickme(i) {
+			//     console.log(" i = ", i);
+			// }
+		</script>
+	</body>
 </html>
